@@ -175,18 +175,33 @@
             NSString *s = @"Það veit ég ekki.";
             
             if ([r[@"valid"] boolValue]) {
-                [self log:@"Answer found"];
-                NSDictionary *greynirResponse = r[@"response"];
-                // Single answer
-                if ([greynirResponse objectForKey:@"answer"]) {
-                    s = greynirResponse[@"answer"];
+//                [self log:@"Answer found"];
+                id greynirResponse = r[@"response"];
+                
+                if ([greynirResponse isKindOfClass:[NSArray class]]) {
+                    NSArray *gresp = greynirResponse;
+                    if ([gresp count]) {
+                        NSDictionary *first = gresp[0];
+                        if ([first objectForKey:@"answer"]) {
+                            s = first[@"answer"];
+                        }
+                    }
                 }
-                // Multiple answers. Just use the first one for now.
-                else if ([greynirResponse objectForKey:@"answers"] && [greynirResponse[@"answers"] count]) {
-                    NSArray *manyAnsw = greynirResponse[@"answers"];
-                    NSString *bestResponse = manyAnsw[0][@"answer"];
-                    s = bestResponse;
+                else if ([greynirResponse isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *gresp = greynirResponse;
+                    if ([gresp objectForKey:@"answer"] && [gresp[@"answer"] isKindOfClass:[NSString class]]) {
+                        s = gresp[@"answer"];
+                    }
+                    else if ([gresp objectForKey:@"answers"] && [gresp[@"answers"] count]) {
+                        NSArray *manyAnsw = gresp[@"answers"];
+                        NSString *bestResponse = manyAnsw[0][@"answer"];
+                        if ([bestResponse isKindOfClass:[NSString class]]) {
+                            s = bestResponse;
+                        }
+                    }
+                    
                 }
+            
             }
             [self speakText:s];
         }
