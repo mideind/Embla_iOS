@@ -16,7 +16,11 @@ $ pod install
 
 Once installation is done, open `GreynirApp.xcworkspace` with Xcode and build. 
 
-NB: In order to function correctly, the app requires valid API keys for Google's Speech API and AWS Polly's Icelandic speech synthesis API.
+NB: In order to function correctly, the app requires valid API keys for Google's Speech API and AWS Polly's Icelandic speech synthesis API. 
+The keys should be saved in the following text files:
+
+* `Keys/GoogleAPI.key`
+* `Keys/AWSPoolID.key`
 
 ## GPL License
 

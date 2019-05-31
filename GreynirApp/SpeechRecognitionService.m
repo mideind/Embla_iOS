@@ -22,7 +22,7 @@
 #import <ProtoRPC/ProtoRPC.h>
 #import <RxLibrary/GRXBufferedPipe.h>
 
-#define HOST @"speech.googleapis.com"
+#define GOOGLE_HOST @"speech.googleapis.com"
 
 @interface SpeechRecognitionService ()
 
@@ -50,7 +50,7 @@
 
     if (!_streaming) {
         // If we aren't already streaming, set up a gRPC connection
-        _client = [[Speech alloc] initWithHost:HOST];
+        _client = [[Speech alloc] initWithHost:GOOGLE_HOST];
         _writer = [[GRXBufferedPipe alloc] init];
         _call = [_client RPCToStreamingRecognizeWithRequestsWriter:_writer
                                                       eventHandler:^(BOOL done, StreamingRecognizeResponse *response,

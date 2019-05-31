@@ -17,7 +17,8 @@
 
 // Util
 #define FILE_CONTENTS(X)\
-[NSString stringWithContentsOfFile:(X) encoding:NSUTF8StringEncoding error:nil]
+[[NSString stringWithContentsOfFile:(X) encoding:NSUTF8StringEncoding error:nil] \
+stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
 
 #define BUNDLE_PATH(X)\
 [[NSBundle mainBundle] pathForResource:(X) ofType:nil]

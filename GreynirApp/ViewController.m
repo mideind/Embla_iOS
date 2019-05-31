@@ -29,7 +29,7 @@
 
 @interface ViewController () <AudioControllerDelegate>
 
-@property(nonatomic, strong) IBOutlet UITextView *textView;
+@property(nonatomic, weak) IBOutlet UITextView *textView;
 @property(nonatomic, weak) IBOutlet UIButton *startButton;
 @property(nonatomic, weak) IBOutlet UIButton *stopButton;
 @property(nonatomic, strong) NSMutableData *audioData;
@@ -52,15 +52,15 @@
     NSLog(@"Starting recording");
     
     // Configure controls
-    [_stopButton setEnabled:YES];
-    [_startButton setEnabled:NO];
+    self.stopButton.enabled = YES;
+    self.startButton.enabled = NO;
     self.queryString = @"";
     
     // Configure audio session
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
                                      withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
                                            error:nil];
-    _audioData = [[NSMutableData alloc] init];
+    self.audioData = [NSMutableData new];
     [[AudioController sharedInstance] prepareWithSampleRate:SAMPLE_RATE];
     [[SpeechRecognitionService sharedInstance] setSampleRate:SAMPLE_RATE];
     [[AudioController sharedInstance] start];
@@ -74,10 +74,10 @@
     [[SpeechRecognitionService sharedInstance] stopStreaming];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [_stopButton setEnabled:NO];
-        [_startButton setEnabled:YES];
+        self.stopButton.enabled = NO;
+        self.startButton.enabled = YES;
         
-        if (self.queryString && [self.queryString length]) {
+        if ([self.queryString length]) {
             [self askGreynir:self.queryString];
         } else {
             //[self log:@"Engin fyrirspurn."];
@@ -87,15 +87,18 @@
 
 - (void)clearLog {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        _textView.text = [_textView.text stringByAppendingString:@""];
+        self.textView.text = @"";
     }];
 }
 
 - (void)log:(NSString *)str {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        _textView.text = [_textView.text stringByAppendingString:str];
-        _textView.text = [_textView.text stringByAppendingString:@"\n"];
+        self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, str];
     }];
+}
+
+- (void)logQuote:(NSString *)str {
+    [self log:[NSString stringWithFormat:@"“%@”", str]];
 }
 
 - (void)processSampleData:(NSData *)data {
@@ -130,11 +133,11 @@
                              if ([result.alternativesArray count]) {
                                  SpeechRecognitionAlternative *best = result.alternativesArray[0];
                                  NSString *transcr = best.transcript;
-                                 _queryString = transcr;
+                                 self.queryString = transcr;
                                  [self log:@"Interpretation:"];
-                                 [self log:_queryString];
+                                 [self logQuote:_queryString];
                              } else {
-                                 [self log:@"No alternative found."];
+                                 [self log:@"No interpretation found."];
                              }
                              finished = YES;
                          }
@@ -145,13 +148,13 @@
                      }
                  }
              }];
-        self.audioData = [[NSMutableData alloc] init];
+        self.audioData = [NSMutableData new];
     }
 }
 
 - (void)askGreynir:(NSString *)questionStr {
     [self log:@"Querying Greynir:"];
-    [self log:questionStr];
+    [self logQuote:questionStr];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -162,34 +165,42 @@
                                                                       URLString:apiEndpoint
                                                                      parameters:parameters
                                                                           error:nil];
-    NSURLSessionDataTask *dataTask = [manager
-        dataTaskWithRequest:req
-          completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-              if (error) {
-                  [self log:[NSString stringWithFormat:@"Error: %@", error]];
-              } else {
-                  NSDictionary *r = responseObject;
-                  NSString *s = @"Ekkert svar fannst.";
-                  if ([r[@"valid"] boolValue]) {
-                      // TODO: Support responses with a single answer (JSON format differs)
-                      NSDictionary *greynirResponse = r[@"response"];
-                      if ([greynirResponse objectForKey:@"answers"] != nil && [greynirResponse[@"answers"] count]) {
-                          NSArray *manyAnsw = greynirResponse[@"answers"];
-                          NSString *bestResponse = manyAnsw[0][@"answer"];
-                          s = bestResponse;
-                      }
-                  }
-                  [self speakText:s];
-              }
-          }];
+    
+    // Completion handler for Greynir API request
+    id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            [self log:[NSString stringWithFormat:@"Error: %@", error]];
+        } else {
+            NSDictionary *r = responseObject;
+            NSString *s = @"Það veit ég ekki.";
+            
+            if ([r[@"valid"] boolValue]) {
+                [self log:@"Answer found"];
+                NSDictionary *greynirResponse = r[@"response"];
+                // Single answer
+                if ([greynirResponse objectForKey:@"answer"]) {
+                    s = greynirResponse[@"answer"];
+                }
+                // Multiple answers. Just use the first one for now.
+                else if ([greynirResponse objectForKey:@"answers"] && [greynirResponse[@"answers"] count]) {
+                    NSArray *manyAnsw = greynirResponse[@"answers"];
+                    NSString *bestResponse = manyAnsw[0][@"answer"];
+                    s = bestResponse;
+                }
+            }
+            [self speakText:s];
+        }
+    };
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:completionHandler];
     [dataTask resume];
 }
 
 - (void)speakText:(NSString *)txt {
-    [self log:@"Speaking text"];
-    [self log:txt];
+    [self log:@"Speaking text:"];
+    [self logQuote:txt];
     
-    AWSPollySynthesizeSpeechURLBuilderRequest *input = [[AWSPollySynthesizeSpeechURLBuilderRequest alloc] init];
+    AWSPollySynthesizeSpeechURLBuilderRequest *input = [AWSPollySynthesizeSpeechURLBuilderRequest new];
     input.text = txt;
     input.voiceId = AWSPollyVoiceIdDora;
     input.outputFormat = AWSPollyOutputFormatMp3;
