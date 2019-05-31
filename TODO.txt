@@ -2,5 +2,4 @@
 TODO list for Greynir iOS app
 
 * Move communication with AWS Polly to Greynir server to reduce latency
-* Auto-detect when a voice query is complete
 * Automatic activation on prompt-word, like "Hey Siri"

@@ -21,77 +21,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJY-83-MIx">
-                                <rect key="frame" x="87.5" y="70" width="200" height="60"/>
-                                <color key="backgroundColor" red="0.75" green="0.75" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vtY-SX-V3c">
+                                <rect key="frame" x="16" y="314" width="343" height="333"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Greynir" translatesAutoresizingMaskIntoConstraints="NO" id="jtX-hr-dtS">
+                                <rect key="frame" x="16" y="28" width="343" height="193"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Ob5-s4-nYg"/>
-                                    <constraint firstAttribute="height" constant="30" id="QTK-6F-b35"/>
-                                    <constraint firstAttribute="width" constant="200" id="aXK-qO-hb0"/>
+                                    <constraint firstAttribute="width" constant="343" id="XfQ-7F-OkG"/>
+                                    <constraint firstAttribute="height" constant="193" id="as6-YM-CbY"/>
                                 </constraints>
-                                <state key="normal" title="Hlusta"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="QTK-6F-b35"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UMB-tC-1sV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgH-jh-Nuq">
-                                <rect key="frame" x="87.5" y="180" width="200" height="60"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgH-jh-Nuq">
+                                <rect key="frame" x="87.5" y="236" width="200" height="60"/>
                                 <color key="backgroundColor" red="0.75" green="0.75" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="6lu-81-t2K"/>
                                     <constraint firstAttribute="width" constant="200" id="8b8-bw-kQK"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="kpU-Gc-YS7"/>
+                                    <constraint firstAttribute="height" constant="60" id="w9k-gT-Xhv"/>
                                 </constraints>
-                                <state key="normal" title="Hætta"/>
+                                <state key="normal" title="Hlusta"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="6lu-81-t2K"/>
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="stopAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dib-We-StL"/>
+                                    <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JZf-oh-0pS"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vtY-SX-V3c">
-                                <rect key="frame" x="16" y="290" width="343" height="377"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vtY-SX-V3c" firstAttribute="top" secondItem="wgH-jh-Nuq" secondAttribute="bottom" constant="50" id="BNf-SR-fGy"/>
+                            <constraint firstItem="jtX-hr-dtS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="4Ep-m3-IZ8"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vtY-SX-V3c" secondAttribute="bottom" constant="20" id="A4e-DJ-nvs"/>
                             <constraint firstItem="vtY-SX-V3c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Gyx-9P-zrc"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vtY-SX-V3c" secondAttribute="bottom" id="Qq3-q5-MGO"/>
-                            <constraint firstItem="wgH-jh-Nuq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bjq-My-Edw"/>
-                            <constraint firstItem="aJY-83-MIx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="d2d-EP-JYj"/>
-                            <constraint firstItem="wgH-jh-Nuq" firstAttribute="centerX" secondItem="aJY-83-MIx" secondAttribute="centerX" id="hZX-d6-ANs"/>
-                            <constraint firstItem="wgH-jh-Nuq" firstAttribute="top" secondItem="aJY-83-MIx" secondAttribute="bottom" constant="50" id="kIe-ML-fFZ"/>
-                            <constraint firstItem="aJY-83-MIx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ntQ-pz-44R"/>
+                            <constraint firstItem="wgH-jh-Nuq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Unn-R9-klq"/>
+                            <constraint firstItem="wgH-jh-Nuq" firstAttribute="top" secondItem="jtX-hr-dtS" secondAttribute="bottom" constant="15" id="iqb-ee-Si3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vtY-SX-V3c" secondAttribute="trailing" id="oW1-J1-PO7"/>
+                            <constraint firstItem="vtY-SX-V3c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t0O-66-hmg"/>
+                            <constraint firstItem="vtY-SX-V3c" firstAttribute="top" secondItem="wgH-jh-Nuq" secondAttribute="bottom" constant="18" id="ugB-PO-otb"/>
+                            <constraint firstItem="jtX-hr-dtS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wLa-aq-g58"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="hZX-d6-ANs"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
-                        <outlet property="startButton" destination="aJY-83-MIx" id="C2Q-uv-Rdz"/>
-                        <outlet property="stopButton" destination="wgH-jh-Nuq" id="5F5-ij-N3b"/>
+                        <outlet property="button" destination="wgH-jh-Nuq" id="ZmU-DA-hZC"/>
+                        <outlet property="imageView" destination="jtX-hr-dtS" id="zwo-pW-dJh"/>
                         <outlet property="textView" destination="vtY-SX-V3c" id="qxO-Ma-9eI"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="I19-bM-Qp4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="301" y="275"/>
+            <point key="canvasLocation" x="300" y="274.81259370314842"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Greynir" width="1500" height="1500"/>
+    </resources>
 </document>

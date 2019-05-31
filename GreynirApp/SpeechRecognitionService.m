@@ -53,8 +53,7 @@
         _client = [[Speech alloc] initWithHost:GOOGLE_HOST];
         _writer = [[GRXBufferedPipe alloc] init];
         _call = [_client RPCToStreamingRecognizeWithRequestsWriter:_writer
-                                                      eventHandler:^(BOOL done, StreamingRecognizeResponse *response,
-                                                                     NSError *error) {
+                                                      eventHandler:^(BOOL done, StreamingRecognizeResponse *response, NSError *error) {
                                                           completion(response, error);
                                                       }];
 
@@ -77,8 +76,8 @@
 
         StreamingRecognitionConfig *streamingRecognitionConfig = [StreamingRecognitionConfig message];
         streamingRecognitionConfig.config = recognitionConfig;
-        streamingRecognitionConfig.singleUtterance = NO;
-        streamingRecognitionConfig.interimResults = YES;
+        streamingRecognitionConfig.singleUtterance = YES;
+        streamingRecognitionConfig.interimResults = NO;
 
         StreamingRecognizeRequest *streamingRecognizeRequest = [StreamingRecognizeRequest message];
         streamingRecognizeRequest.streamingConfig = streamingRecognitionConfig;

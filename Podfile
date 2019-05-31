@@ -5,10 +5,11 @@ ENV["COCOAPODS_DISABLE_STATS"] = "true"
 inhibit_all_warnings!
 use_frameworks!
 
-target 'GreynirApp' do
+target 'Greynir' do
 
   pod 'googleapis', :path => '.'
   pod 'AFNetworking', '~> 3.0'
+  pod 'SDWebImage', '~> 5.0'
   pod 'AWSMobileClient'
   pod 'AWSPolly'
 
