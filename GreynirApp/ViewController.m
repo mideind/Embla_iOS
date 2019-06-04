@@ -47,6 +47,7 @@
     [AudioController sharedInstance].delegate = self;
     [self clearLog];
 //    [self askGreynir:@"Hver er Katrín Jakobsdóttir?"];
+//    [self speakText:@"Halló halló halló"];
 }
 
 - (IBAction)toggle:(id)sender {
@@ -67,7 +68,7 @@
     self.queryString = @"";
     
     // Configure audio session
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord
                                      withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
                                            error:nil];
     self.audioData = [NSMutableData new];
@@ -123,47 +124,55 @@
     // Google recommends sending samples in 100ms chunks
     int chunk_size = 0.1 /* seconds/chunk */ * SAMPLE_RATE * 2 /* bytes/sample */; /* bytes/chunk */
 
-    if ([self.audioData length] > chunk_size) {
-        DLog(@"SENDING");
-        [[SpeechRecognitionService sharedInstance]
-            streamAudioData:self.audioData
-             withCompletion:^(StreamingRecognizeResponse *response, NSError *error) {
-                 if (error) {
-                     DLog(@"ERROR: %@", error);
-                     [self log:[error localizedDescription]];
-                     [self stopAudio:nil];
-                 } else if (response) {
-                     BOOL finished = NO;
-                     DLog(@"RESPONSE: %@", response);
-                     DLog(@"Speech event type: %d", response.speechEventType);
-                     DLog(@"%@", [response.resultsArray description]);
-                     for (StreamingRecognitionResult *result in response.resultsArray) {
-                         if (result.isFinal) {
-                             SpeechRecognitionAlternative *best = result.alternativesArray[0];
-                             self.queryString = best.transcript;
-                             if ([result.alternativesArray count]) {
-                                 [self clearLog];
-                                 [self log:@"Interpretation:"];
-                                 [self logQuote:self.queryString];
-                             } else {
-                                 [self log:@"No interpretation found."];
-                             }
-                             finished = YES;
-                         }
-//                         else if ([result.alternativesArray count]) {
-//                             SpeechRecognitionAlternative *best = result.alternativesArray[0];
-//                             [self clearLog];
-//                             [self log:best.transcript];
-//                         }
-                     }
-                     DLog(@"%@", [response description]);
-                     if (finished) {
-                         [self stopAudio:nil];
-                     }
-                 }
-             }];
-        self.audioData = [NSMutableData new];
+    if ([self.audioData length] < chunk_size) {
+        // Not enough data yet...
     }
+    
+    SpeechRecognitionCompletionHandler compHandler = ^(StreamingRecognizeResponse *response, NSError *error) {
+        if (error) {
+            DLog(@"ERROR: %@", error);
+            [self log:[error localizedDescription]];
+            [self stopAudio:nil];
+        }
+        else if (response) {
+            BOOL finished = NO;
+            
+            DLog(@"RESPONSE: %@", response);
+            DLog(@"Speech event type: %d", response.speechEventType);
+            DLog(@"%@", [response.resultsArray description]);
+            
+            for (StreamingRecognitionResult *result in response.resultsArray) {
+                if (result.isFinal) {
+                    SpeechRecognitionAlternative *best = result.alternativesArray[0];
+                    self.queryString = best.transcript;
+                    if ([result.alternativesArray count]) {
+                        [self clearLog];
+                        [self log:@"Interpretation:"];
+                        [self logQuote:self.queryString];
+                    } else {
+                        [self log:@"No interpretation found."];
+                    }
+                    finished = YES;
+                }
+//                else if ([result.alternativesArray count]) {
+//                    SpeechRecognitionAlternative *best = result.alternativesArray[0];
+//                    [self clearLog];
+//                    [self log:best.transcript];
+//                }
+            }
+            
+            DLog(@"%@", [response description]);
+            
+            if (finished) {
+                [self stopAudio:nil];
+            }
+        }
+    };
+
+    DLog(@"SENDING");
+    [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioData withCompletion:compHandler];
+    
+    self.audioData = [NSMutableData new];
 }
 
 - (void)askGreynir:(NSString *)questionStr {
@@ -173,8 +182,8 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
 
-    NSString *apiEndpoint = @"https://greynir.is/query.api/v1";
-    NSDictionary *parameters = @{@"q" : questionStr};
+    NSString *apiEndpoint = GREYNIR_API_ENDPOINT;
+    NSDictionary *parameters = @{@"q" : questionStr, @"voice": @(YES)};
     NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
                                                                       URLString:apiEndpoint
                                                                      parameters:parameters
@@ -188,7 +197,7 @@
             NSDictionary *r = responseObject;
             NSString *s = @"Það veit ég ekki.";
             
-            if ([r[@"valid"] boolValue]) {
+            if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
 //                [self log:@"Answer found"];
                 id greynirResponse = r[@"response"];
                 id greynirImage = [r objectForKey:@"image"];
@@ -199,33 +208,37 @@
                                       placeholderImage:[UIImage imageNamed:@"Greynir"]];
                 }
                 
+                if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
+                    s = greynirResponse;
+                }
+                
                 // Array response
-                if ([greynirResponse isKindOfClass:[NSArray class]]) {
-                    NSArray *gresp = greynirResponse;
-                    if ([gresp count]) {
-                        NSDictionary *first = gresp[0];
-                        if ([first objectForKey:@"answer"]) {
-                            s = first[@"answer"];
-                        }
-                    }
-                }
-                // Dict response
-                else if ([greynirResponse isKindOfClass:[NSDictionary class]]) {
-                    NSDictionary *gresp = greynirResponse;
-                    // Single answer
-                    if ([gresp objectForKey:@"answer"] && [gresp[@"answer"] isKindOfClass:[NSString class]]) {
-                        s = gresp[@"answer"];
-                    }
-                    // Multiple answers
-                    else if ([gresp objectForKey:@"answers"] && [gresp[@"answers"] count]) {
-                        NSArray *manyAnsw = gresp[@"answers"];
-                        NSString *bestResponse = manyAnsw[0][@"answer"];
-                        if ([bestResponse isKindOfClass:[NSString class]]) {
-                            s = bestResponse;
-                        }
-                    }
-                    
-                }
+//                if ([greynirResponse isKindOfClass:[NSArray class]]) {
+//                    NSArray *gresp = greynirResponse;
+//                    if ([gresp count]) {
+//                        NSDictionary *first = gresp[0];
+//                        if ([first objectForKey:@"answer"]) {
+//                            s = first[@"answer"];
+//                        }
+//                    }
+//                }
+//                // Dict response
+//                else if ([greynirResponse isKindOfClass:[NSDictionary class]]) {
+//                    NSDictionary *gresp = greynirResponse;
+//                    // Single answer
+//                    if ([gresp objectForKey:@"answer"] && [gresp[@"answer"] isKindOfClass:[NSString class]]) {
+//                        s = gresp[@"answer"];
+//                    }
+//                    // Multiple answers
+//                    else if ([gresp objectForKey:@"answers"] && [gresp[@"answers"] count]) {
+//                        NSArray *manyAnsw = gresp[@"answers"];
+//                        NSString *bestResponse = manyAnsw[0][@"answer"];
+//                        if ([bestResponse isKindOfClass:[NSString class]]) {
+//                            s = bestResponse;
+//                        }
+//                    }
+//
+//                }
             
             }
             [self speakText:s];
@@ -247,10 +260,10 @@
 
     AWSTask *builder = [[AWSPollySynthesizeSpeechURLBuilder defaultPollySynthesizeSpeechURLBuilder] getPreSignedURL:input];
     [builder continueWithSuccessBlock:^id(AWSTask *t) {
-
+        
         NSURL *url = [t result];
 //        DLog(@"%@", url.description);
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
                                          withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
                                                error:nil];
         NSError *err;

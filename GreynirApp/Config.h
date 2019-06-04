@@ -30,4 +30,8 @@ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet
 // Google Speech API
 #define GOOGLE_SPEECH_API_KEY       FILE_CONTENTS(BUNDLE_PATH(@"GoogleAPI.key"))
 
-#define DLog(...) NSLog(__VA_ARGS__) //[[NSOperationQueue mainQueue] addOperationWithBlock:^{ NSLog(__VA_ARGS__); }]
+// Greynir API endpoint
+#define GREYNIR_API_ENDPOINT        @"https://greynir.is/query.api/v1"
+
+// Customise logging
+#define DLog(...) NSLog(__VA_ARGS__)

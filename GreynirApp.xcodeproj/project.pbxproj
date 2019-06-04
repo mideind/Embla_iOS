@@ -23,7 +23,6 @@
 /* Begin PBXFileReference section */
 		54C3D1E96C8C43AB14662311 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C682F8DD9C94E41979FE816 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		80BAC8C007DC10C224EE3F00 /* Pods_GreynirApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GreynirApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81CDA3CFFE3860AE2413B066 /* Pods_Greynir.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Greynir.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9952297FB663959D4B43B6A7 /* Pods-GreynirApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GreynirApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GreynirApp/Pods-GreynirApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CC90E7268DBEEB4D7943CA2F /* Pods-GreynirApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GreynirApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GreynirApp/Pods-GreynirApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				54C3D1E96C8C43AB14662311 /* libPods.a */,
-				80BAC8C007DC10C224EE3F00 /* Pods_GreynirApp.framework */,
 				81CDA3CFFE3860AE2413B066 /* Pods_Greynir.framework */,
 			);
 			name = Frameworks;
