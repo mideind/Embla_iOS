@@ -3,3 +3,7 @@ TODO list for Greynir iOS app
 
 * Move communication with AWS Polly to Greynir server to reduce latency
 * Automatic activation on prompt-word, like "Hey Siri"
+* Hardcoded responses should be stored as audio files in app (e.g. "Það veit ég ekki", "Ekki næst samband við netið.")
+* Voice selection
+* Tied to user account?
+* Play sound on recording activation

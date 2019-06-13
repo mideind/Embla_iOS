@@ -20,7 +20,9 @@
 @import AWSCore;
 
 @interface AppDelegate ()
-
+{
+    
+}
 @end
 
 @implementation AppDelegate

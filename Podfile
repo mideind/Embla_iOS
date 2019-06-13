@@ -1,4 +1,4 @@
-platform :ios, '9.2'
+platform :ios, '10.0'
 
 ENV["COCOAPODS_DISABLE_STATS"] = "true"
 
@@ -6,13 +6,13 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'Greynir' do
-
-  pod 'googleapis', :path => '.'
-  pod 'AFNetworking', '~> 3.0'
-  pod 'SDWebImage', '~> 5.0'
-  pod 'AWSMobileClient'
-  pod 'AWSPolly'
-
+    pod 'googleapis', :path => '.'
+    pod 'AFNetworking', '~> 3.0'
+    pod 'SDWebImage', '~> 5.0'
+    pod 'SCSiriWaveformView', '~> 1.1.1'
+    pod 'AWSMobileClient'
+    pod 'AWSPolly'
+    pod 'SDRecordButton', '~> 1.0'
 end
 
 

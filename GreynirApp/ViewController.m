@@ -19,10 +19,13 @@
 #import "google/cloud/speech/v1/CloudSpeech.pbrpc.h"
 #import "AFNetworking.h"
 #import <SDWebImage/SDWebImage.h>
+#import "SCSiriWaveformView.h"
 #import "AudioController.h"
 #import "SpeechRecognitionService.h"
+#import "QueryService.h"
 #import "ViewController.h"
 #import "Config.h"
+#import "SDRecordButton.h"
 
 @import AWSCore;
 @import AWSPolly;
@@ -30,13 +33,21 @@
 #define SAMPLE_RATE 16000.0f
 
 @interface ViewController () <AudioControllerDelegate>
+{
+    BOOL isRecording;
+    BOOL hasPlayedActivationSound;
+    float lastRecDec;
+}
 
-@property(nonatomic, weak) IBOutlet UITextView *textView;
-@property(nonatomic, weak) IBOutlet UIButton *button;
-@property(nonatomic, weak) IBOutlet UIImageView *imageView;
-@property(nonatomic, strong) NSMutableData *audioData;
-@property(atomic, strong) AVPlayer *player;
-@property(atomic, strong) NSString *queryString;
+@property (nonatomic, weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UIButton *button;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
+
+@property (nonatomic, strong) NSMutableData *audioData;
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic, strong) AWSTask *builder;
+@property (nonatomic, strong) NSString *queryString;
 
 @end
 
@@ -46,21 +57,57 @@
     [super viewDidLoad];
     [AudioController sharedInstance].delegate = self;
     [self clearLog];
+    
+    // Listen for notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(becameActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resignedActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    
 //    [self askGreynir:@"Hver er Katrín Jakobsdóttir?"];
-//    [self speakText:@"Halló halló halló"];
+    
+    
+    CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateWaveform)];
+    [displaylink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+//
+//    [self speakText:@"Góðan daginn, hvernig gengur?"];
+    
+    // Configure sinus wave view
+    [self.waveformView setDensity:10];
+//    [self.waveformView setWaveColor:[UIColor grayColor]];
+//    [self.waveformView setPrimaryWaveLineWidth:3.0f];
+//    [self.waveformView setSecondaryWaveLineWidth:1.0];
+//    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
+
+//    [self startRecording:self];
+}
+
+-(void)becameActive:(NSNotification *)notification {
+    NSLog(@"%@", [notification description]);
+}
+
+-(void)resignedActive:(NSNotification *)notification {
+    NSLog(@"%@", [notification description]);
+    [self stopRecording:self];
 }
 
 - (IBAction)toggle:(id)sender {
     if ([self.button.currentTitle isEqualToString:@"Hlusta"]) {
-        [self recordAudio:sender];
+        [self startRecording:sender];
     } else {
-        [self stopAudio:sender];
+        [self stopRecording:sender];
     }
 }
 
-- (IBAction)recordAudio:(id)sender {
+- (IBAction)startRecording:(id)sender {
     DLog(@"Starting recording");
-
+    isRecording = YES;
+    hasPlayedActivationSound = NO;
+    
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
     [self.imageView setImage:[UIImage imageNamed:@"Greynir"]];
     
@@ -77,9 +124,10 @@
     [[AudioController sharedInstance] start];
 }
 
-- (IBAction)stopAudio:(id)sender {
-    DLog(@"Stopping audio");
-
+- (IBAction)stopRecording:(id)sender {
+    DLog(@"Stopping recording");
+    isRecording = NO;
+    
     // Stop audio session
     [[AudioController sharedInstance] stop];
     [[SpeechRecognitionService sharedInstance] stopStreaming];
@@ -111,60 +159,90 @@
 }
 
 - (void)processSampleData:(NSData *)data {
+    if (!hasPlayedActivationSound) {
+        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"rec_begin" ofType:@"caf"];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+        [self.audioPlayer play];
+        hasPlayedActivationSound = YES;
+    }
+    
     [self.audioData appendData:data];
     
     NSInteger frameCount = [data length] / 2;
-    int16_t *samples = (int16_t *)[data bytes];
+    int16_t *samples = (int16_t *)[data bytes]; // Cast void pointer
     int64_t sum = 0;
+    int64_t avg = 0;
+    int16_t max = 0;
     for (int i = 0; i < frameCount; i++) {
         sum += abs(samples[i]);
+        if (!avg) {
+            avg = abs(samples[i]);
+        } else {
+            avg = (avg + abs(samples[i])) / 2;
+        }
+        if (samples[i] > max) {
+            max = samples[i];
+        }
     }
-    DLog(@"Audio frame count %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount));
-
-    // Google recommends sending samples in 100ms chunks
+    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), avg, max);
+    
+//    short *bytes = [data bytes];
+    
+//    NSLog(@"Audio frame: %d", bytes[0]);
+    float ampl = max/32767.f;
+    float decibels = 20 * log10(ampl);
+//
+//    NSLog(@"Ampl: %.8f", ampl);
+//    NSLog(@"DecB: %.2f", decibels);
+    
+    lastRecDec = decibels;
+    
+//    return;
+    
+    // Google recommends sending samples in 100 ms chunks
     int chunk_size = 0.1 /* seconds/chunk */ * SAMPLE_RATE * 2 /* bytes/sample */; /* bytes/chunk */
-
     if ([self.audioData length] < chunk_size) {
         // Not enough data yet...
+        return;
     }
     
     SpeechRecognitionCompletionHandler compHandler = ^(StreamingRecognizeResponse *response, NSError *error) {
         if (error) {
             DLog(@"ERROR: %@", error);
             [self log:[error localizedDescription]];
-            [self stopAudio:nil];
+            [self stopRecording:nil];
         }
         else if (response) {
             BOOL finished = NO;
             
             DLog(@"RESPONSE: %@", response);
             DLog(@"Speech event type: %d", response.speechEventType);
-            DLog(@"%@", [response.resultsArray description]);
+//            DLog(@"%@", [response.resultsArray description]);
             
             for (StreamingRecognitionResult *result in response.resultsArray) {
                 if (result.isFinal) {
-                    SpeechRecognitionAlternative *best = result.alternativesArray[0];
-                    self.queryString = best.transcript;
                     if ([result.alternativesArray count]) {
+                        SpeechRecognitionAlternative *best = result.alternativesArray[0];
+                        NSString *transcr = best.transcript;
+                        NSString *capitalized = [transcr stringByReplacingCharactersInRange:NSMakeRange(0,1)
+                                                                                 withString:[[transcr substringToIndex:1] capitalizedString]];
                         [self clearLog];
-                        [self log:@"Interpretation:"];
-                        [self logQuote:self.queryString];
-                    } else {
+                        [self log:[NSString stringWithFormat:@"%@?", capitalized]];
+                        self.queryString = transcr;
+                    }
+                    else {
                         [self log:@"No interpretation found."];
                     }
                     finished = YES;
                 }
-//                else if ([result.alternativesArray count]) {
-//                    SpeechRecognitionAlternative *best = result.alternativesArray[0];
-//                    [self clearLog];
-//                    [self log:best.transcript];
-//                }
             }
             
             DLog(@"%@", [response description]);
             
             if (finished) {
-                [self stopAudio:nil];
+                [self stopRecording:nil];
             }
         }
     };
@@ -176,18 +254,8 @@
 }
 
 - (void)askGreynir:(NSString *)questionStr {
-    [self log:@"Querying Greynir:"];
-    [self logQuote:questionStr];
-    
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-
-    NSString *apiEndpoint = GREYNIR_API_ENDPOINT;
-    NSDictionary *parameters = @{@"q" : questionStr, @"voice": @(YES)};
-    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
-                                                                      URLString:apiEndpoint
-                                                                     parameters:parameters
-                                                                          error:nil];
+//    [self log:@"Querying Greynir:"];
+//    [self logQuote:questionStr];
     
     // Completion handler for Greynir API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -198,7 +266,6 @@
             NSString *s = @"Það veit ég ekki.";
             
             if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
-//                [self log:@"Answer found"];
                 id greynirResponse = r[@"response"];
                 id greynirImage = [r objectForKey:@"image"];
                 
@@ -211,70 +278,69 @@
                 if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
                     s = greynirResponse;
                 }
-                
-                // Array response
-//                if ([greynirResponse isKindOfClass:[NSArray class]]) {
-//                    NSArray *gresp = greynirResponse;
-//                    if ([gresp count]) {
-//                        NSDictionary *first = gresp[0];
-//                        if ([first objectForKey:@"answer"]) {
-//                            s = first[@"answer"];
-//                        }
-//                    }
-//                }
-//                // Dict response
-//                else if ([greynirResponse isKindOfClass:[NSDictionary class]]) {
-//                    NSDictionary *gresp = greynirResponse;
-//                    // Single answer
-//                    if ([gresp objectForKey:@"answer"] && [gresp[@"answer"] isKindOfClass:[NSString class]]) {
-//                        s = gresp[@"answer"];
-//                    }
-//                    // Multiple answers
-//                    else if ([gresp objectForKey:@"answers"] && [gresp[@"answers"] count]) {
-//                        NSArray *manyAnsw = gresp[@"answers"];
-//                        NSString *bestResponse = manyAnsw[0][@"answer"];
-//                        if ([bestResponse isKindOfClass:[NSString class]]) {
-//                            s = bestResponse;
-//                        }
-//                    }
-//
-//                }
-            
             }
             [self speakText:s];
         }
     };
     
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:completionHandler];
-    [dataTask resume];
+    [[QueryService sharedInstance] sendQuery:questionStr withCompletionHandler:completionHandler];
 }
 
 - (void)speakText:(NSString *)txt {
-    [self log:@"Speaking text:"];
-    [self logQuote:txt];
+//    [self log:@"Speaking text:"];
+//    [self logQuote:txt];
     
     AWSPollySynthesizeSpeechURLBuilderRequest *input = [AWSPollySynthesizeSpeechURLBuilderRequest new];
     input.text = txt;
     input.voiceId = AWSPollyVoiceIdDora;
     input.outputFormat = AWSPollyOutputFormatMp3;
 
-    AWSTask *builder = [[AWSPollySynthesizeSpeechURLBuilder defaultPollySynthesizeSpeechURLBuilder] getPreSignedURL:input];
-    [builder continueWithSuccessBlock:^id(AWSTask *t) {
+    self.builder = [[AWSPollySynthesizeSpeechURLBuilder defaultPollySynthesizeSpeechURLBuilder] getPreSignedURL:input];
+    [self.builder continueWithSuccessBlock:^id(AWSTask *t) {
         
         NSURL *url = [t result];
-//        DLog(@"%@", url.description);
+        DLog(@"%@", url.description);
+        
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
                                          withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
                                                error:nil];
         NSError *err;
         [[AVAudioSession sharedInstance] setActive:YES error:&err];
-        self.player = [AVPlayer playerWithURL:url];
-        [self.player setAllowsExternalPlayback:YES];
-        [self.player setVolume:1.0f];
-        [self.player play];
-
+        
+        NSData *soundData = [NSData dataWithContentsOfURL:url];
+        
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData error:nil];
+        [self.audioPlayer setMeteringEnabled:YES];
+        [self.audioPlayer play];
+        
         return nil;
     }];
+}
+
+- (void)updateWaveform {
+    CGFloat level = 0.0f;
+    if (isRecording) {
+        level = [self _normalizedPowerLevelFromDecibels:lastRecDec];
+    }
+    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
+        [self.audioPlayer updateMeters];
+        float decibels = [self.audioPlayer averagePowerForChannel:0];
+        level = [self _normalizedPowerLevelFromDecibels:decibels];
+    }
+    [self.waveformView updateWithLevel:level];
+}
+
+- (CGFloat)_normalizedPowerLevelFromDecibels:(CGFloat)decibels {
+    if (decibels < -64.0f || decibels == 0.0f) {
+        return 0.0f;
+    }
+    return powf(
+            // 10 to the power of 0.1xDB  - 10 to the power of 0.1xDB
+            (powf(10.0f, 0.1f * decibels) - powf(10.0f, 0.1f * -60.0f)) *
+            // Multiplied by 1 / 1 -
+            (1.0f / (1.0f - powf(10.0f, 0.1f * -60.0f))),
+                
+            1.0f / 2.0f);
 }
 
 @end

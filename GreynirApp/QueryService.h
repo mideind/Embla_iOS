@@ -15,20 +15,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Util
-#define FILE_CONTENTS(X)\
-[[NSString stringWithContentsOfFile:(X) encoding:NSUTF8StringEncoding error:nil] \
-stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+#import <Foundation/Foundation.h>
 
-#define BUNDLE_PATH(X)\
-[[NSBundle mainBundle] pathForResource:(X) ofType:nil]
 
-// AWS Polly
-#define AWS_COGNITO_REGION          AWSRegionUSWest2
-#define AWS_COGNITO_IDENTITY_POOL   FILE_CONTENTS(BUNDLE_PATH(@"AWSPoolID.key"))
+@interface QueryService : NSObject
 
-// Google Speech API
-#define GOOGLE_SPEECH_API_KEY       FILE_CONTENTS(BUNDLE_PATH(@"GoogleAPI.key"))
++ (instancetype)sharedInstance;
+- (void)sendQuery:(NSString *)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
 
-// Customise logging
-#define DLog(...) NSLog(__VA_ARGS__)
+@end
+

@@ -21,58 +21,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vtY-SX-V3c">
-                                <rect key="frame" x="16" y="314" width="343" height="333"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Greynir" translatesAutoresizingMaskIntoConstraints="NO" id="jtX-hr-dtS">
-                                <rect key="frame" x="16" y="28" width="343" height="193"/>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="186-3G-JKn" customClass="SCSiriWaveformView">
+                                <rect key="frame" x="0.0" y="268.5" width="375" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="XfQ-7F-OkG"/>
-                                    <constraint firstAttribute="height" constant="193" id="as6-YM-CbY"/>
+                                    <constraint firstAttribute="height" constant="130" id="oXO-VG-96v"/>
                                 </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgH-jh-Nuq">
-                                <rect key="frame" x="87.5" y="236" width="200" height="60"/>
-                                <color key="backgroundColor" red="0.75" green="0.75" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="waveColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SDRecordButton">
+                                <rect key="frame" x="97" y="81" width="180" height="180"/>
+                                <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6lu-81-t2K"/>
-                                    <constraint firstAttribute="width" constant="200" id="8b8-bw-kQK"/>
-                                    <constraint firstAttribute="height" constant="60" id="w9k-gT-Xhv"/>
+                                    <constraint firstAttribute="height" constant="180" id="2TV-aN-0uz"/>
+                                    <constraint firstAttribute="width" secondItem="uwa-6b-u4b" secondAttribute="height" multiplier="1:1" id="Hyb-Xn-b9b"/>
+                                    <constraint firstAttribute="width" constant="180" id="hHE-WB-TZU"/>
                                 </constraints>
-                                <state key="normal" title="Hlusta"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="6lu-81-t2K"/>
-                                    </mask>
-                                </variation>
                                 <connections>
-                                    <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JZf-oh-0pS"/>
+                                    <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7K-cV-azV"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-uC-XPA">
+                                <rect key="frame" x="30" y="395" width="315" height="242"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jtX-hr-dtS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="4Ep-m3-IZ8"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vtY-SX-V3c" secondAttribute="bottom" constant="20" id="A4e-DJ-nvs"/>
-                            <constraint firstItem="vtY-SX-V3c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Gyx-9P-zrc"/>
-                            <constraint firstItem="wgH-jh-Nuq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Unn-R9-klq"/>
-                            <constraint firstItem="wgH-jh-Nuq" firstAttribute="top" secondItem="jtX-hr-dtS" secondAttribute="bottom" constant="15" id="iqb-ee-Si3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vtY-SX-V3c" secondAttribute="trailing" id="oW1-J1-PO7"/>
-                            <constraint firstItem="vtY-SX-V3c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t0O-66-hmg"/>
-                            <constraint firstItem="vtY-SX-V3c" firstAttribute="top" secondItem="wgH-jh-Nuq" secondAttribute="bottom" constant="18" id="ugB-PO-otb"/>
-                            <constraint firstItem="jtX-hr-dtS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wLa-aq-g58"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EMZ-uC-XPA" secondAttribute="bottom" constant="30" id="400-jJ-jxc"/>
+                            <constraint firstItem="186-3G-JKn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6QB-dt-ViH"/>
+                            <constraint firstAttribute="trailing" secondItem="EMZ-uC-XPA" secondAttribute="trailing" constant="30" id="UQp-oZ-Vvf"/>
+                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="X8m-c0-yWH"/>
+                            <constraint firstItem="186-3G-JKn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XfL-Lh-AdU"/>
+                            <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="beF-b4-jxX"/>
+                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" id="n95-7e-qmb"/>
+                            <constraint firstItem="186-3G-JKn" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" id="uuG-tY-uLW"/>
+                            <constraint firstAttribute="trailing" secondItem="186-3G-JKn" secondAttribute="trailing" id="xD2-Ti-HXF"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button" destination="wgH-jh-Nuq" id="ZmU-DA-hZC"/>
-                        <outlet property="imageView" destination="jtX-hr-dtS" id="zwo-pW-dJh"/>
-                        <outlet property="textView" destination="vtY-SX-V3c" id="qxO-Ma-9eI"/>
+                        <outlet property="button" destination="uwa-6b-u4b" id="moq-YI-nv1"/>
+                        <outlet property="textView" destination="EMZ-uC-XPA" id="D3x-Pn-7Bq"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="I19-bM-Qp4"/>
+                        <outlet property="waveformView" destination="186-3G-JKn" id="WQu-3S-T7u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -80,7 +78,4 @@
             <point key="canvasLocation" x="300" y="274.81259370314842"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Greynir" width="1500" height="1500"/>
-    </resources>
 </document>
