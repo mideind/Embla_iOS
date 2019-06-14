@@ -17,6 +17,7 @@
 		D392D9891C94938F002F5132 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* ViewController.m */; };
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
 		F423B3DD22B2C35300359D09 /* rec_begin.caf in Resources */ = {isa = PBXBuildFile; fileRef = F423B3DC22B2C35300359D09 /* rec_begin.caf */; };
+		F423B3E022B4022C00359D09 /* SpeechSynthesisService.m in Sources */ = {isa = PBXBuildFile; fileRef = F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */; };
 		F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB1F229EF94900F66BD4 /* GoogleAPI.key */; };
 		F497BB22229EF94900F66BD4 /* AWSPoolID.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB20229EF94900F66BD4 /* AWSPoolID.key */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
@@ -46,6 +47,8 @@
 		EBFF549A15D921031174FE01 /* Pods-Greynir.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greynir.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Greynir/Pods-Greynir.debug.xcconfig"; sourceTree = "<group>"; };
 		F3215BCD5D87DFF7F2965B8A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F423B3DC22B2C35300359D09 /* rec_begin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_begin.caf; sourceTree = "<group>"; };
+		F423B3DE22B4022C00359D09 /* SpeechSynthesisService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesisService.h; sourceTree = "<group>"; };
+		F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesisService.m; sourceTree = "<group>"; };
 		F497BB1D229EF73D00F66BD4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		F497BB1F229EF94900F66BD4 /* GoogleAPI.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
 		F497BB20229EF94900F66BD4 /* AWSPoolID.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AWSPoolID.key; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 				F4E160F822A977620019EDE7 /* QueryService.m */,
 				D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */,
 				D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */,
+				F423B3DE22B4022C00359D09 /* SpeechSynthesisService.h */,
+				F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */,
 				F4E160FA22A9932B0019EDE7 /* RecordButton.h */,
 				F4E160FB22A9932B0019EDE7 /* RecordButton.m */,
 				D34C17CC1C948F5700D69BCA /* Supporting Files */,
@@ -244,6 +249,7 @@
 				"${BUILT_PRODUCTS_DIR}/AWSPolly/AWSPolly.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDRecordButton/SDRecordButton.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -265,6 +271,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSPolly.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSiriWaveformView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDRecordButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -311,6 +318,7 @@
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
+				F423B3E022B4022C00359D09 /* SpeechSynthesisService.m in Sources */,
 				D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,13 +454,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
-				"HEADER_SEARCH_PATHS[arch=*]" = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler\"",
-					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\"",
-					"\"$(SRCROOT)/\"",
-				);
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) \"${PODS_ROOT}/Headers/Public\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\" \"$(SRCROOT)/\"";
 				INFOPLIST_FILE = GreynirApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

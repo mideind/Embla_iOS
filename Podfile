@@ -13,6 +13,7 @@ target 'Greynir' do
     pod 'AWSMobileClient'
     pod 'AWSPolly'
     pod 'SDRecordButton', '~> 1.0'
+    pod 'Reachability', '~> 3.2'
 end
 
 

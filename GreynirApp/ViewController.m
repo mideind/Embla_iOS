@@ -17,18 +17,15 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "google/cloud/speech/v1/CloudSpeech.pbrpc.h"
-#import "AFNetworking.h"
-#import <SDWebImage/SDWebImage.h>
+//#import <SDWebImage/SDWebImage.h>
 #import "SCSiriWaveformView.h"
 #import "AudioController.h"
 #import "SpeechRecognitionService.h"
+#import "SpeechSynthesisService.h"
 #import "QueryService.h"
 #import "ViewController.h"
 #import "Config.h"
 #import "SDRecordButton.h"
-
-@import AWSCore;
-@import AWSPolly;
 
 #define SAMPLE_RATE 16000.0f
 
@@ -46,7 +43,6 @@
 
 @property (nonatomic, strong) NSMutableData *audioData;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, strong) AWSTask *builder;
 @property (nonatomic, strong) NSString *queryString;
 
 @end
@@ -96,10 +92,10 @@
 }
 
 - (IBAction)toggle:(id)sender {
-    if ([self.button.currentTitle isEqualToString:@"Hlusta"]) {
-        [self startRecording:sender];
-    } else {
+    if (isRecording) {
         [self stopRecording:sender];
+    } else {
+        [self startRecording:sender];
     }
 }
 
@@ -269,11 +265,11 @@
                 id greynirResponse = r[@"response"];
                 id greynirImage = [r objectForKey:@"image"];
                 
-                if (greynirImage != nil && [greynirImage isKindOfClass:[NSDictionary class]] && [(NSDictionary *)greynirImage objectForKey:@"src"]) {
-                    NSString *imgURLStr = [(NSDictionary *)greynirImage objectForKey:@"src"];
-                    [self.imageView sd_setImageWithURL:[NSURL URLWithString:imgURLStr]
-                                      placeholderImage:[UIImage imageNamed:@"Greynir"]];
-                }
+//                if (greynirImage != nil && [greynirImage isKindOfClass:[NSDictionary class]] && [(NSDictionary *)greynirImage objectForKey:@"src"]) {
+//                    NSString *imgURLStr = [(NSDictionary *)greynirImage objectForKey:@"src"];
+//                    [self.imageView sd_setImageWithURL:[NSURL URLWithString:imgURLStr]
+//                                      placeholderImage:[UIImage imageNamed:@"Greynir"]];
+//                }
                 
                 if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
                     s = greynirResponse;
@@ -290,30 +286,10 @@
 //    [self log:@"Speaking text:"];
 //    [self logQuote:txt];
     
-    AWSPollySynthesizeSpeechURLBuilderRequest *input = [AWSPollySynthesizeSpeechURLBuilderRequest new];
-    input.text = txt;
-    input.voiceId = AWSPollyVoiceIdDora;
-    input.outputFormat = AWSPollyOutputFormatMp3;
-
-    self.builder = [[AWSPollySynthesizeSpeechURLBuilder defaultPollySynthesizeSpeechURLBuilder] getPreSignedURL:input];
-    [self.builder continueWithSuccessBlock:^id(AWSTask *t) {
-        
-        NSURL *url = [t result];
-        DLog(@"%@", url.description);
-        
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
-                                         withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
-                                               error:nil];
-        NSError *err;
-        [[AVAudioSession sharedInstance] setActive:YES error:&err];
-        
-        NSData *soundData = [NSData dataWithContentsOfURL:url];
-        
-        self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData error:nil];
+    [[SpeechSynthesisService sharedInstance] synthesizeText:txt completionHandler:^(NSData *audioData) {
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithData:audioData error:nil];
         [self.audioPlayer setMeteringEnabled:YES];
         [self.audioPlayer play];
-        
-        return nil;
     }];
 }
 

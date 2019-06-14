@@ -15,8 +15,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface RecordButton : UIButton
+@interface SpeechSynthesisService : NSObject
+
++ (instancetype)sharedInstance;
+- (void)synthesizeText:(NSString *)text completionHandler:(void (^)(NSData *audioData))completionHandler;
 
 @end
