@@ -65,7 +65,7 @@
                                                object:nil];
     
 //    [self askGreynir:@"Hver er Katrín Jakobsdóttir?"];
-    
+//    [self performSelector:@selector(askGreynir:) withObject:@"Hver er Katrín Jakobsdóttir?" afterDelay:5.0f];
     
     CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateWaveform)];
     [displaylink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
@@ -263,7 +263,7 @@
             
             if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
                 id greynirResponse = r[@"response"];
-                id greynirImage = [r objectForKey:@"image"];
+//                id greynirImage = [r objectForKey:@"image"];
                 
 //                if (greynirImage != nil && [greynirImage isKindOfClass:[NSDictionary class]] && [(NSDictionary *)greynirImage objectForKey:@"src"]) {
 //                    NSString *imgURLStr = [(NSDictionary *)greynirImage objectForKey:@"src"];
@@ -279,6 +279,7 @@
         }
     };
     
+    // Post query to the API
     [[QueryService sharedInstance] sendQuery:questionStr withCompletionHandler:completionHandler];
 }
 

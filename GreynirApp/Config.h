@@ -30,5 +30,5 @@ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet
 // Google Speech API
 #define GOOGLE_SPEECH_API_KEY       FILE_CONTENTS(BUNDLE_PATH(@"GoogleAPI.key"))
 
-// Customise logging
+// Custom debug logging
 #define DLog(...) NSLog(__VA_ARGS__)

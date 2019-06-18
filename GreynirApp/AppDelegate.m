@@ -20,9 +20,7 @@
 @import AWSCore;
 
 @interface AppDelegate ()
-{
-    
-}
+@property (nonatomic, strong) CLLocationManager *locationManager;
 @end
 
 @implementation AppDelegate
@@ -31,7 +29,7 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self configureAWSCredentials];
+    [self configureLocationServices];
     return YES;
 }
 
@@ -50,15 +48,21 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
 
-#pragma mark -
+#pragma mark - Location services
 
-- (void)configureAWSCredentials {
-    AWSCognitoCredentialsProvider *credentialsProvider =
-        [[AWSCognitoCredentialsProvider alloc] initWithRegionType:AWS_COGNITO_REGION
-                                                   identityPoolId:AWS_COGNITO_IDENTITY_POOL];
-    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWS_COGNITO_REGION
-                                                                         credentialsProvider:credentialsProvider];
-    AWSServiceManager.defaultServiceManager.defaultServiceConfiguration = configuration;
+- (void)configureLocationServices {
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest]; // kCLLocationAccuracyBestForNavigation
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+    [self.locationManager setDelegate:self];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    if ([locations count]) {
+        self.latestLocation = [locations lastObject];
+//        DLog(@"Location: %@", [self.latestLocation description]);
+    }
 }
 
 @end

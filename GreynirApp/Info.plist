@@ -22,8 +22,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses your current location to deliver better responses to location-related queries.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app uses the microphone to record your speech and convert it to text.</string>
+	<string>This app uses the microphone to record your speech queries and convert them to text.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

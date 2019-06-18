@@ -16,6 +16,7 @@
  */
 
 #import "SpeechSynthesisService.h"
+#import "Config.h"
 
 @import AWSCore;
 @import AWSPolly;
@@ -26,8 +27,18 @@
     static SpeechSynthesisService *instance = nil;
     if (!instance) {
         instance = [[self alloc] init];
+        [instance configureCredentials];
     }
     return instance;
+}
+
+- (void)configureCredentials {
+    AWSCognitoCredentialsProvider *credentialsProvider =
+    [[AWSCognitoCredentialsProvider alloc] initWithRegionType:AWS_COGNITO_REGION
+                                               identityPoolId:AWS_COGNITO_IDENTITY_POOL];
+    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWS_COGNITO_REGION
+                                                                         credentialsProvider:credentialsProvider];
+    AWSServiceManager.defaultServiceManager.defaultServiceConfiguration = configuration;
 }
 
 - (void)synthesizeText:(NSString *)text completionHandler:(void (^)(NSData *audioData))completionHandler {

@@ -16,9 +16,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property(strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) CLLocation *latestLocation;
 
 @end

@@ -18,6 +18,8 @@
 #import "QueryService.h"
 #import "Config.h"
 #import "AFNetworking.h"
+#import "AppDelegate.h"
+#import <CoreLocation/CoreLocation.h>
 
 // Greynir API endpoint
 #define GREYNIR_API_ENDPOINT @"https://greynir.is/query.api/v1"
@@ -38,7 +40,19 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSString *apiEndpoint = GREYNIR_API_ENDPOINT;
-    NSDictionary *parameters = @{@"q" : query, @"voice": @(YES)};
+    
+    // Query key/value pairs
+    NSMutableDictionary *parameters = [@{
+        @"q" : query,
+        @"voice": @(YES)
+    } mutableCopy];
+    
+    // Add location info, if available
+    NSDictionary *loc = [self location];
+    if (loc) {
+        [parameters addEntriesFromDictionary:loc];
+    }
+    
     NSError *err = nil;
     NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
                                                                       URLString:apiEndpoint
@@ -48,13 +62,31 @@
         NSLog(@"%@", [err localizedDescription]);
         return;
     }
-    // Silence deprecation warnings (Xcode mistakenly thinks this is a call to NSURLSession)
+    DLog(@"Sending request %@", [req description]);
+    
+    // Silence deprecation warnings (Xcode mistakenly thinks this is a call to NSURLSession[!])
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:completionHandler];
 #pragma GCC diagnostic pop
 
     [dataTask resume];
+}
+
+- (NSDictionary *)location {
+    AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    CLLocation *currentLoc = [appDel latestLocation];
+    if (currentLoc) {
+        CLLocationCoordinate2D coords = currentLoc.coordinate;
+        return @{
+            @"location": @{
+                @"latitude": @(coords.latitude),
+                @"longitude": @(coords.longitude)
+            }
+        };
+    }
+    
+    return nil;
 }
 
 @end

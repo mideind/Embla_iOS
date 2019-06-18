@@ -7,3 +7,5 @@ TODO list for Greynir iOS app
 * Voice selection
 * Tied to user account?
 * Play sound on recording activation
+* Location info
+* Privacy notification on app setup/onboarding (some blurb about not storing personally identifiable information)
