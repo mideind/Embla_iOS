@@ -51,10 +51,14 @@
     // Request synthesis and receive audio URL
     AWSTask *builder = [[AWSPollySynthesizeSpeechURLBuilder defaultPollySynthesizeSpeechURLBuilder] getPreSignedURL:input];
     [builder continueWithSuccessBlock:^id(AWSTask *t) {
-        // Download audio file from URL and hand over to completion handler
+        // Asynchronously download audio file from URL and then hand the audio data over to completion handler
         NSURL *url = [t result];
+        DLog(@"Speech audio URL: %@", [url description]);
         NSURLSessionDataTask *downloadTask = \
         [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                DLog(@"%@", [error localizedDescription]);
+            }
             completionHandler(data);
         }];
         [downloadTask resume];

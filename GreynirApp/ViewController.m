@@ -65,12 +65,14 @@
                                                object:nil];
     
 //    [self askGreynir:@"Hver er Katrín Jakobsdóttir?"];
-//    [self performSelector:@selector(askGreynir:) withObject:@"Hver er Katrín Jakobsdóttir?" afterDelay:5.0f];
+    [self performSelector:@selector(askGreynir:) withObject:@"Hver er Katrín Jakobsdóttir?" afterDelay:2.0f];
     
     CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateWaveform)];
     [displaylink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
 //
-//    [self speakText:@"Góðan daginn, hvernig gengur?"];
+//    [self speakText:@"Það veit ég ekki."];
+    
+//    [self playAudio:@"dunno"];
     
     // Configure sinus wave view
     [self.waveformView setDensity:10];
@@ -255,6 +257,7 @@
     
     // Completion handler for Greynir API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
+        DLog(@"Greynir server response: %@", [responseObject description]);
         if (error) {
             [self log:[NSString stringWithFormat:@"Error: %@", error]];
         } else {
@@ -274,8 +277,11 @@
                 if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
                     s = greynirResponse;
                 }
+                [self synthesizeText:s];
             }
-            [self speakText:s];
+            else {
+                [self playAudio:@"dunno"];
+            }
         }
     };
     
@@ -283,15 +289,36 @@
     [[QueryService sharedInstance] sendQuery:questionStr withCompletionHandler:completionHandler];
 }
 
-- (void)speakText:(NSString *)txt {
+- (void)synthesizeText:(NSString *)txt {
 //    [self log:@"Speaking text:"];
 //    [self logQuote:txt];
-    
     [[SpeechSynthesisService sharedInstance] synthesizeText:txt completionHandler:^(NSData *audioData) {
-        self.audioPlayer = [[AVAudioPlayer alloc] initWithData:audioData error:nil];
+        [self playAudio:audioData];
+    }];
+}
+
+- (void)playAudio:(id)filenameOrData {
+    // Utility function that creates an AVAudioPlayer to play either a local file or audio data
+    NSError *err;
+    
+    if ([filenameOrData isKindOfClass:[NSString class]]) {
+        // Local filename specified, init player with local file URL
+        NSString *filename = (NSString *)filenameOrData;
+        NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:@"caf"];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
+    } else {
+        // Init player with audio data
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithData:(NSData *)filenameOrData error:&err];
+    }
+    
+    if (err == nil) {
+        // Configure player and set it off
         [self.audioPlayer setMeteringEnabled:YES];
         [self.audioPlayer play];
-    }];
+    } else {
+        DLog(@"%@", [err localizedDescription]);
+    }
 }
 
 - (void)updateWaveform {
