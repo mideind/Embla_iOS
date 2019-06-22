@@ -16,7 +16,6 @@
 		D392D9861C94937D002F5132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D392D9851C94937D002F5132 /* Main.storyboard */; };
 		D392D9891C94938F002F5132 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* ViewController.m */; };
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
-		F423B3E022B4022C00359D09 /* SpeechSynthesisService.m in Sources */ = {isa = PBXBuildFile; fileRef = F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F4482F3122B948F80050148E /* dunno.caf in Resources */ = {isa = PBXBuildFile; fileRef = F4482F2E22B948F80050148E /* dunno.caf */; };
 		F4482F3222B948F80050148E /* rec_begin.caf in Resources */ = {isa = PBXBuildFile; fileRef = F4482F2F22B948F80050148E /* rec_begin.caf */; };
@@ -57,7 +56,6 @@
 		F497BB1F229EF94900F66BD4 /* GoogleAPI.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
 		F497BB20229EF94900F66BD4 /* AWSPoolID.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AWSPoolID.key; sourceTree = "<group>"; };
 		F497BB23229EFC2800F66BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		F497BB24229EFC3100F66BD4 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F497BB2522A169DA00F66BD4 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 			children = (
 				F497BB23229EFC2800F66BD4 /* README.md */,
 				F497BB2522A169DA00F66BD4 /* TODO.txt */,
-				F497BB24229EFC3100F66BD4 /* Podfile */,
 				D34C17CB1C948F5700D69BCA /* GreynirApp */,
 				D34C17CA1C948F5700D69BCA /* Products */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,
@@ -257,12 +254,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Greynir/Pods-Greynir-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/AWSAuthCore/AWSAuthCore.framework",
-				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
-				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
-				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
-				"${BUILT_PRODUCTS_DIR}/AWSMobileClient/AWSMobileClient.framework",
-				"${BUILT_PRODUCTS_DIR}/AWSPolly/AWSPolly.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
@@ -279,12 +270,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMobileClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSPolly.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -334,7 +319,6 @@
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
-				F423B3E022B4022C00359D09 /* SpeechSynthesisService.m in Sources */,
 				D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

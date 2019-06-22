@@ -22,7 +22,9 @@
 #import <CoreLocation/CoreLocation.h>
 
 // Greynir API endpoint
+// #define GREYNIR_API_ENDPOINT @"https://greynir.is/query.api/v1"
 #define GREYNIR_API_ENDPOINT @"https://greynir.is/query.api/v1"
+
 
 @implementation QueryService
 
@@ -79,10 +81,8 @@
     if (currentLoc) {
         CLLocationCoordinate2D coords = currentLoc.coordinate;
         return @{
-            @"location": @{
-                @"latitude": @(coords.latitude),
-                @"longitude": @(coords.longitude)
-            }
+            @"latitude": @(coords.latitude),
+            @"longitude": @(coords.longitude)
         };
     }
     

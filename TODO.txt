@@ -1,11 +1,19 @@
 
 TODO list for Greynir iOS app
 
-* Move communication with AWS Polly to Greynir server to reduce latency
+* Tied to Greynir user account?
+* Privacy notification on app setup/onboarding (show some blurb about not storing personally identifiable information)
+* Handle reachability. Don't break when internet connection fails at any stage.
 * Automatic activation on prompt-word, like "Hey Siri"
-* Hardcoded responses should be stored as audio files in app (e.g. "Það veit ég ekki", "Ekki næst samband við netið.")
-* Voice selection
-* Tied to user account?
-* Play sound on recording activation
-* Location info
-* Privacy notification on app setup/onboarding (some blurb about not storing personally identifiable information)
+* Ignore responses from old requests instead of re-triggering query/playback pipeline
+* Server-side should identify natural language queries, respond "I don't understand the question" if query is just a statement
+* We need new sound files for recording notifications. Currently using Apple's assets for Siri.
+
+* Add sounds for when recording ends/speech recognition fails
+
+* Implement settings, incl. voice selection
+
+DONE * Move initial url signing communication with AWS Polly to Greynir server to reduce latency
+DONE * Hardcoded responses should be stored as local audio files in app (e.g. "Það veit ég ekki", "Ekki næst samband við netið.")
+DONE * Play sound on recording activation
+DONE * Send location info w. query

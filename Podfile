@@ -10,8 +10,8 @@ target 'Greynir' do
     pod 'AFNetworking', '~> 3.0'
     pod 'SDWebImage', '~> 5.0'
     pod 'SCSiriWaveformView', '~> 1.1.1'
-    pod 'AWSMobileClient'
-    pod 'AWSPolly'
+#    pod 'AWSMobileClient'
+#    pod 'AWSPolly'
     pod 'SDRecordButton', '~> 1.0'
     pod 'Reachability', '~> 3.2'
 end

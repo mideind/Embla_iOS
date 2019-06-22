@@ -21,7 +21,7 @@
 #import "SCSiriWaveformView.h"
 #import "AudioController.h"
 #import "SpeechRecognitionService.h"
-#import "SpeechSynthesisService.h"
+//#import "SpeechSynthesisService.h"
 #import "QueryService.h"
 #import "ViewController.h"
 #import "Config.h"
@@ -42,8 +42,8 @@
 @property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
 
 @property (nonatomic, strong) NSMutableData *audioData;
-@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, strong) NSString *queryString;
+@property (atomic, strong) AVAudioPlayer *audioPlayer;
+@property (atomic, strong) NSString *queryString;
 
 @end
 
@@ -51,8 +51,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [AudioController sharedInstance].delegate = self;
+    
+    // Set up user interface
     [self clearLog];
+    // Configure sinus wave view
+    [self.waveformView setDensity:10];
+    [self.waveformView setIdleAmplitude:0.0f];
+    //    [self.waveformView setWaveColor:[UIColor grayColor]];
+    //    [self.waveformView setPrimaryWaveLineWidth:3.0f];
+    //    [self.waveformView setSecondaryWaveLineWidth:1.0];
+    //    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
+    
+    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithTitle:@"Hello"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(startRecording:)];
+    [self setToolbarItems:@[settingsItem] animated:NO];
+    
+    self.navigationController.toolbarHidden = NO;
+
+    
+    [AudioController sharedInstance].delegate = self;
     
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -65,22 +84,16 @@
                                                object:nil];
     
 //    [self askGreynir:@"Hver er Katrín Jakobsdóttir?"];
-    [self performSelector:@selector(askGreynir:) withObject:@"Hver er Katrín Jakobsdóttir?" afterDelay:2.0f];
+//    [self performSelector:@selector(askGreynir:) withObject:@"Hver er Katrín Jakobsdóttir?" afterDelay:2.0f];
     
-    CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateWaveform)];
+    CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self
+                                                             selector:@selector(updateWaveform)];
     [displaylink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
 //
 //    [self speakText:@"Það veit ég ekki."];
     
 //    [self playAudio:@"dunno"];
     
-    // Configure sinus wave view
-    [self.waveformView setDensity:10];
-//    [self.waveformView setWaveColor:[UIColor grayColor]];
-//    [self.waveformView setPrimaryWaveLineWidth:3.0f];
-//    [self.waveformView setSecondaryWaveLineWidth:1.0];
-//    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
-
 //    [self startRecording:self];
 }
 
@@ -105,6 +118,7 @@
     DLog(@"Starting recording");
     isRecording = YES;
     hasPlayedActivationSound = NO;
+    [self.waveformView setIdleAmplitude:0.01f];
     
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
     [self.imageView setImage:[UIImage imageNamed:@"Greynir"]];
@@ -125,6 +139,7 @@
 - (IBAction)stopRecording:(id)sender {
     DLog(@"Stopping recording");
     isRecording = NO;
+    [self.waveformView setIdleAmplitude:0.0f];
     
     // Stop audio session
     [[AudioController sharedInstance] stop];
@@ -146,18 +161,27 @@
     }];
 }
 
-- (void)log:(NSString *)str {
+//- (void)log:(NSString *)str {
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//        self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, str];
+//    }];
+//}
+
+- (void)log:(NSString *)message, ... {
+    va_list args;
+    va_start(args, message);
+    NSString *formattedString = [[NSString alloc] initWithFormat:message arguments:args];
+    va_end(args);
+    
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, str];
+        self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, formattedString];
     }];
 }
 
-- (void)logQuote:(NSString *)str {
-    [self log:[NSString stringWithFormat:@"“%@”", str]];
-}
 
 - (void)processSampleData:(NSData *)data {
     if (!hasPlayedActivationSound) {
+//        [self playAudio:@"rec_begin.caf"];
         NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"rec_begin" ofType:@"caf"];
         NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
         
@@ -184,7 +208,7 @@
             max = samples[i];
         }
     }
-    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), avg, max);
+    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), (int)avg, (int)max);
     
 //    short *bytes = [data bytes];
     
@@ -258,14 +282,14 @@
     // Completion handler for Greynir API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
         DLog(@"Greynir server response: %@", [responseObject description]);
+        
         if (error) {
             [self log:[NSString stringWithFormat:@"Error: %@", error]];
         } else {
             NSDictionary *r = responseObject;
-            NSString *s = @"Það veit ég ekki.";
             
             if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
-                id greynirResponse = r[@"response"];
+                id greynirResponse = [r objectForKey:@"response"];
 //                id greynirImage = [r objectForKey:@"image"];
                 
 //                if (greynirImage != nil && [greynirImage isKindOfClass:[NSDictionary class]] && [(NSDictionary *)greynirImage objectForKey:@"src"]) {
@@ -275,9 +299,14 @@
 //                }
                 
                 if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
-                    s = greynirResponse;
+                    [self log:@"\n%@", greynirResponse];
                 }
-                [self synthesizeText:s];
+                
+                NSString *audioURLStr = [r objectForKey:@"audio"];
+                if (audioURLStr) {
+                    [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
+                }
+                
             }
             else {
                 [self playAudio:@"dunno"];
@@ -292,30 +321,55 @@
 - (void)synthesizeText:(NSString *)txt {
 //    [self log:@"Speaking text:"];
 //    [self logQuote:txt];
-    [[SpeechSynthesisService sharedInstance] synthesizeText:txt completionHandler:^(NSData *audioData) {
-        [self playAudio:audioData];
+//    [[SpeechSynthesisService sharedInstance] synthesizeText:txt completionHandler:^(NSData *audioData) {
+//        [self playAudio:audioData];
+//    }];
+}
+
+- (void)playRemoteURL:(NSURL *)url {
+    DLog(@"Speech audio URL: %@", [url description]);
+    NSURLSessionDataTask *downloadTask = \
+    [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            DLog(@"%@", [error localizedDescription]);
+            return;
+        }
+//        completionHandler(data);
+        DLog(@"Playing audio file of size %d", (int)[data length]);
+        [self playAudio:data];
     }];
+    [downloadTask resume];
 }
 
 - (void)playAudio:(id)filenameOrData {
     // Utility function that creates an AVAudioPlayer to play either a local file or audio data
+    
+    // Change audio session to playback mode
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
+                                           error:nil];
     NSError *err;
+    AVAudioPlayer *player;
     
     if ([filenameOrData isKindOfClass:[NSString class]]) {
         // Local filename specified, init player with local file URL
         NSString *filename = (NSString *)filenameOrData;
         NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:@"caf"];
         NSURL *url = [NSURL fileURLWithPath:path];
-        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
-    } else {
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
+    } else if ([filenameOrData isKindOfClass:[NSData class]]) {
         // Init player with audio data
-        self.audioPlayer = [[AVAudioPlayer alloc] initWithData:(NSData *)filenameOrData error:&err];
+        player = [[AVAudioPlayer alloc] initWithData:(NSData *)filenameOrData error:&err];
+    } else {
+        DLog(@"playAudio argument neither filename nor data.");
+        return;
     }
     
     if (err == nil) {
         // Configure player and set it off
-        [self.audioPlayer setMeteringEnabled:YES];
-        [self.audioPlayer play];
+        [player setMeteringEnabled:YES];
+        [player play];
+        self.audioPlayer = player;
     } else {
         DLog(@"%@", [err localizedDescription]);
     }

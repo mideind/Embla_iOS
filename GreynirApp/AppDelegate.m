@@ -17,7 +17,6 @@
 
 #import "AppDelegate.h"
 #import "Config.h"
-@import AWSCore;
 
 @interface AppDelegate ()
 @property (nonatomic, strong) CLLocationManager *locationManager;
