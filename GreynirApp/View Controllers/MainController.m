@@ -23,13 +23,13 @@
 #import "SpeechRecognitionService.h"
 //#import "SpeechSynthesisService.h"
 #import "QueryService.h"
-#import "ViewController.h"
+#import "MainController.h"
 #import "Config.h"
 #import "SDRecordButton.h"
 
 #define SAMPLE_RATE 16000.0f
 
-@interface ViewController () <AudioControllerDelegate>
+@interface MainController () <AudioControllerDelegate>
 {
     BOOL isRecording;
     BOOL hasPlayedActivationSound;
@@ -47,7 +47,7 @@
 
 @end
 
-@implementation ViewController
+@implementation MainController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

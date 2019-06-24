@@ -14,12 +14,14 @@
 		D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34C17DA1C948F5800D69BCA /* LaunchScreen.storyboard */; };
 		D379BE381C99FEC70049D06F /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = D379BE371C99FEC70049D06F /* AudioController.m */; };
 		D392D9861C94937D002F5132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D392D9851C94937D002F5132 /* Main.storyboard */; };
-		D392D9891C94938F002F5132 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* ViewController.m */; };
+		D392D9891C94938F002F5132 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* MainController.m */; };
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
+		F427692422C1218A00BB6977 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsController.m */; };
+		F427692722C1219A00BB6977 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* AboutController.m */; };
+		F427692C22C122F300BB6977 /* dunno.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692922C122F200BB6977 /* dunno.caf */; };
+		F427692D22C122F300BB6977 /* rec_begin.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692A22C122F200BB6977 /* rec_begin.caf */; };
+		F427692E22C122F300BB6977 /* conn.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692B22C122F200BB6977 /* conn.caf */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
-		F4482F3122B948F80050148E /* dunno.caf in Resources */ = {isa = PBXBuildFile; fileRef = F4482F2E22B948F80050148E /* dunno.caf */; };
-		F4482F3222B948F80050148E /* rec_begin.caf in Resources */ = {isa = PBXBuildFile; fileRef = F4482F2F22B948F80050148E /* rec_begin.caf */; };
-		F4482F3322B948F80050148E /* conn.caf in Resources */ = {isa = PBXBuildFile; fileRef = F4482F3022B948F80050148E /* conn.caf */; };
 		F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB1F229EF94900F66BD4 /* GoogleAPI.key */; };
 		F497BB22229EF94900F66BD4 /* AWSPoolID.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB20229EF94900F66BD4 /* AWSPoolID.key */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
@@ -40,18 +42,22 @@
 		D379BE361C99FEC70049D06F /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
 		D379BE371C99FEC70049D06F /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
 		D392D9851C94937D002F5132 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D392D9871C94938F002F5132 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D392D9881C94938F002F5132 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D392D9871C94938F002F5132 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		D392D9881C94938F002F5132 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechRecognitionService.h; sourceTree = "<group>"; };
 		D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechRecognitionService.m; sourceTree = "<group>"; };
 		EBFF549A15D921031174FE01 /* Pods-Greynir.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greynir.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Greynir/Pods-Greynir.debug.xcconfig"; sourceTree = "<group>"; };
 		F3215BCD5D87DFF7F2965B8A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F423B3DE22B4022C00359D09 /* SpeechSynthesisService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesisService.h; sourceTree = "<group>"; };
 		F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesisService.m; sourceTree = "<group>"; };
+		F427692222C1218A00BB6977 /* SettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		F427692322C1218A00BB6977 /* SettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		F427692522C1219A00BB6977 /* AboutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
+		F427692622C1219A00BB6977 /* AboutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
+		F427692922C122F200BB6977 /* dunno.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dunno.caf; sourceTree = "<group>"; };
+		F427692A22C122F200BB6977 /* rec_begin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_begin.caf; sourceTree = "<group>"; };
+		F427692B22C122F200BB6977 /* conn.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = conn.caf; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		F4482F2E22B948F80050148E /* dunno.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dunno.caf; sourceTree = "<group>"; };
-		F4482F2F22B948F80050148E /* rec_begin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_begin.caf; sourceTree = "<group>"; };
-		F4482F3022B948F80050148E /* conn.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = conn.caf; sourceTree = "<group>"; };
 		F497BB1D229EF73D00F66BD4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		F497BB1F229EF94900F66BD4 /* GoogleAPI.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
 		F497BB20229EF94900F66BD4 /* AWSPoolID.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AWSPoolID.key; sourceTree = "<group>"; };
@@ -112,20 +118,10 @@
 				F497BB1D229EF73D00F66BD4 /* Config.h */,
 				D34C17CF1C948F5700D69BCA /* AppDelegate.h */,
 				D34C17D01C948F5700D69BCA /* AppDelegate.m */,
-				D392D9871C94938F002F5132 /* ViewController.h */,
-				D392D9881C94938F002F5132 /* ViewController.m */,
-				D379BE361C99FEC70049D06F /* AudioController.h */,
-				D379BE371C99FEC70049D06F /* AudioController.m */,
-				F4E160F722A977620019EDE7 /* QueryService.h */,
-				F4E160F822A977620019EDE7 /* QueryService.m */,
-				D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */,
-				D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */,
-				F423B3DE22B4022C00359D09 /* SpeechSynthesisService.h */,
-				F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */,
-				F4E160FA22A9932B0019EDE7 /* RecordButton.h */,
-				F4E160FB22A9932B0019EDE7 /* RecordButton.m */,
+				F427692122C1216A00BB6977 /* View Controllers */,
+				F427692022C1216300BB6977 /* Services */,
+				F427691F22C1215900BB6977 /* Util */,
 				D34C17CC1C948F5700D69BCA /* Supporting Files */,
-				F497BB1E229EF94900F66BD4 /* Keys */,
 			);
 			path = GreynirApp;
 			sourceTree = "<group>";
@@ -133,7 +129,8 @@
 		D34C17CC1C948F5700D69BCA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F4482F2D22B948F80050148E /* audio */,
+				F427692822C122F200BB6977 /* Audio */,
+				F497BB1E229EF94900F66BD4 /* Keys */,
 				D34C17DD1C948F5800D69BCA /* Info.plist */,
 				D392D9851C94937D002F5132 /* Main.storyboard */,
 				D34C17DA1C948F5800D69BCA /* LaunchScreen.storyboard */,
@@ -142,14 +139,51 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F4482F2D22B948F80050148E /* audio */ = {
+		F427691F22C1215900BB6977 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				F4482F2E22B948F80050148E /* dunno.caf */,
-				F4482F2F22B948F80050148E /* rec_begin.caf */,
-				F4482F3022B948F80050148E /* conn.caf */,
+				D379BE361C99FEC70049D06F /* AudioController.h */,
+				D379BE371C99FEC70049D06F /* AudioController.m */,
+				F4E160FA22A9932B0019EDE7 /* RecordButton.h */,
+				F4E160FB22A9932B0019EDE7 /* RecordButton.m */,
 			);
-			path = audio;
+			path = Util;
+			sourceTree = "<group>";
+		};
+		F427692022C1216300BB6977 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F4E160F722A977620019EDE7 /* QueryService.h */,
+				F4E160F822A977620019EDE7 /* QueryService.m */,
+				D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */,
+				D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */,
+				F423B3DE22B4022C00359D09 /* SpeechSynthesisService.h */,
+				F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F427692122C1216A00BB6977 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D392D9871C94938F002F5132 /* MainController.h */,
+				D392D9881C94938F002F5132 /* MainController.m */,
+				F427692222C1218A00BB6977 /* SettingsController.h */,
+				F427692322C1218A00BB6977 /* SettingsController.m */,
+				F427692522C1219A00BB6977 /* AboutController.h */,
+				F427692622C1219A00BB6977 /* AboutController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F427692822C122F200BB6977 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F427692922C122F200BB6977 /* dunno.caf */,
+				F427692A22C122F200BB6977 /* rec_begin.caf */,
+				F427692B22C122F200BB6977 /* conn.caf */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		F497BB1E229EF94900F66BD4 /* Keys */ = {
@@ -158,7 +192,8 @@
 				F497BB1F229EF94900F66BD4 /* GoogleAPI.key */,
 				F497BB20229EF94900F66BD4 /* AWSPoolID.key */,
 			);
-			path = Keys;
+			name = Keys;
+			path = GreynirApp/Keys;
 			sourceTree = SOURCE_ROOT;
 		};
 		F657FA334EB8D9ABF1ACF569 /* Pods */ = {
@@ -232,14 +267,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4482F3322B948F80050148E /* conn.caf in Resources */,
 				F497BB22229EF94900F66BD4 /* AWSPoolID.key in Resources */,
+				F427692C22C122F300BB6977 /* dunno.caf in Resources */,
 				D392D9861C94937D002F5132 /* Main.storyboard in Resources */,
 				D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */,
-				F4482F3222B948F80050148E /* rec_begin.caf in Resources */,
 				D34C17D91C948F5800D69BCA /* Assets.xcassets in Resources */,
 				F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */,
-				F4482F3122B948F80050148E /* dunno.caf in Resources */,
+				F427692E22C122F300BB6977 /* conn.caf in Resources */,
+				F427692D22C122F300BB6977 /* rec_begin.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,8 +350,10 @@
 			files = (
 				F4E160FC22A9932B0019EDE7 /* RecordButton.m in Sources */,
 				D379BE381C99FEC70049D06F /* AudioController.m in Sources */,
-				D392D9891C94938F002F5132 /* ViewController.m in Sources */,
+				D392D9891C94938F002F5132 /* MainController.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
+				F427692722C1219A00BB6977 /* AboutController.m in Sources */,
+				F427692422C1218A00BB6977 /* SettingsController.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
 				D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */,

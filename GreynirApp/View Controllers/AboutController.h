@@ -17,9 +17,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-- (IBAction)startRecording:(id)sender;
-- (IBAction)stopRecording:(id)sender;
+@interface AboutController : UIViewController
 
 @end
+
