@@ -2,11 +2,11 @@
 
 iOS app to access the Greynir query engine via voice.
 
-Requires iOS 9.2+.
+Requires iOS 9.2+ to run. Probably only builds on a relatively recent version of macOS.
 
 ## Build instructions
 
-Building the app requires Xcode 10+ and the latest version of [CocoaPods](https://cocoapods.org).
+Building the app requires Xcode 10+ and a recent version of [CocoaPods](https://cocoapods.org).
 
 From repository root, run the following command:
 
@@ -14,15 +14,17 @@ From repository root, run the following command:
 $ pod install
 ```
 
-Once installation is done, open `GreynirApp.xcworkspace` with Xcode and build. 
+Once installation is done, open `GreynirApp.xcworkspace` with Xcode and build. Alternately, run the following command from the repository root:
 
-NB: In order to function correctly, the app requires valid API keys for Google's Speech API and AWS Polly's Icelandic speech synthesis API. 
-The keys should be saved in the following text files:
+```
+xcodebuild -workspace GreynirApp.xcworkspace -scheme Greynir
+```
+
+NB: In order to function correctly, the app requires valid API keys for Google's Speech API. The key should be saved in the following text file:
 
 * `Keys/GoogleAPI.key`
-* `Keys/AWSPoolID.key`
 
 ## GPL License
 
-This program and its source code is released under the 
+This program and its source code is &copy; 2019 Miðeind ehf. and is released as open source software under terms and conditions of the 
 [GNU General Public License v3.](https://www.gnu.org/licenses/gpl-3.0.html)
