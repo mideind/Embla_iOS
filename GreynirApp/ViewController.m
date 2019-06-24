@@ -118,7 +118,7 @@
     DLog(@"Starting recording");
     isRecording = YES;
     hasPlayedActivationSound = NO;
-    [self.waveformView setIdleAmplitude:0.01f];
+    [self.waveformView setIdleAmplitude:0.025f];
     
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
     [self.imageView setImage:[UIImage imageNamed:@"Greynir"]];
