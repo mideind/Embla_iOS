@@ -11,7 +11,9 @@ TODO list for Greynir iOS app
 
 * Add sounds for when recording ends/speech recognition fails
 
-* Implement settings, incl. voice selection (Karl, Dóra), location services (On/Off), API endpoint (default https://greynir.is), "Restore defaults"
+* Fyrirspurnaslóð, ekki fyrirspurnaþjónn. Hví ekki arbitrary endpoint?
+
+DONE * Implement settings, incl. voice selection (Karl, Dóra), location services (On/Off), API endpoint (default https://greynir.is), "Restore defaults"
 
 DONE * Move initial url signing communication with AWS Polly to Greynir server to reduce latency
 DONE * Hardcoded responses should be stored as local audio files in app (e.g. "Það veit ég ekki", "Ekki næst samband við netið.")

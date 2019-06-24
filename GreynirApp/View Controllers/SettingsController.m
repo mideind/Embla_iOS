@@ -17,6 +17,7 @@
 
 #import "SettingsController.h"
 #import "AppDelegate.h"
+#import "Config.h"
 
 @interface SettingsController ()
 
@@ -36,6 +37,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self.useLocationSwitch becomeFirstResponder];
     [self configureControlsFromDefaults];
 }
 

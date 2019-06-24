@@ -147,7 +147,7 @@
     // Stop audio session
     [[AudioController sharedInstance] stop];
     [[SpeechRecognitionService sharedInstance] stopStreaming];
-
+    
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
         if ([self.queryString length]) {
@@ -246,10 +246,13 @@
             for (StreamingRecognitionResult *result in response.resultsArray) {
                 if (result.isFinal) {
                     if ([result.alternativesArray count]) {
+                        
                         SpeechRecognitionAlternative *best = result.alternativesArray[0];
+                        // TODO: Ugh, refactor this away.
                         NSString *transcr = best.transcript;
+                        NSString *repl = [[transcr substringToIndex:1] capitalizedString];
                         NSString *capitalized = [transcr stringByReplacingCharactersInRange:NSMakeRange(0,1)
-                                                                                 withString:[[transcr substringToIndex:1] capitalizedString]];
+                                                                                 withString:repl];
                         [self clearLog];
                         [self log:[NSString stringWithFormat:@"%@?", capitalized]];
                         self.queryString = transcr;
