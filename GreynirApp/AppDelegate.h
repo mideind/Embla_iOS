@@ -23,4 +23,9 @@
 @property(strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) CLLocation *latestLocation;
 
+- (NSDictionary *)startingDefaults;
+
+- (void)startLocationServices;
+- (void)stopLocationServices;
+
 @end

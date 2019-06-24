@@ -28,7 +28,12 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self configureLocationServices];
+    [self registerDefaults];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"]) {
+        [self startLocationServices];
+    }
+    
     return YES;
 }
 
@@ -47,9 +52,24 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
 
+#pragma mark - Defaults
+
+- (NSDictionary *)startingDefaults {
+    // Default settings for app
+    return @{
+        @"UseLocation": @(YES),
+        @"Voice": [NSNumber numberWithInteger:0],
+        @"QueryServer": DEFAULT_QUERY_SERVER
+    };
+}
+
+- (void)registerDefaults {
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[self startingDefaults]];
+}
+
 #pragma mark - Location services
 
-- (void)configureLocationServices {
+- (void)startLocationServices {
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest]; // kCLLocationAccuracyBestForNavigation
     [self.locationManager requestWhenInUseAuthorization];
@@ -57,7 +77,15 @@
     [self.locationManager setDelegate:self];
 }
 
+- (void)stopLocationServices {
+    self.locationManager = nil;
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"] == NO) {
+        return;
+    }
+    
     if ([locations count]) {
         self.latestLocation = [locations lastObject];
 //        DLog(@"Location: %@", [self.latestLocation description]);

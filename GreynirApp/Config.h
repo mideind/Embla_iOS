@@ -30,5 +30,19 @@ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet
 // Google Speech API
 #define GOOGLE_SPEECH_API_KEY       FILE_CONTENTS(BUNDLE_PATH(@"GoogleAPI.key"))
 
+// Query API
+//#define GREYNIR_API_ENDPOINT        @"https://localhost:5000"
+#define DEFAULT_QUERY_SERVER        @"https://greynir.is"
+#define QUERY_API_PATH              @"/query.api/v1"
+#define QUERY_API_ENDPOINT          [NSString stringWithFormat:@"%@/%@", \
+                                    [[NSUserDefaults standardUserDefaults] stringForKey:@"QueryServer"], \
+                                    QUERY_API_PATH]
+
+
 // Custom debug logging
-#define DLog(...) NSLog(__VA_ARGS__)
+#ifdef DEBUG
+    #define DLog(...) NSLog(__VA_ARGS__)
+#else
+    #define DLog(...)
+#endif
+

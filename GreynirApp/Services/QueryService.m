@@ -21,11 +21,6 @@
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 
-// Greynir API endpoint
-// #define GREYNIR_API_ENDPOINT @"https://greynir.is/query.api/v1"
-#define GREYNIR_API_ENDPOINT @"https://greynir.is/query.api/v1"
-
-
 @implementation QueryService
 
 + (instancetype)sharedInstance {
@@ -41,20 +36,25 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSString *apiEndpoint = GREYNIR_API_ENDPOINT;
+    NSString *apiEndpoint = QUERY_API_ENDPOINT;
     
     // Query key/value pairs
+    NSString *voiceName = [[NSUserDefaults standardUserDefaults] integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";
     NSMutableDictionary *parameters = [@{
         @"q" : query,
-        @"voice": @(YES)
+        @"voice": @(YES),
+        @"voice_id": voiceName
     } mutableCopy];
     
-    // Add location info, if available
-    NSDictionary *loc = [self location];
-    if (loc) {
-        [parameters addEntriesFromDictionary:loc];
+    // Add location info, if enabled and available
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"]) {
+        NSDictionary *loc = [self location];
+        if (loc) {
+            [parameters addEntriesFromDictionary:loc];
+        }
     }
     
+    // Create request
     NSError *err = nil;
     NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
                                                                       URLString:apiEndpoint
@@ -69,10 +69,10 @@
     // Silence deprecation warnings (Xcode mistakenly thinks this is a call to NSURLSession[!])
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    // Run task with request
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:completionHandler];
-#pragma GCC diagnostic pop
-
     [dataTask resume];
+#pragma GCC diagnostic pop
 }
 
 - (NSDictionary *)location {

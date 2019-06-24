@@ -16,8 +16,13 @@
  */
 
 #import "SettingsController.h"
+#import "AppDelegate.h"
 
 @interface SettingsController ()
+
+@property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
+@property (nonatomic, weak) IBOutlet UITextField *queryServerTextField;
 
 @end
 
@@ -28,14 +33,51 @@
     // Do any additional setup after loading the view.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillAppear:(BOOL)animated {
+    [self configureControlsFromDefaults];
 }
-*/
+
+- (void)configureControlsFromDefaults {
+    // Configure controls according to defaults
+    // Horrible to do this manually. Why no bindings on iOS?
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self.useLocationSwitch setOn:[defaults boolForKey:@"UseLocation"]];
+    [self.voiceSegmentedControl setSelectedSegmentIndex:[defaults integerForKey:@"Voice"]];
+    [self.queryServerTextField setText:[defaults stringForKey:@"QueryServer"]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    // Save to defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
+    [defaults setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
+    [defaults setObject:[self.queryServerTextField text] forKey:@"QueryServer"];
+    [defaults synchronize];
+}
+
+#pragma mark -
+
+- (IBAction)useLocationToggled:(id)sender {
+    AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if ([sender isOn]) {
+        [del startLocationServices];
+    } else {
+        [del stopLocationServices];
+    }
+}
+
+- (IBAction)restoreDefaults:(id)sender {
+    AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSDictionary *def = [del startingDefaults];
+    for (NSString *key in def) {
+        [[NSUserDefaults standardUserDefaults] setObject:def[key] forKey:key];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self configureControlsFromDefaults];
+}
 
 @end
