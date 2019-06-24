@@ -34,10 +34,6 @@ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet
 //#define GREYNIR_API_ENDPOINT        @"https://localhost:5000"
 #define DEFAULT_QUERY_SERVER        @"https://greynir.is"
 #define QUERY_API_PATH              @"/query.api/v1"
-#define QUERY_API_ENDPOINT          [NSString stringWithFormat:@"%@/%@", \
-                                    [[NSUserDefaults standardUserDefaults] stringForKey:@"QueryServer"], \
-                                    QUERY_API_PATH]
-
 
 // Custom debug logging
 #ifdef DEBUG

@@ -19,7 +19,4 @@
 
 @interface MainController : UIViewController
 
-- (IBAction)startRecording:(id)sender;
-- (IBAction)stopRecording:(id)sender;
-
 @end

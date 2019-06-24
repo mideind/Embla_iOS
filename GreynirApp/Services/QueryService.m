@@ -31,12 +31,18 @@
     return instance;
 }
 
+- (NSString *)APIEndpoint {
+    return [NSString stringWithFormat:@"%@/%@", \
+            [[NSUserDefaults standardUserDefaults] stringForKey:@"QueryServer"], \
+            QUERY_API_PATH];
+}
+
 - (void)sendQuery:(NSString *)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSString *apiEndpoint = QUERY_API_ENDPOINT;
+    NSString *apiEndpoint = [self APIEndpoint];
     
     // Query key/value pairs
     NSString *voiceName = [[NSUserDefaults standardUserDefaults] integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";

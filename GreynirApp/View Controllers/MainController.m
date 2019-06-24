@@ -45,6 +45,9 @@
 @property (atomic, strong) AVAudioPlayer *audioPlayer;
 @property (atomic, strong) NSString *queryString;
 
+- (IBAction)startRecording:(id)sender;
+- (IBAction)stopRecording:(id)sender;
+
 @end
 
 @implementation MainController
@@ -155,17 +158,13 @@
     }];
 }
 
+#pragma mark - UI Log
+
 - (void)clearLog {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.text = @"";
     }];
 }
-
-//- (void)log:(NSString *)str {
-//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//        self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, str];
-//    }];
-//}
 
 - (void)log:(NSString *)message, ... {
     va_list args;
@@ -178,6 +177,7 @@
     }];
 }
 
+#pragma mark -
 
 - (void)processSampleData:(NSData *)data {
     if (!hasPlayedActivationSound) {
@@ -277,7 +277,6 @@
 
 - (void)askGreynir:(NSString *)questionStr {
 //    [self log:@"Querying Greynir:"];
-//    [self logQuote:questionStr];
     
     // Completion handler for Greynir API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -318,13 +317,14 @@
     [[QueryService sharedInstance] sendQuery:questionStr withCompletionHandler:completionHandler];
 }
 
-- (void)synthesizeText:(NSString *)txt {
+//- (void)synthesizeText:(NSString *)txt {
 //    [self log:@"Speaking text:"];
-//    [self logQuote:txt];
 //    [[SpeechSynthesisService sharedInstance] synthesizeText:txt completionHandler:^(NSData *audioData) {
 //        [self playAudio:audioData];
 //    }];
-}
+//}
+
+#pragma mark - Playback
 
 - (void)playRemoteURL:(NSURL *)url {
     DLog(@"Speech audio URL: %@", [url description]);
@@ -375,6 +375,8 @@
     }
 }
 
+#pragma mark - Waveform view
+
 - (void)updateWaveform {
     CGFloat level = 0.0f;
     if (isRecording) {
@@ -392,12 +394,13 @@
     if (decibels < -64.0f || decibels == 0.0f) {
         return 0.0f;
     }
+    // TODO: Tweak this for better results?
     return powf(
-            // 10 to the power of 0.1xDB  - 10 to the power of 0.1xDB
+            // 10 to the power of 0.1*DB  - 10 to the power of 0.1*-60
             (powf(10.0f, 0.1f * decibels) - powf(10.0f, 0.1f * -60.0f)) *
             // Multiplied by 1 / 1 -
             (1.0f / (1.0f - powf(10.0f, 0.1f * -60.0f))),
-                
+            // To the power of 0.5
             1.0f / 2.0f);
 }
 

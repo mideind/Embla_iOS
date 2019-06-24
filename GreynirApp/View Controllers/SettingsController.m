@@ -28,6 +28,8 @@
 
 @implementation SettingsController
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -37,25 +39,39 @@
     [self configureControlsFromDefaults];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [self saveToDefaults];
+}
+
+#pragma mark -
+
 - (void)configureControlsFromDefaults {
     // Configure controls according to defaults
-    // Horrible to do this manually. Why no bindings on iOS?
+    // Horrible to have to do this manually. Why no bindings on iOS?
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self.useLocationSwitch setOn:[defaults boolForKey:@"UseLocation"]];
     [self.voiceSegmentedControl setSelectedSegmentIndex:[defaults integerForKey:@"Voice"]];
     [self.queryServerTextField setText:[defaults stringForKey:@"QueryServer"]];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    // Save to defaults
+- (void)saveToDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
     [defaults setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
-    [defaults setObject:[self.queryServerTextField text] forKey:@"QueryServer"];
+    
+    // Sanitize query server URL
+    NSString *server = [self.queryServerTextField text];
+    NSString *trimmed = [server stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (![trimmed hasPrefix:@"https://"] && ![trimmed hasPrefix:@"http://"]) {
+        // Make sure URL has URI scheme component
+        trimmed = [@"https://" stringByAppendingString:trimmed];
+    }
+    [defaults setObject:trimmed forKey:@"QueryServer"];
+    
     [defaults synchronize];
 }
 
-#pragma mark -
+#pragma mark - Button actions
 
 - (IBAction)useLocationToggled:(id)sender {
     AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
