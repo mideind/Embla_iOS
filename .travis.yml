@@ -1,0 +1,14 @@
+language: objective-c
+
+osx_image: xcode10.2 # 10.14
+
+branches:
+  only:
+    - master
+
+# before_install:
+#   - gem install cocoapods
+
+script:
+  - xcodebuild -workspace GreynirApp.xcworkspace -scheme Greynir -sdk iphonesimulator
+
