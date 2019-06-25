@@ -10,5 +10,5 @@ branches:
 #   - gem install cocoapods
 
 script:
-  - xcodebuild -workspace GreynirApp.xcworkspace -scheme Greynir -sdk iphonesimulator
+  - xcodebuild -workspace GreynirApp.xcworkspace -scheme Greynir -sdk iphonesimulator &> /dev/null
 
