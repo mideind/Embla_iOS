@@ -14,6 +14,8 @@ TODO list for Greynir iOS app
 * Currently, only the speech recognition result with the highest probability is sent to query server. Add another layer of logic server-side to pick best match?
 * Standardise query API
 
+* Conflict wrt waveform, init sound & using decibel level in mic. Use separate audio player?
+* Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated
 * Add sounds for when recording ends/speech recognition fails
 * Fyrirspurnaslóð, ekki fyrirspurnaþjónn. Why not offer an arbitrary endpoint?
 

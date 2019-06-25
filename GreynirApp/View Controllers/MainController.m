@@ -38,7 +38,6 @@
 
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet UIButton *button;
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
 
 @property (nonatomic, strong) NSMutableData *audioData;
@@ -112,6 +111,7 @@
 - (IBAction)toggle:(id)sender {
     if (isRecording) {
         [self stopRecording:sender];
+        [self playAudio:@"rec_cancel"];
     } else {
         [self startRecording:sender];
     }
@@ -124,13 +124,12 @@
     [self.waveformView setIdleAmplitude:0.025f];
     
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
-    [self.imageView setImage:[UIImage imageNamed:@"Greynir"]];
     
     [self clearLog];
     self.queryString = @"";
     
     // Configure audio session
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
                                      withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
                                            error:nil];
     self.audioData = [NSMutableData new];
@@ -141,6 +140,7 @@
 
 - (IBAction)stopRecording:(id)sender {
     DLog(@"Stopping recording");
+    [self playAudio:@"rec_confirm"];
     isRecording = NO;
     [self.waveformView setIdleAmplitude:0.0f];
     
@@ -180,13 +180,14 @@
 #pragma mark -
 
 - (void)processSampleData:(NSData *)data {
+    // There is a noticeable delay between starting recording session and receiving
+    // the first audio data packets from the microphone. Only play activation sound
+    // when the first audio packet has arrived.
     if (!hasPlayedActivationSound) {
-//        [self playAudio:@"rec_begin.caf"];
-        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"rec_begin" ofType:@"caf"];
-        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-        
-        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-        [self.audioPlayer play];
+        [self playAudio:@"rec_begin"];
+//        NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:@"rec_begin" withExtension:@"caf"];
+//        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+//        [self.audioPlayer play];
         hasPlayedActivationSound = YES;
     }
     
@@ -199,23 +200,13 @@
     int16_t max = 0;
     for (int i = 0; i < frameCount; i++) {
         sum += abs(samples[i]);
-        if (!avg) {
-            avg = abs(samples[i]);
-        } else {
-            avg = (avg + abs(samples[i])) / 2;
-        }
-        if (samples[i] > max) {
-            max = samples[i];
-        }
+        avg = !avg ? abs(samples[i]) : (avg + abs(samples[i])) / 2;
+        max = (samples[i] > max) ? samples[i] : max;
     }
     DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), (int)avg, (int)max);
     
-//    short *bytes = [data bytes];
-    
-//    NSLog(@"Audio frame: %d", bytes[0]);
     float ampl = max/32767.f;
     float decibels = 20 * log10(ampl);
-//
 //    NSLog(@"Ampl: %.8f", ampl);
 //    NSLog(@"DecB: %.2f", decibels);
     
@@ -224,12 +215,16 @@
 //    return;
     
     // Google recommends sending samples in 100 ms chunks
-    int chunk_size = 0.1 /* seconds/chunk */ * SAMPLE_RATE * 2 /* bytes/sample */; /* bytes/chunk */
+    float dur = 0.1;
+    int bytes_per_sample = 2;
+    int chunk_size = dur * SAMPLE_RATE * bytes_per_sample;
+    
     if ([self.audioData length] < chunk_size) {
         // Not enough data yet...
         return;
     }
     
+    // We have enough audio data to send to speech recognition server.
     SpeechRecognitionCompletionHandler compHandler = ^(StreamingRecognizeResponse *response, NSError *error) {
         if (error) {
             DLog(@"ERROR: %@", error);
@@ -240,7 +235,7 @@
             BOOL finished = NO;
             
             DLog(@"RESPONSE: %@", response);
-            DLog(@"Speech event type: %d", response.speechEventType);
+//            DLog(@"Speech event type: %d", response.speechEventType);
 //            DLog(@"%@", [response.resultsArray description]);
             
             for (StreamingRecognitionResult *result in response.resultsArray) {
@@ -275,6 +270,7 @@
     DLog(@"SENDING");
     [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioData withCompletion:compHandler];
     
+    // Discard previously accumulated audio data
     self.audioData = [NSMutableData new];
 }
 
@@ -292,16 +288,10 @@
             
             if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
                 id greynirResponse = [r objectForKey:@"response"];
-//                id greynirImage = [r objectForKey:@"image"];
-                
-//                if (greynirImage != nil && [greynirImage isKindOfClass:[NSDictionary class]] && [(NSDictionary *)greynirImage objectForKey:@"src"]) {
-//                    NSString *imgURLStr = [(NSDictionary *)greynirImage objectForKey:@"src"];
-//                    [self.imageView sd_setImageWithURL:[NSURL URLWithString:imgURLStr]
-//                                      placeholderImage:[UIImage imageNamed:@"Greynir"]];
-//                }
-                
                 if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
                     [self log:@"\n%@", greynirResponse];
+                } else {
+                    DLog(@"Malformed response: %@", [greynirResponse description]);
                 }
                 
                 NSString *audioURLStr = [r objectForKey:@"audio"];
@@ -350,9 +340,12 @@
     if ([filenameOrData isKindOfClass:[NSString class]]) {
         // Local filename specified, init player with local file URL
         NSString *filename = (NSString *)filenameOrData;
-        NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:@"caf"];
-        NSURL *url = [NSURL fileURLWithPath:path];
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
+        NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
+        if (url) {
+            player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
+        } else {
+            DLog(@"Unable to find audio file %@ in bundle", filename);
+        }
     } else if ([filenameOrData isKindOfClass:[NSData class]]) {
         // Init player with audio data
         player = [[AVAudioPlayer alloc] initWithData:(NSData *)filenameOrData error:&err];
