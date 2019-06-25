@@ -312,21 +312,6 @@
 
 #pragma mark - Playback
 
-- (void)playRemoteURL:(NSURL *)url {
-    DLog(@"Speech audio URL: %@", [url description]);
-    NSURLSessionDataTask *downloadTask = \
-    [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error) {
-            DLog(@"%@", [error localizedDescription]);
-            return;
-        }
-//        completionHandler(data);
-        DLog(@"Playing audio file of size %d", (int)[data length]);
-        [self playAudio:data];
-    }];
-    [downloadTask resume];
-}
-
 - (void)playAudio:(id)filenameOrData {
     // Utility function that creates an AVAudioPlayer to play either a local file or audio data
     
@@ -344,7 +329,7 @@
         if (url) {
             player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
         } else {
-            DLog(@"Unable to find audio file %@ in bundle", filename);
+            DLog(@"Unable to find audio file '%@.caf' in bundle", filename);
         }
     } else if ([filenameOrData isKindOfClass:[NSData class]]) {
         // Init player with audio data
@@ -362,6 +347,21 @@
     } else {
         DLog(@"%@", [err localizedDescription]);
     }
+}
+
+- (void)playRemoteURL:(NSURL *)url {
+    DLog(@"Speech audio URL: %@", [url description]);
+    NSURLSessionDataTask *downloadTask = \
+    [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            DLog(@"%@", [error localizedDescription]);
+            return;
+        }
+        //        completionHandler(data);
+        DLog(@"Playing audio file of size %d", (int)[data length]);
+        [self playAudio:data];
+    }];
+    [downloadTask resume];
 }
 
 #pragma mark - Waveform view

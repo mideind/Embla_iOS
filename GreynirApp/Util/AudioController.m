@@ -20,7 +20,8 @@
 
 #import "AudioController.h"
 
-@interface AudioController () {
+@interface AudioController ()
+{
     AudioComponentInstance remoteIOUnit;
     BOOL audioComponentInitialized;
 }
@@ -58,8 +59,11 @@ static OSStatus CheckError(OSStatus error, const char *operation) {
     return error;
 }
 
-static OSStatus recordingCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlags,
-                                  const AudioTimeStamp *inTimeStamp, UInt32 inBusNumber, UInt32 inNumberFrames,
+static OSStatus recordingCallback(void *inRefCon,
+                                  AudioUnitRenderActionFlags *ioActionFlags,
+                                  const AudioTimeStamp *inTimeStamp,
+                                  UInt32 inBusNumber,
+                                  UInt32 inNumberFrames,
                                   AudioBufferList *ioData) {
     OSStatus status;
 
@@ -81,6 +85,7 @@ static OSStatus recordingCallback(void *inRefCon, AudioUnitRenderActionFlags *io
         return status;
     }
 
+    // Create NSData object and send to delegate
     NSData *data = [[NSData alloc] initWithBytes:bufferList->mBuffers[0].mData
                                           length:bufferList->mBuffers[0].mDataByteSize];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -90,39 +95,14 @@ static OSStatus recordingCallback(void *inRefCon, AudioUnitRenderActionFlags *io
     return noErr;
 }
 
-static OSStatus playbackCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlags,
-                                 const AudioTimeStamp *inTimeStamp, UInt32 inBusNumber, UInt32 inNumberFrames,
-                                 AudioBufferList *ioData) {
-    OSStatus status = noErr;
-
-    // Notes: ioData contains buffers (may be more than one!)
-    // Fill them up as much as you can. Remember to set the size value in each buffer to match how
-    // much data is in the buffer.
-    AudioController *audioController = (__bridge AudioController *)inRefCon;
-
-    UInt32 bus1 = 1;
-    status = AudioUnitRender(audioController->remoteIOUnit, ioActionFlags, inTimeStamp, bus1, inNumberFrames, ioData);
-    CheckError(status, "Couldn't render from RemoteIO unit");
-    return status;
-}
-
 - (OSStatus)prepareWithSampleRate:(double)specifiedSampleRate {
     OSStatus status = noErr;
 
     AVAudioSession *session = [AVAudioSession sharedInstance];
 
     NSError *error;
-    BOOL ok = [session setCategory:AVAudioSessionCategoryRecord error:&error];
+    BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
     NSLog(@"set category %d", ok);
-
-    // This doesn't seem to really indicate a problem (iPhone 6s Plus)
-#ifdef IGNORE
-    NSInteger inputChannels = session.inputNumberOfChannels;
-    if (!inputChannels) {
-        NSLog(@"ERROR: NO AUDIO INPUT DEVICE");
-        return -1;
-    }
-#endif
 
     [session setPreferredIOBufferDuration:10 error:&error];
 
@@ -150,15 +130,6 @@ static OSStatus playbackCallback(void *inRefCon, AudioUnitRenderActionFlags *ioA
     UInt32 oneFlag = 1;
     AudioUnitElement bus0 = 0;
     AudioUnitElement bus1 = 1;
-
-    if ((NO)) {
-        // Configure the RemoteIO unit for playback
-        status = AudioUnitSetProperty(self->remoteIOUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Output,
-                                      bus0, &oneFlag, sizeof(oneFlag));
-        if (CheckError(status, "Couldn't enable RemoteIO output")) {
-            return status;
-        }
-    }
 
     // Configure the RemoteIO unit for input
     status = AudioUnitSetProperty(self->remoteIOUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, bus1,
@@ -201,19 +172,7 @@ static OSStatus playbackCallback(void *inRefCon, AudioUnitRenderActionFlags *ioA
     if (CheckError(status, "Couldn't set RemoteIO's render callback on bus 0")) {
         return status;
     }
-
-    if ((NO)) {
-        // Set the playback callback
-        AURenderCallbackStruct callbackStruct;
-        callbackStruct.inputProc = playbackCallback;
-        callbackStruct.inputProcRefCon = (__bridge void *)self;
-        status = AudioUnitSetProperty(self->remoteIOUnit, kAudioUnitProperty_SetRenderCallback, kAudioUnitScope_Global,
-                                      bus0, &callbackStruct, sizeof(callbackStruct));
-        if (CheckError(status, "Couldn't set RemoteIO's render callback on bus 0")) {
-            return status;
-        }
-    }
-
+    
     // Initialize the RemoteIO unit
     status = AudioUnitInitialize(self->remoteIOUnit);
     if (CheckError(status, "Couldn't initialize the RemoteIO unit")) {
