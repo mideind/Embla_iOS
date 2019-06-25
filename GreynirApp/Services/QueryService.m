@@ -32,7 +32,7 @@
 }
 
 - (NSString *)APIEndpoint {
-    return [NSString stringWithFormat:@"%@/%@", \
+    return [NSString stringWithFormat:@"%@%@", \
             [[NSUserDefaults standardUserDefaults] stringForKey:@"QueryServer"], \
             QUERY_API_PATH];
 }

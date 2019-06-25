@@ -320,13 +320,6 @@
     [[QueryService sharedInstance] sendQuery:questionStr withCompletionHandler:completionHandler];
 }
 
-//- (void)synthesizeText:(NSString *)txt {
-//    [self log:@"Speaking text:"];
-//    [[SpeechSynthesisService sharedInstance] synthesizeText:txt completionHandler:^(NSData *audioData) {
-//        [self playAudio:audioData];
-//    }];
-//}
-
 #pragma mark - Playback
 
 - (void)playRemoteURL:(NSURL *)url {
@@ -348,7 +341,7 @@
     // Utility function that creates an AVAudioPlayer to play either a local file or audio data
     
     // Change audio session to playback mode
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
                                      withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
                                            error:nil];
     NSError *err;
