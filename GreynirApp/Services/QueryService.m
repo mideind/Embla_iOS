@@ -32,9 +32,8 @@
 }
 
 - (NSString *)APIEndpoint {
-    return [NSString stringWithFormat:@"%@%@", \
-            [[NSUserDefaults standardUserDefaults] stringForKey:@"QueryServer"], \
-            QUERY_API_PATH];
+    NSString *server = [[NSUserDefaults standardUserDefaults] stringForKey:@"QueryServer"];
+    return [NSString stringWithFormat:@"%@%@", server, QUERY_API_PATH];
 }
 
 - (void)sendQuery:(NSString *)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {

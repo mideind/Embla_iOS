@@ -42,7 +42,11 @@
 
 @property (nonatomic, strong) NSMutableData *audioData;
 @property (atomic, strong) AVAudioPlayer *audioPlayer;
+@property (atomic, strong) AVAudioPlayer *soundPlayer;
 @property (atomic, strong) NSString *queryString;
+@property (nonatomic) double recognitionSession;
+@property (nonatomic) double querySession;
+
 
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;
@@ -53,6 +57,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.recognitionSession = 0;
+    self.querySession = 0;
     
     // Set up user interface
     [self clearLog];
@@ -111,7 +118,7 @@
 - (IBAction)toggle:(id)sender {
     if (isRecording) {
         [self stopRecording:sender];
-        [self playAudio:@"rec_cancel"];
+        [self playSound:@"rec_cancel"];
     } else {
         [self startRecording:sender];
     }
@@ -120,7 +127,11 @@
 - (IBAction)startRecording:(id)sender {
     DLog(@"Starting recording");
     isRecording = YES;
+    self.recognitionSession = [NSDate timeIntervalSinceReferenceDate];
     hasPlayedActivationSound = NO;
+    self.audioPlayer = nil;
+    
+    [self playSound:@"rec_begin"];
     [self.waveformView setIdleAmplitude:0.025f];
     
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
@@ -128,10 +139,6 @@
     [self clearLog];
     self.queryString = @"";
     
-    // Configure audio session
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
-                                           error:nil];
     self.audioData = [NSMutableData new];
     [[AudioController sharedInstance] prepareWithSampleRate:SAMPLE_RATE];
     [[SpeechRecognitionService sharedInstance] setSampleRate:SAMPLE_RATE];
@@ -140,8 +147,11 @@
 
 - (IBAction)stopRecording:(id)sender {
     DLog(@"Stopping recording");
-    [self playAudio:@"rec_confirm"];
     isRecording = NO;
+    self.recognitionSession = 0;
+    
+    [self playSound:@"rec_confirm"];
+    
     [self.waveformView setIdleAmplitude:0.0f];
     
     // Stop audio session
@@ -180,16 +190,20 @@
 #pragma mark -
 
 - (void)processSampleData:(NSData *)data {
+    if (!isRecording) {
+        return;
+    }
+    
     // There is a noticeable delay between starting recording session and receiving
     // the first audio data packets from the microphone. Only play activation sound
     // when the first audio packet has arrived.
-    if (!hasPlayedActivationSound) {
-        [self playAudio:@"rec_begin"];
+//    if (!hasPlayedActivationSound) {
+////        [self playAudio:@"rec_begin"];
 //        NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:@"rec_begin" withExtension:@"caf"];
 //        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
 //        [self.audioPlayer play];
-        hasPlayedActivationSound = YES;
-    }
+//        hasPlayedActivationSound = YES;
+//    }
     
     [self.audioData appendData:data];
     
@@ -207,8 +221,8 @@
     
     float ampl = max/32767.f;
     float decibels = 20 * log10(ampl);
-//    NSLog(@"Ampl: %.8f", ampl);
-//    NSLog(@"DecB: %.2f", decibels);
+//    DLog(@"Ampl: %.8f", ampl);
+//    DLog(@"DecB: %.2f", decibels);
     
     lastRecDec = decibels;
     
@@ -224,8 +238,16 @@
         return;
     }
     
+    double session = self.recognitionSession;
+    
     // We have enough audio data to send to speech recognition server.
     SpeechRecognitionCompletionHandler compHandler = ^(StreamingRecognizeResponse *response, NSError *error) {
+        if (self.recognitionSession != session) {
+            // Session has been terminated or a new session started
+            DLog(@"Received speech recognition response for expired session:\n%@\n%@", response, [error localizedDescription]);
+            return;
+        }
+        
         if (error) {
             DLog(@"ERROR: %@", error);
             [self log:[error localizedDescription]];
@@ -259,8 +281,6 @@
                 }
             }
             
-            DLog(@"%@", [response description]);
-            
             if (finished) {
                 [self stopRecording:nil];
             }
@@ -275,10 +295,17 @@
 }
 
 - (void)askGreynir:(NSString *)questionStr {
-//    [self log:@"Querying Greynir:"];
+    DLog(@"Querying Greynir");
+    
+    double session = self.querySession;
     
     // Completion handler for Greynir API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (self.querySession != session) {
+            DLog(@"Received query response for expired session");
+            return;
+        }
+        
         DLog(@"Greynir server response: %@", [responseObject description]);
         
         if (error) {
@@ -312,13 +339,19 @@
 
 #pragma mark - Playback
 
+- (void)playSound:(NSString *)filename {
+    NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
+    self.soundPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    [self.soundPlayer play];
+}
+
 - (void)playAudio:(id)filenameOrData {
     // Utility function that creates an AVAudioPlayer to play either a local file or audio data
     
     // Change audio session to playback mode
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
-                                           error:nil];
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+//                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
+//                                           error:nil];
     NSError *err;
     AVAudioPlayer *player;
     

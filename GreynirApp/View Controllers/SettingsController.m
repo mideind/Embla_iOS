@@ -83,6 +83,7 @@
     } else {
         [del stopLocationServices];
     }
+    [self saveToDefaults];
 }
 
 - (IBAction)restoreDefaults:(id)sender {
@@ -96,6 +97,17 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self configureControlsFromDefaults];
+}
+
+#pragma mark - Text field delegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.queryServerTextField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self saveToDefaults];
 }
 
 @end
