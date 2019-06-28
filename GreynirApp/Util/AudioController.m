@@ -102,7 +102,6 @@ static OSStatus recordingCallback(void *inRefCon,
 
     NSError *error;
     BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&error];
-    NSLog(@"set category %d", ok);
 
     [session setPreferredIOBufferDuration:10 error:&error];
 

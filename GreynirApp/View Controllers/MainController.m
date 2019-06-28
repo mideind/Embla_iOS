@@ -15,72 +15,51 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 #import <AVFoundation/AVFoundation.h>
 #import "google/cloud/speech/v1/CloudSpeech.pbrpc.h"
-//#import <SDWebImage/SDWebImage.h>
 #import "SCSiriWaveformView.h"
 #import "AudioController.h"
 #import "SpeechRecognitionService.h"
-//#import "SpeechSynthesisService.h"
 #import "QueryService.h"
 #import "MainController.h"
+#import "QuerySession.h"
 #import "Config.h"
 #import "SDRecordButton.h"
 
+
 #define SAMPLE_RATE 16000.0f
 
-@interface MainController () <AudioControllerDelegate>
-{
-    BOOL isRecording;
-    BOOL hasPlayedActivationSound;
-    float lastRecDec;
-}
+
+@interface MainController () <QuerySessionDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet UIButton *button;
 @property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
 
-@property (nonatomic, strong) NSMutableData *audioData;
-@property (atomic, strong) AVAudioPlayer *audioPlayer;
-@property (atomic, strong) AVAudioPlayer *soundPlayer;
-@property (atomic, strong) NSString *queryString;
-@property (nonatomic) double recognitionSession;
-@property (nonatomic) double querySession;
+@property (nonatomic, retain) QuerySession *currentSession;
 
-
-- (IBAction)startRecording:(id)sender;
-- (IBAction)stopRecording:(id)sender;
+- (IBAction)startSession:(id)sender;
+- (IBAction)endSession:(id)sender;
 
 @end
+
 
 @implementation MainController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.recognitionSession = 0;
-    self.querySession = 0;
-    
     // Set up user interface
     [self clearLog];
-    // Configure sinus wave view
+    
+    // Configure wave form view
     [self.waveformView setDensity:10];
     [self.waveformView setIdleAmplitude:0.0f];
-    //    [self.waveformView setWaveColor:[UIColor grayColor]];
-    //    [self.waveformView setPrimaryWaveLineWidth:3.0f];
-    //    [self.waveformView setSecondaryWaveLineWidth:1.0];
-    //    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
-    
-    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithTitle:@"Hello"
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(startRecording:)];
-    [self setToolbarItems:@[settingsItem] animated:NO];
-    
-    self.navigationController.toolbarHidden = NO;
-
-    
-    [AudioController sharedInstance].delegate = self;
+//    [self.waveformView setWaveColor:[UIColor grayColor]];
+//    [self.waveformView setPrimaryWaveLineWidth:3.0f];
+//    [self.waveformView setSecondaryWaveLineWidth:1.0];
+//    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
     
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -92,19 +71,12 @@
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
     
-//    [self askGreynir:@"Hver er Katrín Jakobsdóttir?"];
-//    [self performSelector:@selector(askGreynir:) withObject:@"Hver er Katrín Jakobsdóttir?" afterDelay:2.0f];
-    
     CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self
                                                              selector:@selector(updateWaveform)];
     [displaylink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-//
-//    [self speakText:@"Það veit ég ekki."];
-    
-//    [self playAudio:@"dunno"];
-    
-//    [self startRecording:self];
 }
+
+#pragma mark - Respond to app state changes
 
 -(void)becameActive:(NSNotification *)notification {
     NSLog(@"%@", [notification description]);
@@ -112,63 +84,69 @@
 
 -(void)resignedActive:(NSNotification *)notification {
     NSLog(@"%@", [notification description]);
-    [self stopRecording:self];
+    [self endSession:self];
 }
 
+#pragma mark - Session
+
 - (IBAction)toggle:(id)sender {
-    if (isRecording) {
-        [self stopRecording:sender];
-        [self playSound:@"rec_cancel"];
+    if (self.currentSession && !self.currentSession.terminated) {
+        [self endSession:self];
     } else {
-        [self startRecording:sender];
+        [self startSession:self];
     }
 }
 
-- (IBAction)startRecording:(id)sender {
-    DLog(@"Starting recording");
-    isRecording = YES;
-    self.recognitionSession = [NSDate timeIntervalSinceReferenceDate];
-    hasPlayedActivationSound = NO;
-    self.audioPlayer = nil;
-    
-    [self playSound:@"rec_begin"];
-    [self.waveformView setIdleAmplitude:0.025f];
-    
+- (IBAction)startSession:(id)sender {
+    if (self.currentSession && !self.currentSession.terminated) {
+        [self.currentSession terminate];
+    }
+
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
-    
     [self clearLog];
-    self.queryString = @"";
     
-    self.audioData = [NSMutableData new];
-    [[AudioController sharedInstance] prepareWithSampleRate:SAMPLE_RATE];
-    [[SpeechRecognitionService sharedInstance] setSampleRate:SAMPLE_RATE];
-    [[AudioController sharedInstance] start];
+    // Create new session
+    self.currentSession = [[QuerySession alloc] initWithDelegate:self];
+    [self.currentSession start];
 }
 
-- (IBAction)stopRecording:(id)sender {
-    DLog(@"Stopping recording");
-    isRecording = NO;
-    self.recognitionSession = 0;
-    
-    [self playSound:@"rec_confirm"];
-    
+- (IBAction)endSession:(id)sender {
+    if (self.currentSession && !self.currentSession.terminated) {
+        [self.currentSession terminate];
+        self.currentSession = nil;
+    }
+}
+
+#pragma mark - QuerySessionDelegate
+
+- (void)sessionDidStartRecording {
+    [self.waveformView setIdleAmplitude:0.025f];
+}
+
+- (void)sessionDidStopRecording {
     [self.waveformView setIdleAmplitude:0.0f];
-    
-    // Stop audio session
-    [[AudioController sharedInstance] stop];
-    [[SpeechRecognitionService sharedInstance] stopStreaming];
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
-        if ([self.queryString length]) {
-            [self askGreynir:self.queryString];
-        } else {
-//            [self log:@"Engin fyrirspurn."];
-        }
-    }];
 }
 
-#pragma mark - UI Log
+- (void)sessionDidHearQuestion:(NSString *)questionStr {
+    NSString *repl = [[questionStr substringToIndex:1] capitalizedString];
+    NSString *capitalized = [questionStr stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:repl];
+    [self log:@"%@?\n", capitalized];
+}
+
+- (void)sessionDidReceiveAnswer:(NSString *)answerStr {
+    [self log:@"%@", answerStr];
+}
+
+- (void)sessionDidRaiseError:(NSError *)err {
+    [self clearLog];
+    [self log:[err localizedDescription]];
+}
+
+- (void)sessionDidTerminate {
+    [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
+}
+
+#pragma mark - User Interface Log
 
 - (void)clearLog {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -187,243 +165,11 @@
     }];
 }
 
-#pragma mark -
-
-- (void)processSampleData:(NSData *)data {
-    if (!isRecording) {
-        return;
-    }
-    
-    // There is a noticeable delay between starting recording session and receiving
-    // the first audio data packets from the microphone. Only play activation sound
-    // when the first audio packet has arrived.
-//    if (!hasPlayedActivationSound) {
-////        [self playAudio:@"rec_begin"];
-//        NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:@"rec_begin" withExtension:@"caf"];
-//        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-//        [self.audioPlayer play];
-//        hasPlayedActivationSound = YES;
-//    }
-    
-    [self.audioData appendData:data];
-    
-    NSInteger frameCount = [data length] / 2;
-    int16_t *samples = (int16_t *)[data bytes]; // Cast void pointer
-    int64_t sum = 0;
-    int64_t avg = 0;
-    int16_t max = 0;
-    for (int i = 0; i < frameCount; i++) {
-        sum += abs(samples[i]);
-        avg = !avg ? abs(samples[i]) : (avg + abs(samples[i])) / 2;
-        max = (samples[i] > max) ? samples[i] : max;
-    }
-    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), (int)avg, (int)max);
-    
-    float ampl = max/32767.f;
-    float decibels = 20 * log10(ampl);
-//    DLog(@"Ampl: %.8f", ampl);
-//    DLog(@"DecB: %.2f", decibels);
-    
-    lastRecDec = decibels;
-    
-//    return;
-    
-    // Google recommends sending samples in 100 ms chunks
-    float dur = 0.1;
-    int bytes_per_sample = 2;
-    int chunk_size = dur * SAMPLE_RATE * bytes_per_sample;
-    
-    if ([self.audioData length] < chunk_size) {
-        // Not enough data yet...
-        return;
-    }
-    
-    double session = self.recognitionSession;
-    
-    // We have enough audio data to send to speech recognition server.
-    SpeechRecognitionCompletionHandler compHandler = ^(StreamingRecognizeResponse *response, NSError *error) {
-        if (self.recognitionSession != session) {
-            // Session has been terminated or a new session started
-            DLog(@"Received speech recognition response for expired session:\n%@\n%@", response, [error localizedDescription]);
-            return;
-        }
-        
-        if (error) {
-            DLog(@"ERROR: %@", error);
-            [self log:[error localizedDescription]];
-            [self stopRecording:nil];
-        }
-        else if (response) {
-            BOOL finished = NO;
-            
-            DLog(@"RESPONSE: %@", response);
-//            DLog(@"Speech event type: %d", response.speechEventType);
-//            DLog(@"%@", [response.resultsArray description]);
-            
-            for (StreamingRecognitionResult *result in response.resultsArray) {
-                if (result.isFinal) {
-                    if ([result.alternativesArray count]) {
-                        
-                        SpeechRecognitionAlternative *best = result.alternativesArray[0];
-                        // TODO: Ugh, refactor this away.
-                        NSString *transcr = best.transcript;
-                        NSString *repl = [[transcr substringToIndex:1] capitalizedString];
-                        NSString *capitalized = [transcr stringByReplacingCharactersInRange:NSMakeRange(0,1)
-                                                                                 withString:repl];
-                        [self clearLog];
-                        [self log:[NSString stringWithFormat:@"%@?", capitalized]];
-                        self.queryString = transcr;
-                    }
-                    else {
-                        [self log:@"No interpretation found."];
-                    }
-                    finished = YES;
-                }
-            }
-            
-            if (finished) {
-                [self stopRecording:nil];
-            }
-        }
-    };
-
-    DLog(@"SENDING");
-    [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioData withCompletion:compHandler];
-    
-    // Discard previously accumulated audio data
-    self.audioData = [NSMutableData new];
-}
-
-- (void)askGreynir:(NSString *)questionStr {
-    DLog(@"Querying Greynir");
-    
-    double session = self.querySession;
-    
-    // Completion handler for Greynir API request
-    id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (self.querySession != session) {
-            DLog(@"Received query response for expired session");
-            return;
-        }
-        
-        DLog(@"Greynir server response: %@", [responseObject description]);
-        
-        if (error) {
-            [self log:[NSString stringWithFormat:@"Error: %@", error]];
-        } else {
-            NSDictionary *r = responseObject;
-            
-            if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
-                id greynirResponse = [r objectForKey:@"response"];
-                if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
-                    [self log:@"\n%@", greynirResponse];
-                } else {
-                    DLog(@"Malformed response: %@", [greynirResponse description]);
-                }
-                
-                NSString *audioURLStr = [r objectForKey:@"audio"];
-                if (audioURLStr) {
-                    [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
-                }
-                
-            }
-            else {
-                [self playAudio:@"dunno"];
-            }
-        }
-    };
-    
-    // Post query to the API
-    [[QueryService sharedInstance] sendQuery:questionStr withCompletionHandler:completionHandler];
-}
-
-#pragma mark - Playback
-
-- (void)playSound:(NSString *)filename {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
-    self.soundPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-    [self.soundPlayer play];
-}
-
-- (void)playAudio:(id)filenameOrData {
-    // Utility function that creates an AVAudioPlayer to play either a local file or audio data
-    
-    // Change audio session to playback mode
-//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-//                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
-//                                           error:nil];
-    NSError *err;
-    AVAudioPlayer *player;
-    
-    if ([filenameOrData isKindOfClass:[NSString class]]) {
-        // Local filename specified, init player with local file URL
-        NSString *filename = (NSString *)filenameOrData;
-        NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
-        if (url) {
-            player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
-        } else {
-            DLog(@"Unable to find audio file '%@.caf' in bundle", filename);
-        }
-    } else if ([filenameOrData isKindOfClass:[NSData class]]) {
-        // Init player with audio data
-        player = [[AVAudioPlayer alloc] initWithData:(NSData *)filenameOrData error:&err];
-    } else {
-        DLog(@"playAudio argument neither filename nor data.");
-        return;
-    }
-    
-    if (err == nil) {
-        // Configure player and set it off
-        [player setMeteringEnabled:YES];
-        [player play];
-        self.audioPlayer = player;
-    } else {
-        DLog(@"%@", [err localizedDescription]);
-    }
-}
-
-- (void)playRemoteURL:(NSURL *)url {
-    DLog(@"Speech audio URL: %@", [url description]);
-    NSURLSessionDataTask *downloadTask = \
-    [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error) {
-            DLog(@"%@", [error localizedDescription]);
-            return;
-        }
-        //        completionHandler(data);
-        DLog(@"Playing audio file of size %d", (int)[data length]);
-        [self playAudio:data];
-    }];
-    [downloadTask resume];
-}
-
 #pragma mark - Waveform view
 
 - (void)updateWaveform {
-    CGFloat level = 0.0f;
-    if (isRecording) {
-        level = [self _normalizedPowerLevelFromDecibels:lastRecDec];
-    }
-    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
-        [self.audioPlayer updateMeters];
-        float decibels = [self.audioPlayer averagePowerForChannel:0];
-        level = [self _normalizedPowerLevelFromDecibels:decibels];
-    }
+    CGFloat level = self.currentSession ? [self.currentSession audioLevel] : 0.0f;
     [self.waveformView updateWithLevel:level];
-}
-
-- (CGFloat)_normalizedPowerLevelFromDecibels:(CGFloat)decibels {
-    if (decibels < -64.0f || decibels == 0.0f) {
-        return 0.0f;
-    }
-    // TODO: Tweak this for better results?
-    return powf(
-            // 10 to the power of 0.1*DB  - 10 to the power of 0.1*-60
-            (powf(10.0f, 0.1f * decibels) - powf(10.0f, 0.1f * -60.0f)) *
-            // Multiplied by 1 / 1 -
-            (1.0f / (1.0f - powf(10.0f, 0.1f * -60.0f))),
-            // To the power of 0.5
-            1.0f / 2.0f);
 }
 
 @end

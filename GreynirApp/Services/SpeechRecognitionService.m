@@ -62,8 +62,6 @@
         // If the API key has a bundle ID restriction, specify the bundle ID like this
         _call.requestHeaders[@"X-Ios-Bundle-Identifier"] = [[NSBundle mainBundle] bundleIdentifier];
 
-        NSLog(@"HEADERS: %@", _call.requestHeaders);
-
         [_call start];
         _streaming = YES;
 

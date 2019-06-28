@@ -24,6 +24,7 @@
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F469639622C26F3600645F69 /* rec_cancel.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639522C26F2F00645F69 /* rec_cancel.caf */; };
 		F469639722C26F3600645F69 /* rec_confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639422C26F2F00645F69 /* rec_confirm.caf */; };
+		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB1F229EF94900F66BD4 /* GoogleAPI.key */; };
 		F497BB22229EF94900F66BD4 /* AWSPoolID.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB20229EF94900F66BD4 /* AWSPoolID.key */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
@@ -62,6 +63,8 @@
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F469639422C26F2F00645F69 /* rec_confirm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_confirm.caf; sourceTree = "<group>"; };
 		F469639522C26F2F00645F69 /* rec_cancel.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_cancel.caf; sourceTree = "<group>"; };
+		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = GreynirApp/QuerySession.h; sourceTree = SOURCE_ROOT; };
+		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = GreynirApp/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F497BB1D229EF73D00F66BD4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		F497BB1F229EF94900F66BD4 /* GoogleAPI.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
 		F497BB20229EF94900F66BD4 /* AWSPoolID.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AWSPoolID.key; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				F497BB1D229EF73D00F66BD4 /* Config.h */,
 				D34C17CF1C948F5700D69BCA /* AppDelegate.h */,
 				D34C17D01C948F5700D69BCA /* AppDelegate.m */,
+				F469639822C5086700645F69 /* QuerySession.h */,
+				F469639922C5086700645F69 /* QuerySession.m */,
 				F427692122C1216A00BB6977 /* View Controllers */,
 				F427692022C1216300BB6977 /* Services */,
 				F427691F22C1215900BB6977 /* Util */,
@@ -357,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4E160FC22A9932B0019EDE7 /* RecordButton.m in Sources */,
+				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
 				D379BE381C99FEC70049D06F /* AudioController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainController.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,

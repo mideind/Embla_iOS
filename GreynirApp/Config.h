@@ -20,20 +20,18 @@
 [[NSString stringWithContentsOfFile:(X) encoding:NSUTF8StringEncoding error:nil] \
 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
 
-#define BUNDLE_PATH(X)\
-[[NSBundle mainBundle] pathForResource:(X) ofType:nil]
-
-// AWS Polly
-#define AWS_COGNITO_REGION          AWSRegionUSWest2
-#define AWS_COGNITO_IDENTITY_POOL   FILE_CONTENTS(BUNDLE_PATH(@"AWSPoolID.key"))
+#define BUNDLE_PATH(X)      [[NSBundle mainBundle] pathForResource:(X) ofType:nil]
 
 // Google Speech API
 #define GOOGLE_SPEECH_API_KEY       FILE_CONTENTS(BUNDLE_PATH(@"GoogleAPI.key"))
 
 // Query API
-//#define GREYNIR_API_ENDPOINT        @"https://localhost:5000"
 #define DEFAULT_QUERY_SERVER        @"https://greynir.is"
 #define QUERY_API_PATH              @"/query.api/v1"
+
+// AWS Polly
+#define AWS_COGNITO_REGION          AWSRegionUSWest2
+#define AWS_COGNITO_IDENTITY_POOL   FILE_CONTENTS(BUNDLE_PATH(@"AWSPoolID.key"))
 
 // Custom debug logging
 #ifdef DEBUG
