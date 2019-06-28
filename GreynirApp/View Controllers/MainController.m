@@ -31,6 +31,8 @@
     SystemSoundID begin;
     SystemSoundID confirm;
     SystemSoundID cancel;
+    
+    CADisplayLink *displayLink;
 }
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet UIButton *button;
@@ -73,12 +75,16 @@
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
     
-    CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self
-                                                             selector:@selector(updateWaveform)];
-    [displaylink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-    
+    // TODO: This probably shouldn't be happening here.
     [[AudioController sharedInstance] prepareWithSampleRate:16000.0f];
+    
+    [self.waveformView updateWithLevel:0.f];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
 }
 
 #pragma mark - Respond to app state changes
@@ -110,6 +116,7 @@
         [self.currentSession terminate];
     }
 
+    [self activateWaveform];
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
     [self clearLog];
     
@@ -158,6 +165,7 @@
 
 - (void)sessionDidTerminate {
     [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
+    [self deactivateWaveform];
 }
 
 #pragma mark - User Interface Log
@@ -181,6 +189,22 @@
 
 #pragma mark - Waveform view
 
+- (void)activateWaveform {
+    if (displayLink) {
+        return;
+    }
+    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateWaveform)];
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+- (void)deactivateWaveform {
+    [self.waveformView updateWithLevel:0.f];
+    if (displayLink) {
+        [displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+        displayLink = nil;
+    }
+}
+
 - (void)updateWaveform {
     CGFloat level = self.currentSession ? [self.currentSession audioLevel] : 0.0f;
     [self.waveformView updateWithLevel:level];
@@ -192,16 +216,6 @@
     AudioServicesPlaySystemSound(soundID);
 }
 
-//- (void)playSound:(NSString *)filename {
-//    AVAudioPlayer *player = [self.players objectForKey:filename];
-//    if (player) {
-//        [player setCurrentTime:0];
-//        [player play];
-//    } else {
-//        DLog(@"No player found for '%@'", filename);
-//    }
-//}
-
 - (void)preloadUISounds {
     NSURL *url;
     
@@ -211,24 +225,6 @@
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &confirm);
     url = [[NSBundle mainBundle] URLForResource:@"rec_cancel" withExtension:@"caf"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &cancel);
-
-    
-//    NSArray *sounds = @[@"rec_begin", @"rec_confirm", @"rec_cancel"];
-//
-//    NSMutableDictionary *players = [NSMutableDictionary new];
-//    for (NSString *sn in sounds) {
-//        [players setObject:[self playerForFile:sn] forKey:sn];
-//    }
-//    self.players = [players copy]; // Shallow immutable copy
-//
-//    DLog([self.players description]);
 }
-
-//- (AVAudioPlayer *)playerForFile:(NSString *)filename {
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
-//    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-//    [player prepareToPlay];
-//    return player;
-//}
 
 @end
