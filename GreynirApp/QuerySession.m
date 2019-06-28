@@ -77,7 +77,7 @@
     
     [[SpeechRecognitionService sharedInstance] setSampleRate:REC_SAMPLE_RATE];
 
-    [[AudioController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
+//    [[AudioController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
     [[AudioController sharedInstance] setDelegate:self];
     [[AudioController sharedInstance] start];
     
@@ -220,6 +220,8 @@
                 NSString *audioURLStr = [r objectForKey:@"audio"];
                 if (audioURLStr) {
                     [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
+                } else {
+                    
                 }
             }
             else {

@@ -23,9 +23,7 @@
 #import "QuerySession.h"
 #import "Config.h"
 #import "SDRecordButton.h"
-
-
-#define SAMPLE_RATE 16000.0f
+#import "AudioController.h"
 
 
 @interface MainController () <QuerySessionDelegate>
@@ -78,6 +76,9 @@
     CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self
                                                              selector:@selector(updateWaveform)];
     [displaylink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    
+    [[AudioController sharedInstance] prepareWithSampleRate:16000.0f];
+
 }
 
 #pragma mark - Respond to app state changes
@@ -113,9 +114,11 @@
     [self clearLog];
     
     // Create new session
-    [self playSystemSound:begin];
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
-    [self.currentSession start];
+    [self playSystemSound:begin];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.35 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.currentSession start];
+    });
 }
 
 - (IBAction)endSession:(id)sender {

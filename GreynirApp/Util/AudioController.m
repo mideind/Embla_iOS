@@ -103,7 +103,7 @@ static OSStatus recordingCallback(void *inRefCon,
     NSError *error;
     BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&error];
     if (!ok) {
-        NSLog(@"Failed to change audio session category");
+        NSLog(@"Failed to change audio session category: %@", [error localizedDescription]);
     }
     [session setPreferredIOBufferDuration:10 error:&error];
 
