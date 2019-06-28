@@ -56,6 +56,7 @@
     // Configure wave form view
     [self.waveformView setDensity:10];
     [self.waveformView setIdleAmplitude:0.0f];
+    [self.waveformView setFrequency:2.5];
 //    [self.waveformView setWaveColor:[UIColor grayColor]];
 //    [self.waveformView setPrimaryWaveLineWidth:3.0f];
 //    [self.waveformView setSecondaryWaveLineWidth:1.0];

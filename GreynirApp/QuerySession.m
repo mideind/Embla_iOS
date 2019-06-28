@@ -148,6 +148,7 @@
         if (error) {
             DLog(@"ERROR: %@", error);
             [self stopRecording];
+            [self.delegate sessionDidRaiseError:error];
         }
         else if (response) {
             BOOL finished = NO;
@@ -206,6 +207,7 @@
         if (error) {
 //            [self log:[NSString stringWithFormat:@"Error: %@", error]];
             DLog(@"Error from query server: %@", [error localizedDescription]);
+            [self.delegate sessionDidRaiseError:error];
         } else {
             NSDictionary *r = responseObject;
             NSString *answer = @"Það veit ég ekki";
@@ -286,6 +288,7 @@
         self.audioPlayer = player;
     } else {
         DLog(@"%@", [err localizedDescription]);
+        [self.delegate sessionDidRaiseError:err];
     }
 }
 
@@ -301,6 +304,7 @@
         }
         if (error) {
             DLog(@"Error downloading audio: %@", [error localizedDescription]);
+            [self.delegate sessionDidRaiseError:error];
             return;
         }
         [self playAudio:data];
