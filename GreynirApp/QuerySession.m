@@ -30,7 +30,6 @@
 }
 @property (nonatomic, strong) NSMutableData *audioData;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, strong) AVAudioPlayer *soundPlayer;
 @property (nonatomic, strong) NSString *queryString;
 
 @end
@@ -72,8 +71,6 @@
 #pragma mark - Recording
 
 - (void)startRecording {
-    [self playSound:@"rec_begin"];
-
     _isRecording = YES;
 
     self.audioData = [NSMutableData new];
@@ -88,7 +85,6 @@
 }
 
 - (void)stopRecording {
-    [self playSound:@"rec_confirm"];
     _isRecording = NO;
     recordingDecibelLevel = 0.f;
     
@@ -241,12 +237,6 @@
 }
 
 #pragma mark - Playback
-
-- (void)playSound:(NSString *)filename {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
-    self.soundPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-    [self.soundPlayer play];
-}
 
 - (void)playAudio:(id)filenameOrData {
     // Utility function that creates an AVAudioPlayer to play either a local file or audio data

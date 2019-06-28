@@ -17,11 +17,8 @@
 
 
 #import <AVFoundation/AVFoundation.h>
-#import "google/cloud/speech/v1/CloudSpeech.pbrpc.h"
+#import <AudioToolbox/AudioToolbox.h>
 #import "SCSiriWaveformView.h"
-#import "AudioController.h"
-#import "SpeechRecognitionService.h"
-#import "QueryService.h"
 #import "MainController.h"
 #import "QuerySession.h"
 #import "Config.h"
@@ -32,11 +29,15 @@
 
 
 @interface MainController () <QuerySessionDelegate>
-
+{
+    SystemSoundID begin;
+    SystemSoundID confirm;
+    SystemSoundID cancel;
+}
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet UIButton *button;
 @property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
-
+//@property (nonatomic, strong) NSDictionary *players;
 @property (nonatomic, retain) QuerySession *currentSession;
 
 - (IBAction)startSession:(id)sender;
@@ -49,6 +50,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self preloadUISounds];
     
     // Set up user interface
     [self clearLog];
@@ -85,7 +88,10 @@
 
 -(void)resignedActive:(NSNotification *)notification {
     NSLog(@"%@", [notification description]);
-    [self endSession:self];
+    if (self.currentSession && !self.currentSession.terminated) {
+        [self.currentSession terminate];
+        self.currentSession = nil;
+    }
 }
 
 #pragma mark - Session
@@ -107,6 +113,7 @@
     [self clearLog];
     
     // Create new session
+    [self playSystemSound:begin];
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
     [self.currentSession start];
 }
@@ -132,6 +139,7 @@
     NSString *repl = [[questionStr substringToIndex:1] capitalizedString];
     NSString *capitalized = [questionStr stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:repl];
     [self log:@"%@?\n", capitalized];
+    [self playSystemSound:confirm];
 }
 
 - (void)sessionDidReceiveAnswer:(NSString *)answerStr {
@@ -141,6 +149,8 @@
 - (void)sessionDidRaiseError:(NSError *)err {
     [self clearLog];
     [self log:[err localizedDescription]];
+    [self playSystemSound:cancel];
+    [self.currentSession terminate];
 }
 
 - (void)sessionDidTerminate {
@@ -172,5 +182,50 @@
     CGFloat level = self.currentSession ? [self.currentSession audioLevel] : 0.0f;
     [self.waveformView updateWithLevel:level];
 }
+
+#pragma mark - UI sounds
+
+- (void)playSystemSound:(SystemSoundID)soundID {
+    AudioServicesPlaySystemSound(soundID);
+}
+
+//- (void)playSound:(NSString *)filename {
+//    AVAudioPlayer *player = [self.players objectForKey:filename];
+//    if (player) {
+//        [player setCurrentTime:0];
+//        [player play];
+//    } else {
+//        DLog(@"No player found for '%@'", filename);
+//    }
+//}
+
+- (void)preloadUISounds {
+    NSURL *url;
+    
+    url = [[NSBundle mainBundle] URLForResource:@"rec_begin" withExtension:@"caf"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &begin);
+    url = [[NSBundle mainBundle] URLForResource:@"rec_confirm" withExtension:@"caf"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &confirm);
+    url = [[NSBundle mainBundle] URLForResource:@"rec_cancel" withExtension:@"caf"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &cancel);
+
+    
+//    NSArray *sounds = @[@"rec_begin", @"rec_confirm", @"rec_cancel"];
+//
+//    NSMutableDictionary *players = [NSMutableDictionary new];
+//    for (NSString *sn in sounds) {
+//        [players setObject:[self playerForFile:sn] forKey:sn];
+//    }
+//    self.players = [players copy]; // Shallow immutable copy
+//
+//    DLog([self.players description]);
+}
+
+//- (AVAudioPlayer *)playerForFile:(NSString *)filename {
+//    NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
+//    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+//    [player prepareToPlay];
+//    return player;
+//}
 
 @end
