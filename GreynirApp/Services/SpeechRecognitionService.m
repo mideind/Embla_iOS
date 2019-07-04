@@ -36,6 +36,7 @@
 
 @implementation SpeechRecognitionService
 
+// Singleton
 + (instancetype)sharedInstance {
     static SpeechRecognitionService *instance = nil;
     if (!instance) {
@@ -59,7 +60,7 @@
 
         // Authenticate using an API key obtained from the Google Cloud Console
         _call.requestHeaders[@"X-Goog-Api-Key"] = GOOGLE_SPEECH_API_KEY;
-        // If the API key has a bundle ID restriction, specify the bundle ID like this
+        // Specify the bundle ID in case the API key has a bundle ID restriction
         _call.requestHeaders[@"X-Ios-Bundle-Identifier"] = [[NSBundle mainBundle] bundleIdentifier];
 
         [_call start];

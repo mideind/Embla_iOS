@@ -217,7 +217,12 @@
                 id greynirResponse = [r objectForKey:@"response"];
                 if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
                     answer = greynirResponse;
-                } else {
+                }
+                // TODO! Standardise API
+                else if (greynirResponse && [greynirResponse isKindOfClass:[NSDictionary class]]) {
+                    answer = [(NSDictionary *)greynirResponse objectForKey:@"answer"];
+                }
+                else {
                     DLog(@"Malformed response: %@", [greynirResponse description]);
                 }
                 
@@ -225,7 +230,7 @@
                 if (audioURLStr) {
                     [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
                 } else {
-                    
+                    [self playAudio:@"dunno"];
                 }
             }
             else {
