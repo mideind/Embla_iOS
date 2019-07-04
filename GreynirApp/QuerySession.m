@@ -150,9 +150,13 @@
             BOOL finished = NO;
             
             DLog(@"RESPONSE: %@", response);
-//            DLog(@"Speech event type: %d", response.speechEventType);
-//            DLog(@"%@", [response.resultsArray description]);
+            if (response.speechEventType == StreamingRecognizeResponse_SpeechEventType_EndOfSingleUtterance) {
+                DLog(@"Speech event type: %d", response.speechEventType);
+                [self stopRecording];
+                return;
+            }
             
+//            DLog(@"%@", [response.resultsArray description]);
             NSString *query = nil;
             for (StreamingRecognitionResult *result in response.resultsArray) {
                 if (result.isFinal) {

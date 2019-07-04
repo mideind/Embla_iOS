@@ -24,6 +24,7 @@
 #import "Config.h"
 #import "SDRecordButton.h"
 #import "AudioController.h"
+#import "Reachability.h"
 
 
 @interface MainController () <QuerySessionDelegate>
@@ -31,17 +32,16 @@
     SystemSoundID begin;
     SystemSoundID confirm;
     SystemSoundID cancel;
+    SystemSoundID conn;
+    SystemSoundID err;
     
     CADisplayLink *displayLink;
 }
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet UIButton *button;
 @property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
-//@property (nonatomic, strong) NSDictionary *players;
 @property (nonatomic, retain) QuerySession *currentSession;
-
-- (IBAction)startSession:(id)sender;
-- (IBAction)endSession:(id)sender;
+@property BOOL connected;
 
 @end
 
@@ -59,66 +59,113 @@
     // Configure wave form view
     [self.waveformView setDensity:10];
     [self.waveformView setIdleAmplitude:0.0f];
-    [self.waveformView setFrequency:2.5];
+    [self.waveformView setFrequency:2.0];
 //    [self.waveformView setWaveColor:[UIColor grayColor]];
 //    [self.waveformView setPrimaryWaveLineWidth:3.0f];
 //    [self.waveformView setSecondaryWaveLineWidth:1.0];
 //    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
     
     // Listen for notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(becameActive:)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resignedActive:)
-                                                 name:UIApplicationWillResignActiveNotification
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(becameActive:)
+//                                                 name:UIApplicationDidBecomeActiveNotification
+//                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(resignedActive:)
+//                                                 name:UIApplicationWillResignActiveNotification
+//                                               object:nil];
     
     // TODO: This probably shouldn't be happening here.
     [[AudioController sharedInstance] prepareWithSampleRate:16000.0f];
     
     [self.waveformView updateWithLevel:0.f];
+    
+    [self setUpReachability];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-}
-
-#pragma mark - Respond to app state changes
-
--(void)becameActive:(NSNotification *)notification {
-    NSLog(@"%@", [notification description]);
-}
-
--(void)resignedActive:(NSNotification *)notification {
-    NSLog(@"%@", [notification description]);
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;
     }
 }
 
+#pragma mark - Respond to app state changes
+
+- (void)becameActive:(NSNotification *)notification {
+    DLog(@"%@", [notification description]);
+}
+
+- (void)resignedActive:(NSNotification *)notification {
+    DLog(@"%@", [notification description]);
+    if (self.currentSession && !self.currentSession.terminated) {
+        [self.currentSession terminate];
+        self.currentSession = nil;
+    }
+}
+
+- (void)becameReachable {
+    self.connected = YES;
+}
+
+- (void)becameUnreachable {
+    self.connected = NO;
+    if (self.currentSession && !self.currentSession.terminated) {
+        [self.currentSession terminate];
+        self.currentSession = nil;
+        [self playSystemSound:conn];
+        [self log:@"Ekki næst samband við netið."];
+    }
+}
+
+- (void)setUpReachability {
+    Reachability *reach = [Reachability reachabilityWithHostname:@"greynir.is"];
+    
+    reach.reachableBlock = ^(Reachability*reach) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self becameReachable];
+        });
+    };
+    
+    reach.unreachableBlock = ^(Reachability*reach) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self becameUnreachable];
+        });
+    };
+    
+    // Start the notifier, which will cause the reachability object to retain itself!
+    [reach startNotifier];
+}
+
 #pragma mark - Session
 
 - (IBAction)toggle:(id)sender {
     if (self.currentSession && !self.currentSession.terminated) {
-        [self endSession:self];
+        [self endSession];
     } else {
-        [self startSession:self];
+        [self startSession];
     }
 }
 
-- (IBAction)startSession:(id)sender {
+- (void)startSession {
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
     }
-
+    
+    [self clearLog];
+    
+    if (!self.connected) {
+        [self playSystemSound:conn];
+        [self log:@"Ekki næst samband við netið."];
+        return;
+    }
+    
     [self activateWaveform];
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
-    [self clearLog];
+
     
     // Create new session
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
@@ -128,7 +175,7 @@
     });
 }
 
-- (IBAction)endSession:(id)sender {
+- (void)endSession {
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;
@@ -156,10 +203,16 @@
     [self log:@"%@", answerStr];
 }
 
-- (void)sessionDidRaiseError:(NSError *)err {
+- (void)sessionDidRaiseError:(NSError *)error {
     [self clearLog];
-    [self log:[err localizedDescription]];
-    [self playSystemSound:cancel];
+    if (self.connected) {
+        [self log:@"Villa kom upp í samskiptum við netþjón."];
+        [self log:[error localizedDescription]];
+        [self playSystemSound:err];
+    } else {
+        [self log:@"Ekki næst samband við netið"];
+        [self playSystemSound:conn];
+    }
     [self.currentSession terminate];
 }
 
@@ -225,6 +278,10 @@
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &confirm);
     url = [[NSBundle mainBundle] URLForResource:@"rec_cancel" withExtension:@"caf"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &cancel);
+    url = [[NSBundle mainBundle] URLForResource:@"conn" withExtension:@"caf"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &conn);
+    url = [[NSBundle mainBundle] URLForResource:@"err" withExtension:@"caf"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &err);
 }
 
 @end

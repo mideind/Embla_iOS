@@ -47,10 +47,10 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-uC-XPA">
-                                <rect key="frame" x="30" y="395" width="315" height="242"/>
+                                <rect key="frame" x="30" y="380" width="315" height="257"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
                         </subviews>
@@ -62,7 +62,7 @@
                             <constraint firstItem="EMZ-uC-XPA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="X8m-c0-yWH"/>
                             <constraint firstItem="186-3G-JKn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XfL-Lh-AdU"/>
                             <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="beF-b4-jxX"/>
-                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" id="n95-7e-qmb"/>
+                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" constant="-20" id="n95-7e-qmb"/>
                             <constraint firstItem="186-3G-JKn" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="-10" id="uuG-tY-uLW"/>
                             <constraint firstAttribute="trailing" secondItem="186-3G-JKn" secondAttribute="trailing" id="xD2-Ti-HXF"/>
                         </constraints>

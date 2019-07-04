@@ -3,10 +3,6 @@ TODO list for Greynir iOS app
 
 * Tied to Greynir user account?
 * Privacy notification on app setup/onboarding (show some blurb about not storing personally identifiable information)
-* Handle reachability.
-    * There should be no unexpected behaviour when internet connection fails at any stage.
-    * Ping server specified in settings to determine reachability? Or Google? Both are required.
-* Handle app resignActive more gracefully.
 * Automatic activation on some prompt-word, like "Hey Siri"
 * Ignore responses from old requests instead of re-triggering query/playback pipeline (i.e. store current session ID)
 * Server-side should identify natural language queries, respond with "I don't understand the question" if the query is just a statement
@@ -14,11 +10,15 @@ TODO list for Greynir iOS app
 * Currently, only the speech recognition result with the highest probability is sent to query server. Add another layer of logic server-side to pick best match?
 * Standardise query API
 
-* Conflict wrt waveform, init sound & using decibel level in mic. Use separate audio player?
 * Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated
 * Add sounds for when recording ends/speech recognition fails
 * Fyrirspurnaslóð, ekki fyrirspurnaþjónn. Why not offer an arbitrary endpoint?
+* Interim results
+* Pre-set vocabulary to improve results?
 
+DONE * Handle reachability.
+DONE * Handle app resignActive more gracefully.
+DONE * Conflict wrt waveform, init sound & using decibel level in mic. Use separate audio player?
 DONE * Implement settings, incl. voice selection (Karl, Dóra), location services (On/Off), API endpoint (default https://greynir.is), "Restore defaults"
 DONE * Move initial url signing communication with AWS Polly to Greynir server to reduce latency
 DONE * Hardcoded responses should be stored as local audio files in app (e.g. "Það veit ég ekki", "Ekki næst samband við netið.")

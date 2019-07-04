@@ -66,7 +66,7 @@
                                                                      parameters:parameters
                                                                           error:nil];
     if (req == nil) {
-        NSLog(@"%@", [err localizedDescription]);
+        DLog(@"%@", [err localizedDescription]);
         return;
     }
     DLog(@"Sending request %@", [req description]);
