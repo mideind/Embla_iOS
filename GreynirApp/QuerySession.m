@@ -94,8 +94,8 @@
     [self.delegate sessionDidStopRecording];
 }
 
-// Receives audio data from microphone and accumulates it
-// until there's enough to send to the speech recognition server
+// Receives audio data from microphone and accumulates until enough
+// samples have been received to send to speech recognition server.
 - (void)processSampleData:(NSData *)data {
     if (!_isRecording) {
         DLog(@"Received audio data (%d bytes) after recording was ended.", (int)[data length]);
@@ -134,60 +134,85 @@
         return;
     }
     
-    // We have enough audio data to send to speech recognition server.
+    // Send data to speech recognition server.
+    [self sendSpeechData:self.audioData];
+    
+    // Discard the accumulated audio data
+    self.audioData = [NSMutableData new];
+}
+
+#pragma mark - Speech recognition
+
+- (void)sendSpeechData:(NSData *)audioData {
+    // Send audio data to speech recognition server
+    
+    // Completion handler
     SpeechRecognitionCompletionHandler compHandler = ^(StreamingRecognizeResponse *response, NSError *error) {
         if (self.terminated) {
             DLog(@"Terminated task received speech recognition response: %@", [response description]);
             return;
         }
-        
         if (error) {
-            DLog(@"ERROR: %@", error);
+            // Stop recording on error
+            DLog(@"Speech recognition error: %@", error);
             [self stopRecording];
             [self.delegate sessionDidRaiseError:error];
         }
-        else if (response) {
-            BOOL finished = NO;
-            
-            DLog(@"RESPONSE: %@", response);
-            if (response.speechEventType == StreamingRecognizeResponse_SpeechEventType_EndOfSingleUtterance) {
-                DLog(@"Speech event type: %d", response.speechEventType);
-                [self stopRecording];
-                return;
-            }
-            
-//            DLog(@"%@", [response.resultsArray description]);
-            NSString *query = nil;
-            for (StreamingRecognitionResult *result in response.resultsArray) {
-                if (result.isFinal) {
-                    if ([result.alternativesArray count]) {                        
-                        SpeechRecognitionAlternative *best = result.alternativesArray[0];
-                        query = best.transcript;
-                    }
-                    finished = YES;
-                }
-            }
-            
-            // We've received a final answer from the speech recognition server.
-            // Terminate recording and submit query, if any, to query server.
-            if (finished) {
-                [self stopRecording];
-                if (query) {
-                    [self.delegate sessionDidHearQuestion:query];
-                    [self sendQuery:query];
-                } else {
-                    [self terminate];
-                }
-            }
+        else {
+            [self handleSpeechRecognitionResponse:response];
         }
-        
     };
     
-    DLog(@"SENDING");
+    DLog(@"Sending audio data to speech recognition server");
     [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioData withCompletion:compHandler];
+}
+
+- (void)handleSpeechRecognitionResponse:(StreamingRecognizeResponse *)response {
+    DLog(@"Received speech recognition response: %@", response);
     
-    // Discard previously accumulated audio data
-    self.audioData = [NSMutableData new];
+    if (response.speechEventType == StreamingRecognizeResponse_SpeechEventType_EndOfSingleUtterance) {
+        DLog(@"Speech event type: %d", response.speechEventType);
+        [self stopRecording];
+        return;
+    }
+    
+    if (!response.resultsArray_Count) {
+        // TODO: Handle this case.
+    }
+    
+    // Iterate through recognition results.
+    // The response contains an array of StreamingRecognitionResult
+    // objects (typically just one). Each result object has an associated array
+    // of SpeechRecognitionAlternative objects ordered by probability.
+    BOOL finished = NO;
+    NSString *query = nil;
+    for (StreamingRecognitionResult *result in response.resultsArray) {
+        // For now, we're only interested in final results.
+        if (result.isFinal) {
+            // If true, this is the final time the speech service will return
+            // this particular `StreamingRecognitionResult`. The recognizer
+            // will not return any further hypotheses for this portion of
+            // the transcript and corresponding audio.
+            if ([result.alternativesArray count]) {
+                SpeechRecognitionAlternative *best = result.alternativesArray[0];
+                query = best.transcript;
+                // TODO: Grab a number of top results, not just first
+            }
+            finished = YES;
+        }
+    }
+    
+    // We've received a final answer from the speech recognition server.
+    // Terminate recording and submit query, if any, to query server.
+    if (finished) {
+        [self stopRecording];
+        if (query) {
+            [self.delegate sessionDidHearQuestion:query];
+            [self sendQuery:query];
+        } else {
+            [self terminate];
+        }
+    }
 }
 
 #pragma mark - Send query to server
@@ -195,51 +220,20 @@
 - (void)sendQuery:(NSString *)queryStr {
     DLog(@"Sending query to server: '%@'", queryStr);
     
-    // Completion handler for Greynir API request
+    // Completion handler block for query server API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
         if (self.terminated) {
+            // Ignore response if task has already been terminated
             DLog(@"Terminated task received query server response: %@", [response description]);
             return;
         }
-        
-        DLog(@"Greynir server response: %@", [responseObject description]);
         
         if (error) {
 //            [self log:[NSString stringWithFormat:@"Error: %@", error]];
             DLog(@"Error from query server: %@", [error localizedDescription]);
             [self.delegate sessionDidRaiseError:error];
         } else {
-            NSDictionary *r = responseObject;
-            NSString *answer = @"Það veit ég ekki";
-            
-            // If response data is valid, play back the provided audio URL
-            if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
-                id greynirResponse = [r objectForKey:@"response"];
-                if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
-                    answer = greynirResponse;
-                }
-                // TODO! Standardise API
-                else if (greynirResponse && [greynirResponse isKindOfClass:[NSDictionary class]]) {
-                    answer = [(NSDictionary *)greynirResponse objectForKey:@"answer"];
-                }
-                else {
-                    DLog(@"Malformed response: %@", [greynirResponse description]);
-                }
-                
-                NSString *audioURLStr = [r objectForKey:@"audio"];
-                if (audioURLStr) {
-                    [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
-                } else {
-                    [self playAudio:@"dunno"];
-                }
-            }
-            else {
-                // If response is not valid, use local "I don't know" reply
-                [self playAudio:@"dunno"];
-            }
-            
-            // Notify delegate
-            [self.delegate sessionDidReceiveAnswer:answer];
+            [self handleQueryResponse:responseObject];
         }
     };
     
@@ -247,7 +241,42 @@
     [[QueryService sharedInstance] sendQuery:queryStr withCompletionHandler:completionHandler];
 }
 
-#pragma mark - Playback
+- (void)handleQueryResponse:(id)responseObject {
+    DLog(@"Handling query server response: %@", [responseObject description]);
+    NSDictionary *r = responseObject;
+    NSString *answer = @"Það veit ég ekki";
+    
+    // If response data is valid, play back the provided audio URL
+    if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
+        id greynirResponse = [r objectForKey:@"response"];
+        if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
+            answer = greynirResponse;
+        }
+        // TODO! Standardise API
+        else if (greynirResponse && [greynirResponse isKindOfClass:[NSDictionary class]]) {
+            answer = [(NSDictionary *)greynirResponse objectForKey:@"answer"];
+        }
+        else {
+            DLog(@"Malformed response: %@", [greynirResponse description]);
+        }
+        
+        NSString *audioURLStr = [r objectForKey:@"audio"];
+        if (audioURLStr) {
+            [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
+        } else {
+            [self playAudio:@"dunno"];
+        }
+    }
+    else {
+        // If response is not valid, use local "I don't know" reply
+        [self playAudio:@"dunno"];
+    }
+    
+    // Notify delegate
+    [self.delegate sessionDidReceiveAnswer:answer];
+}
+
+#pragma mark - Audio Playback
 
 - (void)playAudio:(id)filenameOrData {
     // Utility function that creates an AVAudioPlayer to play either a local file or audio data
@@ -268,6 +297,7 @@
             player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
         } else {
             DLog(@"Unable to find audio file '%@.caf' in bundle", filename);
+            return;
         }
     }
     else if ([filenameOrData isKindOfClass:[NSData class]]) {
@@ -281,16 +311,17 @@
         return;
     }
     
-    if (err == nil) {
-        // Configure player and set it off
-        [player setMeteringEnabled:YES];
-        [player setDelegate:self];
-        [player play];
-        self.audioPlayer = player;
-    } else {
+    if (err) {
         DLog(@"%@", [err localizedDescription]);
         [self.delegate sessionDidRaiseError:err];
+        return;
     }
+    
+    // Configure player and set it off
+    [player setMeteringEnabled:YES];
+    [player setDelegate:self];
+    [player play];
+    self.audioPlayer = player;
 }
 
 - (void)playRemoteURL:(NSURL *)url {

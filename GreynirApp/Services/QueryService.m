@@ -31,7 +31,7 @@
     return instance;
 }
 
-- (NSString *)APIEndpoint {
+- (NSString *)_APIEndpoint {
     NSString *server = [[NSUserDefaults standardUserDefaults] stringForKey:@"QueryServer"];
     return [NSString stringWithFormat:@"%@%@", server, QUERY_API_PATH];
 }
@@ -41,7 +41,7 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSString *apiEndpoint = [self APIEndpoint];
+    NSString *apiEndpoint = [self _APIEndpoint];
     
     // Query key/value pairs
     NSString *voiceName = [[NSUserDefaults standardUserDefaults] integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";
@@ -53,7 +53,7 @@
     
     // Add location info, if enabled and available
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"]) {
-        NSDictionary *loc = [self location];
+        NSDictionary *loc = [self _location];
         if (loc) {
             [parameters addEntriesFromDictionary:loc];
         }
@@ -80,7 +80,7 @@
 #pragma GCC diagnostic pop
 }
 
-- (NSDictionary *)location {
+- (NSDictionary *)_location {
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     CLLocation *currentLoc = [appDel latestLocation];
     if (currentLoc) {

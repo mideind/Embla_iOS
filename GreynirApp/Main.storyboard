@@ -114,9 +114,17 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="h6l-2J-IdC">
                                 <rect key="frame" x="16" y="153" width="343" height="457"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.
+                                <mutableString key="text">Greynir les nýjustu fréttir og greinar jafnóðum af helstu íslensku fréttavefjunum. Hann þáttar textann í málsgreinatré samkvæmt innbyggðum málfræðireglum fyrir íslensku. Trén innihalda og endurspegla setningarhluta, svo sem frumlög, andlög, aðra nafnliði, sagnliði, forsetningarliði, samtengingar og svo framvegis.
 
-Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</mutableString>
+Litið er til falls, tölu, kyns, persónu og annarra málfræðieiginleika og -reglna til að finna sem réttasta trjágreiningu hverrar málsgreinar. Slík greining getur þó aldrei orðið fullkomin enda er tungumálið afar sveigjanlegt verkfæri.
+
+Þegar málsgreinatrén hafa verið fundin eru eimaðar upp úr þeim upplýsingar á borð við nöfn fólks, titla og starfsheiti, og skilgreiningar á sérnöfnum. Um þessi gögn má spyrja Greyni með fyrirspurnum á venjulegri íslensku, ritaðri eða talaðri.
+
+Greynir flokkar fréttir og greinar sjálfkrafa í efnisflokka eftir innihaldi þeirra. Hann heldur jafnframt til haga tölfræði um greinarnar, m.a. um hlutföll kynjanna.
+
+Fylgjast má með fréttum af Greyni í Facebook-hópi hans.
+
+</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
