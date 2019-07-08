@@ -244,21 +244,24 @@
 - (void)handleQueryResponse:(id)responseObject {
     DLog(@"Handling query server response: %@", [responseObject description]);
     NSDictionary *r = responseObject;
+    
     NSString *answer = @"Það veit ég ekki";
     
     // If response data is valid, play back the provided audio URL
     if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
-        id greynirResponse = [r objectForKey:@"response"];
-        if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
-            answer = greynirResponse;
-        }
-        // TODO! Standardise API
-        else if (greynirResponse && [greynirResponse isKindOfClass:[NSDictionary class]]) {
-            answer = [(NSDictionary *)greynirResponse objectForKey:@"answer"];
-        }
-        else {
-            DLog(@"Malformed response: %@", [greynirResponse description]);
-        }
+        
+        answer = [r objectForKey:@"answer"];
+//        id greynirResponse = [r objectForKey:@"response"];
+//        if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
+//            answer = greynirResponse;
+//        }
+//        // TODO! Standardise API
+//        else if (greynirResponse && [greynirResponse isKindOfClass:[NSDictionary class]] &&) {
+//            answer = [(NSDictionary *)greynirResponse objectForKey:@"answer"];
+//        }
+//        else {
+//            DLog(@"Malformed response: %@", [greynirResponse description]);
+//        }
         
         NSString *audioURLStr = [r objectForKey:@"audio"];
         if (audioURLStr) {

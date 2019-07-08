@@ -15,6 +15,7 @@ TODO list for Greynir iOS app
 * Fyrirspurnaslóð, ekki fyrirspurnaþjónn. Why not offer an arbitrary endpoint?
 * Interim results
 * Pre-set vocabulary to improve results?
+* Laga end of speech utterance event handling
 
 DONE * Handle reachability.
 DONE * Handle app resignActive more gracefully.
