@@ -16,6 +16,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+    Wrapper singleton class for Google's gRPC-based speech recognition API.
+*/
+
 #import "SpeechRecognitionService.h"
 #import "Config.h"
 #import <GRPCClient/GRPCCall.h>

@@ -29,17 +29,16 @@
     CGContextFillPath(ctx);
     
     NSLog(@"%@", NSStringFromCGRect(rect));
-
+    
     const UIEdgeInsets insets = UIEdgeInsetsMake(20, 20, 20, 20);
     CGRect innerRect = UIEdgeInsetsInsetRect(rect, insets);
     
     NSLog(@"%@", NSStringFromCGRect(innerRect));
-
+    
     
     CGContextAddEllipseInRect(ctx, innerRect);
     CGContextSetFillColorWithColor(ctx, bgColor);
     CGContextFillPath(ctx);
-
 }
 
 @end

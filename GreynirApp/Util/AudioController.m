@@ -16,9 +16,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <AVFoundation/AVFoundation.h>
+/*
+    Singleton wrapper class for Core Audio recording sessions.
+*/
 
+#import <AVFoundation/AVFoundation.h>
 #import "AudioController.h"
+#import "Config.h"
 
 @interface AudioController ()
 {
@@ -66,49 +70,50 @@ static OSStatus recordingCallback(void *inRefCon,
                                   UInt32 inNumberFrames,
                                   AudioBufferList *ioData) {
     OSStatus status;
-
+    
     AudioController *audioController = (__bridge AudioController *)inRefCon;
-
+    
     int channelCount = 1;
-
+    
     // Build the AudioBufferList structure
     AudioBufferList *bufferList = (AudioBufferList *)malloc(sizeof(AudioBufferList));
     bufferList->mNumberBuffers = channelCount;
     bufferList->mBuffers[0].mNumberChannels = 1;
     bufferList->mBuffers[0].mDataByteSize = inNumberFrames * 2;
     bufferList->mBuffers[0].mData = NULL;
-
+    
     // Get the recorded samples
     status = AudioUnitRender(audioController->remoteIOUnit, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames,
                              bufferList);
     if (status != noErr) {
         return status;
     }
-
+    
     // Create NSData object and send to delegate
     NSData *data = [[NSData alloc] initWithBytes:bufferList->mBuffers[0].mData
                                           length:bufferList->mBuffers[0].mDataByteSize];
     dispatch_async(dispatch_get_main_queue(), ^{
         [audioController.delegate processSampleData:data];
     });
-
+    
     return noErr;
 }
 
 - (OSStatus)prepareWithSampleRate:(double)specifiedSampleRate {
     OSStatus status = noErr;
-
+    
     AVAudioSession *session = [AVAudioSession sharedInstance];
-
+    
+    // Set up audio session for recording and playback.
     NSError *error;
     BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&error];
     if (!ok) {
-        NSLog(@"Failed to change audio session category: %@", [error localizedDescription]);
+        DLog(@"Failed to change audio session category: %@", [error localizedDescription]);
     }
     [session setPreferredIOBufferDuration:10 error:&error];
-
+    
     double sampleRate = session.sampleRate;
-    NSLog(@"hardware sample rate = %f, using specified rate = %f", sampleRate, specifiedSampleRate);
+    DLog(@"hardware sample rate = %f, using specified rate = %f", sampleRate, specifiedSampleRate);
     sampleRate = specifiedSampleRate;
     if (!audioComponentInitialized) {
         audioComponentInitialized = YES;
@@ -119,7 +124,7 @@ static OSStatus recordingCallback(void *inRefCon,
         audioComponentDescription.componentManufacturer = kAudioUnitManufacturer_Apple;
         audioComponentDescription.componentFlags = 0;
         audioComponentDescription.componentFlagsMask = 0;
-
+        
         // Get the RemoteIO unit
         AudioComponent remoteIOComponent = AudioComponentFindNext(NULL, &audioComponentDescription);
         status = AudioComponentInstanceNew(remoteIOComponent, &(self->remoteIOUnit));
@@ -127,18 +132,18 @@ static OSStatus recordingCallback(void *inRefCon,
             return status;
         }
     }
-
+    
     UInt32 oneFlag = 1;
     AudioUnitElement bus0 = 0;
     AudioUnitElement bus1 = 1;
-
+    
     // Configure the RemoteIO unit for input
     status = AudioUnitSetProperty(self->remoteIOUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, bus1,
                                   &oneFlag, sizeof(oneFlag));
     if (CheckError(status, "Couldn't enable RemoteIO input")) {
         return status;
     }
-
+    
     AudioStreamBasicDescription asbd;
     memset(&asbd, 0, sizeof(asbd));
     asbd.mSampleRate = sampleRate;
@@ -149,21 +154,21 @@ static OSStatus recordingCallback(void *inRefCon,
     asbd.mBytesPerFrame = 2;
     asbd.mChannelsPerFrame = 1;
     asbd.mBitsPerChannel = 16;
-
+    
     // Set format for output (bus 0) on the RemoteIO's input scope
     status = AudioUnitSetProperty(self->remoteIOUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, bus0,
                                   &asbd, sizeof(asbd));
     if (CheckError(status, "Couldn't set the ASBD for RemoteIO on input scope/bus 0")) {
         return status;
     }
-
+    
     // Set format for mic input (bus 1) on RemoteIO's output scope
     status = AudioUnitSetProperty(self->remoteIOUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, bus1,
                                   &asbd, sizeof(asbd));
     if (CheckError(status, "Couldn't set the ASBD for RemoteIO on output scope/bus 1")) {
         return status;
     }
-
+    
     // Set the recording callback
     AURenderCallbackStruct callbackStruct;
     callbackStruct.inputProc = recordingCallback;
@@ -179,7 +184,7 @@ static OSStatus recordingCallback(void *inRefCon,
     if (CheckError(status, "Couldn't initialize the RemoteIO unit")) {
         return status;
     }
-
+    
     return status;
 }
 

@@ -15,6 +15,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+    Wrapper singleton class for sending requests to the query API.
+*/
+
 #import "QueryService.h"
 #import "Config.h"
 #import "AFNetworking.h"
@@ -71,7 +75,7 @@
     }
     DLog(@"Sending request %@", [req description]);
     
-    // Silence deprecation warnings (Xcode mistakenly thinks this is a call to NSURLSession[!])
+    // Silence deprecation warnings
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     // Run task with request

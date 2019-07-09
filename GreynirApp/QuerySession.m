@@ -15,6 +15,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+    Session class that handles the process of receiving speech input,
+    communicating with the speech recognition API, sending the ensuing
+    query to the query API and playing the synthesized response.
+*/
 
 #import "QuerySession.h"
 #import "AudioController.h"
