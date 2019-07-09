@@ -17,6 +17,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsController : UITableViewController
+@interface SettingsViewController : UITableViewController
 
 @end

@@ -19,7 +19,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "SCSiriWaveformView.h"
-#import "MainController.h"
+#import "MainViewController.h"
 #import "QuerySession.h"
 #import "Config.h"
 #import "SDRecordButton.h"
@@ -27,7 +27,7 @@
 #import "Reachability.h"
 
 
-@interface MainController () <QuerySessionDelegate>
+@interface MainViewController () <QuerySessionDelegate>
 {
     SystemSoundID begin;
     SystemSoundID confirm;
@@ -46,7 +46,7 @@
 @end
 
 
-@implementation MainController
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -200,7 +200,8 @@
 }
 
 - (void)sessionDidReceiveAnswer:(NSString *)answerStr {
-    [self log:@"%@", answerStr];
+    NSString *str = answerStr ? answerStr : @"";
+    [self log:@"%@", str];
 }
 
 - (void)sessionDidRaiseError:(NSError *)error {

@@ -8,7 +8,7 @@ use_frameworks!
 target 'Greynir' do
     pod 'googleapis', :path => '.'
     pod 'AFNetworking', '~> 3.0'
-    pod 'SDWebImage', '~> 5.0'
+#    pod 'SDWebImage', '~> 5.0'
     pod 'SCSiriWaveformView', '~> 1.1.1'
 #    pod 'AWSMobileClient'
 #    pod 'AWSPolly'

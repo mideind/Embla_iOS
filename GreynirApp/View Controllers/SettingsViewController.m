@@ -15,11 +15,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "SettingsController.h"
+#import "SettingsViewController.h"
 #import "AppDelegate.h"
 #import "Config.h"
 
-@interface SettingsController ()
+@interface SettingsViewController ()
 
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation SettingsController
+@implementation SettingsViewController
 
 #pragma mark - UIViewController
 

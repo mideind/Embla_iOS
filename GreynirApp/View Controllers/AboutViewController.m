@@ -15,13 +15,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "AboutController.h"
+#import "AboutViewController.h"
 
-@interface AboutController ()
+@interface AboutViewController ()
 
 @end
 
-@implementation AboutController
+@implementation AboutViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
