@@ -186,18 +186,24 @@
 
 - (void)sessionDidStartRecording {
     [self.waveformView setIdleAmplitude:0.025f];
+    self.button.tintColor = [UIColor redColor];
 }
 
 - (void)sessionDidStopRecording {
     [self.waveformView setIdleAmplitude:0.0f];
+    self.button.tintColor = self.view.tintColor;
 }
 
 - (void)sessionDidReceiveTranscripts:(NSArray<NSString *> *)alternatives {
-    NSString *questionStr = [alternatives firstObject];
-    NSString *repl = [[questionStr substringToIndex:1] capitalizedString];
-    NSString *capitalized = [questionStr stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:repl];
-    [self log:@"%@?", capitalized];
-    [self playSystemSound:confirm];
+    if (alternatives && [alternatives count]) {
+        NSString *questionStr = [alternatives firstObject];
+        NSString *repl = [[questionStr substringToIndex:1] capitalizedString];
+        NSString *capitalized = [questionStr stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:repl];
+        [self log:@"%@?", capitalized];
+        [self playSystemSound:confirm];
+    } else {
+        [self playSystemSound:cancel];
+    }
 }
 
 - (void)sessionDidReceiveAnswer:(NSString *)answerStr {

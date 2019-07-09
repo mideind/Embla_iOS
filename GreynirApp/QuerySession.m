@@ -32,6 +32,8 @@
 @interface QuerySession () <AudioControllerDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
+    BOOL endOfSingleUtteranceReceived;
+    BOOL hasSentQuery;
 }
 @property (nonatomic, strong) NSMutableData *audioData;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
@@ -175,8 +177,15 @@
 - (void)handleSpeechRecognitionResponse:(StreamingRecognizeResponse *)response {
     DLog(@"Received speech recognition response: %@", response);
     
+    if (endOfSingleUtteranceReceived && !hasSentQuery && response == nil) {
+        [self.delegate sessionDidReceiveTranscripts:@[]];
+        [self terminate];
+        return;
+    }
+    
     if (response.speechEventType == StreamingRecognizeResponse_SpeechEventType_EndOfSingleUtterance) {
         DLog(@"Speech event type: %d", response.speechEventType);
+        endOfSingleUtteranceReceived = YES;
         [self stopRecording];
         return;
     }
@@ -227,6 +236,7 @@
 
 - (void)sendQuery:(NSArray<NSString *> *)alternatives {
     DLog(@"Sending query to server: %@", [alternatives description]);
+    hasSentQuery = YES;
     
     // Completion handler block for query server API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
