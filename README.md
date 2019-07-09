@@ -2,7 +2,7 @@
 
 iOS app to access the Greynir query engine via voice.
 
-Requires iOS 9.2+ to run. Probably only builds on a relatively recent version of macOS.
+Requires iOS 10.0+. Probably only builds on a relatively recent version of macOS.
 
 ## Build instructions
 
@@ -17,10 +17,10 @@ $ pod install
 Once installation is done, open `GreynirApp.xcworkspace` with Xcode and build. Alternately, run the following command from the repository root:
 
 ```
-xcodebuild -workspace GreynirApp.xcworkspace -scheme Greynir
+make
 ```
 
-NB: In order to function correctly, the app requires valid API keys for Google's Speech API. The key should be saved in the following text file:
+NB: In order to function correctly, the app requires a valid API key for Google's Speech API. The key should be saved in the following text file:
 
 * `Keys/GoogleAPI.key`
 
