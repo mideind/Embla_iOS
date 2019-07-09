@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9CF2948A96F4EC554876CA4C /* Pods_Greynir.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CDA3CFFE3860AE2413B066 /* Pods_Greynir.framework */; };
+		BF280EA10596F98DD26E3A6B /* libPods-Greynir.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DB5F3B8FC12C1BE1AA8AD6 /* libPods-Greynir.a */; };
 		D34C17CE1C948F5700D69BCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C17CD1C948F5700D69BCA /* main.m */; };
 		D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C17D01C948F5700D69BCA /* AppDelegate.m */; };
 		D34C17D91C948F5800D69BCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34C17D81C948F5800D69BCA /* Assets.xcassets */; };
@@ -26,16 +26,16 @@
 		F469639722C26F3600645F69 /* rec_confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639422C26F2F00645F69 /* rec_confirm.caf */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F469639C22CE3AE700645F69 /* err.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639B22CE3AE600645F69 /* err.caf */; };
+		F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */; };
 		F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB1F229EF94900F66BD4 /* GoogleAPI.key */; };
-		F497BB22229EF94900F66BD4 /* AWSPoolID.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB20229EF94900F66BD4 /* AWSPoolID.key */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E160FC22A9932B0019EDE7 /* RecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160FB22A9932B0019EDE7 /* RecordButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6C682F8DD9C94E41979FE816 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		81CDA3CFFE3860AE2413B066 /* Pods_Greynir.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Greynir.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECB645A36BDC7BD3FF6E417 /* Pods-Greynir.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greynir.release.xcconfig"; path = "Pods/Target Support Files/Pods-Greynir/Pods-Greynir.release.xcconfig"; sourceTree = "<group>"; };
+		D1DB5F3B8FC12C1BE1AA8AD6 /* libPods-Greynir.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Greynir.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34C17C91C948F5700D69BCA /* Greynir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Greynir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34C17CD1C948F5700D69BCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D34C17CF1C948F5700D69BCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +67,9 @@
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = GreynirApp/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = GreynirApp/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F469639B22CE3AE600645F69 /* err.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = err.caf; sourceTree = "<group>"; };
+		F492122F22D4E4D200337AF8 /* SCSiriWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSiriWaveformView.h; sourceTree = "<group>"; };
+		F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSiriWaveformView.m; sourceTree = "<group>"; };
+		F492123222D4FB7300337AF8 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F497BB1D229EF73D00F66BD4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		F497BB1F229EF94900F66BD4 /* GoogleAPI.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
 		F497BB20229EF94900F66BD4 /* AWSPoolID.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AWSPoolID.key; sourceTree = "<group>"; };
@@ -84,7 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
-				9CF2948A96F4EC554876CA4C /* Pods_Greynir.framework in Frameworks */,
+				BF280EA10596F98DD26E3A6B /* libPods-Greynir.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				F4482F2B22B930530050148E /* CoreLocation.framework */,
-				81CDA3CFFE3860AE2413B066 /* Pods_Greynir.framework */,
+				D1DB5F3B8FC12C1BE1AA8AD6 /* libPods-Greynir.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,6 +108,7 @@
 			children = (
 				F497BB23229EFC2800F66BD4 /* README.md */,
 				F497BB2522A169DA00F66BD4 /* TODO.txt */,
+				F492123222D4FB7300337AF8 /* Makefile */,
 				D34C17CB1C948F5700D69BCA /* GreynirApp */,
 				D34C17CA1C948F5700D69BCA /* Products */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,
@@ -153,6 +157,8 @@
 		F427691F22C1215900BB6977 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				F492122F22D4E4D200337AF8 /* SCSiriWaveformView.h */,
+				F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */,
 				D379BE361C99FEC70049D06F /* AudioController.h */,
 				D379BE371C99FEC70049D06F /* AudioController.m */,
 				F4E160FA22A9932B0019EDE7 /* RecordButton.h */,
@@ -232,7 +238,7 @@
 				D34C17C51C948F5700D69BCA /* Sources */,
 				D34C17C61C948F5700D69BCA /* Frameworks */,
 				D34C17C71C948F5700D69BCA /* Resources */,
-				42ACCDDAB0300B1FBECDC32D /* [CP] Embed Pods Frameworks */,
+				0B2C80AFE15BF1FD44C60569 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,7 +265,7 @@
 				};
 			};
 			buildConfigurationList = D34C17C41C948F5700D69BCA /* Build configuration list for PBXProject "GreynirApp" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -281,7 +287,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F497BB22229EF94900F66BD4 /* AWSPoolID.key in Resources */,
 				F469639C22CE3AE700645F69 /* err.caf in Resources */,
 				F469639622C26F3600645F69 /* rec_cancel.caf in Resources */,
 				F427692C22C122F300BB6977 /* dunno.caf in Resources */,
@@ -298,44 +303,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		42ACCDDAB0300B1FBECDC32D /* [CP] Embed Pods Frameworks */ = {
+		0B2C80AFE15BF1FD44C60569 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Greynir/Pods-Greynir-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework",
-				"${BUILT_PRODUCTS_DIR}/SDRecordButton/SDRecordButton.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
-				"${BUILT_PRODUCTS_DIR}/googleapis/googleapis.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Greynir/Pods-Greynir-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSiriWaveformView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDRecordButton.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/googleapis.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Greynir/Pods-Greynir-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Greynir/Pods-Greynir-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Greynir/Pods-Greynir-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7376F491EC06AD174E07DB4 /* [CP] Check Pods Manifest.lock */ = {
@@ -368,6 +350,7 @@
 				D379BE381C99FEC70049D06F /* AudioController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
+				F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */,
 				F427692722C1219A00BB6977 /* AboutViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
@@ -436,10 +419,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/\"",
 					"\"$(SRCROOT)/google/cloud/speech/v1\"",
+					"$(inherited)",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -488,10 +473,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/\"",
 					"\"$(SRCROOT)/google/cloud/speech/v1\"",
+					"$(inherited)",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -507,13 +494,23 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) \"${PODS_ROOT}/Headers/Public\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\" \"$(SRCROOT)/\"";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler\"",
+					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\"",
+					"\"$(SRCROOT)/\"",
+				);
 				INFOPLIST_FILE = GreynirApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/\"",
 					"\"$(SRCROOT)/google/cloud/speech/v1\"",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.GreynirApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -529,10 +526,14 @@
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				INFOPLIST_FILE = GreynirApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/\"",
 					"\"$(SRCROOT)/google/cloud/speech/v1\"",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.GreynirApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -549,7 +550,7 @@
 				D34C17DF1C948F5800D69BCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		D34C17E01C948F5800D69BCA /* Build configuration list for PBXNativeTarget "Greynir" */ = {
 			isa = XCConfigurationList;
@@ -558,7 +559,7 @@
 				D34C17E21C948F5800D69BCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
