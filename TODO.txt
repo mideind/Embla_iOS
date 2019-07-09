@@ -4,10 +4,8 @@ TODO list for Greynir iOS app
 * Tied to Greynir user account?
 * Privacy notification on app setup/onboarding (show some blurb about not storing personally identifiable information)
 * Automatic activation on some prompt-word, like "Hey Siri"
-* Ignore responses from old requests instead of re-triggering query/playback pipeline (i.e. store current session ID)
 * Server-side should identify natural language queries, respond with "I don't understand the question" if the query is just a statement
 * We need new sound files for recording notifications. Currently using Apple's assets for Siri.
-* Currently, only the speech recognition result with the highest probability is sent to query server. Add another layer of logic server-side to pick best match?
 * Standardise query API
 
 * Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated
@@ -17,6 +15,7 @@ TODO list for Greynir iOS app
 * Pre-set vocabulary to improve results?
 * Laga end of speech utterance event handling
 
+DONE * Send all speech recognition results to query server.
 DONE * Handle reachability.
 DONE * Handle app resignActive more gracefully.
 DONE * Conflict wrt waveform, init sound & using decibel level in mic. Use separate audio player?

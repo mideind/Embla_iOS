@@ -40,7 +40,14 @@
     return [NSString stringWithFormat:@"%@%@", server, QUERY_API_PATH];
 }
 
-- (void)sendQuery:(NSString *)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
+- (void)sendQuery:(id)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
+    BOOL isString = [query isKindOfClass:[NSString class]];
+    NSAssert(isString || [query isKindOfClass:[NSArray class]],
+             @"Query argument passed to sendQuery must be string or array");
+    
+    // Query argument is a |-separated list
+    NSArray *alternatives = isString ? @[query] : query;
+    NSString *qstr = [alternatives componentsJoinedByString:@"|"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -50,7 +57,7 @@
     // Query key/value pairs
     NSString *voiceName = [[NSUserDefaults standardUserDefaults] integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";
     NSMutableDictionary *parameters = [@{
-        @"q" : query,
+        @"q": qstr,
         @"voice": @(YES),
         @"voice_id": voiceName
     } mutableCopy];
@@ -73,7 +80,7 @@
         DLog(@"%@", [err localizedDescription]);
         return;
     }
-    DLog(@"Sending request %@", [req description]);
+    DLog(@"Sending request %@\n%@", [req description], [parameters description]);
     
     // Silence deprecation warnings
 #pragma GCC diagnostic push

@@ -192,16 +192,17 @@
     [self.waveformView setIdleAmplitude:0.0f];
 }
 
-- (void)sessionDidHearQuestion:(NSString *)questionStr {
+- (void)sessionDidReceiveTranscripts:(NSArray<NSString *> *)alternatives {
+    NSString *questionStr = [alternatives firstObject];
     NSString *repl = [[questionStr substringToIndex:1] capitalizedString];
     NSString *capitalized = [questionStr stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:repl];
-    [self log:@"%@?\n", capitalized];
+    [self log:@"%@?", capitalized];
     [self playSystemSound:confirm];
 }
 
 - (void)sessionDidReceiveAnswer:(NSString *)answerStr {
     NSString *str = answerStr ? answerStr : @"";
-    [self log:@"%@", str];
+    [self log:@"\n%@", str];
 }
 
 - (void)sessionDidRaiseError:(NSError *)error {

@@ -190,7 +190,7 @@
     // objects (typically just one). Each result object has an associated array
     // of SpeechRecognitionAlternative objects ordered by probability.
     BOOL finished = NO;
-    NSString *query = nil;
+    NSMutableArray<NSString *> *res = [NSMutableArray new];
     for (StreamingRecognitionResult *result in response.resultsArray) {
         // For now, we're only interested in final results.
         if (result.isFinal) {
@@ -199,9 +199,12 @@
             // will not return any further hypotheses for this portion of
             // the transcript and corresponding audio.
             if ([result.alternativesArray count]) {
-                SpeechRecognitionAlternative *best = result.alternativesArray[0];
-                query = best.transcript;
-                // TODO: Grab a number of top results, not just first
+                for (SpeechRecognitionAlternative *a in result.alternativesArray) {
+                    [res addObject:a.transcript];
+                }
+                
+//                SpeechRecognitionAlternative *best = result.alternativesArray[0];
+//                query = best.transcript;
             }
             finished = YES;
         }
@@ -211,9 +214,9 @@
     // Terminate recording and submit query, if any, to query server.
     if (finished) {
         [self stopRecording];
-        if (query) {
-            [self.delegate sessionDidHearQuestion:query];
-            [self sendQuery:query];
+        if ([res count]) {
+            [self.delegate sessionDidReceiveTranscripts:res];
+            [self sendQuery:[res copy]];
         } else {
             [self terminate];
         }
@@ -222,8 +225,8 @@
 
 #pragma mark - Send query to server
 
-- (void)sendQuery:(NSString *)queryStr {
-    DLog(@"Sending query to server: '%@'", queryStr);
+- (void)sendQuery:(NSArray<NSString *> *)alternatives {
+    DLog(@"Sending query to server: %@", [alternatives description]);
     
     // Completion handler block for query server API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -243,7 +246,7 @@
     };
     
     // Post query to the API
-    [[QueryService sharedInstance] sendQuery:queryStr withCompletionHandler:completionHandler];
+    [[QueryService sharedInstance] sendQuery:alternatives withCompletionHandler:completionHandler];
 }
 
 - (void)handleQueryResponse:(id)responseObject {

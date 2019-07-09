@@ -21,7 +21,7 @@
 @interface QueryService : NSObject
 
 + (instancetype)sharedInstance;
-- (void)sendQuery:(NSString *)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+- (void)sendQuery:(id)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
 
 @end
 
