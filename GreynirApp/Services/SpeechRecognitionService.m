@@ -17,7 +17,7 @@
  */
 
 /*
-    Wrapper singleton class for Google's gRPC-based speech recognition API.
+    Singleton wrapper class for Google's gRPC-based speech recognition API.
 */
 
 #import "SpeechRecognitionService.h"
@@ -30,7 +30,7 @@
 
 @interface SpeechRecognitionService ()
 
-@property(nonatomic, assign) BOOL streaming;
+@property(readonly) BOOL streaming;
 @property(nonatomic, strong) Speech *client;
 @property(nonatomic, strong) GRXBufferedPipe *writer;
 @property(nonatomic, strong) GRPCProtoCall *call;
@@ -45,8 +45,11 @@
     static SpeechRecognitionService *instance = nil;
     if (!instance) {
         instance = [[self alloc] init];
-        instance.sampleRate = REC_SAMPLE_RATE; // Default value
         instance.apiKey = GOOGLE_SPEECH_API_KEY; // Read from bundled file
+        // Default values
+        instance.sampleRate = REC_SAMPLE_RATE;
+        instance.singleUtterance = YES;
+        instance.interimResults = NO;
     }
     return instance;
 }
@@ -75,12 +78,12 @@
         recognitionConfig.encoding = RecognitionConfig_AudioEncoding_Linear16;
         recognitionConfig.sampleRateHertz = self.sampleRate;
         recognitionConfig.languageCode = @"is-IS";
-        recognitionConfig.maxAlternatives = 30;
+        recognitionConfig.maxAlternatives = 10;
 
         StreamingRecognitionConfig *streamingRecognitionConfig = [StreamingRecognitionConfig message];
         streamingRecognitionConfig.config = recognitionConfig;
-        streamingRecognitionConfig.singleUtterance = YES;
-        streamingRecognitionConfig.interimResults = NO;
+        streamingRecognitionConfig.singleUtterance = self.singleUtterance;
+        streamingRecognitionConfig.interimResults = self.interimResults;
 
         StreamingRecognizeRequest *streamingRecognizeRequest = [StreamingRecognizeRequest message];
         streamingRecognizeRequest.streamingConfig = streamingRecognitionConfig;

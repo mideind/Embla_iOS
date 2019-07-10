@@ -9,9 +9,9 @@ TODO list for Greynir iOS app
 * Standardise query API
 
 * Fyrirspurnaslóð, ekki fyrirspurnaþjónn. Why not offer an arbitrary endpoint?
-* Interim results
 * Pre-set vocabulary to improve results?
 
+DONE * Show interim speech recognition results
 DONE * Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated
 DONE * Add sounds for when recording ends/speech recognition fails
 DONE * Laga end of speech utterance event handling

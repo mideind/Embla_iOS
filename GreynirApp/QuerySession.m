@@ -85,6 +85,8 @@
     [[AudioRecordingController sharedInstance] setDelegate:self];
     [[AudioRecordingController sharedInstance] start];
     
+    [SpeechRecognitionService sharedInstance].interimResults = YES;
+    
     [self.delegate sessionDidStartRecording];
 }
 
@@ -177,6 +179,7 @@
     DLog(@"Received speech recognition response: %@", response);
     
     if (endOfSingleUtteranceReceived && !hasSentQuery && response == nil) {
+        // The speech recognition session has timed out without recognition
         [self.delegate sessionDidReceiveTranscripts:@[]];
         [self terminate];
         return;
@@ -193,12 +196,13 @@
         // TODO: Handle this case.
     }
     
-    // Iterate through recognition results.
+    // Iterate through speech recognition results.
     // The response contains an array of StreamingRecognitionResult
     // objects (typically just one). Each result object has an associated array
     // of SpeechRecognitionAlternative objects ordered by probability.
     BOOL finished = NO;
-    NSMutableArray<NSString *> *res = [NSMutableArray new];
+//    NSMutableArray<NSString *> *res = [NSMutableArray new];
+    NSArray *res;
     for (StreamingRecognitionResult *result in response.resultsArray) {
         // For now, we're only interested in final results.
         if (result.isFinal) {
@@ -206,12 +210,13 @@
             // this particular `StreamingRecognitionResult`. The recognizer
             // will not return any further hypotheses for this portion of
             // the transcript and corresponding audio.
-            if ([result.alternativesArray count]) {
-                for (SpeechRecognitionAlternative *a in result.alternativesArray) {
-                    [res addObject:a.transcript];
-                }
-            }
+            res = [self _transcriptsFromRecognitionResult:result];
             finished = YES;
+        } else {
+            if (result.stability > 0.3) { // TODO: Arbitrary stability requirement
+                res = [self _transcriptsFromRecognitionResult:result];
+                [self.delegate sessionDidReceiveInterimResults:res];
+            }
         }
     }
     
@@ -226,6 +231,16 @@
             [self terminate];
         }
     }
+}
+
+- (NSArray<NSString *> *)_transcriptsFromRecognitionResult:(StreamingRecognitionResult *)result {
+    NSMutableArray<NSString *> *res = [NSMutableArray new];
+    if ([result.alternativesArray count]) {
+        for (SpeechRecognitionAlternative *a in result.alternativesArray) {
+            [res addObject:a.transcript];
+        }
+    }
+    return [res copy]; // Return immutable copy
 }
 
 #pragma mark - Send query to server

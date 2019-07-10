@@ -24,7 +24,8 @@
 
 - (void)sessionDidStartRecording;
 - (void)sessionDidStopRecording;
-- (void)sessionDidReceiveTranscripts:(NSArray<NSString *> *)questionStr;
+- (void)sessionDidReceiveInterimResults:(NSArray<NSString *> *)results;
+- (void)sessionDidReceiveTranscripts:(NSArray<NSString *> *)transcripts;
 - (void)sessionDidReceiveAnswer:(NSString *)answer;
 - (void)sessionDidRaiseError:(NSError *)err;
 - (void)sessionDidTerminate;

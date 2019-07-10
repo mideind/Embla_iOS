@@ -25,6 +25,7 @@
 #import "SDRecordButton.h"
 #import "AudioRecordingController.h"
 #import "Reachability.h"
+#import "NSString+Additions.h"
 
 
 @interface MainViewController () <QuerySessionDelegate>
@@ -191,12 +192,16 @@
     self.button.tintColor = self.view.tintColor;
 }
 
+- (void)sessionDidReceiveInterimResults:(NSArray<NSString *> *)results {
+    [self clearLog];
+    [self log:@"%@", [[results firstObject] sentenceCapitalizedString]];
+}
+
 - (void)sessionDidReceiveTranscripts:(NSArray<NSString *> *)alternatives {
     if (alternatives && [alternatives count]) {
-        NSString *questionStr = [alternatives firstObject];
-        NSString *repl = [[questionStr substringToIndex:1] capitalizedString];
-        NSString *capitalized = [questionStr stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:repl];
-        [self log:@"%@?", capitalized];
+        NSString *questionStr = [[alternatives firstObject] sentenceCapitalizedString];
+        [self clearLog];
+        [self log:@"%@?", questionStr];
         [self playSystemSound:confirm];
     } else {
         [self playSystemSound:cancel];

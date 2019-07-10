@@ -27,6 +27,7 @@
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F469639C22CE3AE700645F69 /* err.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639B22CE3AE600645F69 /* err.caf */; };
 		F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */; };
+		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB1F229EF94900F66BD4 /* GoogleAPI.key */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E160FC22A9932B0019EDE7 /* RecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160FB22A9932B0019EDE7 /* RecordButton.m */; };
@@ -70,6 +71,8 @@
 		F492122F22D4E4D200337AF8 /* SCSiriWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSiriWaveformView.h; sourceTree = "<group>"; };
 		F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSiriWaveformView.m; sourceTree = "<group>"; };
 		F492123222D4FB7300337AF8 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F492123322D61D5300337AF8 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		F492123422D61D5300337AF8 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		F497BB1D229EF73D00F66BD4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		F497BB1F229EF94900F66BD4 /* GoogleAPI.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
 		F497BB23229EFC2800F66BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				D379BE371C99FEC70049D06F /* AudioRecordingController.m */,
 				F4E160FA22A9932B0019EDE7 /* RecordButton.h */,
 				F4E160FB22A9932B0019EDE7 /* RecordButton.m */,
+				F492123322D61D5300337AF8 /* NSString+Additions.h */,
+				F492123422D61D5300337AF8 /* NSString+Additions.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
+				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */,
 				F427692722C1219A00BB6977 /* AboutViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
