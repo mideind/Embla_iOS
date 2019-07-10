@@ -23,7 +23,7 @@
 #import "QuerySession.h"
 #import "Config.h"
 #import "SDRecordButton.h"
-#import "AudioController.h"
+#import "AudioRecordingController.h"
 #import "Reachability.h"
 
 
@@ -52,35 +52,32 @@
     [super viewDidLoad];
     
     [self preloadUISounds];
+    [self setUpReachability];
     
     // Set up user interface
     [self clearLog];
-    
-    // Configure wave form view
-    [self.waveformView setDensity:10];
+
+    [self.waveformView setDensity:8];
     [self.waveformView setIdleAmplitude:0.0f];
     [self.waveformView setFrequency:2.0];
 //    [self.waveformView setWaveColor:[UIColor grayColor]];
-//    [self.waveformView setPrimaryWaveLineWidth:3.0f];
-//    [self.waveformView setSecondaryWaveLineWidth:1.0];
+    [self.waveformView setPrimaryWaveLineWidth:2.0f];
+    [self.waveformView setSecondaryWaveLineWidth:1.0];
 //    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
-    
-    // Listen for notifications
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(becameActive:)
-//                                                 name:UIApplicationDidBecomeActiveNotification
-//                                               object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(resignedActive:)
-//                                                 name:UIApplicationWillResignActiveNotification
-//                                               object:nil];
-    
-    // TODO: This probably shouldn't be happening here.
-    [[AudioController sharedInstance] prepareWithSampleRate:16000.0f];
-    
     [self.waveformView updateWithLevel:0.f];
+
+    // Listen for notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(becameActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resignedActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
     
-    [self setUpReachability];
+    // Prepare for audio recording
+    [[AudioRecordingController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

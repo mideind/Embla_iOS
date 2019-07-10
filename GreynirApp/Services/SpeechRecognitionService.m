@@ -45,7 +45,7 @@
     static SpeechRecognitionService *instance = nil;
     if (!instance) {
         instance = [[self alloc] init];
-        instance.sampleRate = 16000.0; // Default value
+        instance.sampleRate = REC_SAMPLE_RATE; // Default value
         instance.apiKey = GOOGLE_SPEECH_API_KEY; // Read from bundled file
     }
     return instance;

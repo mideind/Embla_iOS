@@ -22,14 +22,14 @@
 */
 
 #import "QuerySession.h"
-#import "AudioController.h"
+#import "AudioRecordingController.h"
 #import "Config.h"
 #import "QueryService.h"
 #import "SpeechRecognitionService.h"
 #import <AVFoundation/AVFoundation.h>
 
 
-@interface QuerySession () <AudioControllerDelegate, AVAudioPlayerDelegate>
+@interface QuerySession () <AudioRecordingControllerDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
     BOOL endOfSingleUtteranceReceived;
@@ -40,9 +40,6 @@
 @property (nonatomic, strong) NSString *queryString;
 
 @end
-
-
-#define REC_SAMPLE_RATE 16000.0f
 
 
 @implementation QuerySession
@@ -63,6 +60,9 @@
 }
 
 - (void)terminate {
+    if (self.terminated) {
+        return;
+    }
     DLog(@"Terminating session");
     if (_isRecording) {
         [self stopRecording];
@@ -82,11 +82,8 @@
 
     self.audioData = [NSMutableData new];
     
-    [[SpeechRecognitionService sharedInstance] setSampleRate:REC_SAMPLE_RATE];
-
-//    [[AudioController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
-    [[AudioController sharedInstance] setDelegate:self];
-    [[AudioController sharedInstance] start];
+    [[AudioRecordingController sharedInstance] setDelegate:self];
+    [[AudioRecordingController sharedInstance] start];
     
     [self.delegate sessionDidStartRecording];
 }
@@ -95,11 +92,13 @@
     _isRecording = NO;
     recordingDecibelLevel = 0.f;
     
-    [[AudioController sharedInstance] stop];
+    [[AudioRecordingController sharedInstance] stop];
     [[SpeechRecognitionService sharedInstance] stopStreaming];
     
     [self.delegate sessionDidStopRecording];
 }
+
+#pragma mark - AudioControllerDelegate
 
 // Receives audio data from microphone and accumulates until enough
 // samples have been received to send to speech recognition server.
@@ -211,9 +210,6 @@
                 for (SpeechRecognitionAlternative *a in result.alternativesArray) {
                     [res addObject:a.transcript];
                 }
-                
-//                SpeechRecognitionAlternative *best = result.alternativesArray[0];
-//                query = best.transcript;
             }
             finished = YES;
         }

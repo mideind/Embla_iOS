@@ -19,6 +19,8 @@
 
 @interface AboutViewController ()
 
+@property (nonatomic, weak) IBOutlet UITextView *textView;
+
 @end
 
 @implementation AboutViewController
@@ -26,6 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.textView setContentOffset:CGPointZero animated:NO];
 }
 
 @end

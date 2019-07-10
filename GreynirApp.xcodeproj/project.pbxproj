@@ -12,7 +12,7 @@
 		D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C17D01C948F5700D69BCA /* AppDelegate.m */; };
 		D34C17D91C948F5800D69BCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34C17D81C948F5800D69BCA /* Assets.xcassets */; };
 		D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34C17DA1C948F5800D69BCA /* LaunchScreen.storyboard */; };
-		D379BE381C99FEC70049D06F /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = D379BE371C99FEC70049D06F /* AudioController.m */; };
+		D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D379BE371C99FEC70049D06F /* AudioRecordingController.m */; };
 		D392D9861C94937D002F5132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D392D9851C94937D002F5132 /* Main.storyboard */; };
 		D392D9891C94938F002F5132 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* MainViewController.m */; };
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
@@ -43,8 +43,8 @@
 		D34C17D81C948F5800D69BCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D34C17DB1C948F5800D69BCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34C17DD1C948F5800D69BCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D379BE361C99FEC70049D06F /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
-		D379BE371C99FEC70049D06F /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
+		D379BE361C99FEC70049D06F /* AudioRecordingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingController.h; sourceTree = "<group>"; };
+		D379BE371C99FEC70049D06F /* AudioRecordingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingController.m; sourceTree = "<group>"; };
 		D392D9851C94937D002F5132 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D392D9871C94938F002F5132 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D392D9881C94938F002F5132 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 			children = (
 				F492122F22D4E4D200337AF8 /* SCSiriWaveformView.h */,
 				F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */,
-				D379BE361C99FEC70049D06F /* AudioController.h */,
-				D379BE371C99FEC70049D06F /* AudioController.m */,
+				D379BE361C99FEC70049D06F /* AudioRecordingController.h */,
+				D379BE371C99FEC70049D06F /* AudioRecordingController.m */,
 				F4E160FA22A9932B0019EDE7 /* RecordButton.h */,
 				F4E160FB22A9932B0019EDE7 /* RecordButton.m */,
 			);
@@ -345,7 +345,7 @@
 			files = (
 				F4E160FC22A9932B0019EDE7 /* RecordButton.m in Sources */,
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
-				D379BE381C99FEC70049D06F /* AudioController.m in Sources */,
+				D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */,

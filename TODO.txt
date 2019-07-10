@@ -8,13 +8,13 @@ TODO list for Greynir iOS app
 * We need new sound files for recording notifications. Currently using Apple's assets for Siri.
 * Standardise query API
 
-* Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated
-* Add sounds for when recording ends/speech recognition fails
 * Fyrirspurnaslóð, ekki fyrirspurnaþjónn. Why not offer an arbitrary endpoint?
 * Interim results
 * Pre-set vocabulary to improve results?
-* Laga end of speech utterance event handling
 
+DONE * Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated
+DONE * Add sounds for when recording ends/speech recognition fails
+DONE * Laga end of speech utterance event handling
 DONE * Send all speech recognition results to query server.
 DONE * Handle reachability.
 DONE * Handle app resignActive more gracefully.

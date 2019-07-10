@@ -33,6 +33,10 @@ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet
 #define AWS_COGNITO_REGION          AWSRegionUSWest2
 #define AWS_COGNITO_IDENTITY_POOL   FILE_CONTENTS(BUNDLE_PATH(@"AWSPoolID.key"))
 
+
+#define REC_SAMPLE_RATE             16000.0f
+
+
 // Custom debug logging
 #ifdef DEBUG
     #define DLog(...) NSLog(__VA_ARGS__)
