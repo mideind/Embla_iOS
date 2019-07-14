@@ -275,11 +275,13 @@
     NSDictionary *r = responseObject;
     
     NSString *answer = @"Það veit ég ekki";
+    NSString *question = @"";
     
     // If response data is valid, play back the provided audio URL
     if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
         
-        answer = [r objectForKey:@"answer"];
+        answer = [r objectForKey:@"voice"];
+        question = [r objectForKey:@"q"];
 //        id greynirResponse = [r objectForKey:@"response"];
 //        if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
 //            answer = greynirResponse;
@@ -305,7 +307,7 @@
     }
     
     // Notify delegate
-    [self.delegate sessionDidReceiveAnswer:answer];
+    [self.delegate sessionDidReceiveAnswer:answer toQuestion:question];
 }
 
 #pragma mark - Audio Playback

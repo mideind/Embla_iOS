@@ -208,9 +208,11 @@
     }
 }
 
-- (void)sessionDidReceiveAnswer:(NSString *)answerStr {
-    NSString *str = answerStr ? answerStr : @"";
-    [self log:@"\n%@", str];
+- (void)sessionDidReceiveAnswer:(NSString *)answer toQuestion:(NSString *)question {
+    [self clearLog];
+    
+    NSString *aStr = answer ? answer : @"";
+    [self log:@"%@\n\n%@.", question, [aStr sentenceCapitalizedString]];
 }
 
 - (void)sessionDidRaiseError:(NSError *)error {

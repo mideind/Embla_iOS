@@ -69,6 +69,7 @@
 #pragma mark - Location services
 
 - (void)startLocationServices {
+    
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest]; // kCLLocationAccuracyBestForNavigation
     [self.locationManager requestWhenInUseAuthorization];
