@@ -27,5 +27,6 @@
 
 - (void)startLocationServices;
 - (void)stopLocationServices;
-
+- (BOOL)locationServicesAvailable;
+    
 @end

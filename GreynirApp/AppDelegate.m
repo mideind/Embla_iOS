@@ -69,7 +69,6 @@
 #pragma mark - Location services
 
 - (void)startLocationServices {
-    
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest]; // kCLLocationAccuracyBestForNavigation
     [self.locationManager requestWhenInUseAuthorization];
@@ -79,6 +78,10 @@
 
 - (void)stopLocationServices {
     self.locationManager = nil;
+}
+    
+- (BOOL)locationServicesAvailable {
+    return [CLLocationManager locationServicesEnabled];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {

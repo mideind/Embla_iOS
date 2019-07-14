@@ -3,13 +3,15 @@ TODO list for Greynir iOS app
 
 * Tied to Greynir user account?
 * Privacy notification on app setup/onboarding (show some blurb about not storing personally identifiable information)
-* Automatic activation on some prompt-word, like "Hey Siri"
-* Server-side should identify natural language queries, respond with "I don't understand the question" if the query is just a statement
-* We need new sound files for recording notifications. Currently using Apple's assets for Siri.
-* Standardise query API
+* Server-side should identify natural language queries, respond with "I don't understand the question" if the query is just a statement. The search functionality of the query API has no role for a QA assistant.
+* We need new sound files for recording notifications. Currently using Apple's sound files for Siri.
+* Standardise query API, remove everything not needed, e.g. image lookup
 
 * Fyrirspurnaslóð, ekki fyrirspurnaþjónn. Why not offer an arbitrary endpoint?
 * Pre-set vocabulary to improve results?
+* Handle location services on/off switching more intelligently
+* Automatic activation on some prompt-word, like "Hey Siri"
+
 
 DONE * Show interim speech recognition results
 DONE * Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated

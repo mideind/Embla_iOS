@@ -79,7 +79,12 @@
     AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([sender isOn]) {
-        [del startLocationServices];
+        if ([del locationServicesAvailable]) {
+            NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            [[UIApplication sharedApplication] openURL:settingsURL options:@{} completionHandler:^(BOOL success) {
+                [del startLocationServices];
+            }];
+        }
     } else {
         [del stopLocationServices];
     }
