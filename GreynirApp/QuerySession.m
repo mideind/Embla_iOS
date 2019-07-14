@@ -23,7 +23,7 @@
 
 #import "QuerySession.h"
 #import "AudioRecordingController.h"
-#import "Config.h"
+#import "Common.h"
 #import "QueryService.h"
 #import "SpeechRecognitionService.h"
 #import <AVFoundation/AVFoundation.h>

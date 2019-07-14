@@ -20,7 +20,7 @@
 */
 
 #import "SpeechSynthesisService.h"
-#import "Config.h"
+#import "Common.h"
 
 @import AWSCore;
 @import AWSPolly;

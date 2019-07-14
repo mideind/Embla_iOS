@@ -20,7 +20,7 @@
 */
 
 #import "QueryService.h"
-#import "Config.h"
+#import "Common.h"
 #import "AFNetworking.h"
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>

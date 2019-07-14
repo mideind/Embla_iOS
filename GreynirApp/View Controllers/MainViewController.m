@@ -21,7 +21,7 @@
 #import "SCSiriWaveformView.h"
 #import "MainViewController.h"
 #import "QuerySession.h"
-#import "Config.h"
+#import "Common.h"
 #import "SDRecordButton.h"
 #import "AudioRecordingController.h"
 #import "Reachability.h"
@@ -212,7 +212,7 @@
     [self clearLog];
     
     NSString *aStr = answer ? answer : @"";
-    [self log:@"%@\n\n%@.", question, [aStr sentenceCapitalizedString]];
+    [self log:@"%@\n\n%@", question, [aStr sentenceCapitalizedString]];
 }
 
 - (void)sessionDidRaiseError:(NSError *)error {

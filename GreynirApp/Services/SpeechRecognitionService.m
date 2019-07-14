@@ -21,7 +21,7 @@
 */
 
 #import "SpeechRecognitionService.h"
-#import "Config.h"
+#import "Common.h"
 #import <GRPCClient/GRPCCall.h>
 #import <ProtoRPC/ProtoRPC.h>
 #import <RxLibrary/GRXBufferedPipe.h>

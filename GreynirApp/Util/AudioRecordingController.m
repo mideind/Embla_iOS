@@ -22,7 +22,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "AudioRecordingController.h"
-#import "Config.h"
+#import "Common.h"
 
 @interface AudioRecordingController ()
 {

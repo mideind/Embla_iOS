@@ -16,7 +16,7 @@
  */
 
 #import "AppDelegate.h"
-#import "Config.h"
+#import "Common.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) CLLocationManager *locationManager;

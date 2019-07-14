@@ -17,7 +17,7 @@
 
 #import "SettingsViewController.h"
 #import "AppDelegate.h"
-#import "Config.h"
+#import "Common.h"
 
 @interface SettingsViewController ()
 
