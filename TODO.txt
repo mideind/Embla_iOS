@@ -12,6 +12,7 @@ TODO list for Greynir iOS app
 * Handle location services on/off switching more intelligently
 * Automatic activation on some prompt-word, like "Hey Siri"
 * Handle ill-formed API replies gracefully
+* Button icon should change depending on the state of the query session (i.e. recording, querying, responding)
 
 DONE * Show interim speech recognition results
 DONE * Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated

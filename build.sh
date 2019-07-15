@@ -1,5 +1,10 @@
 # Build script for Greynir iOS app
-# Used for Travis CI tests
+# Only used for Travis CI testing.
+#
+# Builds an unsigned app binary in debug mode.
+#
+# xcodebuild output is fed through xcpretty to reduce build log
+# verbosity and keep it within Travis log length limit.
 
 xcodebuild  -parallelizeTargets \
             -jobs 4 \
@@ -10,4 +15,4 @@ xcodebuild  -parallelizeTargets \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             clean build \
-            | xcpretty -c && test ${PIPESTATUS[0]} -eq 0
+            | xcpretty -c && exit ${PIPESTATUS[0]}

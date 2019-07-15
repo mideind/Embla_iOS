@@ -55,6 +55,7 @@
 #pragma mark -
 
 - (void)start {
+    NSAssert(self.terminated == FALSE, @"Reusing one-off QuerySession object");
     DLog(@"Starting session");
     [self startRecording];
 }
@@ -79,12 +80,13 @@
 
 - (void)startRecording {
     _isRecording = YES;
-
+    
     self.audioData = [NSMutableData new];
     
     [[AudioRecordingController sharedInstance] setDelegate:self];
     [[AudioRecordingController sharedInstance] start];
     
+    // We want to receive interim results from the speech recognition server
     [SpeechRecognitionService sharedInstance].interimResults = YES;
     
     [self.delegate sessionDidStartRecording];
@@ -180,13 +182,14 @@
     
     if (endOfSingleUtteranceReceived && !hasSentQuery && response == nil) {
         // The speech recognition session has timed out without recognition
-        [self.delegate sessionDidReceiveTranscripts:@[]];
+        [self.delegate sessionDidReceiveTranscripts:nil];
         [self terminate];
         return;
     }
     
     if (response.speechEventType == StreamingRecognizeResponse_SpeechEventType_EndOfSingleUtterance) {
-        DLog(@"Speech event type: %d", response.speechEventType);
+        // Speech recognition server is notifying us that it has
+        // detected the end of a single utterance so we stop recording.
         endOfSingleUtteranceReceived = YES;
         [self stopRecording];
         return;
@@ -201,7 +204,6 @@
     // objects (typically just one). Each result object has an associated array
     // of SpeechRecognitionAlternative objects ordered by probability.
     BOOL finished = NO;
-//    NSMutableArray<NSString *> *res = [NSMutableArray new];
     NSArray *res;
     for (StreamingRecognitionResult *result in response.resultsArray) {
         // For now, we're only interested in final results.

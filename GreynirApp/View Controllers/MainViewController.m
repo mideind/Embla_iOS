@@ -52,6 +52,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.button setImage:[UIImage imageNamed:@"Microphone"] forState:UIControlStateNormal];
+    
     [self preloadUISounds];
     [self setUpReachability];
     
@@ -105,6 +107,8 @@
     }
 }
 
+#pragma mark - Reachability
+
 - (void)becameReachable {
     self.connected = YES;
 }
@@ -140,7 +144,7 @@
 
 #pragma mark - Session
 
-- (IBAction)toggle:(id)sender {
+- (IBAction)buttonPressed:(id)sender {
     if (self.currentSession && !self.currentSession.terminated) {
         [self endSession];
     } else {
