@@ -68,9 +68,11 @@
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = GreynirApp/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = GreynirApp/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F469639B22CE3AE600645F69 /* err.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = err.caf; sourceTree = "<group>"; };
+		F48D15A422DCD31800B2996C /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
+		F48D15A522DCD44500B2996C /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		F48D15A622DCD44E00B2996C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F492122F22D4E4D200337AF8 /* SCSiriWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSiriWaveformView.h; sourceTree = "<group>"; };
 		F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSiriWaveformView.m; sourceTree = "<group>"; };
-		F492123222D4FB7300337AF8 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F492123322D61D5300337AF8 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		F492123422D61D5300337AF8 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		F497BB1D229EF73D00F66BD4 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -110,7 +112,9 @@
 			children = (
 				F497BB23229EFC2800F66BD4 /* README.md */,
 				F497BB2522A169DA00F66BD4 /* TODO.txt */,
-				F492123222D4FB7300337AF8 /* Makefile */,
+				F48D15A422DCD31800B2996C /* build.sh */,
+				F48D15A522DCD44500B2996C /* .travis.yml */,
+				F48D15A622DCD44E00B2996C /* .gitignore */,
 				D34C17CB1C948F5700D69BCA /* GreynirApp */,
 				D34C17CA1C948F5700D69BCA /* Products */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,

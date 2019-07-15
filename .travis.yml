@@ -8,11 +8,11 @@ branches:
 
 before_install:
   - gem install cocoapods
-  - gem update cocoapods --pre
+  - gem install xcpretty
   - pod update
 
 script:
-  - make
+  - ./build.sh
 
 notifications:
   slack: greynir:38FfPr1S8oZRNFMmt47mzT3z
