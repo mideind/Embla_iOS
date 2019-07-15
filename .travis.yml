@@ -6,9 +6,13 @@ branches:
   only:
     - master
 
-# before_install:
-#   - gem install cocoapods
+before_install:
+  - gem install cocoapods
+  - gem update cocoapods --pre
+  - pod update
 
 script:
-  - xcodebuild -workspace GreynirApp.xcworkspace -scheme Greynir -sdk iphonesimulator &> /dev/null
+  - make
 
+notifications:
+  slack: greynir:38FfPr1S8oZRNFMmt47mzT3z

@@ -14,7 +14,7 @@ From repository root, run the following command:
 $ pod install
 ```
 
-Once installation is done, open `GreynirApp.xcworkspace` with Xcode and build. Alternately, run the following command from the repository root:
+Once installation is done, open `GreynirApp.xcworkspace` with Xcode and build. Alternatively, you can build an unsigned app binary by runing the following command from the repository root:
 
 ```
 make

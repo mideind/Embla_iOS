@@ -11,7 +11,7 @@ TODO list for Greynir iOS app
 * Pre-set vocabulary to improve results?
 * Handle location services on/off switching more intelligently
 * Automatic activation on some prompt-word, like "Hey Siri"
-* Handle ill-formatted API replies gracefully
+* Handle ill-formed API replies gracefully
 
 DONE * Show interim speech recognition results
 DONE * Add cutoff point for rec. session duration, say 5-10 seconds, after which the session is terminated
