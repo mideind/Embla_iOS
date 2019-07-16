@@ -39,6 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.useLocationSwitch becomeFirstResponder];
     [self configureControlsFromDefaults];
+    [self updateLocationControl];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -47,6 +48,29 @@
 
 #pragma mark -
 
+- (void)updateLocationControl {
+    [self.useLocationSwitch setOn:[self canUseLocation]];
+}
+    
+- (BOOL)canUseLocation {
+    if ([CLLocationManager locationServicesEnabled]) {
+        switch ([CLLocationManager authorizationStatus]) {
+            
+            case kCLAuthorizationStatusRestricted:
+            case kCLAuthorizationStatusDenied:
+            case kCLAuthorizationStatusNotDetermined:
+                return NO;
+                break;
+            
+            case kCLAuthorizationStatusAuthorizedAlways:
+            case kCLAuthorizationStatusAuthorizedWhenInUse:
+                return YES;
+                break;
+        }
+    }
+    return NO;
+}
+    
 - (void)configureControlsFromDefaults {
     // Configure controls according to defaults
     // Horrible to have to do this manually. Why no bindings on iOS?
@@ -79,7 +103,7 @@
     AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([sender isOn]) {
-        if ([del locationServicesAvailable]) {
+        if ([self canUseLocation] == NO) {
             NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
             [[UIApplication sharedApplication] openURL:settingsURL options:@{} completionHandler:^(BOOL success) {
                 [del startLocationServices];
