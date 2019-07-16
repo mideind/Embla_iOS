@@ -282,7 +282,7 @@
     // If response data is valid, play back the provided audio URL
     if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
         
-        answer = [r objectForKey:@"voice"];
+        answer = [r objectForKey:@"answer"] ? r[@"answer"] : [r objectForKey:@"voice"];
         question = [r objectForKey:@"q"];
 //        id greynirResponse = [r objectForKey:@"response"];
 //        if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {

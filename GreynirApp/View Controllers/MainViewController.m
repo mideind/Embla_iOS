@@ -28,6 +28,12 @@
 #import "NSString+Additions.h"
 
 
+static NSString * const kNoInternetConnectivityMessage = @"Ekki næst samband við netið.";
+static NSString * const kServerErrorMessage = @"Villa kom upp í samskiptum við netþjón.";
+
+static NSString * const kReachabilityHostname = @"greynir.is";
+
+
 @interface MainViewController () <QuerySessionDelegate>
 {
     SystemSoundID begin;
@@ -119,12 +125,12 @@
         [self.currentSession terminate];
         self.currentSession = nil;
         [self playSystemSound:conn];
-        [self log:@"Ekki næst samband við netið."];
+        [self log:kNoInternetConnectivityMessage];
     }
 }
 
 - (void)setUpReachability {
-    Reachability *reach = [Reachability reachabilityWithHostname:@"greynir.is"];
+    Reachability *reach = [Reachability reachabilityWithHostname:kReachabilityHostname];
     
     reach.reachableBlock = ^(Reachability*reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -161,7 +167,7 @@
     
     if (!self.connected) {
         [self playSystemSound:conn];
-        [self log:@"Ekki næst samband við netið."];
+        [self log:kNoInternetConnectivityMessage];
         return;
     }
     
@@ -205,7 +211,7 @@
     if (alternatives && [alternatives count]) {
         NSString *questionStr = [[alternatives firstObject] sentenceCapitalizedString];
         [self clearLog];
-        [self log:@"%@?", questionStr];
+        [self log:@"%@?", [questionStr sentenceCapitalizedString]];
         [self playSystemSound:confirm];
     } else {
         [self playSystemSound:cancel];
@@ -216,17 +222,19 @@
     [self clearLog];
     
     NSString *aStr = answer ? answer : @"";
-    [self log:@"%@\n\n%@", question, [aStr sentenceCapitalizedString]];
+    [self log:@"%@\n\n%@",
+     [[question sentenceCapitalizedString] questionMarkTerminatedString],
+     [[aStr sentenceCapitalizedString] periodTerminatedString]];
 }
 
 - (void)sessionDidRaiseError:(NSError *)error {
     [self clearLog];
     if (self.connected) {
-        [self log:@"Villa kom upp í samskiptum við netþjón."];
+        [self log:kServerErrorMessage];
         [self log:[error localizedDescription]];
         [self playSystemSound:err];
     } else {
-        [self log:@"Ekki næst samband við netið"];
+        [self log:kNoInternetConnectivityMessage];
         [self playSystemSound:conn];
     }
     [self.currentSession terminate];

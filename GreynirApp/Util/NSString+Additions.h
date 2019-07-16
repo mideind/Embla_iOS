@@ -33,5 +33,7 @@
 @interface NSString (Additions)
 
 - (NSString *)sentenceCapitalizedString;
-
+- (NSString *)periodTerminatedString;
+- (NSString *)questionMarkTerminatedString;
+    
 @end

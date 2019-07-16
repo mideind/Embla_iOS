@@ -40,5 +40,19 @@
             [[self substringToIndex:1] capitalizedString],
             [self substringFromIndex:1]];
 }
+    
+- (NSString *)periodTerminatedString {
+    if (![self hasSuffix:@"."]) {
+        return [self stringByAppendingString:@"."];
+    }
+    return [self copy];
+}
+
+- (NSString *)questionMarkTerminatedString {
+    if (![self hasSuffix:@"?"]) {
+        return [self stringByAppendingString:@"?"];
+    }
+    return [self copy];
+}
 
 @end
