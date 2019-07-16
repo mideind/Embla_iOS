@@ -29,6 +29,9 @@
 #import <AVFoundation/AVFoundation.h>
 
 
+static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
+
+
 @interface QuerySession () <AudioRecordingControllerDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
@@ -276,7 +279,7 @@
     DLog(@"Handling query server response: %@", [responseObject description]);
     NSDictionary *r = responseObject;
     
-    NSString *answer = @"Það veit ég ekki";
+    NSString *answer = kDontKnowAnswer;
     NSString *question = @"";
     
     // If response data is valid, play back the provided audio URL
@@ -284,22 +287,12 @@
         
         answer = [r objectForKey:@"answer"] ? r[@"answer"] : [r objectForKey:@"voice"];
         question = [r objectForKey:@"q"];
-//        id greynirResponse = [r objectForKey:@"response"];
-//        if (greynirResponse && [greynirResponse isKindOfClass:[NSString class]]) {
-//            answer = greynirResponse;
-//        }
-//        // TODO! Standardise API
-//        else if (greynirResponse && [greynirResponse isKindOfClass:[NSDictionary class]] &&) {
-//            answer = [(NSDictionary *)greynirResponse objectForKey:@"answer"];
-//        }
-//        else {
-//            DLog(@"Malformed response: %@", [greynirResponse description]);
-//        }
         
         NSString *audioURLStr = [r objectForKey:@"audio"];
         if (audioURLStr) {
             [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
         } else {
+            answer = kDontKnowAnswer;
             [self playAudio:@"dunno"];
         }
     }
@@ -329,7 +322,7 @@
         NSString *filename = (NSString *)filenameOrData;
         NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
         if (url) {
-            DLog(@"Playing audio file %@", filename);
+            DLog(@"Playing audio file '%@'", filename);
             player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
         } else {
             DLog(@"Unable to find audio file '%@.caf' in bundle", filename);

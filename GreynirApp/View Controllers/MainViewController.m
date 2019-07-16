@@ -58,8 +58,6 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.button setImage:[UIImage imageNamed:@"Microphone"] forState:UIControlStateNormal];
-    
     [self preloadUISounds];
     [self setUpReachability];
     
@@ -74,7 +72,12 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     [self.waveformView setSecondaryWaveLineWidth:1.0];
 //    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
     [self.waveformView updateWithLevel:0.f];
-
+    
+    // Adjust spacing between button image and title
+    CGFloat spacing = 10;
+    self.button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+    self.button.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+    
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(becameActive:)
@@ -195,6 +198,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 - (void)sessionDidStartRecording {
     [self.waveformView setIdleAmplitude:0.025f];
     self.button.tintColor = [UIColor redColor];
+    [self.button setImage:[UIImage imageNamed:@"Microphone"] forState:UIControlStateNormal];
 }
 
 - (void)sessionDidStopRecording {
@@ -213,6 +217,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
         [self clearLog];
         [self log:@"%@?", [questionStr sentenceCapitalizedString]];
         [self playSystemSound:confirm];
+        [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
     } else {
         [self playSystemSound:cancel];
     }
@@ -222,9 +227,9 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     [self clearLog];
     
     NSString *aStr = answer ? answer : @"";
-    [self log:@"%@\n\n%@",
-     [[question sentenceCapitalizedString] questionMarkTerminatedString],
-     [[aStr sentenceCapitalizedString] periodTerminatedString]];
+    [self log:@"%@\n\n%@",  [[question sentenceCapitalizedString] questionMarkTerminatedString],
+                            [[aStr sentenceCapitalizedString] periodTerminatedString]];
+    [self.button setImage:[UIImage imageNamed:@"Audio"] forState:UIControlStateNormal];
 }
 
 - (void)sessionDidRaiseError:(NSError *)error {
@@ -242,6 +247,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 - (void)sessionDidTerminate {
     [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
+    [self.button setImage:nil forState:UIControlStateNormal];
     [self deactivateWaveform];
 }
 
