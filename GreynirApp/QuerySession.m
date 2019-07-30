@@ -293,12 +293,12 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
             [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
         } else {
             answer = kDontKnowAnswer;
-            [self playAudio:@"dunno"];
+            [self playDontKnow];
         }
     }
     else {
         // If response is not valid, use local "I don't know" reply
-        [self playAudio:@"dunno"];
+        [self playDontKnow];
     }
     
     // Notify delegate
@@ -373,6 +373,13 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     [downloadTask resume];
 }
 
+- (void)playDontKnow {
+    NSUInteger vid = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Voice"] unsignedIntegerValue];
+    NSString *suffix = vid == 0 ? @"dora" : @"karl";
+    NSString *fn = [NSString stringWithFormat:@"dunno-%@", suffix];
+    [self playAudio:fn];
+}
+
 #pragma mark - AVAudioPlayerDelegate
 
 // Audio playback of the response is the final task in the pipeline.
@@ -384,8 +391,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 #pragma mark - Audio level
 
-// The session has an audio level property. If we are recording, this is the volume
-// of microphone input. Otherwise, the volume of the audio player is returned.
+// The session has an audio level property. If we are recording, this is the volume of
+// the latest microphone input. Otherwise, the volume of the audio player is returned.
 
 - (CGFloat)audioLevel {
     CGFloat level = 0.0f;

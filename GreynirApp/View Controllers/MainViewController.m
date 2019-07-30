@@ -87,6 +87,10 @@ static NSString * const kReachabilityHostname = @"greynir.is";
                                              selector:@selector(resignedActive:)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"Voice"
+                                               options:NSKeyValueObservingOptionNew
+                                               context:NULL];
     
     // Prepare for audio recording
     [[AudioRecordingController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
@@ -113,6 +117,12 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"Voice"]) {
+        [self loadVoiceMessages];
     }
 }
 
@@ -308,9 +318,22 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &confirm);
     url = [[NSBundle mainBundle] URLForResource:@"rec_cancel" withExtension:@"caf"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &cancel);
-    url = [[NSBundle mainBundle] URLForResource:@"conn" withExtension:@"caf"];
+    
+    [self loadVoiceMessages];
+}
+
+- (void)loadVoiceMessages {
+    // We load different audio files for voice messages depending on the
+    // the voice specified in settings.
+    NSUInteger vid = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Voice"] unsignedIntegerValue];
+    NSString *suffix = vid == 0 ? @"dora" : @"karl";
+    
+    NSString *fn = [NSString stringWithFormat:@"conn-%@", suffix];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:fn withExtension:@"caf"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &conn);
-    url = [[NSBundle mainBundle] URLForResource:@"err" withExtension:@"caf"];
+    
+    fn = [NSString stringWithFormat:@"err-%@", suffix];
+    url = [[NSBundle mainBundle] URLForResource:fn withExtension:@"caf"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &err);
 }
 
