@@ -49,7 +49,8 @@
 #pragma mark -
 
 - (void)updateLocationControl {
-    [self.useLocationSwitch setOn:[self canUseLocation]];
+    BOOL locEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"];
+    [self.useLocationSwitch setOn:[self canUseLocation] && locEnabled];
 }
     
 - (BOOL)canUseLocation {
