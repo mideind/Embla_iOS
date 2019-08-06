@@ -50,6 +50,7 @@
     NSString *qstr = [alternatives componentsJoinedByString:@"|"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [configuration setTimeoutIntervalForRequest:10.0f];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSString *apiEndpoint = [self _APIEndpoint];
