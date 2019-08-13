@@ -91,7 +91,7 @@
     NSString *trimmed = [server stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (![trimmed hasPrefix:@"https://"] && ![trimmed hasPrefix:@"http://"]) {
         // Make sure URL has URI scheme component
-        trimmed = [@"https://" stringByAppendingString:trimmed];
+        trimmed = [@"http://" stringByAppendingString:trimmed];
     }
     [defaults setObject:trimmed forKey:@"QueryServer"];
     

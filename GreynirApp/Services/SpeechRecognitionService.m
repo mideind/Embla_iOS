@@ -66,7 +66,7 @@
                                                       }];
 
         // Authenticate using an API key obtained from the Google Cloud Console
-        _call.requestHeaders[@"X-Goog-Api-Key"] = GOOGLE_SPEECH_API_KEY;
+        _call.requestHeaders[@"X-Goog-Api-Key"] = self.apiKey;
         // Specify the bundle ID in case the API key has a bundle ID restriction
         _call.requestHeaders[@"X-Ios-Bundle-Identifier"] = [[NSBundle mainBundle] bundleIdentifier];
 
@@ -79,6 +79,10 @@
         recognitionConfig.sampleRateHertz = self.sampleRate;
         recognitionConfig.languageCode = @"is-IS";
         recognitionConfig.maxAlternatives = 10;
+        
+//        SpeechContext *sc = [SpeechContext new];
+//        [sc setPhrasesArray:[@[@"vikipedía", @"segir vikipedía", @"vikipedía um"] mutableCopy]];
+//        recognitionConfig.speechContextsArray = @[sc];
 
         StreamingRecognitionConfig *streamingRecognitionConfig = [StreamingRecognitionConfig message];
         streamingRecognitionConfig.config = recognitionConfig;
