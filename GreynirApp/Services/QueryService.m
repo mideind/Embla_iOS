@@ -42,8 +42,8 @@
 
 - (void)sendQuery:(id)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
     BOOL isString = [query isKindOfClass:[NSString class]];
-    NSAssert(isString || [query isKindOfClass:[NSArray class]],
-             @"Query argument passed to sendQuery must be string or array");
+    BOOL isArray = [query isKindOfClass:[NSArray class]];
+    NSAssert(isString || isArray, @"Query argument passed to sendQuery must be string or array.");
     
     // Query argument is a |-separated list
     NSArray *alternatives = isString ? @[query] : query;
@@ -60,7 +60,8 @@
     NSMutableDictionary *parameters = [@{
         @"q": qstr,
         @"voice": @(YES),
-        @"voice_id": voiceName
+        @"voice_id": voiceName,
+        @"client_type": @"ios"
     } mutableCopy];
     
     // Add location info, if enabled and available
@@ -69,6 +70,12 @@
         if (loc) {
             [parameters addEntriesFromDictionary:loc];
         }
+    }
+    
+    // Add unique device id
+    // For now, we always send the unique device ID
+    if (1) {
+        [parameters setObject:[self _uniqueID] forKey:@"client_id"];
     }
     
     // Create request
@@ -104,6 +111,11 @@
     }
     
     return nil;
+}
+
+- (NSString *)_uniqueID {
+    AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return [appDel deviceID];
 }
 
 @end

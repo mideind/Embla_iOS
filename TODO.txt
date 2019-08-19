@@ -7,11 +7,13 @@ TODO list for Greynir iOS app
 * We need new sound files for recording notifications. Currently using Apple's sound files for Siri.
 
 * Fyrirspurnaslóð, ekki fyrirspurnaþjónn. Why not offer an arbitrary endpoint?
-* Pre-set vocabulary to improve results? Doesn't seem to work all that well
-* Automatic activation on some prompt-word, like "Hey Siri"
+* Pre-set vocabulary to improve results? Doesn't seem to work all that well.
+* Automatic activation on some prompt-word, like "Hey Siri".
 * More robust type validation of data received from server.
 * In-app mechanism to send feedback wrt app?
+* Obfuscate Google API key instead of including it as a file in app bundle
 
+DONE * Send device ID with requests to query server
 DONE * Standardise query API, remove everything not needed, e.g. image lookup.
 DONE * Button icon should change depending on the state of the query session (i.e. recording, querying, responding)
 DONE * Handle ill-formed API replies gracefully

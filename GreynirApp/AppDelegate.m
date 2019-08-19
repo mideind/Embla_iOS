@@ -32,7 +32,6 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"]) {
         [self startLocationServices];
     }
-    
     return YES;
 }
 
@@ -93,6 +92,15 @@
         self.latestLocation = [locations lastObject];
 //        DLog(@"Location: %@", [self.latestLocation description]);
     }
+}
+
+#pragma mark - Unique device ID
+
+- (NSString *)deviceID {
+    // This returns a UUID that may be used to uniquely identify the
+    // device, and is the same across apps from a single vendor.
+    NSUUID *oNSUUID = [[UIDevice currentDevice] identifierForVendor];
+    return [oNSUUID UUIDString];
 }
 
 @end
