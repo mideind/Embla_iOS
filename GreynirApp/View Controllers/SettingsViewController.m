@@ -116,6 +116,19 @@
     [self saveToDefaults];
 }
 
+- (IBAction)serverPresetSelected:(id)sender {
+    NSString *url = @"https://greynir.is";
+    switch ([sender selectedSegmentIndex]) {
+        case 1:
+            url = @"http://46.4.45.9:5000";
+            break;
+        case 2:
+            url = @"http://192.168.1.45:5000";
+            break;
+    }
+    [self.queryServerTextField setText:url];
+}
+
 - (IBAction)restoreDefaults:(id)sender {
     AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
