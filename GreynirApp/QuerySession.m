@@ -263,7 +263,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         }
         
         if (error) {
-//            [self log:[NSString stringWithFormat:@"Error: %@", error]];
             DLog(@"Error from query server: %@", [error localizedDescription]);
             [self.delegate sessionDidRaiseError:error];
         } else {
@@ -354,15 +353,28 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 }
 
 - (void)playRemoteURL:(NSURL *)url {
-    // Download remote file, then play it
+    // Download remote MP3 file and play it when download is complete
     DLog(@"Downloading audio URL: %@", [url description]);
-    
+
     NSURLSessionDataTask *downloadTask = \
     [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        DLog(@"Response was: %@", [response description]);
+        
         if (self.terminated) {
             DLog(@"Terminated task finished downloading audio file: %@", [response description]);
             return;
         }
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        NSDictionary *headerFields = [httpResponse allHeaderFields];
+        
+        // Make sure content-type is audio/mpeg
+        NSString *contentType = [headerFields objectForKey:@"Content-Type"];
+        if (!contentType || ![contentType isEqualToString:@"audio/mpeg"]) {
+            NSString *msg = [NSString stringWithFormat:@"Wrong content type from speech audio server: %@", contentType];
+            error = [NSError errorWithDomain:@"Greynir" code:0 userInfo:@{ NSLocalizedDescriptionKey: msg }];
+        }
+        
         if (error) {
             DLog(@"Error downloading audio: %@", [error localizedDescription]);
             [self.delegate sessionDidRaiseError:error];
