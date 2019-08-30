@@ -256,9 +256,11 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 }
 
 - (void)sessionDidTerminate {
-    [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
-    [self.button setImage:nil forState:UIControlStateNormal];
-    [self deactivateWaveform];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
+        [self.button setImage:nil forState:UIControlStateNormal];
+        [self deactivateWaveform];
+    }];
 }
 
 #pragma mark - User Interface Log
