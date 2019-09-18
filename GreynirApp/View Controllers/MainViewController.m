@@ -161,13 +161,44 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     [reach startNotifier];
 }
 
+#pragma mark -
+
+- (void)showMicAlert {
+    NSString *msg = @"Þetta forrit þarf aðgang að hljóðnema til þess að virka sem skyldi.\
+Aðgangi er stýrt í kerfisstillingum.";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Lokað á hljóðnema"
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *activateAction = [UIAlertAction actionWithTitle:@"Virkja"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * action) {
+                                                               NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                               [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                                                           }];
+    [alert addAction:activateAction];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Hætta við"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - Session
 
 - (IBAction)buttonPressed:(id)sender {
     if (self.currentSession && !self.currentSession.terminated) {
         [self endSession];
     } else {
-        [self startSession];
+        // Make sure that we have permission to access the mic
+        if ([AVAudioSession sharedInstance].recordPermission != AVAudioSessionRecordPermissionGranted) {
+            [self showMicAlert];
+            return;
+        } else {
+            [self startSession];
+        }
     }
 }
 
