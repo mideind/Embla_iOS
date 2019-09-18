@@ -25,6 +25,8 @@
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 
+#define REQ_TIMEOUT 15.0f
+
 @implementation QueryService
 
 + (instancetype)sharedInstance {
@@ -50,7 +52,7 @@
     NSString *qstr = [alternatives componentsJoinedByString:@"|"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [configuration setTimeoutIntervalForRequest:10.0f];
+    [configuration setTimeoutIntervalForRequest:REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSString *apiEndpoint = [self _APIEndpoint];
@@ -72,11 +74,8 @@
         }
     }
     
-    // Add unique device id
-    // For now, we always send the unique device ID
-    if (1) {
-        [parameters setObject:[self _uniqueID] forKey:@"client_id"];
-    }
+    // Send unique device ID
+    [parameters setObject:[self _uniqueID] forKey:@"client_id"];
     
     // Create request
     NSError *err = nil;
