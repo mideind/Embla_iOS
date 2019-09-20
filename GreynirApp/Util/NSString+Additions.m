@@ -42,14 +42,14 @@
 }
     
 - (NSString *)periodTerminatedString {
-    if (![self hasSuffix:@"."]) {
+    if (![self hasSuffix:@"."] && ![self hasSuffix:@"?"]) {
         return [self stringByAppendingString:@"."];
     }
     return [self copy];
 }
 
 - (NSString *)questionMarkTerminatedString {
-    if (![self hasSuffix:@"?"]) {
+    if (![self hasSuffix:@"?"] && ![self hasSuffix:@"."]) {
         return [self stringByAppendingString:@"?"];
     }
     return [self copy];
