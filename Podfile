@@ -5,7 +5,7 @@ ENV["COCOAPODS_DISABLE_STATS"] = "true"
 inhibit_all_warnings!
 #use_frameworks!
 
-target 'Greynir' do
+target 'Embla' do
     pod 'googleapis', :path => '.'
     pod 'AFNetworking', '~> 3.0'
     pod 'SDRecordButton', '~> 1.0'

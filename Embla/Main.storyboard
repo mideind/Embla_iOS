@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jg3-SQ-KJg">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Hlusta-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" userLabel="Hlusta" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="186-3G-JKn" customClass="SCSiriWaveformView">
+                                <rect key="frame" x="0.0" y="383" width="414" height="130"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="oXO-VG-96v"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="waveColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-uC-XPA">
+                                <rect key="frame" x="30" y="493" width="354" height="289"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SDRecordButton">
+                                <rect key="frame" x="117" y="213" width="180" height="180"/>
+                                <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="2TV-aN-0uz"/>
+                                    <constraint firstAttribute="width" secondItem="uwa-6b-u4b" secondAttribute="height" multiplier="1:1" id="Hyb-Xn-b9b"/>
+                                    <constraint firstAttribute="width" constant="180" id="hHE-WB-TZU"/>
+                                </constraints>
+                                <state key="normal" title="Hlusta"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7K-cV-azV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EMZ-uC-XPA" secondAttribute="bottom" constant="30" id="400-jJ-jxc"/>
+                            <constraint firstItem="186-3G-JKn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6QB-dt-ViH"/>
+                            <constraint firstAttribute="trailing" secondItem="EMZ-uC-XPA" secondAttribute="trailing" constant="30" id="UQp-oZ-Vvf"/>
+                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="X8m-c0-yWH"/>
+                            <constraint firstItem="186-3G-JKn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XfL-Lh-AdU"/>
+                            <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="beF-b4-jxX"/>
+                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" constant="-20" id="n95-7e-qmb"/>
+                            <constraint firstItem="186-3G-JKn" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="-10" id="uuG-tY-uLW"/>
+                            <constraint firstAttribute="trailing" secondItem="186-3G-JKn" secondAttribute="trailing" id="xD2-Ti-HXF"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Hlusta" image="Microphone" id="ImX-Hk-nP6" userLabel="Hlusta"/>
+                    <connections>
+                        <outlet property="button" destination="uwa-6b-u4b" id="moq-YI-nv1"/>
+                        <outlet property="textView" destination="EMZ-uC-XPA" id="D3x-Pn-7Bq"/>
+                        <outlet property="view" destination="8bC-Xf-vdC" id="I19-bM-Qp4"/>
+                        <outlet property="waveformView" destination="186-3G-JKn" id="WQu-3S-T7u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1239.1304347826087" y="273.88392857142856"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="HIj-2D-fJv">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jg3-SQ-KJg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XYV-2i-qez">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="n9S-Uw-eEb"/>
+                        <segue destination="yJc-aV-98j" kind="relationship" relationship="viewControllers" id="PcA-PP-dRT"/>
+                        <segue destination="0fs-On-g95" kind="relationship" relationship="viewControllers" id="LV9-Dp-S1V"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1LI-Zf-53A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="300" y="274.81259370314842"/>
+        </scene>
+        <!--Um-->
+        <scene sceneID="9sw-EY-kKd">
+            <objects>
+                <viewController title="Um" id="yJc-aV-98j" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2nl-Kk-QQy"/>
+                        <viewControllerLayoutGuide type="bottom" id="qrq-C8-Mkb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ULw-3f-CQs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6l-2J-IdC">
+                                <rect key="frame" x="16" y="177" width="382" height="628"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">Embla er nýtt og spennandi app fyrir iPhone og Android snjallsíma. Þú getur talað við Emblu á íslensku, spurt hana spurninga og hún svarar um hæl. Hún skilur ýmsar algengar spurningar og svarar þeim eftir bestu getu. Með tíð og tíma mun hún læra að svara fleiri tegundum spurninga.
+
+Embla er ókeypis. Þú getur sótt hana í Apple App Store og Google Play Store.
+
+Embla er vara frá Miðeind ehf og byggir á íslensku máltæknivélinni Greyni, sem er opinn hugbúnaður. Embla safnar ekki persónuupplýsingum og í henni eru engar auglýsingar.
+
+Embla ræður nú þegar við eftirfarandi fyrirspurnir. Þetta er ekki tæmandi listi, þar sem hún skilur einnig ýmis tilbrigði við þessar spurningar.
+
+Persónur og titlar/störf
+
+„Hver er Guðni Th. Jóhannesson?”
+„Hver gegnir starfi seðlabankastjóra?”
+„Hver er forseti Bandaríkjanna?”
+
+Fyrirbæri
+
+„Hvað er Samherji?”
+„Hvað er UNICEF?”
+
+Reikningur:
+
+„Hvað er 223 plús 81?”
+„Hvað er 17 sinnum 372?”
+„Hver er kvaðratrótin af 256?”
+„Hvað er sautján í fimmta veldi?”
+„Hvað eru 12 prósent af 193?”
+
+Strætó:
+
+„Hvar er næsta stoppistöð?”
+„Hvaða strætó stoppar í Einarsnesi?”
+„Hvenær kemur ásinn?”
+„Hvenær kemur strætó númer þrettán?”
+
+Tími:
+
+„Hvað er klukkan?”
+„Hvað er klukkan í Jóhannesarborg?”
+„Hvað er klukkan á Spáni?”
+
+Dagsetningar:
+
+„Hver er dagsetningin?”
+„Hvaða mánaðardagur er í dag?”
+„Hvaða vikudagur er í dag?”
+„Hvað eru margir dagar í jólin?” (óklárað)
+„Hvenær eru páskarnir?” (óklárað)
+„Hvenær er næsti opinberi frídagur?”
+„Hvað er langt í 17. júní?”
+
+Fjarlægðir:
+
+„Hvað er ég langt frá Hlemmi?”
+„Hversu langt er ég frá Perlunni?”
+„Hvað er langt á Bryggjuna brugghús?”
+
+Landafræði:
+
+„Hver er höfuðborg Finnlands?”
+
+Staðsetning:
+
+„Hvar er ég staddur/stödd?”
+„Hvar er ég?”
+
+Veður:
+
+„Hvernig er veðrið?”
+„Hver er veðurspáin næstu daga?”
+„Hvernig veður er á Fáskrúðsfirði?”
+„Hversu hlýtt/kalt er úti núna?”
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mideind" translatesAutoresizingMaskIntoConstraints="NO" id="K5g-W7-eaN">
+                                <rect key="frame" x="87" y="107" width="240" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="fF0-QQ-fb2"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="K5g-W7-eaN" firstAttribute="centerX" secondItem="ULw-3f-CQs" secondAttribute="centerX" id="92Y-pG-5hE"/>
+                            <constraint firstItem="qrq-C8-Mkb" firstAttribute="top" secondItem="h6l-2J-IdC" secondAttribute="bottom" constant="8" id="I1Z-79-gru"/>
+                            <constraint firstItem="h6l-2J-IdC" firstAttribute="top" secondItem="K5g-W7-eaN" secondAttribute="bottom" constant="32" id="Pm7-EI-544"/>
+                            <constraint firstItem="h6l-2J-IdC" firstAttribute="leading" secondItem="ULw-3f-CQs" secondAttribute="leading" constant="16" id="RG9-ZN-IzA"/>
+                            <constraint firstAttribute="trailing" secondItem="h6l-2J-IdC" secondAttribute="trailing" constant="16" id="Srr-I0-VF9"/>
+                            <constraint firstItem="K5g-W7-eaN" firstAttribute="top" secondItem="2nl-Kk-QQy" secondAttribute="bottom" constant="63" id="rC8-rK-Hiw"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Um" image="About" id="sdv-Xs-nGo" userLabel="Um"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="textView" destination="h6l-2J-IdC" id="PVK-LX-k4S"/>
+                        <outlet property="view" destination="ULw-3f-CQs" id="l4G-lS-aSw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eKM-jI-JK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="237.59999999999999" y="1121.2893553223389"/>
+        </scene>
+        <!--Stillingar-->
+        <scene sceneID="iLf-xS-kag">
+            <objects>
+                <tableViewController id="0fs-On-g95" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B5b-7M-VuH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection headerTitle="Grunnstillingar" id="Vlv-Nj-6b1">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nmR-NQ-er7">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nmR-NQ-er7" id="KlK-vC-Jbt">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Deila staðsetningu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMh-FR-W3a">
+                                                    <rect key="frame" x="15" y="11" width="326" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7w-rG-8JR">
+                                                    <rect key="frame" x="350" y="6" width="50" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="useLocationToggled:" destination="0fs-On-g95" eventType="valueChanged" id="lYj-pS-tiA"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2Lb-AY-ljo">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Lb-AY-ljo" id="y09-Ed-uEi">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rödd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuG-kE-tXV">
+                                                    <rect key="frame" x="16" y="11" width="50" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6t8-80-9ic">
+                                                    <rect key="frame" x="214" y="8" width="184" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <segments>
+                                                        <segment title="Dóra"/>
+                                                        <segment title="Karl"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Fyrirspurnaþjónn" id="W1r-FA-sPF">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TtX-9J-mvj">
+                                        <rect key="frame" x="0.0" y="144" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TtX-9J-mvj" id="fRG-FZ-M1i">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://greynir.is" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTc-B7-CbT">
+                                                    <rect key="frame" x="15" y="6" width="383" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="0fs-On-g95" id="2LT-0M-0jq"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jjB-l5-rsq">
+                                        <rect key="frame" x="0.0" y="188" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jjB-l5-rsq" id="krB-cx-yu2">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-EN-Zsv">
+                                                    <rect key="frame" x="20" y="9" width="265" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <segments>
+                                                        <segment title="Greynir.is"/>
+                                                        <segment title="Brandur"/>
+                                                        <segment title="Staðarnet"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="serverPresetSelected:" destination="0fs-On-g95" eventType="valueChanged" id="Tye-W1-XbO"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Endurstilla" id="qFL-Eu-wzy">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="omN-SK-lxZ">
+                                        <rect key="frame" x="0.0" y="260" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="omN-SK-lxZ" id="xYH-1n-24q">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HD-5L-Crf" userLabel="Snúa aftur til frumstillinga">
+                                                    <rect key="frame" x="15" y="6" width="383" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Endurstilla á sjálfgefnar stillingar"/>
+                                                    <connections>
+                                                        <action selector="restoreDefaults:" destination="0fs-On-g95" eventType="touchUpInside" id="E6F-K8-R3B"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="0fs-On-g95" id="fM4-b9-D4b"/>
+                            <outlet property="delegate" destination="0fs-On-g95" id="O81-Ue-41f"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Stillingar" image="Settings" id="QrB-qP-Xll" userLabel="Stillingar"/>
+                    <connections>
+                        <outlet property="queryServerTextField" destination="aTc-B7-CbT" id="25t-CI-2NF"/>
+                        <outlet property="useLocationSwitch" destination="M7w-rG-8JR" id="Lc8-Ws-uUu"/>
+                        <outlet property="view" destination="B5b-7M-VuH" id="atr-5m-VKE"/>
+                        <outlet property="voiceSegmentedControl" destination="6t8-80-9ic" id="4mt-JU-YqQ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFt-kq-ya6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1482.608695652174" y="1115.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="About" width="30" height="30"/>
+        <image name="Microphone" width="30" height="30"/>
+        <image name="Mideind" width="192" height="38"/>
+        <image name="Settings" width="30" height="30"/>
+    </resources>
+</document>

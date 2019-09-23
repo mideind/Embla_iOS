@@ -1,7 +1,7 @@
 
-TODO list for Greynir iOS app
+TODO list for Embla iOS app
 
-* Tied to Greynir user account?
+* Tied to user account?
 * Privacy notification on app setup/onboarding (show some blurb about not storing personally identifiable information)
 * Server-side should identify natural language queries, respond with "I don't understand the question" if the query is just a statement. The search functionality of the query API has no role for a QA assistant.
 * We need new sound files for recording notifications. Currently using Apple's sound files for Siri.

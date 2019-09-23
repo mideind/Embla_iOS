@@ -1,4 +1,4 @@
-# Build script for Greynir iOS app
+# Build script for the Embla iOS app
 # Only used for Travis CI testing.
 #
 # Builds an unsigned app binary in debug mode.
@@ -8,8 +8,8 @@
 
 xcodebuild  -parallelizeTargets \
             -jobs 4 \
-            -workspace "GreynirApp.xcworkspace" \
-            -scheme "Greynir" \
+            -workspace "Embla.xcworkspace" \
+            -scheme "Embla" \
             -configuration "Debug" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_ALLOWED=NO \

@@ -1,6 +1,6 @@
-# Greynir App
+# Embla for iOS
 
-iOS app to access the Greynir query engine via voice.
+Embla, an iOS app to access the [Greynir](https://github.com/mideind/Reynir) query engine via voice.
 
 Requires iOS 10.0+. Probably only builds on a relatively recent version of macOS.
 
@@ -14,7 +14,7 @@ From repository root, run the following command:
 $ pod install
 ```
 
-Once installation is done, open `GreynirApp.xcworkspace` with Xcode and build. Alternatively, you can build an unsigned app binary by running the following command from the repository root:
+Once installation is done, open `Embla.xcworkspace` with Xcode and build. Alternatively, you can build an unsigned app binary by running the following command from the repository root:
 
 ```
 make
