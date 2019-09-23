@@ -29,10 +29,6 @@ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet
 #define DEFAULT_QUERY_SERVER        @"https://greynir.is"
 #define QUERY_API_PATH              @"/query.api/v1"
 
-// AWS Polly
-#define AWS_COGNITO_REGION          AWSRegionUSWest2
-#define AWS_COGNITO_IDENTITY_POOL   FILE_CONTENTS(BUNDLE_PATH(@"AWSPoolID.key"))
-
 
 #define REC_SAMPLE_RATE             16000.0f
 

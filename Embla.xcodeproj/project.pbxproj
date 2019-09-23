@@ -58,8 +58,6 @@
 		E041B89B0C5D1AED806E3D47 /* Pods-Embla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Embla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Embla/Pods-Embla.release.xcconfig"; sourceTree = "<group>"; };
 		EBFF549A15D921031174FE01 /* Pods-Greynir.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greynir.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Greynir/Pods-Greynir.debug.xcconfig"; sourceTree = "<group>"; };
 		F3215BCD5D87DFF7F2965B8A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F423B3DE22B4022C00359D09 /* SpeechSynthesisService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesisService.h; sourceTree = "<group>"; };
-		F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesisService.m; sourceTree = "<group>"; };
 		F427692222C1218A00BB6977 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		F427692322C1218A00BB6977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		F427692522C1219A00BB6977 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -190,8 +188,6 @@
 				F4E160F822A977620019EDE7 /* QueryService.m */,
 				D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */,
 				D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */,
-				F423B3DE22B4022C00359D09 /* SpeechSynthesisService.h */,
-				F423B3DF22B4022C00359D09 /* SpeechSynthesisService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -534,7 +530,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) \"${PODS_ROOT}/Headers/Public\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\" \"$(SRCROOT)/\"";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler\"",
+					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\"",
+					"\"$(SRCROOT)/\"",
+				);
 				INFOPLIST_FILE = Embla/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
