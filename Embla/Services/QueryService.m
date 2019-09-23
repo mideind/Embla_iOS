@@ -82,7 +82,7 @@
     NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
                                                                       URLString:apiEndpoint
                                                                      parameters:parameters
-                                                                          error:nil];
+                                                                          error:&err];
     if (req == nil) {
         DLog(@"%@", [err localizedDescription]);
         return;

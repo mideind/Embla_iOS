@@ -1,4 +1,4 @@
-# Embla for iOS
+# Embla iOS client
 
 Embla, an iOS app to access the [Greynir](https://github.com/mideind/Reynir) query engine via voice.
 
@@ -17,7 +17,7 @@ $ pod install
 Once installation is done, open `Embla.xcworkspace` with Xcode and build. Alternatively, you can build an unsigned app binary by running the following command from the repository root:
 
 ```
-make
+./build.sh
 ```
 
 NB: In order to function correctly, the app requires a valid API key for Google's Speech API. The key should be saved in the following text file:

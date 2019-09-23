@@ -33,7 +33,6 @@
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB1F229EF94900F66BD4 /* GoogleAPI.key */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
-		F4E160FC22A9932B0019EDE7 /* RecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160FB22A9932B0019EDE7 /* RecordButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,8 +86,6 @@
 		F497BB2522A169DA00F66BD4 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
-		F4E160FA22A9932B0019EDE7 /* RecordButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordButton.h; sourceTree = "<group>"; };
-		F4E160FB22A9932B0019EDE7 /* RecordButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,8 +170,6 @@
 				F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */,
 				D379BE361C99FEC70049D06F /* AudioRecordingController.h */,
 				D379BE371C99FEC70049D06F /* AudioRecordingController.m */,
-				F4E160FA22A9932B0019EDE7 /* RecordButton.h */,
-				F4E160FB22A9932B0019EDE7 /* RecordButton.m */,
 				F492123322D61D5300337AF8 /* NSString+Additions.h */,
 				F492123422D61D5300337AF8 /* NSString+Additions.m */,
 			);
@@ -380,7 +375,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4E160FC22A9932B0019EDE7 /* RecordButton.m in Sources */,
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
 				D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,

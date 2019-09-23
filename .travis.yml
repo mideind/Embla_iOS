@@ -10,6 +10,7 @@ before_install:
   - gem install cocoapods
   - gem install xcpretty
   - pod update
+  - touch Embla/Keys/GoogleAPI.key
 
 script:
   - ./build.sh

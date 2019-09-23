@@ -12,6 +12,9 @@ TODO list for Embla iOS app
 * More robust type validation of data received from server.
 * In-app mechanism to send feedback wrt app?
 * Obfuscate Google API key instead of including it as a file in app bundle
+* Ability to open URLs provided by the server?
+* Render about text as an HTML web view, with text fetched from server?
+
 
 DONE * Send device ID with requests to query server
 DONE * Standardise query API, remove everything not needed, e.g. image lookup.
