@@ -144,19 +144,19 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 - (void)setUpReachability {
     Reachability *reach = [Reachability reachabilityWithHostname:kReachabilityHostname];
-    
+
     reach.reachableBlock = ^(Reachability*reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self becameReachable];
         });
     };
-    
+
     reach.unreachableBlock = ^(Reachability*reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self becameUnreachable];
         });
     };
-    
+
     // Start the notifier, which will cause the reachability object to retain itself!
     [reach startNotifier];
 }
@@ -209,15 +209,14 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     [self clearLog];
     
-    if (!self.connected) {
-        [self playSystemSound:conn];
-        [self log:kNoInternetConnectivityMessage];
-        return;
-    }
+//    if (!self.connected) {
+//        [self playSystemSound:conn];
+//        [self log:kNoInternetConnectivityMessage];
+//        return;
+//    }
     
     [self activateWaveform];
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
-
     
     // Create new session
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];

@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
 @property (nonatomic, weak) IBOutlet UITextField *queryServerTextField;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *serverSegmentedControl;
 
 @end
 
@@ -139,6 +140,7 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    [self.serverSegmentedControl setSelectedSegmentIndex:0];
     [self configureControlsFromDefaults];
 }
 
