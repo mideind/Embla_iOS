@@ -41,7 +41,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     CADisplayLink *displayLink;
 }
 @property (nonatomic, weak) IBOutlet UITextView *textView;
-@property (nonatomic, weak) IBOutlet UIButton *button;
+@property (nonatomic, weak) IBOutlet SDRecordButton *button;
 @property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
 @property (nonatomic, retain) QuerySession *currentSession;
 @property BOOL connected;
@@ -64,8 +64,8 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     [self.waveformView setIdleAmplitude:0.0f];
     [self.waveformView setFrequency:2.0];
 //    [self.waveformView setWaveColor:[UIColor grayColor]];
-    [self.waveformView setPrimaryWaveLineWidth:2.0f];
-    [self.waveformView setSecondaryWaveLineWidth:1.0];
+    [self.waveformView setPrimaryWaveLineWidth:3.0f];
+    [self.waveformView setSecondaryWaveLineWidth:1.5f];
 //    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
     [self.waveformView updateWithLevel:0.f];
     
@@ -73,6 +73,8 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     CGFloat spacing = 10;
     self.button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
     self.button.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+    [self.button setButtonColor:[UIColor whiteColor]];
+    [self.button setProgressColor:[UIColor whiteColor]];
     
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -223,13 +225,13 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidStartRecording {
     [self.waveformView setIdleAmplitude:0.025f];
-    self.button.tintColor = [UIColor redColor];
-    [self.button setImage:[UIImage imageNamed:@"Microphone"] forState:UIControlStateNormal];
+//    self.button.tintColor = [UIColor redColor];
+//    [self.button setImage:[UIImage imageNamed:@"Microphone"] forState:UIControlStateNormal];
 }
 
 - (void)sessionDidStopRecording {
     [self.waveformView setIdleAmplitude:0.0f];
-    self.button.tintColor = self.view.tintColor;
+//    self.button.tintColor = self.view.tintColor;
 }
 
 - (void)sessionDidReceiveInterimResults:(NSArray<NSString *> *)results {
@@ -244,6 +246,7 @@ Aðgangi er stýrt í kerfisstillingum.";
         [self log:@"%@?", [questionStr sentenceCapitalizedString]];
         [self playSystemSound:@"rec_confirm"];
         [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
+//        [self.button setTitle:@"🔊" forState:UIControlStateNormal];
     } else {
         [self playSystemSound:@"rec_cancel"];
     }
