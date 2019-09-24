@@ -43,6 +43,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     SystemSoundID err;
     
     CADisplayLink *displayLink;
+    AVAudioPlayer *player;
 }
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet UIButton *button;
@@ -58,7 +59,6 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self preloadUISounds];
     [self setUpReachability];
     
     // Set up user interface
@@ -87,10 +87,6 @@ static NSString * const kReachabilityHostname = @"greynir.is";
                                              selector:@selector(resignedActive:)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
-    [[NSUserDefaults standardUserDefaults] addObserver:self
-                                            forKeyPath:@"Voice"
-                                               options:NSKeyValueObservingOptionNew
-                                               context:NULL];
     
     // Prepare for audio recording
     [[AudioRecordingController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
@@ -120,12 +116,6 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"Voice"]) {
-        [self loadVoiceMessages];
-    }
-}
-
 #pragma mark - Reachability
 
 - (void)becameReachable {
@@ -137,7 +127,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;
-        [self playSystemSound:conn];
+        [self playSystemSound:@"conn"];
         [self log:kNoInternetConnectivityMessage];
     }
 }
@@ -161,7 +151,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     [reach startNotifier];
 }
 
-#pragma mark -
+#pragma mark - Alerts
 
 - (void)showMicAlert {
     NSString *msg = @"Þetta forrit þarf aðgang að hljóðnema til þess að virka sem skyldi.\
@@ -210,7 +200,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     [self clearLog];
     
 //    if (!self.connected) {
-//        [self playSystemSound:conn];
+//        [self playSystemSound:@"conn"];
 //        [self log:kNoInternetConnectivityMessage];
 //        return;
 //    }
@@ -220,7 +210,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     // Create new session
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
-    [self playSystemSound:begin];
+    [self playSystemSound:@"rec_begin"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.35 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.currentSession start];
     });
@@ -256,10 +246,10 @@ Aðgangi er stýrt í kerfisstillingum.";
         NSString *questionStr = [[alternatives firstObject] sentenceCapitalizedString];
         [self clearLog];
         [self log:@"%@?", [questionStr sentenceCapitalizedString]];
-        [self playSystemSound:confirm];
+        [self playSystemSound:@"rec_confirm"];
         [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
     } else {
-        [self playSystemSound:cancel];
+        [self playSystemSound:@"rec_cancel"];
     }
 }
 
@@ -277,10 +267,10 @@ Aðgangi er stýrt í kerfisstillingum.";
     if (self.connected) {
         [self log:kServerErrorMessage];
         [self log:[error localizedDescription]];
-        [self playSystemSound:err];
+        [self playSystemSound:@"err"];
     } else {
         [self log:kNoInternetConnectivityMessage];
-        [self playSystemSound:conn];
+        [self playSystemSound:@"conn"];
     }
     [self.currentSession terminate];
 }
@@ -337,36 +327,21 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 #pragma mark - UI sounds
 
-- (void)playSystemSound:(SystemSoundID)soundID {
-    AudioServicesPlaySystemSound(soundID);
-}
-
-- (void)preloadUISounds {
-    NSURL *url;
+- (void)playSystemSound:(NSString *)fileName {
+    NSArray *voiceSounds = @[@"err", @"conn", @"dunno"];
     
-    url = [[NSBundle mainBundle] URLForResource:@"rec_begin" withExtension:@"caf"];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &begin);
-    url = [[NSBundle mainBundle] URLForResource:@"rec_confirm" withExtension:@"caf"];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &confirm);
-    url = [[NSBundle mainBundle] URLForResource:@"rec_cancel" withExtension:@"caf"];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &cancel);
+    if ([voiceSounds containsObject:fileName]) {
+        NSUInteger vid = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Voice"] unsignedIntegerValue];
+        NSString *suffix = vid == 0 ? @"dora" : @"karl";
+        fileName = [NSString stringWithFormat:@"%@-%@", fileName, suffix];
+    }
     
-    [self loadVoiceMessages];
-}
-
-- (void)loadVoiceMessages {
-    // We load different audio files for voice messages depending on the
-    // the voice specified in settings.
-    NSUInteger vid = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Voice"] unsignedIntegerValue];
-    NSString *suffix = vid == 0 ? @"dora" : @"karl";
-    
-    NSString *fn = [NSString stringWithFormat:@"conn-%@", suffix];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:fn withExtension:@"caf"];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &conn);
-    
-    fn = [NSString stringWithFormat:@"err-%@", suffix];
-    url = [[NSBundle mainBundle] URLForResource:fn withExtension:@"caf"];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &err);
+    NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"caf"];
+    if (url) {
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        [player setVolume:1.0];
+        [player play];
+    }
 }
 
 @end
