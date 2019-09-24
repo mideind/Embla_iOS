@@ -32,6 +32,9 @@
 		F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB1F229EF94900F66BD4 /* GoogleAPI.key */; };
+		F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */; };
+		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
+		F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +87,10 @@
 		F497BB1F229EF94900F66BD4 /* GoogleAPI.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
 		F497BB23229EFC2800F66BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F497BB2522A169DA00F66BD4 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AcousticModelEnglish.bundle; path = ../OpenEars/AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		F4BBD1A8233A69A700B6A55A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenEars.framework; path = OpenEars/OpenEars.framework; sourceTree = "<group>"; };
+		F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ActivationListener.h; path = Embla/ActivationListener.h; sourceTree = SOURCE_ROOT; };
+		F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ActivationListener.m; path = Embla/ActivationListener.m; sourceTree = SOURCE_ROOT; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +102,7 @@
 			files = (
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
 				0C35C1D0057789BFCE789E42 /* libPods-Embla.a in Frameworks */,
+				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +112,7 @@
 		32C6BA1B2FA20A9904F13B95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4BBD1A8233A69A700B6A55A /* OpenEars.framework */,
 				F4482F2B22B930530050148E /* CoreLocation.framework */,
 				C480A8697C218071EDA11AB0 /* libPods-Embla.a */,
 			);
@@ -142,6 +151,8 @@
 				D34C17D01C948F5700D69BCA /* AppDelegate.m */,
 				F469639822C5086700645F69 /* QuerySession.h */,
 				F469639922C5086700645F69 /* QuerySession.m */,
+				F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */,
+				F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */,
 				F427692122C1216A00BB6977 /* View Controllers */,
 				F427692022C1216300BB6977 /* Services */,
 				F427691F22C1215900BB6977 /* Util */,
@@ -153,6 +164,7 @@
 		D34C17CC1C948F5700D69BCA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */,
 				F427692822C122F200BB6977 /* Audio */,
 				F497BB1E229EF94900F66BD4 /* Keys */,
 				D34C17DD1C948F5800D69BCA /* Info.plist */,
@@ -327,6 +339,7 @@
 				F4430DB922F0AB8800AE64C4 /* conn-karl.caf in Resources */,
 				F4430DBA22F0AB8800AE64C4 /* dunno-karl.caf in Resources */,
 				F427692D22C122F300BB6977 /* rec_begin.caf in Resources */,
+				F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +391,7 @@
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
 				D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
+				F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */,
@@ -524,6 +538,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenEars",
+				);
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -532,7 +550,7 @@
 					"\"$(SRCROOT)/\"",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -554,8 +572,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenEars",
+				);
 				INFOPLIST_FILE = Embla/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -30,7 +30,6 @@
 
 static NSString * const kNoInternetConnectivityMessage = @"Ekki næst samband við netið.";
 static NSString * const kServerErrorMessage = @"Villa kom upp í samskiptum við netþjón.";
-
 static NSString * const kReachabilityHostname = @"greynir.is";
 
 
@@ -54,12 +53,13 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.textView.text = @"";
+    
     [self preloadSounds];
     [self setUpReachability];
     
     // Set up user interface
-    [self clearLog];
-
+    
     [self.waveformView setDensity:8];
     [self.waveformView setIdleAmplitude:0.0f];
     [self.waveformView setFrequency:2.0];
@@ -91,6 +91,8 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [[ActivationListener sharedInstance] setDelegate:self];
+    [[ActivationListener sharedInstance] startListening];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -98,6 +100,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
         [self.currentSession terminate];
         self.currentSession = nil;
     }
+    [[ActivationListener sharedInstance] stopListening];
 }
 
 #pragma mark - Respond to app state changes
@@ -147,6 +150,11 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
     // Start the notifier, which will cause the reachability object to retain itself!
     [reach startNotifier];
+}
+
+- (void)didHearActivationPhrase:(NSString *)phrase {
+    [[ActivationListener sharedInstance] stopListening];
+    [self startSession];
 }
 
 #pragma mark - Alerts
@@ -279,6 +287,7 @@ Aðgangi er stýrt í kerfisstillingum.";
         [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
         [self.button setImage:nil forState:UIControlStateNormal];
         [self deactivateWaveform];
+        [[ActivationListener sharedInstance] startListening];
     }];
 }
 

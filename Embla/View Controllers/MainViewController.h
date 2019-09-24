@@ -16,7 +16,8 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ActivationListener.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <ActivationListenerDelegate>
 
 @end
