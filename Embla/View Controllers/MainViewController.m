@@ -255,7 +255,7 @@ Aðgangi er stýrt í kerfisstillingum.";
         [self clearLog];
         [self log:@"%@?", [questionStr sentenceCapitalizedString]];
         [self playSystemSound:@"rec_confirm"];
-        [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
+//        [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
 //        [self.button setTitle:@"🔊" forState:UIControlStateNormal];
     } else {
         [self playSystemSound:@"rec_cancel"];
@@ -268,7 +268,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     NSString *aStr = answer ? answer : @"";
     [self log:@"%@\n\n%@",  [[question sentenceCapitalizedString] questionMarkTerminatedString],
                             [[aStr sentenceCapitalizedString] periodTerminatedString]];
-    [self.button setImage:[UIImage imageNamed:@"Audio"] forState:UIControlStateNormal];
+//    [self.button setImage:[UIImage imageNamed:@"Audio"] forState:UIControlStateNormal];
 }
 
 - (void)sessionDidRaiseError:(NSError *)error {

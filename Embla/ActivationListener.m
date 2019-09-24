@@ -15,6 +15,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+    Singleton wrapper class around OpenEars Pocketsphinx local speech
+    recognition, used for voice activation ("Hæ Embla"). Currently uses
+    an English language model
+ */
+
 #import "Common.h"
 #import "ActivationListener.h"
 
@@ -27,8 +33,8 @@
 @end
 
 
-#define PHRASES @[@"hi embla", @"hey embla" /*, @"cile embla"*/]
-
+#define PHRASES     @[@"hi embla", @"hey embla" /*, @"cile embla"*/]
+#define MIN_SCORE   -200000
 
 @implementation ActivationListener
 
@@ -58,7 +64,7 @@
         NSArray *langArray = PHRASES;
         OELanguageModelGenerator *langModelGenerator = [[OELanguageModelGenerator alloc] init];
         // Uncomment for verbose language model generator debug output.
-        langModelGenerator.verboseLanguageModelGenerator = TRUE;
+//        langModelGenerator.verboseLanguageModelGenerator = TRUE;
         NSError *error = [langModelGenerator generateLanguageModelFromArray:langArray
                                                              withFilesNamed:@"OEDynamicLanguageModel"
                                                      forAcousticModelAtPath:[OEAcousticModel pathToModel:@"AcousticModelEnglish"]];
@@ -109,7 +115,7 @@
     DLog(@"\"%@\" (Score: %@)", hypothesis, score);
     
     // Notify delegate
-    if (self.delegate && [PHRASES containsObject:hypothesis]) {
+    if (self.delegate && [PHRASES containsObject:hypothesis] && [score integerValue] > MIN_SCORE) {
         [self.delegate didHearActivationPhrase:hypothesis];
     }
 }
