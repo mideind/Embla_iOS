@@ -83,7 +83,9 @@
 }
 
 - (void)stopListening {
-    [[OEPocketsphinxController sharedInstance] suspendRecognition];
+    if ([OEPocketsphinxController sharedInstance].isListening) {
+        [[OEPocketsphinxController sharedInstance] suspendRecognition];
+    }
     self.isListening = FALSE;
 }
 

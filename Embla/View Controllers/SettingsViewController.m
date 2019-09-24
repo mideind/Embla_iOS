@@ -22,6 +22,7 @@
 @interface SettingsViewController ()
 
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *voiceActivationSwitch;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
 @property (nonatomic, weak) IBOutlet UITextField *queryServerTextField;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *serverSegmentedControl;
@@ -78,6 +79,7 @@
     // Horrible to have to do this manually. Why no bindings on iOS?
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self.useLocationSwitch setOn:[defaults boolForKey:@"UseLocation"]];
+    [self.voiceActivationSwitch setOn:[defaults boolForKey:@"VoiceActivation"]];
     [self.voiceSegmentedControl setSelectedSegmentIndex:[defaults integerForKey:@"Voice"]];
     [self.queryServerTextField setText:[defaults stringForKey:@"QueryServer"]];
 }
@@ -85,6 +87,7 @@
 - (void)saveToDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
+    [defaults setBool:self.voiceActivationSwitch.isOn forKey:@"VoiceActivation"];
     [defaults setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
     
     // Sanitize query server URL

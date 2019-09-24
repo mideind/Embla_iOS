@@ -91,8 +91,10 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [[ActivationListener sharedInstance] setDelegate:self];
-    [[ActivationListener sharedInstance] startListening];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
+        [[ActivationListener sharedInstance] setDelegate:self];
+        [[ActivationListener sharedInstance] startListening];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

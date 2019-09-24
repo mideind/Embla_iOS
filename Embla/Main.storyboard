@@ -121,7 +121,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6l-2J-IdC">
-                                <rect key="frame" x="16" y="177" width="382" height="628"/>
+                                <rect key="frame" x="16" y="155" width="382" height="650"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Embla er nýtt og spennandi app fyrir iPhone og Android snjallsíma. Þú getur talað við Emblu á íslensku, spurt hana spurninga og hún svarar um hæl. Hún skilur ýmsar algengar spurningar og svarar þeim eftir bestu getu. Með tíð og tíma mun hún læra að svara fleiri tegundum spurninga.
 
@@ -199,7 +199,7 @@ Veður:
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mideind" translatesAutoresizingMaskIntoConstraints="NO" id="K5g-W7-eaN">
-                                <rect key="frame" x="87" y="107" width="240" height="38"/>
+                                <rect key="frame" x="87" y="107" width="240" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="fF0-QQ-fb2"/>
                                 </constraints>
@@ -264,8 +264,33 @@ Veður:
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2Lb-AY-ljo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Zna-er-seg">
                                         <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zna-er-seg" id="9Qi-6d-oCs">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Virkja með röddu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf3-DL-M94" userLabel="Virkja með röddu (&quot;Hæ Embla&quot;)">
+                                                    <rect key="frame" x="15" y="11" width="326" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ker-sm-4FQ">
+                                                    <rect key="frame" x="350" y="6" width="50" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="useLocationToggled:" destination="0fs-On-g95" eventType="valueChanged" id="fE9-gP-FFD"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2Lb-AY-ljo">
+                                        <rect key="frame" x="0.0" y="116" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Lb-AY-ljo" id="y09-Ed-uEi">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -295,7 +320,7 @@ Veður:
                             <tableViewSection headerTitle="Fyrirspurnaþjónn" id="W1r-FA-sPF">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TtX-9J-mvj">
-                                        <rect key="frame" x="0.0" y="144" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="188" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TtX-9J-mvj" id="fRG-FZ-M1i">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -315,7 +340,7 @@ Veður:
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jjB-l5-rsq">
-                                        <rect key="frame" x="0.0" y="188" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="232" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jjB-l5-rsq" id="krB-cx-yu2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -342,7 +367,7 @@ Veður:
                             <tableViewSection headerTitle="Endurstilla" id="qFL-Eu-wzy">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="omN-SK-lxZ">
-                                        <rect key="frame" x="0.0" y="260" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="304" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="omN-SK-lxZ" id="xYH-1n-24q">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -373,6 +398,7 @@ Veður:
                         <outlet property="queryServerTextField" destination="aTc-B7-CbT" id="25t-CI-2NF"/>
                         <outlet property="useLocationSwitch" destination="M7w-rG-8JR" id="Lc8-Ws-uUu"/>
                         <outlet property="view" destination="B5b-7M-VuH" id="atr-5m-VKE"/>
+                        <outlet property="voiceActivationSwitch" destination="ker-sm-4FQ" id="jyK-yt-yP0"/>
                         <outlet property="voiceSegmentedControl" destination="6t8-80-9ic" id="4mt-JU-YqQ"/>
                     </connections>
                 </tableViewController>
