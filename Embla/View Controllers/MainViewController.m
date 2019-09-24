@@ -36,14 +36,9 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 @interface MainViewController () <QuerySessionDelegate>
 {
-    SystemSoundID begin;
-    SystemSoundID confirm;
-    SystemSoundID cancel;
-    SystemSoundID conn;
-    SystemSoundID err;
-    
-    CADisplayLink *displayLink;
     AVAudioPlayer *player;
+    NSMutableDictionary *uiSounds;
+    CADisplayLink *displayLink;
 }
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet UIButton *button;
@@ -59,6 +54,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self preloadSounds];
     [self setUpReachability];
     
     // Set up user interface
@@ -336,11 +332,30 @@ Aðgangi er stýrt í kerfisstillingum.";
         fileName = [NSString stringWithFormat:@"%@-%@", fileName, suffix];
     }
     
-    NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"caf"];
-    if (url) {
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    if ([uiSounds objectForKey:fileName]) {
+        player = [[AVAudioPlayer alloc] initWithData:uiSounds[fileName] error:nil];
         [player setVolume:1.0];
         [player play];
+    } else {
+        DLog(@"Unable to play audio file '%@'", fileName);
+    }
+}
+
+- (void)preloadSounds {
+    uiSounds = [NSMutableDictionary new];
+    
+    NSArray *files = @[@"rec_begin", @"rec_cancel", @"rec_confirm",
+                       @"err-dora", @"conn-dora", @"dunno-dora",
+                       @"err-karl", @"conn-karl", @"dunno-karl"];
+    
+    // Load all sound files into memory
+    for (NSString *fn in files) {
+        NSURL *url = [[NSBundle mainBundle] URLForResource:fn withExtension:@"caf"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+            uiSounds[fn] = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedAlways error:nil];
+        } else {
+            DLog(@"Unable to load audio file '%@'", fn);
+        }
     }
 }
 

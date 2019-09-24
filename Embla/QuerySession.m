@@ -128,7 +128,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         avg = !avg ? abs(samples[i]) : (avg + abs(samples[i])) / 2;
         max = (samples[i] > max) ? samples[i] : max;
     }
-    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), (int)avg, (int)max);
+//    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), (int)avg, (int)max);
     
     float ampl = max/32767.f; // Divide by max value of signed 16-bit integer
     float decibels = 20 * log10(ampl);
@@ -176,7 +176,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         }
     };
     
-    DLog(@"Sending audio data to speech recognition server");
+//    DLog(@"Sending audio data to speech recognition server");
     [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioData withCompletion:compHandler];
 }
 
