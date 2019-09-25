@@ -11,6 +11,7 @@ TODO list for Embla iOS app
 * Ability to open URLs provided by the server?
 * Render about text as an HTML web view, with text fetched from server? (plus local fallback)
 
+DONE * "Hætta"/"Hætta við" trigger to abort query (text not sent to query server)
 DONE * Automatic activation on some prompt-word, like "Hey Embla".
 DONE * Send device ID with requests to query server
 DONE * Standardise query API, remove everything not needed, e.g. image lookup.

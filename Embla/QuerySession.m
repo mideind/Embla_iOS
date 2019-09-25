@@ -29,6 +29,8 @@
 #import <AVFoundation/AVFoundation.h>
 
 
+#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"skiptir ekki máli"]
+
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 
@@ -230,8 +232,14 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     if (finished) {
         [self stopRecording];
         if ([res count]) {
-            [self.delegate sessionDidReceiveTranscripts:res];
-            [self sendQuery:[res copy]];
+            // Handle cancellation
+            if ([self _isCancelCommand:res]) {
+                [self terminate];
+            } else {
+                // Send to query server
+                [self.delegate sessionDidReceiveTranscripts:res];
+                [self sendQuery:[res copy]];
+            }
         } else {
             [self terminate];
         }
@@ -246,6 +254,15 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         }
     }
     return [res copy]; // Return immutable copy
+}
+
+- (BOOL)_isCancelCommand:(NSArray *)strings {
+    for (NSString *s in strings) {
+        if ([CANCEL_COMMANDS containsObject:s]) {
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 
 #pragma mark - Send query to server

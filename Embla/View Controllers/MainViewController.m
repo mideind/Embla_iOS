@@ -253,7 +253,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     if (alternatives && [alternatives count]) {
         NSString *questionStr = [[alternatives firstObject] sentenceCapitalizedString];
         [self clearLog];
-        [self log:@"%@?", [questionStr sentenceCapitalizedString]];
+        [self log:@"%@", questionStr];
         [self playSystemSound:@"rec_confirm"];
 //        [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
 //        [self.button setTitle:@"🔊" forState:UIControlStateNormal];
