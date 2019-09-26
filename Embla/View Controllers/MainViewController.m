@@ -91,6 +91,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
         [[ActivationListener sharedInstance] setDelegate:self];
         [[ActivationListener sharedInstance] startListening];
@@ -103,6 +104,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
         self.currentSession = nil;
     }
     [[ActivationListener sharedInstance] stopListening];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 #pragma mark - Respond to app state changes
@@ -262,12 +264,25 @@ Aðgangi er stýrt í kerfisstillingum.";
     }
 }
 
-- (void)sessionDidReceiveAnswer:(NSString *)answer toQuestion:(NSString *)question {
+- (void)sessionDidReceiveAnswer:(NSString *)answer
+                     toQuestion:(NSString *)question
+                        withURL:(NSURL *)url {
     [self clearLog];
     
     NSString *aStr = answer ? answer : @"";
-    [self log:@"%@\n\n%@",  [[question sentenceCapitalizedString] questionMarkTerminatedString],
+    NSString *separator = answer ? @"\n\n" : @"";
+    [self log:@"%@%@%@",  [question sentenceCapitalizedString], separator,
                             [[aStr sentenceCapitalizedString] periodTerminatedString]];
+    
+    // If we receive an URL in the response from the query server,
+    // we terminate the session and ask the OS to open the URL.
+    if (url) {
+        [self.currentSession terminate];
+        [[UIApplication sharedApplication] openURL:url
+                                           options:@{}
+                                 completionHandler:^(BOOL success){}];
+    }
+    
 //    [self.button setImage:[UIImage imageNamed:@"Audio"] forState:UIControlStateNormal];
 }
 

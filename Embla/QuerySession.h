@@ -26,7 +26,7 @@
 - (void)sessionDidStopRecording;
 - (void)sessionDidReceiveInterimResults:(NSArray<NSString *> *)results;
 - (void)sessionDidReceiveTranscripts:(NSArray<NSString *> *)transcripts;
-- (void)sessionDidReceiveAnswer:(NSString *)answer toQuestion:(NSString *)question;
+- (void)sessionDidReceiveAnswer:(NSString *)answer toQuestion:(NSString *)question withURL:(NSURL *)url;
 - (void)sessionDidRaiseError:(NSError *)err;
 - (void)sessionDidTerminate;
 

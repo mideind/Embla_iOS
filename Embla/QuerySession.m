@@ -29,7 +29,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"skiptir ekki máli"]
+#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
 
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
@@ -257,7 +257,10 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 }
 
 - (BOOL)_isCancelCommand:(NSArray *)strings {
-    for (NSString *s in strings) {
+    if ([strings count] == 0) {
+        return FALSE;
+    }
+    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
         if ([CANCEL_COMMANDS containsObject:s]) {
             return TRUE;
         }
@@ -297,6 +300,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     
     NSString *answer = kDontKnowAnswer;
     NSString *question = @"";
+    NSURL *url;
     
     // If response data is valid, play back the provided audio URL
     if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
@@ -305,9 +309,15 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         question = [r objectForKey:@"q"];
         
         NSString *audioURLStr = [r objectForKey:@"audio"];
-        if (audioURLStr) {
+        NSString *openURLStr = [r objectForKey:@"open_url"];
+        
+        if (openURLStr) {
+            url = [NSURL URLWithString:openURLStr];
+        }
+        else if (audioURLStr) {
             [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
-        } else {
+        }
+        else {
             answer = kDontKnowAnswer;
             [self playDontKnow];
         }
@@ -318,7 +328,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
     
     // Notify delegate
-    [self.delegate sessionDidReceiveAnswer:answer toQuestion:question];
+    [self.delegate sessionDidReceiveAnswer:answer toQuestion:question withURL:url];
 }
 
 #pragma mark - Audio Playback
