@@ -24,6 +24,26 @@
 #import "Common.h"
 #import "ActivationListener.h"
 
+
+// Valid phrases to listen for
+#define PHRASES         @[  @"hi embla",  \
+@"hey embla", \
+@"heyembla",  \
+@"hiembla"]
+
+// 0 is certainty.
+#define MIN_SCORE       -200000
+
+// This is how long OEPocketsphinxController should wait after speech ends to
+// attempt to recognize speech. The default is 0.7 seconds.
+#define SILENCE_DELAY   0.5f
+
+// Speech/Silence threshhold setting. If quiet background noises are triggering
+// speech recognition, this can be raised to a value from 2-3 to 3.5 for the
+// English acoustic model being used. Default is 2.3.
+#define VAD_THRESHOLD   3.0f
+
+
 @interface ActivationListener()
 
 @property (nonatomic, strong) OEEventsObserver *openEarsEventsObserver;
@@ -31,10 +51,6 @@
 @property (nonatomic, copy) NSString *genDictPath;
 
 @end
-
-
-#define PHRASES     @[@"hi embla", @"hey embla" /*, @"cile embla"*/]
-#define MIN_SCORE   -200000
 
 @implementation ActivationListener
 
@@ -58,7 +74,7 @@
         // Configure it
         [[OEPocketsphinxController sharedInstance] setSecondsOfSilenceToDetect:0.6f]; // Default is 0.7
 //        DLog(@"VAD threshold: %.2f", [OEPocketsphinxController sharedInstance].vadThreshold);
-        [[OEPocketsphinxController sharedInstance] setVadThreshold:3.0f]; // Default is 2.3
+        [[OEPocketsphinxController sharedInstance] setVadThreshold:VAD_THRESHOLD]; // Default is 2.3
         
         // Generate language model
         NSArray *langArray = PHRASES;

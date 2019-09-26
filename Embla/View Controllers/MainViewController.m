@@ -278,6 +278,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     // we terminate the session and ask the OS to open the URL.
     if (url) {
         [self.currentSession terminate];
+        DLog(@"Opening URL: %@", url);
         [[UIApplication sharedApplication] openURL:url
                                            options:@{}
                                  completionHandler:^(BOOL success){}];

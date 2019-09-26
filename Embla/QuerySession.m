@@ -29,7 +29,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
+#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"hættu", @"ekkert"]
 
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
@@ -233,7 +233,9 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         [self stopRecording];
         if ([res count]) {
             // Handle cancellation
-            if ([self _isCancelCommand:res]) {
+            NSString *cancelCmd = [self _containsCancelCommand:res];
+            if (cancelCmd) {
+                [self.delegate sessionDidReceiveTranscripts:@[cancelCmd]];
                 [self terminate];
             } else {
                 // Send to query server
@@ -256,16 +258,16 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     return [res copy]; // Return immutable copy
 }
 
-- (BOOL)_isCancelCommand:(NSArray *)strings {
+- (NSString *)_containsCancelCommand:(NSArray *)strings {
     if ([strings count] == 0) {
-        return FALSE;
+        return nil;
     }
     for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
         if ([CANCEL_COMMANDS containsObject:s]) {
-            return TRUE;
+            return s;
         }
     }
-    return FALSE;
+    return nil;
 }
 
 #pragma mark - Send query to server
@@ -311,10 +313,10 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         NSString *audioURLStr = [r objectForKey:@"audio"];
         NSString *openURLStr = [r objectForKey:@"open_url"];
         
-        if (openURLStr) {
+        if (openURLStr && [openURLStr isKindOfClass:[NSString class]]) {
             url = [NSURL URLWithString:openURLStr];
         }
-        else if (audioURLStr) {
+        else if (audioURLStr && [audioURLStr isKindOfClass:[NSString class]]) {
             [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
         }
         else {
