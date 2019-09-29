@@ -38,6 +38,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     AVAudioPlayer *player;
     NSMutableDictionary *uiSounds;
     CADisplayLink *displayLink;
+    Reachability *reach;
 }
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet SDRecordButton *button;
@@ -59,14 +60,11 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     [self setUpReachability];
     
     // Set up user interface
-    
     [self.waveformView setDensity:8];
     [self.waveformView setIdleAmplitude:0.0f];
     [self.waveformView setFrequency:2.0];
-//    [self.waveformView setWaveColor:[UIColor grayColor]];
     [self.waveformView setPrimaryWaveLineWidth:3.0f];
     [self.waveformView setSecondaryWaveLineWidth:1.5f];
-//    [self.waveformView setBackgroundColor:[UIColor whiteColor]];
     [self.waveformView updateWithLevel:0.f];
     
     // Adjust spacing between button image and title
@@ -92,6 +90,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 - (void)viewDidAppear:(BOOL)animated {
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    [self setUpReachability];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
         [[ActivationListener sharedInstance] setDelegate:self];
         [[ActivationListener sharedInstance] startListening];
@@ -138,27 +137,26 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 }
 
 - (void)setUpReachability {
-    Reachability *reach = [Reachability reachabilityWithHostname:kReachabilityHostname];
+    if (reach) {
+        [reach stopNotifier];
+    }
+    reach = [Reachability reachabilityWithHostname:kReachabilityHostname];
 
+    id controller = self;
     reach.reachableBlock = ^(Reachability*reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self becameReachable];
+            [controller becameReachable];
         });
     };
 
     reach.unreachableBlock = ^(Reachability*reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self becameUnreachable];
+            [controller becameUnreachable];
         });
     };
 
     // Start the notifier, which will cause the reachability object to retain itself!
     [reach startNotifier];
-}
-
-- (void)didHearActivationPhrase:(NSString *)phrase {
-    [[ActivationListener sharedInstance] stopListening];
-    [self startSession];
 }
 
 #pragma mark - Alerts
@@ -186,6 +184,13 @@ Aðgangi er stýrt í kerfisstillingum.";
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+#pragma mark - ActivationListenerDelegate
+
+- (void)didHearActivationPhrase:(NSString *)phrase {
+    [[ActivationListener sharedInstance] stopListening];
+    [self startSession];
+}
+
 #pragma mark - Session
 
 - (IBAction)buttonPressed:(id)sender {
@@ -209,11 +214,11 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     [self clearLog];
     
-//    if (!self.connected) {
-//        [self playSystemSound:@"conn"];
-//        [self log:kNoInternetConnectivityMessage];
-//        return;
-//    }
+    if (!self.connected) {
+        [self playSystemSound:@"conn"];
+        [self log:kNoInternetConnectivityMessage];
+        return;
+    }
     
     [self activateWaveform];
     [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
