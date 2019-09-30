@@ -1,16 +1,18 @@
 
 TODO list for Embla iOS app
 
-* Tied to user account?
-* Privacy notification on app setup/onboarding (show some blurb about not storing personally identifiable information)
+* Future roadmap: Log into user account
+* Privacy notification on app setup/onboarding (show blurb about not storing personally identifiable information)
 * We need new sound files for recording notifications. Currently using Apple's Siri sounds.
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
 * More robust type validation of data received from server.
 * In-app mechanism to send feedback wrt app?
 * Obfuscate Google API key instead of including it as a file in app bundle
-* Ability to open URLs provided by the server?
 * Render about text as an HTML web view, with text fetched from server? (plus local fallback)
+* Add "Privacy Mode"
+* Add ability to delete queries logged from client device
 
+DONE * Ability to open URLs provided by the server?
 DONE * "Hætta"/"Hætta við" trigger to abort query (text not sent to query server)
 DONE * Automatic activation on some prompt-word, like "Hey Embla".
 DONE * Send device ID with requests to query server

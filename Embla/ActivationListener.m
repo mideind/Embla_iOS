@@ -72,7 +72,7 @@
         // Must be called before setting any OEPocketsphinxController characteristics
         [[OEPocketsphinxController sharedInstance] setActive:TRUE error:nil];
         // Configure it
-        [[OEPocketsphinxController sharedInstance] setSecondsOfSilenceToDetect:0.6f]; // Default is 0.7
+        [[OEPocketsphinxController sharedInstance] setSecondsOfSilenceToDetect:SILENCE_DELAY]; // Default is 0.7
 //        DLog(@"VAD threshold: %.2f", [OEPocketsphinxController sharedInstance].vadThreshold);
         [[OEPocketsphinxController sharedInstance] setVadThreshold:VAD_THRESHOLD]; // Default is 2.3
         
@@ -122,7 +122,7 @@
     }
 }
 
-#pragma mark - Open Ears Delegate
+#pragma mark - OpenEars Delegate
 
 - (void)pocketsphinxDidReceiveHypothesis:(NSString *)hypothesis
                         recognitionScore:(NSString *)score
@@ -194,53 +194,60 @@
     [self _startOEListening];
 }
 
-// An optional delegate method of OEEventsObserver which informs that the Pocketsphinx recognition loop has entered its actual loop.
-// This might be useful in debugging a conflict between another sound class and Pocketsphinx.
+// An optional delegate method of OEEventsObserver which informs that the
+// Pocketsphinx recognition loop has entered its actual loop. This might
+// be useful in debugging a conflict between another sound class and Pocketsphinx.
 - (void)pocketsphinxRecognitionLoopDidStart {
     DLog(@"OE: Pocketsphinx started.");
 }
 
-// An optional delegate method of OEEventsObserver which informs that Pocketsphinx is now listening for speech.
+// An optional delegate method of OEEventsObserver which informs that Pocketsphinx
+// is now listening for speech.
 - (void)pocketsphinxDidStartListening {
     DLog(@"OE: Pocketsphinx is now listening.");
 }
 
-// An optional delegate method of OEEventsObserver which informs that Pocketsphinx detected speech and is starting to process it.
+// An optional delegate method of OEEventsObserver which informs that Pocketsphinx
+// detected speech and is starting to process it.
 - (void)pocketsphinxDidDetectSpeech {
     DLog(@"OE: Pocketsphinx has detected speech.");
 }
 
-// An optional delegate method of OEEventsObserver which informs that Pocketsphinx detected a second of silence, indicating the end of an utterance.
-// This was added because developers requested being able to time the recognition speed without the speech time. The processing time is the time between
+// An optional delegate method of OEEventsObserver which informs that Pocketsphinx
+// detected a second of silence, indicating the end of an utterance.
+// This was added because developers requested being able to time the recognition
+// speed without the speech time. The processing time is the time between
 // this method being called and the hypothesis being returned.
 - (void)pocketsphinxDidDetectFinishedSpeech {
     DLog(@"OE: Pocketsphinx has detected finished speech, concluding an utterance.");
 }
 
-// An optional delegate method of OEEventsObserver which informs that Pocketsphinx has exited its recognition loop, most
-// likely in response to the OEPocketsphinxController being told to stop listening via the stopListening method.
+// An optional delegate method of OEEventsObserver which informs that Pocketsphinx
+// has exited its recognition loop, most likely in response to the OEPocketsphinxController
+// being told to stop listening via the stopListening method.
 - (void)pocketsphinxDidStopListening {
     DLog(@"OE: Pocketsphinx has stopped listening.");
 }
 
-// An optional delegate method of OEEventsObserver which informs that Pocketsphinx is still in its listening loop but it is not
-// Going to react to speech until listening is resumed.  This can happen as a result of Flite speech being
-// in progress on an audio route that doesn't support simultaneous Flite speech and Pocketsphinx recognition,
-// or as a result of the OEPocketsphinxController being told to suspend recognition via the suspendRecognition method.
+// An optional delegate method of OEEventsObserver which informs that Pocketsphinx is
+// still in its listening loop but it is not going to react to speech until listening
+// is resumed.  This can happen as a result of the OEPocketsphinxController being told
+// to suspend recognition via the suspendRecognition method.
 - (void)pocketsphinxDidSuspendRecognition {
     DLog(@"OE: Pocketsphinx has suspended recognition.");
 }
 
-// An optional delegate method of OEEventsObserver which informs that Pocketsphinx is still in its listening loop and after recognition
-// having been suspended it is now resuming.  This can happen as a result of Flite speech completing
-// on an audio route that doesn't support simultaneous Flite speech and Pocketsphinx recognition,
-// or as a result of the OEPocketsphinxController being told to resume recognition via the resumeRecognition method.
+// An optional delegate method of OEEventsObserver which informs that Pocketsphinx is
+// still in its listening loop and after recognition having been suspended it is now resuming.
+// This can happen as a result of the OEPocketsphinxController being told to resume recognition
+// via the resumeRecognition method.
 - (void)pocketsphinxDidResumeRecognition {
     DLog(@"OE: Pocketsphinx has resumed recognition.");
 }
 
-// An optional delegate method which informs that Pocketsphinx switched over to a new language model at the given URL in the course of
-// recognition. This does not imply that it is a valid file or that recognition will be successful using the file.
+// An optional delegate method which informs that Pocketsphinx switched over to a new language
+// model at the given URL in the course of recognition. This does not imply that it is a valid
+// file or that recognition will be successful using the file.
 - (void)pocketsphinxDidChangeLanguageModelToFile:(NSString *)newLanguageModelPath andDictionary:(NSString *)newDictionaryPath {
     DLog(@"OE: Pocketsphinx is now using the following language model: \n%@ and the following dictionary: %@",
           newLanguageModelPath, newDictionaryPath);
