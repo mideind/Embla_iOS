@@ -83,12 +83,12 @@ static NSString * const kReachabilityHostname = @"greynir.is";
                                              selector:@selector(resignedActive:)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
-    
     // Prepare for audio recording
     [[AudioRecordingController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    DLog(@"Main view did appear");
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [self setUpReachability];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
@@ -98,6 +98,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+    DLog(@"Main view did disappear");
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;

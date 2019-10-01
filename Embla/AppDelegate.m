@@ -40,15 +40,19 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    DLog(@"Application will resign active");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    DLog(@"Application did enter background");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    DLog(@"Application did enter foreground");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    DLog(@"Application did become active");
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

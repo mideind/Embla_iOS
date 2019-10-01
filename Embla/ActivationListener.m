@@ -61,6 +61,7 @@
     static ActivationListener *instance = nil;
     if (!instance) {
         instance = [[self alloc] init];
+        instance.isListening = FALSE;
     }
     return instance;
 }
@@ -133,9 +134,17 @@
     
     DLog(@"\"%@\" (Score: %@)", hypothesis, score);
     
-    // Notify delegate
-    if (self.delegate && [PHRASES containsObject:hypothesis] && [score integerValue] > MIN_SCORE) {
-        [self.delegate didHearActivationPhrase:hypothesis];
+    // If no delegate, we're done here
+    if (!self.delegate) {
+        return;
+    }
+    
+    // Check if it matches activation phrase
+    for (NSString *phrase in PHRASES) {
+        if ([hypothesis hasPrefix:phrase] && [score integerValue] > MIN_SCORE) {
+            [self.delegate didHearActivationPhrase:hypothesis];
+            return;
+        }
     }
 }
 
