@@ -2,7 +2,7 @@
 
 Embla is an iOS app to access the [Greynir](https://greynir.is) query engine via voice.
 
-Requires iOS 10.0+. Probably only builds on a relatively recent version of macOS.
+Requires iOS 11.0+. Probably only builds on a relatively recent version of macOS.
 
 ## Build instructions
 

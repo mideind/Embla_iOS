@@ -16,8 +16,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface AboutViewController : UIViewController
+@interface AboutViewController : UIViewController <WKNavigationDelegate>
 
 @end
 

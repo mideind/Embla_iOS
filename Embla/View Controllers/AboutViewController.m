@@ -16,10 +16,11 @@
  */
 
 #import "AboutViewController.h"
+#import "Common.h"
 
 @interface AboutViewController ()
 
-@property (nonatomic, weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet WKWebView *webView;
 
 @end
 
@@ -27,11 +28,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self.webView setNavigationDelegate:self];
+    
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:ABOUT_URL]];
+    [self.webView loadRequest:req];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.textView setContentOffset:CGPointZero animated:NO];
+//    [self.textView setContentOffset:CGPointZero animated:NO];
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    DLog(@"Failed to load remote URL");
 }
 
 @end

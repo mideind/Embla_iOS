@@ -120,99 +120,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6l-2J-IdC">
-                                <rect key="frame" x="16" y="155" width="382" height="650"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Embla er nýtt og spennandi app fyrir iPhone og Android snjallsíma. Þú getur talað við Emblu á íslensku, spurt hana spurninga og hún svarar um hæl. Hún skilur ýmsar algengar spurningar og svarar þeim eftir bestu getu. Með tíð og tíma mun hún læra að svara fleiri tegundum spurninga.
-
-Embla er ókeypis. Þú getur sótt hana í Apple App Store og Google Play Store.
-
-Embla er vara frá Miðeind ehf og byggir á íslensku máltæknivélinni Greyni, sem er opinn hugbúnaður. Embla safnar ekki persónuupplýsingum og í henni eru engar auglýsingar.
-
-Embla ræður nú þegar við eftirfarandi fyrirspurnir. Þetta er ekki tæmandi listi, þar sem hún skilur einnig ýmis tilbrigði við þessar spurningar.
-
-Persónur og titlar/störf
-
-„Hver er Guðni Th. Jóhannesson?”
-„Hver gegnir starfi seðlabankastjóra?”
-„Hver er forseti Bandaríkjanna?”
-
-Fyrirbæri
-
-„Hvað er Samherji?”
-„Hvað er UNICEF?”
-
-Reikningur:
-
-„Hvað er 223 plús 81?”
-„Hvað er 17 sinnum 372?”
-„Hver er kvaðratrótin af 256?”
-„Hvað er sautján í fimmta veldi?”
-„Hvað eru 12 prósent af 193?”
-
-Strætó:
-
-„Hvar er næsta stoppistöð?”
-„Hvaða strætó stoppar í Einarsnesi?”
-„Hvenær kemur ásinn?”
-„Hvenær kemur strætó númer þrettán?”
-
-Tími:
-
-„Hvað er klukkan?”
-„Hvað er klukkan í Jóhannesarborg?”
-„Hvað er klukkan á Spáni?”
-
-Dagsetningar:
-
-„Hver er dagsetningin?”
-„Hvaða mánaðardagur er í dag?”
-„Hvaða vikudagur er í dag?”
-„Hvað eru margir dagar í jólin?” (óklárað)
-„Hvenær eru páskarnir?” (óklárað)
-„Hvenær er næsti opinberi frídagur?”
-„Hvað er langt í 17. júní?”
-
-Fjarlægðir:
-
-„Hvað er ég langt frá Hlemmi?”
-„Hversu langt er ég frá Perlunni?”
-„Hvað er langt á Bryggjuna brugghús?”
-
-Landafræði:
-
-„Hver er höfuðborg Finnlands?”
-
-Staðsetning:
-
-„Hvar er ég staddur/stödd?”
-„Hvar er ég?”
-
-Veður:
-
-„Hvernig er veðrið?”
-„Hver er veðurspáin næstu daga?”
-„Hvernig veður er á Fáskrúðsfirði?”
-„Hversu hlýtt/kalt er úti núna?”
-</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mideind" translatesAutoresizingMaskIntoConstraints="NO" id="K5g-W7-eaN">
-                                <rect key="frame" x="87" y="107" width="240" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="fF0-QQ-fb2"/>
-                                </constraints>
-                            </imageView>
+                            <wkWebView contentMode="scaleToFill" allowsLinkPreview="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGp-bd-hph">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO" allowsPictureInPictureMediaPlayback="NO" suppressesIncrementalRendering="YES">
+                                    <dataDetectorTypes key="dataDetectorTypes"/>
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences" javaScriptEnabled="NO"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="K5g-W7-eaN" firstAttribute="centerX" secondItem="ULw-3f-CQs" secondAttribute="centerX" id="92Y-pG-5hE"/>
-                            <constraint firstItem="qrq-C8-Mkb" firstAttribute="top" secondItem="h6l-2J-IdC" secondAttribute="bottom" constant="8" id="I1Z-79-gru"/>
-                            <constraint firstItem="h6l-2J-IdC" firstAttribute="top" secondItem="K5g-W7-eaN" secondAttribute="bottom" constant="32" id="Pm7-EI-544"/>
-                            <constraint firstItem="h6l-2J-IdC" firstAttribute="leading" secondItem="ULw-3f-CQs" secondAttribute="leading" constant="16" id="RG9-ZN-IzA"/>
-                            <constraint firstAttribute="trailing" secondItem="h6l-2J-IdC" secondAttribute="trailing" constant="16" id="Srr-I0-VF9"/>
-                            <constraint firstItem="K5g-W7-eaN" firstAttribute="top" secondItem="2nl-Kk-QQy" secondAttribute="bottom" constant="63" id="rC8-rK-Hiw"/>
+                            <constraint firstAttribute="trailing" secondItem="FGp-bd-hph" secondAttribute="trailing" id="MOQ-84-2bw"/>
+                            <constraint firstItem="qrq-C8-Mkb" firstAttribute="top" secondItem="FGp-bd-hph" secondAttribute="bottom" id="lnk-YN-8ew"/>
+                            <constraint firstItem="FGp-bd-hph" firstAttribute="top" secondItem="2nl-Kk-QQy" secondAttribute="bottom" id="nTI-g0-f8M"/>
+                            <constraint firstItem="FGp-bd-hph" firstAttribute="leading" secondItem="ULw-3f-CQs" secondAttribute="leading" id="seC-3L-uJS"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Um" image="About" id="sdv-Xs-nGo" userLabel="Um">
@@ -220,13 +143,13 @@ Veður:
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="textView" destination="h6l-2J-IdC" id="PVK-LX-k4S"/>
                         <outlet property="view" destination="ULw-3f-CQs" id="l4G-lS-aSw"/>
+                        <outlet property="webView" destination="FGp-bd-hph" id="YZc-Eq-PQc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKM-jI-JK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="237.59999999999999" y="1121.2893553223389"/>
+            <point key="canvasLocation" x="236.23188405797103" y="1120.9821428571429"/>
         </scene>
         <!--Stillingar-->
         <scene sceneID="iLf-xS-kag">
@@ -410,7 +333,6 @@ Veður:
     <resources>
         <image name="About" width="30" height="30"/>
         <image name="Microphone" width="30" height="30"/>
-        <image name="Mideind" width="192" height="38"/>
         <image name="Settings" width="30" height="30"/>
     </resources>
 </document>
