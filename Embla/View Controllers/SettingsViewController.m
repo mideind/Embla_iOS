@@ -23,6 +23,8 @@
 
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *voiceActivationSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *privacyModeSwitch;
+
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
 @property (nonatomic, weak) IBOutlet UITextField *queryServerTextField;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *serverSegmentedControl;
@@ -78,16 +80,18 @@
     // Configure controls according to defaults
     // Horrible to have to do this manually. Why no bindings on iOS?
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [self.useLocationSwitch setOn:[defaults boolForKey:@"UseLocation"]];
     [self.voiceActivationSwitch setOn:[defaults boolForKey:@"VoiceActivation"]];
+    [self.useLocationSwitch setOn:[defaults boolForKey:@"UseLocation"]];
+    [self.privacyModeSwitch setOn:[defaults boolForKey:@"PrivacyMode"]];
     [self.voiceSegmentedControl setSelectedSegmentIndex:[defaults integerForKey:@"Voice"]];
     [self.queryServerTextField setText:[defaults stringForKey:@"QueryServer"]];
 }
 
 - (void)saveToDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
     [defaults setBool:self.voiceActivationSwitch.isOn forKey:@"VoiceActivation"];
+    [defaults setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
+    [defaults setBool:self.privacyModeSwitch.isOn forKey:@"PrivacyMode"];
     [defaults setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
     
     // Sanitize query server URL
@@ -120,6 +124,14 @@
     [self saveToDefaults];
 }
 
+- (IBAction)privacyModeToggled:(id)sender {
+    if ([sender isOn]) {
+        [self.useLocationSwitch setOn:NO];
+        [self useLocationToggled:nil];
+    }
+    [self saveToDefaults];
+}
+
 - (IBAction)serverPresetSelected:(id)sender {
     NSString *url = @"https://greynir.is";
     switch ([sender selectedSegmentIndex]) {
@@ -145,6 +157,10 @@
     
     [self.serverSegmentedControl setSelectedSegmentIndex:0];
     [self configureControlsFromDefaults];
+}
+
+- (IBAction)clearHistory:(id)sender {
+    
 }
 
 #pragma mark - Text field delegate

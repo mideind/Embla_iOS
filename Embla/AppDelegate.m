@@ -59,8 +59,9 @@
 - (NSDictionary *)startingDefaults {
     // Default settings for app
     return @{
-        @"UseLocation": @(YES),
         @"VoiceActivation": @(YES),
+        @"UseLocation": @(YES),
+        @"PrivacyMode": @(NO),
         @"Voice": [NSNumber numberWithInteger:0],
         @"QueryServer": DEFAULT_QUERY_SERVER
     };

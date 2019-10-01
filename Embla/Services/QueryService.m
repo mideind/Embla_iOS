@@ -63,7 +63,6 @@
         @"q": qstr,
         @"voice": @(YES),
         @"voice_id": voiceName,
-        @"client_type": @"ios"
     } mutableCopy];
     
     // Add location info, if enabled and available
@@ -74,8 +73,15 @@
         }
     }
     
-    // Send unique device ID
-    [parameters setObject:[self _uniqueID] forKey:@"client_id"];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"PrivacyMode"]) {
+        // User has set the client to private mode. Notify server that
+        // queries should not be logged.
+        [parameters setObject:@"1" forKey:@"private"];
+    } else {
+        // Send unique device ID
+        [parameters setObject:[self _uniqueID] forKey:@"client_id"];
+        [parameters setObject:@"ios" forKey:@"client_type"];
+    }
     
     // Create request
     NSError *err = nil;
