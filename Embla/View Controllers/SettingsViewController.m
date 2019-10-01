@@ -75,7 +75,9 @@
     }
     return NO;
 }
-    
+
+#pragma mark -
+
 - (void)configureControlsFromDefaults {
     // Configure controls according to defaults
     // Horrible to have to do this manually. Why no bindings on iOS?
@@ -126,10 +128,15 @@
 
 - (IBAction)privacyModeToggled:(id)sender {
     if ([sender isOn]) {
-        [self.useLocationSwitch setOn:NO];
-        [self useLocationToggled:nil];
+        [self showPrivacyModeAlert:^(void) {
+            [self.useLocationSwitch setOn:NO];
+            [self useLocationToggled:nil];
+            [self saveToDefaults];
+        }];
+    } else {
+        [self saveToDefaults];
     }
-    [self saveToDefaults];
+    
 }
 
 - (IBAction)serverPresetSelected:(id)sender {
@@ -160,7 +167,52 @@
 }
 
 - (IBAction)clearHistory:(id)sender {
+    [self showClearHistoryAlert];
+}
+
+#pragma mark - Alerts
+
+- (void)showPrivacyModeAlert:(void (^ __nullable)(void))completionHandler {
+    NSString *msg = @"Í einkaham sendir forritið engar upplýsingar frá sér að fyrirspurnatexta undanskildum.\
+ Þetta kemur í veg fyrir að fyrirspurnaþjónn geti nýtt staðsetningu, gerð tækis o.fl. til þess að bæta svör.";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Virkja einkaham?"
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Virkja"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) { completionHandler(); }];
+    [alert addAction:confirmAction];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Hætta við"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * action) {
+                                                             [self.privacyModeSwitch setOn:NO];
+                                                             [self saveToDefaults];
+                                                         }];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showClearHistoryAlert {
+    NSString *msg = @"Þessi aðgerð hreinsar alla fyrirspurnasögu þessa tækis.\
+ Fyrirspurnir eru aðeins vistaðar í 30 daga og gögnin einungis nýtt til þess að bæta svör.";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hreinsa fyrirspurnasögu?"
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Hreinsa"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * action) {}];
+    [alert addAction:confirmAction];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Hætta við"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Text field delegate
