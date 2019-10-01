@@ -111,6 +111,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 - (void)becameActive:(NSNotification *)notification {
     DLog(@"%@", [notification description]);
+    [[ActivationListener sharedInstance] startListening];
 }
 
 - (void)resignedActive:(NSNotification *)notification {
@@ -119,6 +120,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
         [self.currentSession terminate];
         self.currentSession = nil;
     }
+    [[ActivationListener sharedInstance] stopListening];
 }
 
 #pragma mark - Reachability
