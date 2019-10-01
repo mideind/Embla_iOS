@@ -26,10 +26,13 @@
 
 
 // Valid phrases to listen for
-#define PHRASES         @[  @"hi embla",  \
+#define PHRASES @[\
+@"hi embla", \
 @"hey embla", \
-@"heyembla",  \
-@"hiembla"]
+@"heyembla", \
+@"hiembla", \
+@"heeembla" \
+]
 
 // 0 is certainty.
 #define MIN_SCORE       -200000
