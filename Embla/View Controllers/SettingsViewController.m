@@ -51,8 +51,10 @@
     [self saveToDefaults];
 }
 
-#pragma mark -
+#pragma mark - Location control handling
 
+// Use Location switch shouldn't be on if the app doesn't
+// have permission from the OS to receive location data
 - (void)updateLocationControl {
     BOOL locEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"];
     [self.useLocationSwitch setOn:[self canUseLocation] && locEnabled];
@@ -77,11 +79,11 @@
     return NO;
 }
 
-#pragma mark -
+#pragma mark - Synchronize defaults & controls
 
+// Configure controls according to defaults
+// Horrible to have to do this manually. Why no bindings on iOS?
 - (void)configureControlsFromDefaults {
-    // Configure controls according to defaults
-    // Horrible to have to do this manually. Why no bindings on iOS?
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self.voiceActivationSwitch setOn:[defaults boolForKey:@"VoiceActivation"]];
     [self.useLocationSwitch setOn:[defaults boolForKey:@"UseLocation"]];
@@ -90,6 +92,7 @@
     [self.queryServerTextField setText:[defaults stringForKey:@"QueryServer"]];
 }
 
+// Configure defaults according to controls in Settings view, synchronize
 - (void)saveToDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:self.voiceActivationSwitch.isOn forKey:@"VoiceActivation"];
@@ -105,7 +108,6 @@
         trimmed = [@"http://" stringByAppendingString:trimmed];
     }
     [defaults setObject:trimmed forKey:@"QueryServer"];
-    
     [defaults synchronize];
 }
 
@@ -137,7 +139,6 @@
     } else {
         [self saveToDefaults];
     }
-    
 }
 
 - (IBAction)serverPresetSelected:(id)sender {
@@ -171,26 +172,30 @@
     [self showClearHistoryAlert];
 }
 
+#pragma mark - Clear query history
+
+// Send HTTP request to query server asking for the deletion of the device's query history
 - (void)clearHistory {
     // This is a UUID that may be used to uniquely identify the
     // device, and is the same across apps from a single vendor.
     NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     
     // Configure session
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
 
     NSDictionary *parameters = @{   @"action": @"clear",
-                                    @"unique_id": uniqueID,
+                                    @"client_id": uniqueID,
                                     @"client_type": @"ios",
-                                    @"client_version": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
+                                    @"client_version": version
                                 };
     
     // Create request
     NSError *err = nil;
     NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"QueryServer"];
     NSString *remoteURLStr = [NSString stringWithFormat:@"%@%@", server, CLEAR_QHISTORY_API_PATH];
-    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
                                                                       URLString:remoteURLStr
                                                                      parameters:parameters
                                                                           error:&err];
@@ -204,12 +209,12 @@
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req
                                                    uploadProgress:nil
                                                  downloadProgress:nil
-                                                completionHandler:^(NSURLResponse * response, id responseObject, NSError *err) {
-                                                    if (err == nil) {
+                                                completionHandler:^(NSURLResponse *response, id responseObject, NSError *err) {
+                                                    if (err == nil && [[responseObject objectForKey:@"valid"] boolValue]) {
                                                         NSString *msg = @"Öllum fyrirspurnum frá þessu tæki hefur nú verið eytt.";
                                                         [self showAlert:@"Fyrirspurnasögu eytt" message:msg];
                                                     } else {
-                                                        NSString *msg = @"Ekki tókst að eyða fyrirspurnum.";
+                                                        NSString *msg = @"Ekki tókst að eyða fyrirspurnasögu tækis.";
                                                         [self showAlert:@"Villa kom upp" message:msg];
                                                         DLog(@"Error deleting query history: %@", [err localizedDescription]);
                                                     }
@@ -219,6 +224,7 @@
 
 #pragma mark - Alerts
 
+// Show alert asking user to confirm that he wants to activate Privacy Mode
 - (void)showPrivacyModeAlert:(void (^ __nullable)(void))completionHandler {
     NSString *msg = @"Í einkaham sendir forritið engar upplýsingar frá sér að fyrirspurnatexta undanskildum.\
  Þetta kemur í veg fyrir að fyrirspurnaþjónn geti nýtt staðsetningu, gerð tækis o.fl. til þess að bæta svör.";
@@ -242,6 +248,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+// Show alert asking user whether he wants to delete query history
 - (void)showClearHistoryAlert {
     NSString *msg = @"Þessi aðgerð hreinsar alla fyrirspurnasögu þessa tækis.\
  Fyrirspurnir eru aðeins vistaðar í 30 daga og gögnin einungis nýtt til þess að bæta svör.";
@@ -262,6 +269,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+// Show generic alert with "OK" button
 - (void)showAlert:(NSString *)title message:(NSString *)msg {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                    message:msg
@@ -273,7 +281,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - Text field delegate
+#pragma mark - Query Server text field delegate
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.queryServerTextField resignFirstResponder];
