@@ -351,7 +351,7 @@
                                                     <color key="tintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Hreinsa fyrirspurnasögu"/>
                                                     <connections>
-                                                        <action selector="clearHistory:" destination="0fs-On-g95" eventType="touchUpInside" id="tAO-hf-MlD"/>
+                                                        <action selector="clearHistoryPressed:" destination="0fs-On-g95" eventType="touchUpInside" id="rAt-ns-XO2"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

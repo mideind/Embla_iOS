@@ -18,6 +18,7 @@
 #import "SettingsViewController.h"
 #import "AppDelegate.h"
 #import "Common.h"
+#import "AFNetworking.h"
 
 @interface SettingsViewController ()
 
@@ -166,8 +167,54 @@
     [self configureControlsFromDefaults];
 }
 
-- (IBAction)clearHistory:(id)sender {
+- (IBAction)clearHistoryPressed:(id)sender {
     [self showClearHistoryAlert];
+}
+
+- (void)clearHistory {
+    // This is a UUID that may be used to uniquely identify the
+    // device, and is the same across apps from a single vendor.
+    NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    
+    // Configure session
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+
+    NSDictionary *parameters = @{   @"action": @"clear",
+                                    @"unique_id": uniqueID,
+                                    @"client_type": @"ios",
+                                    @"client_version": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
+                                };
+    
+    // Create request
+    NSError *err = nil;
+    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"QueryServer"];
+    NSString *remoteURLStr = [NSString stringWithFormat:@"%@%@", server, CLEAR_QHISTORY_API_PATH];
+    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+                                                                      URLString:remoteURLStr
+                                                                     parameters:parameters
+                                                                          error:&err];
+    if (req == nil) {
+        DLog(@"%@", [err localizedDescription]);
+        return;
+    }
+    DLog(@"Sending request %@\n%@", [req description], [parameters description]);
+    
+    // Run task with request
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req
+                                                   uploadProgress:nil
+                                                 downloadProgress:nil
+                                                completionHandler:^(NSURLResponse * response, id responseObject, NSError *err) {
+                                                    if (err == nil) {
+                                                        NSString *msg = @"Öllum fyrirspurnum frá þessu tæki hefur nú verið eytt.";
+                                                        [self showAlert:@"Fyrirspurnasögu eytt" message:msg];
+                                                    } else {
+                                                        NSString *msg = @"Ekki tókst að eyða fyrirspurnum.";
+                                                        [self showAlert:@"Villa kom upp" message:msg];
+                                                        DLog(@"Error deleting query history: %@", [err localizedDescription]);
+                                                    }
+                                                }];
+    [dataTask resume];
 }
 
 #pragma mark - Alerts
@@ -203,8 +250,8 @@
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Hreinsa"
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction * action) {}];
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) { [self clearHistory]; }];
     [alert addAction:confirmAction];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Hætta við"
@@ -212,6 +259,17 @@
                                                          handler:nil];
     [alert addAction:cancelAction];
     
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showAlert:(NSString *)title message:(NSString *)msg {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Allt í lagi"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:nil];
+    [alert addAction:confirmAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
 

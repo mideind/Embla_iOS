@@ -104,13 +104,4 @@
     }
 }
 
-#pragma mark - Unique device ID
-
-- (NSString *)deviceID {
-    // This returns a UUID that may be used to uniquely identify the
-    // device, and is the same across apps from a single vendor.
-    NSUUID *oNSUUID = [[UIDevice currentDevice] identifierForVendor];
-    return [oNSUUID UUIDString];
-}
-
 @end

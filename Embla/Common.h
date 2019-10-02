@@ -28,6 +28,7 @@ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet
 // Query API
 #define DEFAULT_QUERY_SERVER        @"https://greynir.is"
 #define QUERY_API_PATH              @"/query.api/v1"
+#define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
 
 // About URL
 #define ABOUT_URL                   @"https://greynir.is/about"

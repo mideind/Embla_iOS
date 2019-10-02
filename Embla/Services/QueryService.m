@@ -79,8 +79,14 @@
         [parameters setObject:@"1" forKey:@"private"];
     } else {
         // Send unique device ID
-        [parameters setObject:[self _uniqueID] forKey:@"client_id"];
+        // This is a UUID that may be used to uniquely identify the
+        // device, and is the same across apps from a single vendor.
+        NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        [parameters setObject:uniqueID forKey:@"client_id"];
+        
+        // Client type and version
         [parameters setObject:@"ios" forKey:@"client_type"];
+        [parameters setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:@"client_version"];
     }
     
     // Create request
@@ -95,13 +101,12 @@
     }
     DLog(@"Sending request %@\n%@", [req description], [parameters description]);
     
-    // Silence deprecation warnings
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     // Run task with request
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:completionHandler];
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req
+                                                   uploadProgress:nil
+                                                 downloadProgress:nil
+                                                completionHandler:completionHandler];
     [dataTask resume];
-#pragma GCC diagnostic pop
 }
 
 - (NSDictionary *)_location {
@@ -116,11 +121,6 @@
     }
     
     return nil;
-}
-
-- (NSString *)_uniqueID {
-    AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    return [appDel deviceID];
 }
 
 @end
