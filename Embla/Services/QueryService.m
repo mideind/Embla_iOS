@@ -65,15 +65,18 @@
         @"voice_id": voiceName,
     } mutableCopy];
     
+    BOOL privacyMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"PrivacyMode"];
+    BOOL useLocation = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"];
+    
     // Add location info, if enabled and available
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"]) {
+    if (useLocation && !privacyMode) {
         NSDictionary *loc = [self _location];
         if (loc) {
             [parameters addEntriesFromDictionary:loc];
         }
     }
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"PrivacyMode"]) {
+    if (privacyMode) {
         // User has set the client to private mode. Notify server that
         // queries should not be logged.
         [parameters setObject:@"1" forKey:@"private"];
@@ -86,7 +89,8 @@
         
         // Client type and version
         [parameters setObject:@"ios" forKey:@"client_type"];
-        [parameters setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:@"client_version"];
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        [parameters setObject:version forKey:@"client_version"];
     }
     
     // Create request

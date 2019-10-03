@@ -29,7 +29,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"hættu", @"ekkert"]
+#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
 
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
