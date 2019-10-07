@@ -87,7 +87,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     _isRecording = YES;
     
     self.audioData = [NSMutableData new];
-    
+
     [[AudioRecordingController sharedInstance] setDelegate:self];
     [[AudioRecordingController sharedInstance] start];
     

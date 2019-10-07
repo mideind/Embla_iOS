@@ -105,12 +105,17 @@ static OSStatus recordingCallback(void *inRefCon,
     AVAudioSession *session = [AVAudioSession sharedInstance];
     
     // Set up audio session for recording and playback.
+    [session setMode:AVAudioSessionModeVoiceChat error:nil];
     NSError *error;
-    BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&error];
+    BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord
+                       withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionAllowBluetoothA2DP
+                             error:&error];
     if (!ok) {
         DLog(@"Failed to change audio session category: %@", [error localizedDescription]);
     }
-    [session setPreferredIOBufferDuration:10 error:&error];
+    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:nil];
+
+//    [session setPreferredIOBufferDuration:10 error:&error];
     
     double sampleRate = session.sampleRate;
     DLog(@"hardware sample rate = %f, using specified rate = %f", sampleRate, specifiedSampleRate);

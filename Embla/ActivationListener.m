@@ -67,7 +67,6 @@
 }
 
 - (BOOL)startListening {
-    
     if (!self.openEarsEventsObserver) {
         // Set up speech recognition via Pocketsphinx
         self.openEarsEventsObserver = [[OEEventsObserver alloc] init];
@@ -79,6 +78,7 @@
         [[OEPocketsphinxController sharedInstance] setSecondsOfSilenceToDetect:SILENCE_DELAY]; // Default is 0.7
 //        DLog(@"VAD threshold: %.2f", [OEPocketsphinxController sharedInstance].vadThreshold);
         [[OEPocketsphinxController sharedInstance] setVadThreshold:VAD_THRESHOLD]; // Default is 2.3
+        [[OEPocketsphinxController sharedInstance] setDisablePreferredBufferSize:YES];
         
         // Generate language model
         NSArray *langArray = PHRASES;
