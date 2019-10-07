@@ -16,11 +16,16 @@
  */
 
 #import <Foundation/Foundation.h>
+
+// Silence warnings about prototypes in OpenEars framework
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
 #import <OpenEars/OEPocketsphinxController.h>
 #import <OpenEars/OEFliteController.h>
 #import <OpenEars/OELanguageModelGenerator.h>
 #import <OpenEars/OELogging.h>
 #import <OpenEars/OEAcousticModel.h>
+#pragma clang diagnostic pop
 
 @protocol ActivationListenerDelegate <NSObject>
 

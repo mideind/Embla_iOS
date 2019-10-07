@@ -117,6 +117,7 @@
     AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([sender isOn]) {
+        [self.privacyModeSwitch setOn:NO];
         if ([self canUseLocation] == NO) {
             NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
             [[UIApplication sharedApplication] openURL:settingsURL options:@{} completionHandler:^(BOOL success) {
@@ -133,7 +134,7 @@
     if ([sender isOn]) {
         [self showPrivacyModeAlert:^(void) {
             [self.useLocationSwitch setOn:NO];
-            [self useLocationToggled:nil];
+            [self useLocationToggled:self.useLocationSwitch];
             [self saveToDefaults];
         }];
     } else {

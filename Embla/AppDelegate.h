@@ -29,6 +29,4 @@
 - (void)stopLocationServices;
 - (BOOL)locationServicesAvailable;
 
-- (NSString *)deviceID;
-
 @end

@@ -244,6 +244,7 @@ Aðgangi er stýrt í kerfisstillingum.";
 #pragma mark - QuerySessionDelegate
 
 - (void)sessionDidStartRecording {
+    [self.textView setContentOffset:CGPointZero animated:NO];
     [self.waveformView setIdleAmplitude:0.025f];
 //    self.button.tintColor = [UIColor redColor];
 //    [self.button setImage:[UIImage imageNamed:@"Microphone"] forState:UIControlStateNormal];
