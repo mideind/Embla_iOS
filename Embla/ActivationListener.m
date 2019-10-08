@@ -39,14 +39,14 @@
 // 0 is certainty.
 #define MIN_SCORE       -200000
 
-// This is how long OEPocketsphinxController should wait after speech ends to
+// This is how long Pocketsphinx should wait after speech ends to
 // attempt to recognize speech. The default is 0.7 seconds.
 #define SILENCE_DELAY   0.5f
 
 // Speech/Silence threshhold setting. If quiet background noises are triggering
 // speech recognition, this can be raised to a value from 2-3 to 3.5 for the
 // English acoustic model being used. Default is 2.3.
-#define VAD_THRESHOLD   3.0f
+#define VAD_THRESHOLD   3.5f
 
 
 @interface ActivationListener()
@@ -62,8 +62,7 @@
 + (instancetype)sharedInstance {
     static ActivationListener *instance = nil;
     if (!instance) {
-        instance = [[self alloc] init];
-        instance.isListening = FALSE;
+        instance = [self new];
     }
     return instance;
 }
@@ -80,6 +79,7 @@
         [[OEPocketsphinxController sharedInstance] setSecondsOfSilenceToDetect:SILENCE_DELAY]; // Default is 0.7
 //        DLog(@"VAD threshold: %.2f", [OEPocketsphinxController sharedInstance].vadThreshold);
         [[OEPocketsphinxController sharedInstance] setVadThreshold:VAD_THRESHOLD]; // Default is 2.3
+        // Must be disabled in order to work with Bluetooth devices
         [[OEPocketsphinxController sharedInstance] setDisablePreferredBufferSize:YES];
         
         // Generate language model

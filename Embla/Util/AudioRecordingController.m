@@ -114,8 +114,9 @@ static OSStatus recordingCallback(void *inRefCon,
         DLog(@"Failed to change audio session category: %@", [error localizedDescription]);
     }
     [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:nil];
-
-//    [session setPreferredIOBufferDuration:10 error:&error];
+    
+    // Buffer configuration breaks audio via Bluetooth and should not be set
+    // [session setPreferredIOBufferDuration:10 error:&error];
     
     double sampleRate = session.sampleRate;
     DLog(@"hardware sample rate = %f, using specified rate = %f", sampleRate, specifiedSampleRate);

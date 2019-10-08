@@ -32,7 +32,7 @@
 + (instancetype)sharedInstance {
     static QueryService *instance = nil;
     if (!instance) {
-        instance = [[self alloc] init];
+        instance = [self new];
     }
     return instance;
 }

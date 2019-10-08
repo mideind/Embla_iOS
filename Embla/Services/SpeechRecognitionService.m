@@ -44,7 +44,7 @@
 + (instancetype)sharedInstance {
     static SpeechRecognitionService *instance = nil;
     if (!instance) {
-        instance = [[self alloc] init];
+        instance = [self new];
         instance.apiKey = GOOGLE_SPEECH_API_KEY; // Read from bundled file
         // Default values
         instance.sampleRate = REC_SAMPLE_RATE;
@@ -64,15 +64,15 @@
                                                       eventHandler:^(BOOL done, StreamingRecognizeResponse *response, NSError *error) {
                                                           completion(response, error);
                                                       }];
-
+        
         // Authenticate using an API key obtained from the Google Cloud Console
         _call.requestHeaders[@"X-Goog-Api-Key"] = self.apiKey;
         // Specify the bundle ID in case the API key has a bundle ID restriction
         _call.requestHeaders[@"X-Ios-Bundle-Identifier"] = [[NSBundle mainBundle] bundleIdentifier];
-
+        
         [_call start];
         _streaming = YES;
-
+        
         // Send an initial request message to configure the service
         RecognitionConfig *recognitionConfig = [RecognitionConfig message];
         recognitionConfig.encoding = RecognitionConfig_AudioEncoding_Linear16;
@@ -83,15 +83,15 @@
 //        SpeechContext *sc = [SpeechContext new];
 //        [sc setPhrasesArray:[@[@"vikipedía", @"segir vikipedía", @"vikipedía um"] mutableCopy]];
 //        recognitionConfig.speechContextsArray = @[sc];
-
+        
         StreamingRecognitionConfig *streamingRecognitionConfig = [StreamingRecognitionConfig message];
         streamingRecognitionConfig.config = recognitionConfig;
         streamingRecognitionConfig.singleUtterance = self.singleUtterance;
         streamingRecognitionConfig.interimResults = self.interimResults;
-
+        
         StreamingRecognizeRequest *streamingRecognizeRequest = [StreamingRecognizeRequest message];
         streamingRecognizeRequest.streamingConfig = streamingRecognitionConfig;
-
+        
         [_writer writeValue:streamingRecognizeRequest];
     }
 
