@@ -40,16 +40,20 @@
             [[self substringToIndex:1] capitalizedString],
             [self substringFromIndex:1]];
 }
+
+- (BOOL)isPunctuationTerminated {
+    return [self hasSuffix:@"."] || [self hasSuffix:@"?"] || [self hasSuffix:@"!"];
+}
     
 - (NSString *)periodTerminatedString {
-    if (![self hasSuffix:@"."] && ![self hasSuffix:@"?"]) {
+    if (![self isPunctuationTerminated]) {
         return [self stringByAppendingString:@"."];
     }
     return [self copy];
 }
 
 - (NSString *)questionMarkTerminatedString {
-    if (![self hasSuffix:@"?"] && ![self hasSuffix:@"."]) {
+    if (![self isPunctuationTerminated]) {
         return [self stringByAppendingString:@"?"];
     }
     return [self copy];
