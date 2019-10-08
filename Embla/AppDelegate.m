@@ -100,7 +100,7 @@
     
     if ([locations count]) {
         self.latestLocation = [locations lastObject];
-//        DLog(@"Location: %@", [self.latestLocation description]);
+        // DLog(@"Location received: %@", [self.latestLocation description]);
     }
 }
 

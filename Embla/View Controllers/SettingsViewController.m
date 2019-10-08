@@ -123,6 +123,8 @@
             [[UIApplication sharedApplication] openURL:settingsURL options:@{} completionHandler:^(BOOL success) {
                 [del startLocationServices];
             }];
+        } else {
+            [del startLocationServices];
         }
     } else {
         [del stopLocationServices];
