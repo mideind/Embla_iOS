@@ -151,6 +151,11 @@
         case 2:
             url = @"http://192.168.1.45:5000";
             break;
+        case 3:
+            url = @"http://192.168.1.3:5000";
+            break;
+        default:
+            break;
     }
     [self.queryServerTextField setText:url];
 }

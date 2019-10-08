@@ -18,8 +18,10 @@
 /*
     Singleton wrapper class around OpenEars Pocketsphinx local speech
     recognition, used for voice activation ("Hæ Embla"). Currently uses
-    an English language model
- */
+    an English language model with custom phonemes. Going forward, this
+    should probably be replaced with a robust local neural network trained
+    on activation phrase audio. Quality is currently poorer than Siri's.
+*/
 
 #import "Common.h"
 #import "ActivationListener.h"

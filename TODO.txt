@@ -8,6 +8,7 @@ TODO list for Embla iOS app
 * More robust type validation of data received from server.
 * Obfuscate Google API key instead of including it as a file in app bundle
 * Render about text as an HTML web view, with text fetched from server? (plus local fallback)
+* Location sending is flaky when re-enabled, fix that.
 
 DONE * Add "Privacy Mode"
 DONE * Add ability to delete queries logged from client device

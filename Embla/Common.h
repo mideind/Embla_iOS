@@ -33,9 +33,7 @@ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet
 // About URL
 #define ABOUT_URL                   @"https://greynir.is/about"
 
-
 #define REC_SAMPLE_RATE             16000.0f
-
 
 // Custom debug logging
 #ifdef DEBUG

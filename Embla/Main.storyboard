@@ -292,12 +292,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-EN-Zsv">
-                                                    <rect key="frame" x="20" y="9" width="265" height="28"/>
+                                                    <rect key="frame" x="20" y="7" width="311" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
                                                         <segment title="Greynir.is"/>
                                                         <segment title="Brandur"/>
-                                                        <segment title="Staðarnet"/>
+                                                        <segment title="Vinna"/>
+                                                        <segment title="Heima"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>

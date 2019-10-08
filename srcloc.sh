@@ -2,7 +2,7 @@
 
 # Print total lines of code in project
 
-cd GreynirApp
+cd Embla
 echo "LOC Total:"
 find . -name \*.\[m\|h\] -exec cat {} \; | wc -l
 
