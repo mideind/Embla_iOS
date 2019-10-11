@@ -300,7 +300,9 @@ Aðgangi er stýrt í kerfisstillingum.";
     [self clearLog];
     if (self.connected) {
         [self log:kServerErrorMessage];
+#ifdef DEBUG
         [self log:[error localizedDescription]];
+#endif
         [self playSystemSound:@"err"];
     } else {
         [self log:kNoInternetConnectivityMessage];

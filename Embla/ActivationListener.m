@@ -30,9 +30,9 @@
 // Valid phrases to listen for
 #define PHRASES @[\
 @"hi embla", \
+@"hiembla", \
 @"hey embla", \
 @"heyembla", \
-@"hiembla", \
 @"heeembla" \
 ]
 
@@ -143,7 +143,7 @@
     
     // Check if it matches activation phrase
     for (NSString *phrase in PHRASES) {
-        if ([hypothesis hasPrefix:phrase] && [score integerValue] > MIN_SCORE) {
+        if ([hypothesis hasSuffix:phrase] && [score integerValue] > MIN_SCORE) {
             [self.delegate didHearActivationPhrase:hypothesis];
             return;
         }

@@ -26,7 +26,9 @@
 #import <ProtoRPC/ProtoRPC.h>
 #import <RxLibrary/GRXBufferedPipe.h>
 
-#define GOOGLE_HOST @"speech.googleapis.com"
+#define GOOGLE_HOST     @"speech.googleapis.com"
+
+#define PHRASES_ARRAY   @[@"miðeind", @"miðeindar"]
 
 @interface SpeechRecognitionService ()
 
@@ -80,9 +82,9 @@
         recognitionConfig.languageCode = @"is-IS";
         recognitionConfig.maxAlternatives = 10;
         
-//        SpeechContext *sc = [SpeechContext new];
-//        [sc setPhrasesArray:[@[@"vikipedía", @"segir vikipedía", @"vikipedía um"] mutableCopy]];
-//        recognitionConfig.speechContextsArray = @[sc];
+        SpeechContext *sc = [SpeechContext new];
+        [sc setPhrasesArray:[PHRASES_ARRAY mutableCopy]];
+        recognitionConfig.speechContextsArray = [@[sc] mutableCopy];
         
         StreamingRecognitionConfig *streamingRecognitionConfig = [StreamingRecognitionConfig message];
         streamingRecognitionConfig.config = recognitionConfig;
