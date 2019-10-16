@@ -33,6 +33,8 @@
 @"hiembla", \
 @"hey embla", \
 @"heyembla", \
+@"hoy embla", \
+@"hoyembla", \
 @"heeembla" \
 ]
 
