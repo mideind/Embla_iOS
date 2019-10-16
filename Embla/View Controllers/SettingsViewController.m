@@ -145,7 +145,7 @@
 }
 
 - (IBAction)serverPresetSelected:(id)sender {
-    NSString *url = @"https://greynir.is";
+    NSString *url = DEFAULT_QUERY_SERVER;
     switch ([sender selectedSegmentIndex]) {
         case 1:
             url = @"http://46.4.45.9:5000";

@@ -28,7 +28,7 @@
 
 #define GOOGLE_HOST     @"speech.googleapis.com"
 
-#define PHRASES_ARRAY   @[@"miðeind", @"miðeindar"]
+#define PHRASES_ARRAY   @[@"miðeind", @"miðeindar"] // Just testing, for now...
 
 @interface SpeechRecognitionService ()
 

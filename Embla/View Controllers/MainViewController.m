@@ -89,8 +89,11 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 - (void)viewDidAppear:(BOOL)animated {
     DLog(@"Main view did appear");
+    
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [self setUpReachability];
+    [self clearLog];
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
         [[ActivationListener sharedInstance] setDelegate:self];
         [[ActivationListener sharedInstance] startListening];
@@ -99,6 +102,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 - (void)viewDidDisappear:(BOOL)animated {
     DLog(@"Main view did disappear");
+    
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;
@@ -390,12 +394,12 @@ Aðgangi er stýrt í kerfisstillingum.";
                        @"err-karl", @"conn-karl", @"dunno-karl"];
     
     // Load all sound files into memory
-    for (NSString *fn in files) {
-        NSURL *url = [[NSBundle mainBundle] URLForResource:fn withExtension:@"caf"];
+    for (NSString *fileName in files) {
+        NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"caf"];
         if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
-            uiSounds[fn] = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedAlways error:nil];
+            uiSounds[fileName] = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedAlways error:nil];
         } else {
-            DLog(@"Unable to load audio file '%@'", fn);
+            DLog(@"Unable to load audio file '%@'", fileName);
         }
     }
 }

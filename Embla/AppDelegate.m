@@ -33,9 +33,6 @@
         [self startLocationServices];
     }
     
-    // This probably isn't a good idea
-    [NSThread sleepForTimeInterval:1.0f];
-    
     return YES;
 }
 
