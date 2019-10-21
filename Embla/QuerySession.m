@@ -37,6 +37,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 @interface QuerySession () <AudioRecordingControllerDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
+    CGFloat speechDuration;
+    int speechAudioSize;
     BOOL endOfSingleUtteranceReceived;
     BOOL hasSentQuery;
 }
@@ -104,6 +106,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     [[AudioRecordingController sharedInstance] stop];
     [[SpeechRecognitionService sharedInstance] stopStreaming];
     
+    DLog(@"Speech recognition duration: %.2f seconds (%d bytes)", speechDuration, speechAudioSize);
+    
     [self.delegate sessionDidStopRecording];
 }
 
@@ -151,6 +155,10 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     
     // Send data to speech recognition server.
     [self sendSpeechData:self.audioData];
+    
+    // Keep track of stats on data sent to recognition server
+    speechDuration += dur;
+    speechAudioSize += [self.audioData length];
     
     // Discard the accumulated audio data
     self.audioData = [NSMutableData new];
@@ -360,7 +368,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     else if ([filenameOrData isKindOfClass:[NSData class]]) {
         // Init player with audio data
         NSData *data = (NSData *)filenameOrData;
-        DLog(@"Playing audio data of size %d", (int)[data length]);
+        DLog(@"Playing audio data (size %d bytes)", (int)[data length]);
         player = [[AVAudioPlayer alloc] initWithData:data error:&err];
     }
     else {

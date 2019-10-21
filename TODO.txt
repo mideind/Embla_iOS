@@ -4,6 +4,8 @@ TODO list for Embla iOS app
 * Privacy notification on app setup/onboarding (show blurb about not storing personally identifiable information)
 * We need new sound files for recording notifications. Currently using Apple's Siri sounds.
 * Stream MP3 from Polly service instead of downloading prior to playback?
+* Acc. to Google, FLAC is the recommended encoding for streaming speech (reduces bandwidth use by 50%).
+  Is fast FLAC encoding viable on iOS?
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
 * More robust type validation of data received from server.
 * Obfuscate Google API key instead of including it as a file in app bundle
