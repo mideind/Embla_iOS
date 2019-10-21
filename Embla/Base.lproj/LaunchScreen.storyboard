@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,12 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="sJi-A2-bRT">
-                                <rect key="frame" x="57" y="273.5" width="300" height="349"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmblaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="sJi-A2-bRT">
+                                <rect key="frame" x="45" y="23" width="324" height="850"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="sJi-A2-bRT" secondAttribute="trailing" constant="45" id="99S-1Q-8Ix"/>
+                            <constraint firstItem="sJi-A2-bRT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="45" id="S9b-Je-aF9"/>
                             <constraint firstItem="sJi-A2-bRT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Srf-yU-bv1"/>
                             <constraint firstItem="sJi-A2-bRT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yzr-iF-a1k"/>
                         </constraints>
@@ -36,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Splash" width="300" height="349"/>
+        <image name="EmblaLogo" width="425" height="425"/>
     </resources>
 </document>
