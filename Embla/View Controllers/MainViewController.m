@@ -92,7 +92,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [self setUpReachability];
-    [self clearLog];
+    self.textView.text = @"Segðu „Hæ Embla“ til þess að tala við Emblu.";
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
         [[ActivationListener sharedInstance] setDelegate:self];
@@ -403,5 +403,9 @@ Aðgangi er stýrt í kerfisstillingum.";
         }
     }
 }
+
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+}
+
 
 @end

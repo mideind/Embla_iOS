@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jg3-SQ-KJg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eKX-ge-Cxw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
@@ -19,11 +19,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-uC-XPA">
+                                <rect key="frame" x="30" y="98" width="354" height="548"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit.</mutableString>
+                                <color key="textColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textView>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="186-3G-JKn" customClass="SCSiriWaveformView">
-                                <rect key="frame" x="0.0" y="383" width="414" height="130"/>
+                                <rect key="frame" x="0.0" y="681" width="414" height="130"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SDRecordButton">
+                                        <rect key="frame" x="117" y="-25" width="180" height="180"/>
+                                        <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="180" id="2TV-aN-0uz"/>
+                                            <constraint firstAttribute="width" secondItem="uwa-6b-u4b" secondAttribute="height" multiplier="1:1" id="Hyb-Xn-b9b"/>
+                                            <constraint firstAttribute="width" constant="180" id="hHE-WB-TZU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Hlusta">
+                                            <color key="titleColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7K-cV-azV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="oXO-VG-96v"/>
+                                    <constraint firstAttribute="height" constant="130" id="SIk-Io-8HT"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="waveColor">
@@ -31,47 +59,29 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-uC-XPA">
-                                <rect key="frame" x="30" y="493" width="354" height="290"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit.</string>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SDRecordButton">
-                                <rect key="frame" x="117" y="213" width="180" height="180"/>
-                                <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="2TV-aN-0uz"/>
-                                    <constraint firstAttribute="width" secondItem="uwa-6b-u4b" secondAttribute="height" multiplier="1:1" id="Hyb-Xn-b9b"/>
-                                    <constraint firstAttribute="width" constant="180" id="hHE-WB-TZU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Hlusta">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7K-cV-azV"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EMZ-uC-XPA" secondAttribute="bottom" constant="30" id="400-jJ-jxc"/>
-                            <constraint firstItem="186-3G-JKn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6QB-dt-ViH"/>
-                            <constraint firstAttribute="trailing" secondItem="EMZ-uC-XPA" secondAttribute="trailing" constant="30" id="UQp-oZ-Vvf"/>
-                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="X8m-c0-yWH"/>
-                            <constraint firstItem="186-3G-JKn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XfL-Lh-AdU"/>
-                            <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="beF-b4-jxX"/>
-                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" constant="-20" id="n95-7e-qmb"/>
-                            <constraint firstItem="186-3G-JKn" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="-10" id="uuG-tY-uLW"/>
-                            <constraint firstAttribute="trailing" secondItem="186-3G-JKn" secondAttribute="trailing" id="xD2-Ti-HXF"/>
+                            <constraint firstItem="186-3G-JKn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="812-CC-QEq"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="26" id="EFw-Vo-Gtx"/>
+                            <constraint firstAttribute="trailing" secondItem="186-3G-JKn" secondAttribute="trailing" id="Pm9-Mq-fA1"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" constant="51" id="Wwq-D5-tGy"/>
+                            <constraint firstAttribute="trailing" secondItem="EMZ-uC-XPA" secondAttribute="trailing" constant="30" id="cqM-vR-28r"/>
+                            <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r3j-am-AtK"/>
+                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="sLO-nJ-kAo"/>
+                            <constraint firstItem="EMZ-uC-XPA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="spm-Zj-lLf"/>
+                            <constraint firstItem="186-3G-JKn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vMb-MT-568"/>
+                            <constraint firstItem="uwa-6b-u4b" firstAttribute="top" secondItem="EMZ-uC-XPA" secondAttribute="bottom" constant="10" id="vnP-t0-qb3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hlusta" image="Microphone" id="ImX-Hk-nP6" userLabel="Hlusta"/>
+                    <navigationItem key="navigationItem" id="CPw-yR-1iI">
+                        <barButtonItem key="rightBarButtonItem" title="BLABLA" image="text.justify" catalog="system" id="Ju9-QP-wUC">
+                            <color key="tintColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="0fs-On-g95" kind="show" id="pVW-ee-dmC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="button" destination="uwa-6b-u4b" id="moq-YI-nv1"/>
                         <outlet property="textView" destination="EMZ-uC-XPA" id="D3x-Pn-7Bq"/>
@@ -81,30 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1239.1304347826087" y="273.88392857142856"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="HIj-2D-fJv">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jg3-SQ-KJg" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XYV-2i-qez">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="n9S-Uw-eEb"/>
-                        <segue destination="yJc-aV-98j" kind="relationship" relationship="viewControllers" id="PcA-PP-dRT"/>
-                        <segue destination="0fs-On-g95" kind="relationship" relationship="viewControllers" id="LV9-Dp-S1V"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1LI-Zf-53A" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="300" y="274.81259370314842"/>
+            <point key="canvasLocation" x="2149.275362318841" y="273.88392857142856"/>
         </scene>
         <!--Um-->
         <scene sceneID="9sw-EY-kKd">
@@ -136,9 +123,6 @@
                             <constraint firstItem="FGp-bd-hph" firstAttribute="leading" secondItem="ULw-3f-CQs" secondAttribute="leading" id="seC-3L-uJS"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Um" image="About" id="sdv-Xs-nGo" userLabel="Um">
-                        <color key="badgeColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="view" destination="ULw-3f-CQs" id="l4G-lS-aSw"/>
@@ -149,7 +133,7 @@
             </objects>
             <point key="canvasLocation" x="236.23188405797103" y="1120.9821428571429"/>
         </scene>
-        <!--Stillingar-->
+        <!--Settings View Controller-->
         <scene sceneID="iLf-xS-kag">
             <objects>
                 <tableViewController id="0fs-On-g95" customClass="SettingsViewController" sceneMemberID="viewController">
@@ -362,7 +346,14 @@
                             <outlet property="delegate" destination="0fs-On-g95" id="O81-Ue-41f"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Stillingar" image="Settings" id="QrB-qP-Xll" userLabel="Stillingar"/>
+                    <navigationItem key="navigationItem" id="3BA-PW-M7V">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Ca2-fL-5UA">
+                            <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="4y1-wy-aMb" kind="unwind" unwindAction="prepareForUnwind:" id="zWY-n5-zKQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="privacyModeSwitch" destination="m31-x2-PCG" id="xb7-Mb-gBy"/>
                         <outlet property="queryServerTextField" destination="aTc-B7-CbT" id="25t-CI-2NF"/>
@@ -373,13 +364,34 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFt-kq-ya6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4y1-wy-aMb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1482.608695652174" y="1115.625"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="baH-A3-i7G">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eKX-ge-Cxw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" shadowImage="Transparent" id="mLs-zh-wY1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dNt-OT-GRR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fXL-YG-AoM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1239.1304347826087" y="273.88392857142856"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="About" width="30" height="30"/>
-        <image name="Microphone" width="30" height="30"/>
-        <image name="Settings" width="30" height="30"/>
+        <image name="Transparent" width="10" height="10"/>
+        <image name="text.justify" catalog="system" width="64" height="50"/>
     </resources>
 </document>
