@@ -22,11 +22,11 @@ Once installation is done, open `Embla.xcworkspace` with Xcode and build. Altern
 
 NB: In order to function correctly, the app requires a valid API key for Google's Speech API. The key should be saved in the following text file:
 
-* `Keys/GoogleAPI.key`
+* `Embla/Keys/GoogleAPI.key`
 
 ## Credits
 
-The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx) library, the [CMU CMUCMLTK](http://cmusphinx.sourceforge.net) library  and Politepix’s [OpenEars](http://www.politepix.com/openears).
+The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx) library, the [CMU CMUCMLTK](http://cmusphinx.sourceforge.net) library, Politepix’s [OpenEars](http://www.politepix.com/openears) and Google's Speech API for speech recognition. Speech synthesis is accomplished via the Amazon Polly speech synthesis API for Icelandic.
 
 ## GPL License
 

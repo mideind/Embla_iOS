@@ -11,6 +11,7 @@ TODO list for Embla iOS app
 * Obfuscate Google API key instead of including it as a file in the app bundle
 * Location sending is flaky when re-enabled, fix that.
 
+DONE * Change build process so that missing API key doesn't break build.
 DONE * Don't show English-language server errors in production build
 DONE * Render about text as an HTML web view, with text fetched from server? (plus local fallback)
 DONE * Add "Privacy Mode"

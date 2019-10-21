@@ -47,7 +47,12 @@
     static SpeechRecognitionService *instance = nil;
     if (!instance) {
         instance = [self new];
+        
         instance.apiKey = GOOGLE_SPEECH_API_KEY; // Read from bundled file
+        if (!instance.apiKey) {
+            instance.apiKey = @"";
+        }
+        
         // Default values
         instance.sampleRate = REC_SAMPLE_RATE;
         instance.singleUtterance = YES;
