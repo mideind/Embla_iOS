@@ -8,7 +8,7 @@ TODO list for Embla iOS app
   Is fast FLAC encoding viable on iOS?
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
 * More robust type validation of data received from server.
-* Obfuscate Google API key instead of including it as a file in app bundle
+* Obfuscate Google API key instead of including it as a file in the app bundle
 * Location sending is flaky when re-enabled, fix that.
 
 DONE * Don't show English-language server errors in production build

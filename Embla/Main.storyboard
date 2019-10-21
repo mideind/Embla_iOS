@@ -347,7 +347,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="3BA-PW-M7V">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Ca2-fL-5UA">
+                        <barButtonItem key="rightBarButtonItem" title="Til baka" id="Ca2-fL-5UA">
                             <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="4y1-wy-aMb" kind="unwind" unwindAction="prepareForUnwind:" id="zWY-n5-zKQ"/>
