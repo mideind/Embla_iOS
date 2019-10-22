@@ -110,6 +110,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
         [self.currentSession terminate];
         self.currentSession = nil;
     }
+    player = nil; // Silence any sound being played
     [[ActivationListener sharedInstance] stopListening];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
@@ -141,7 +142,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;
-        [self playSystemSound:@"conn"];
+        [self playUISound:@"conn"];
         [self log:kNoInternetConnectivityMessage];
     }
 }
@@ -225,7 +226,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     [self clearLog];
     
     if (!self.connected) {
-        [self playSystemSound:@"conn"];
+        [self playUISound:@"conn"];
         [self log:kNoInternetConnectivityMessage];
         return;
     }
@@ -235,7 +236,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     // Create new session
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
-    [self playSystemSound:@"rec_begin"];
+    [self playUISound:@"rec_begin"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.35 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.currentSession start];
     });
@@ -272,11 +273,11 @@ Aðgangi er stýrt í kerfisstillingum.";
     if (alternatives && [alternatives count]) {
         NSString *questionStr = [[alternatives firstObject] sentenceCapitalizedString];
         [self log:@"%@", questionStr];
-        [self playSystemSound:@"rec_confirm"];
+        [self playUISound:@"rec_confirm"];
 //        [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
 //        [self.button setTitle:@"🔊" forState:UIControlStateNormal];
     } else {
-        [self playSystemSound:@"rec_cancel"];
+        [self playUISound:@"rec_cancel"];
     }
 }
 
@@ -310,10 +311,10 @@ Aðgangi er stýrt í kerfisstillingum.";
 #ifdef DEBUG
         [self log:[error localizedDescription]];
 #endif
-        [self playSystemSound:@"err"];
+        [self playUISound:@"err"];
     } else {
         [self log:kNoInternetConnectivityMessage];
-        [self playSystemSound:@"conn"];
+        [self playUISound:@"conn"];
     }
     [self.currentSession terminate];
 }
@@ -371,7 +372,7 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 #pragma mark - UI sounds
 
-- (void)playSystemSound:(NSString *)fileName {
+- (void)playUISound:(NSString *)fileName {
     NSArray *voiceSounds = @[@"err", @"conn", @"dunno"];
     
     if ([voiceSounds containsObject:fileName]) {
