@@ -22,6 +22,8 @@
 
 #import "SpeechRecognitionService.h"
 #import "Common.h"
+#import "Keys.h"
+
 #import <GRPCClient/GRPCCall.h>
 #import <ProtoRPC/ProtoRPC.h>
 #import <RxLibrary/GRXBufferedPipe.h>
@@ -48,7 +50,9 @@
     if (!instance) {
         instance = [self new];
         
-        instance.apiKey = GOOGLE_SPEECH_API_KEY; // Read from bundled file
+        NSData *d = [NSData dataWithBytes:gak length:strlen(gak)];
+        NSData *d2 = [[NSData alloc] initWithBase64EncodedData:d options:0];
+        instance.apiKey = [[NSString alloc] initWithData:d2 encoding:NSASCIIStringEncoding];
         if (!instance.apiKey) {
             instance.apiKey = @"";
         }

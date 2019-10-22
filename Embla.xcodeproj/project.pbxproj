@@ -33,12 +33,12 @@
 		F469639C22CE3AE700645F69 /* err-dora.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639B22CE3AE600645F69 /* err-dora.caf */; };
 		F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
-		F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */ = {isa = PBXBuildFile; fileRef = F497BB1F229EF94900F66BD4 /* GoogleAPI.key */; };
 		F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */; };
 		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
 		F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
+		F4CDF6D4235F77A200E88CF6 /* Keys.c in Sources */ = {isa = PBXBuildFile; fileRef = F4CDF6D3235F77A200E88CF6 /* Keys.c */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +100,9 @@
 		F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ActivationListener.m; path = Embla/ActivationListener.m; sourceTree = SOURCE_ROOT; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		F4CDF6D2235F77A200E88CF6 /* Keys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
+		F4CDF6D3235F77A200E88CF6 /* Keys.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Keys.c; sourceTree = "<group>"; };
+		F4CDF6D5235F782400E88CF6 /* keys.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = keys.sh; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +139,7 @@
 				F497BB23229EFC2800F66BD4 /* README.md */,
 				F497BB2522A169DA00F66BD4 /* TODO.txt */,
 				F48D15A422DCD31800B2996C /* build.sh */,
+				F4CDF6D5235F782400E88CF6 /* keys.sh */,
 				F48D15A522DCD44500B2996C /* .travis.yml */,
 				F48D15A622DCD44E00B2996C /* .gitignore */,
 				D34C17CB1C948F5700D69BCA /* Embla */,
@@ -157,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				D34C17CD1C948F5700D69BCA /* main.m */,
+				F4CDF6D2235F77A200E88CF6 /* Keys.h */,
+				F4CDF6D3235F77A200E88CF6 /* Keys.c */,
 				F497BB1D229EF73D00F66BD4 /* Common.h */,
 				D34C17CF1C948F5700D69BCA /* AppDelegate.h */,
 				D34C17D01C948F5700D69BCA /* AppDelegate.m */,
@@ -296,8 +302,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D34C17E01C948F5800D69BCA /* Build configuration list for PBXNativeTarget "Embla" */;
 			buildPhases = (
+				F4CDF6CA235E635700E88CF6 /* Update API key file */,
 				D7376F491EC06AD174E07DB4 /* [CP] Check Pods Manifest.lock */,
-				F4CDF6CA235E635700E88CF6 /* Create dummy API keys if none present */,
 				D34C17C51C948F5700D69BCA /* Sources */,
 				D34C17C61C948F5700D69BCA /* Frameworks */,
 				D34C17C71C948F5700D69BCA /* Resources */,
@@ -358,7 +364,6 @@
 				D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */,
 				D34C17D91C948F5800D69BCA /* Assets.xcassets in Resources */,
 				F469639722C26F3600645F69 /* rec_confirm.caf in Resources */,
-				F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */,
 				F427692E22C122F300BB6977 /* conn-dora.caf in Resources */,
 				F4430DB922F0AB8800AE64C4 /* conn-karl.caf in Resources */,
 				F4430DBA22F0AB8800AE64C4 /* dunno-karl.caf in Resources */,
@@ -407,7 +412,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F4CDF6CA235E635700E88CF6 /* Create dummy API keys if none present */ = {
+		F4CDF6CA235E635700E88CF6 /* Update API key file */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -416,14 +421,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Create dummy API keys if none present";
+			name = "Update API key file";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Create dummy API key if not present\n\nKEYPATH=\"Embla/Keys/GoogleAPI.key\"\n\nif [ ! -e $KEYPATH ]; then\n    touch $KEYPATH\nfi\n";
+			shellScript = "\n/bin/bash keys.sh > \"Embla/Keys.c\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -433,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
+				F4CDF6D4235F77A200E88CF6 /* Keys.c in Sources */,
 				D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */,

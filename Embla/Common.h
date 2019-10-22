@@ -15,16 +15,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Util
-#define FILE_CONTENTS(X)\
-[[NSString stringWithContentsOfFile:(X) encoding:NSUTF8StringEncoding error:nil] \
-stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
-
-#define BUNDLE_PATH(X)      [[NSBundle mainBundle] pathForResource:(X) ofType:nil]
-
-// Google Speech API
-#define GOOGLE_SPEECH_API_KEY       FILE_CONTENTS(BUNDLE_PATH(@"GoogleAPI.key"))
-
 // Query API
 #define DEFAULT_QUERY_SERVER        @"https://greynir.is"
 #define QUERY_API_PATH              @"/query.api/v1"
