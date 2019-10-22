@@ -38,6 +38,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (@available(iOS 13.0, *)) {
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
     // Do any additional setup after loading the view.
 }
 

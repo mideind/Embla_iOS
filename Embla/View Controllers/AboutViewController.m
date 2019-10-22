@@ -29,6 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (@available(iOS 13.0, *)) {
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
+    
     [self.webView setNavigationDelegate:self];
     
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:ABOUT_URL]];

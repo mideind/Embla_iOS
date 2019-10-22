@@ -52,6 +52,9 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (@available(iOS 13.0, *)) {
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
     
     self.textView.text = kIntroMessage;
     
