@@ -36,10 +36,10 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="186-3G-JKn" customClass="SCSiriWaveformView">
-                                <rect key="frame" x="0.0" y="672" width="414" height="130"/>
+                                <rect key="frame" x="0.0" y="669" width="414" height="130"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SDRecordButton">
-                                        <rect key="frame" x="117" y="-30" width="180" height="180"/>
+                                        <rect key="frame" x="117" y="-27" width="180" height="180"/>
                                         <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="180" id="2TV-aN-0uz"/>
@@ -73,7 +73,7 @@
                             <constraint firstItem="186-3G-JKn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="812-CC-QEq"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="40" id="EFw-Vo-Gtx"/>
                             <constraint firstAttribute="trailing" secondItem="186-3G-JKn" secondAttribute="trailing" id="Pm9-Mq-fA1"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" constant="60" id="Wwq-D5-tGy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" constant="63" id="Wwq-D5-tGy"/>
                             <constraint firstAttribute="trailing" secondItem="EMZ-uC-XPA" secondAttribute="trailing" constant="30" id="cqM-vR-28r"/>
                             <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r3j-am-AtK"/>
                             <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="sLO-nJ-kAo"/>
