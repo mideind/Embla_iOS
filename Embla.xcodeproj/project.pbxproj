@@ -37,6 +37,7 @@
 		F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */; };
 		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
 		F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */; };
+		F4CDF6CC235F500F00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CB235F500F00E88CF6 /* Lato-Regular.ttf */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 		F4BBD1A8233A69A700B6A55A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenEars.framework; path = OpenEars/OpenEars.framework; sourceTree = "<group>"; };
 		F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ActivationListener.h; path = Embla/ActivationListener.h; sourceTree = SOURCE_ROOT; };
 		F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ActivationListener.m; path = Embla/ActivationListener.m; sourceTree = SOURCE_ROOT; };
+		F4CDF6CB235F500F00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +180,7 @@
 				D392D9851C94937D002F5132 /* Main.storyboard */,
 				D34C17DA1C948F5800D69BCA /* LaunchScreen.storyboard */,
 				D34C17D81C948F5800D69BCA /* Assets.xcassets */,
+				F4CDF6CB235F500F00E88CF6 /* Lato-Regular.ttf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				D392D9861C94937D002F5132 /* Main.storyboard in Resources */,
 				D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */,
 				D34C17D91C948F5800D69BCA /* Assets.xcassets in Resources */,
+				F4CDF6CC235F500F00E88CF6 /* Lato-Regular.ttf in Resources */,
 				F469639722C26F3600645F69 /* rec_confirm.caf in Resources */,
 				F497BB21229EF94900F66BD4 /* GoogleAPI.key in Resources */,
 				F427692E22C122F300BB6977 /* conn-dora.caf in Resources */,

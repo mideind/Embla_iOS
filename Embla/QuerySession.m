@@ -29,7 +29,8 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
+#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli", @"þegiðu"]
+
 
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
@@ -243,7 +244,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
             // Handle cancellation
             NSString *cancelCmd = [self _containsCancelCommand:res];
             if (cancelCmd) {
-                [self.delegate sessionDidReceiveTranscripts:@[cancelCmd]];
+                [self.delegate sessionDidReceiveTranscripts:nil];
                 [self terminate];
             } else {
                 // Send to query server

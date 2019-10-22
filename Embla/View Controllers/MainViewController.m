@@ -27,11 +27,10 @@
 #import "Reachability.h"
 #import "NSString+Additions.h"
 
-
+static NSString * const kIntroMessage = @"Segðu „Hæ Embla“ til þess að tala við Emblu.";
 static NSString * const kNoInternetConnectivityMessage = @"Ekki næst samband við netið.";
 static NSString * const kServerErrorMessage = @"Villa kom upp í samskiptum við netþjón.";
 static NSString * const kReachabilityHostname = @"greynir.is";
-
 
 @interface MainViewController () <QuerySessionDelegate>
 {
@@ -54,7 +53,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.textView.text = @"";
+    self.textView.text = kIntroMessage;
     
     [self preloadSounds];
     [self setUpReachability];
@@ -92,7 +91,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [self setUpReachability];
-    self.textView.text = @"Segðu „Hæ Embla“ til þess að tala við Emblu.";
+    self.textView.text = kIntroMessage;
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
         [[ActivationListener sharedInstance] setDelegate:self];
@@ -265,9 +264,9 @@ Aðgangi er stýrt í kerfisstillingum.";
 }
 
 - (void)sessionDidReceiveTranscripts:(NSArray<NSString *> *)alternatives {
+    [self clearLog];
     if (alternatives && [alternatives count]) {
         NSString *questionStr = [[alternatives firstObject] sentenceCapitalizedString];
-        [self clearLog];
         [self log:@"%@", questionStr];
         [self playSystemSound:@"rec_confirm"];
 //        [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
