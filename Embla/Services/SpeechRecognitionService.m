@@ -60,7 +60,7 @@
         // Default values
         instance.sampleRate = REC_SAMPLE_RATE;
         instance.singleUtterance = YES;
-        instance.interimResults = NO;
+        instance.interimResults = YES;
     }
     return instance;
 }

@@ -24,7 +24,6 @@
 
 @end
 
-
 @interface AudioRecordingController : NSObject
 
 @property(nonatomic, weak) id<AudioRecordingControllerDelegate> delegate;

@@ -94,9 +94,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     [[AudioRecordingController sharedInstance] setDelegate:self];
     [[AudioRecordingController sharedInstance] start];
     
-    // We want to receive interim results from the speech recognition server
-    [SpeechRecognitionService sharedInstance].interimResults = YES;
-    
     [self.delegate sessionDidStartRecording];
 }
 
