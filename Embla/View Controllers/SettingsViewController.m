@@ -18,7 +18,7 @@
 #import "SettingsViewController.h"
 #import "AppDelegate.h"
 #import "Common.h"
-#import "AFNetworking.h"
+#import "QueryService.h"
 
 @interface SettingsViewController ()
 
@@ -187,50 +187,16 @@
 
 // Send HTTP request to query server asking for the deletion of the device's query history
 - (void)clearHistory {
-    // This is a UUID that may be used to uniquely identify the
-    // device, and is the same across apps from a single vendor.
-    NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    
-    // Configure session
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-
-    NSDictionary *parameters = @{   @"action": @"clear",
-                                    @"client_id": uniqueID,
-                                    @"client_type": @"ios",
-                                    @"client_version": version
-                                };
-    
-    // Create request
-    NSError *err = nil;
-    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"QueryServer"];
-    NSString *remoteURLStr = [NSString stringWithFormat:@"%@%@", server, CLEAR_QHISTORY_API_PATH];
-    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
-                                                                      URLString:remoteURLStr
-                                                                     parameters:parameters
-                                                                          error:&err];
-    if (req == nil) {
-        DLog(@"%@", [err localizedDescription]);
-        return;
-    }
-    DLog(@"Sending request %@\n%@", [req description], [parameters description]);
-    
-    // Run task with request
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req
-                                                   uploadProgress:nil
-                                                 downloadProgress:nil
-                                                completionHandler:^(NSURLResponse *response, id responseObject, NSError *err) {
-                                                    if (err == nil && [[responseObject objectForKey:@"valid"] boolValue]) {
-                                                        NSString *msg = @"Öllum fyrirspurnum frá þessu tæki hefur nú verið eytt.";
-                                                        [self showAlert:@"Fyrirspurnasögu eytt" message:msg];
-                                                    } else {
-                                                        NSString *msg = @"Ekki tókst að eyða fyrirspurnasögu tækis.";
-                                                        [self showAlert:@"Villa kom upp" message:msg];
-                                                        DLog(@"Error deleting query history: %@", [err localizedDescription]);
-                                                    }
-                                                }];
-    [dataTask resume];
+    [[QueryService sharedInstance] clearDeviceHistory:^(NSURLResponse *response, id responseObject, NSError *err) {
+         if (err == nil && [[responseObject objectForKey:@"valid"] boolValue]) {
+             NSString *msg = @"Öllum fyrirspurnum frá þessu tæki hefur nú verið eytt.";
+             [self showAlert:@"Fyrirspurnasögu eytt" message:msg];
+         } else {
+             NSString *msg = @"Ekki tókst að eyða fyrirspurnasögu tækis.";
+             [self showAlert:@"Villa kom upp" message:msg];
+             DLog(@"Error deleting query history: %@", [err localizedDescription]);
+         }
+    }];
 }
 
 #pragma mark - Alerts

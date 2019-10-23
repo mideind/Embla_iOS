@@ -20,7 +20,6 @@
 #define QUERY_API_PATH              @"/query.api/v1"
 #define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
 
-// About URL
 #define ABOUT_URL                   @"https://greynir.is/about"
 
 #define REC_SAMPLE_RATE             16000.0f
