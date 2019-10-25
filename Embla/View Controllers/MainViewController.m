@@ -119,7 +119,9 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 - (void)becameActive:(NSNotification *)notification {
     DLog(@"%@", [notification description]);
-    [[ActivationListener sharedInstance] startListening];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
+        [[ActivationListener sharedInstance] startListening];
+    }
 }
 
 - (void)resignedActive:(NSNotification *)notification {

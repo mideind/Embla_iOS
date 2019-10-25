@@ -32,6 +32,10 @@
 
 @implementation NSString (Additions)
 
+- (BOOL)isPunctuationTerminated {
+    return [self hasSuffix:@"."] || [self hasSuffix:@"?"] || [self hasSuffix:@"!"];
+}
+
 - (NSString *)sentenceCapitalizedString {
     if ([self length] < 1) {
         return @"";
@@ -41,10 +45,6 @@
             [self substringFromIndex:1]];
 }
 
-- (BOOL)isPunctuationTerminated {
-    return [self hasSuffix:@"."] || [self hasSuffix:@"?"] || [self hasSuffix:@"!"];
-}
-    
 - (NSString *)periodTerminatedString {
     if (![self isPunctuationTerminated]) {
         return [self stringByAppendingString:@"."];

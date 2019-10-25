@@ -32,6 +32,7 @@
 
 @interface NSString (Additions)
 
+- (BOOL)isPunctuationTerminated;
 - (NSString *)sentenceCapitalizedString;
 - (NSString *)periodTerminatedString;
 - (NSString *)questionMarkTerminatedString;
