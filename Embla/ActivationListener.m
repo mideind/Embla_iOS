@@ -35,7 +35,6 @@
 @"heyembla", \
 @"hoy embla", \
 @"hoyembla", \
-@"heeembla" \
 ]
 
 // 0 is certainty.
@@ -145,7 +144,7 @@
     
     // Check if it matches activation phrase
     for (NSString *phrase in PHRASES) {
-        if ([hypothesis hasSuffix:phrase] && [score integerValue] > MIN_SCORE) {
+        if ([hypothesis isEqualToString:phrase] && [score integerValue] > MIN_SCORE) {
             [self.delegate didHearActivationPhrase:hypothesis];
             return;
         }
