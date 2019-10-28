@@ -20,7 +20,8 @@
 #define QUERY_API_PATH              @"/query.api/v1"
 #define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
 
-#define ABOUT_URL                   @"https://greynir.is/about"
+#define ABOUT_URL                   @"http://embla.mideind.is/about.html"
+#define PRIVACY_URL                 @"http://embla.mideind.is/privacy.html"
 
 #define REC_SAMPLE_RATE             16000.0f
 

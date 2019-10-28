@@ -18,7 +18,7 @@
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
 		F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B12552343908F00CBE9B4 /* WebKit.framework */; };
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
-		F427692722C1219A00BB6977 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* AboutViewController.m */; };
+		F427692722C1219A00BB6977 /* RemoteWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* RemoteWebViewController.m */; };
 		F427692C22C122F300BB6977 /* dunno-dora.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692922C122F200BB6977 /* dunno-dora.caf */; };
 		F427692D22C122F300BB6977 /* rec_begin.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692A22C122F200BB6977 /* rec_begin.caf */; };
 		F427692E22C122F300BB6977 /* conn-dora.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692B22C122F200BB6977 /* conn-dora.caf */; };
@@ -40,6 +40,8 @@
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
 		F4CDF6D4235F77A200E88CF6 /* Keys.c in Sources */ = {isa = PBXBuildFile; fileRef = F4CDF6D3235F77A200E88CF6 /* Keys.c */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
+		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
+		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,8 +69,8 @@
 		F40B12552343908F00CBE9B4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F427692222C1218A00BB6977 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		F427692322C1218A00BB6977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		F427692522C1219A00BB6977 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		F427692622C1219A00BB6977 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		F427692522C1219A00BB6977 /* RemoteWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoteWebViewController.h; sourceTree = "<group>"; };
+		F427692622C1219A00BB6977 /* RemoteWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoteWebViewController.m; sourceTree = "<group>"; };
 		F427692922C122F200BB6977 /* dunno-dora.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dunno-dora.caf"; sourceTree = "<group>"; };
 		F427692A22C122F200BB6977 /* rec_begin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_begin.caf; sourceTree = "<group>"; };
 		F427692B22C122F200BB6977 /* conn-dora.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "conn-dora.caf"; sourceTree = "<group>"; };
@@ -105,6 +107,10 @@
 		F4CDF6D5235F782400E88CF6 /* keys.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = keys.sh; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
+		F4E7854823676639004E29D1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		F4E7854923676639004E29D1 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		F4E7854B236766E0004E29D1 /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
+		F4E7854C236766E0004E29D1 /* PrivacyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,8 +230,7 @@
 				D392D9881C94938F002F5132 /* MainViewController.m */,
 				F427692222C1218A00BB6977 /* SettingsViewController.h */,
 				F427692322C1218A00BB6977 /* SettingsViewController.m */,
-				F427692522C1219A00BB6977 /* AboutViewController.h */,
-				F427692622C1219A00BB6977 /* AboutViewController.m */,
+				F4E785472367655C004E29D1 /* Web View Controllers */,
 				F454EE302357A90D003C2715 /* OnboardingViewController.h */,
 				F454EE312357A90D003C2715 /* OnboardingViewController.m */,
 			);
@@ -280,6 +285,19 @@
 				F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F4E785472367655C004E29D1 /* Web View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F427692522C1219A00BB6977 /* RemoteWebViewController.h */,
+				F427692622C1219A00BB6977 /* RemoteWebViewController.m */,
+				F4E7854823676639004E29D1 /* AboutViewController.h */,
+				F4E7854923676639004E29D1 /* AboutViewController.m */,
+				F4E7854B236766E0004E29D1 /* PrivacyViewController.h */,
+				F4E7854C236766E0004E29D1 /* PrivacyViewController.m */,
+			);
+			path = "Web View Controllers";
 			sourceTree = "<group>";
 		};
 		F657FA334EB8D9ABF1ACF569 /* Pods */ = {
@@ -443,14 +461,16 @@
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
+				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F454EE322357A90D003C2715 /* OnboardingViewController.m in Sources */,
 				F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */,
-				F427692722C1219A00BB6977 /* AboutViewController.m in Sources */,
+				F427692722C1219A00BB6977 /* RemoteWebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
 				D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */,
+				F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
