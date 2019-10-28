@@ -5,12 +5,13 @@ TODO list for Embla iOS app
 * We need new sound files for recording notifications. Currently using Apple's Siri sounds.
 * Stream MP3 from Polly service instead of downloading prior to playback?
 * Acc. to Google, FLAC is the recommended encoding for streaming speech (reduces bandwidth use by 50%).
-  Is fast FLAC encoding viable on iOS?
+  Is fast FLAC encoding viable on iOS? Battery life vs. bandwidth tradeoff.
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
 * More robust type validation of data received from server.
-* Obfuscate Google API key instead of including it as a file in the app bundle
-* Location sending is flaky when re-enabled, fix that.
+* Fix Travis CI build
 
+DONE * Location sending is flaky when re-enabled, fix that.
+DONE * Obfuscate Google API key instead of including it as a file in the app bundle
 DONE * Change build process so that missing API key doesn't break build.
 DONE * Don't show English-language server errors in production build
 DONE * Render about text as an HTML web view, with text fetched from server? (plus local fallback)
