@@ -83,6 +83,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CPw-yR-1iI">
+                        <barButtonItem key="backBarButtonItem" title="Til baka" id="U3V-jb-oZ6">
+                            <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Menu" image="line.horizontal.3" catalog="system" id="Ju9-QP-wUC">
                             <color key="tintColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -133,12 +136,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kdz-2O-c4m">
-                        <barButtonItem key="leftBarButtonItem" title="Til baka" id="yIg-Pr-4Cp">
-                            <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="SQD-Q9-m7s" kind="unwind" unwindAction="prepareForUnwind:" id="zv0-UO-Zc5"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="backBarButtonItem" title="Til baka" id="cP1-aJ-Wpe"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -147,7 +145,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKM-jI-JK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="SQD-Q9-m7s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3872" y="1017"/>
         </scene>
@@ -382,14 +379,7 @@
                             <outlet property="delegate" destination="0fs-On-g95" id="O81-Ue-41f"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="3BA-PW-M7V">
-                        <barButtonItem key="leftBarButtonItem" title="Til baka" id="Ca2-fL-5UA">
-                            <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="4y1-wy-aMb" kind="unwind" unwindAction="prepareForUnwind:" id="zWY-n5-zKQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="3BA-PW-M7V"/>
                     <connections>
                         <outlet property="privacyModeSwitch" destination="m31-x2-PCG" id="xb7-Mb-gBy"/>
                         <outlet property="queryServerTextField" destination="aTc-B7-CbT" id="25t-CI-2NF"/>
@@ -400,15 +390,15 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFt-kq-ya6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="4y1-wy-aMb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2775" y="698"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="baH-A3-i7G">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eKX-ge-Cxw" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="eKX-ge-Cxw" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" shadowImage="Transparent" id="mLs-zh-wY1">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -428,7 +418,7 @@
         <!--Menu View Controller-->
         <scene sceneID="XZo-Jg-0j8">
             <objects>
-                <tableViewController id="alF-fD-xUu" userLabel="Menu View Controller" sceneMemberID="viewController">
+                <tableViewController interfaceStyle="light" id="alF-fD-xUu" userLabel="Menu View Controller" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rvG-gJ-16T" userLabel="Menu Table View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -521,17 +511,13 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="zpQ-hh-fPo">
-                        <barButtonItem key="leftBarButtonItem" title="Til baka" id="lGg-XM-lqk">
+                        <barButtonItem key="backBarButtonItem" title="Til baka" id="ilJ-mC-xrz">
                             <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="x6e-0D-tme" kind="unwind" unwindAction="prepareForUnwind:" id="RaR-eK-ZQA"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIq-To-953" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="x6e-0D-tme" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2028" y="1017"/>
         </scene>
@@ -566,14 +552,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="H36-ch-Hiq">
-                        <barButtonItem key="leftBarButtonItem" title="Til baka" id="BxN-V3-lyx">
-                            <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="3wm-gT-VCW" kind="unwind" unwindAction="prepareForUnwind:" id="wCN-ou-8E7"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="H36-ch-Hiq"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="view" destination="h4l-Jw-YJD" id="zY9-qQ-tBI"/>
@@ -581,7 +560,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dc-jq-40k" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="3wm-gT-VCW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2930" y="1370"/>
         </scene>
