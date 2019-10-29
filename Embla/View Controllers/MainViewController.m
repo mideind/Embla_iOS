@@ -62,6 +62,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     [self setUpReachability];
     
     // Set up user interface
+    
     [self.waveformView setDensity:8];
     [self.waveformView setIdleAmplitude:0.0f];
     [self.waveformView setFrequency:2.0];
@@ -113,6 +114,15 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     player = nil; // Silence any sound being played
     [[ActivationListener sharedInstance] stopListening];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+}
+
+- (void)viewDidLayoutSubviews {
+    // Gradient for text view
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.textView.superview.bounds;
+    gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor blackColor].CGColor, (id)[UIColor blackColor].CGColor, (id)[UIColor clearColor].CGColor];
+    gradient.locations = @[@0.0, @0.05, @0.95, @1.0];
+    self.textView.superview.layer.mask = gradient;
 }
 
 #pragma mark - Respond to app state changes

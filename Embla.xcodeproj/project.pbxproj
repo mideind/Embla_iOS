@@ -320,8 +320,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D34C17E01C948F5800D69BCA /* Build configuration list for PBXNativeTarget "Embla" */;
 			buildPhases = (
-				F4CDF6CA235E635700E88CF6 /* Update API key file */,
 				D7376F491EC06AD174E07DB4 /* [CP] Check Pods Manifest.lock */,
+				F4CDF6CA235E635700E88CF6 /* Update API key file */,
 				D34C17C51C948F5700D69BCA /* Sources */,
 				D34C17C61C948F5700D69BCA /* Frameworks */,
 				D34C17C71C948F5700D69BCA /* Resources */,
@@ -613,13 +613,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OpenEars",
 				);
-				"HEADER_SEARCH_PATHS[arch=*]" = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler\"",
-					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\"",
-					"\"$(SRCROOT)/\"",
-				);
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) \"${PODS_ROOT}/Headers/Public\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\" \"$(SRCROOT)/\"";
 				INFOPLIST_FILE = Embla/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
