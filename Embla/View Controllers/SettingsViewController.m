@@ -165,20 +165,6 @@
     [self.queryServerTextField setText:url];
 }
 
-- (IBAction)restoreDefaults:(id)sender {
-    AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    NSDictionary *def = [del startingDefaults];
-    for (NSString *key in def) {
-        [[NSUserDefaults standardUserDefaults] setObject:def[key] forKey:key];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [self.serverSegmentedControl setSelectedSegmentIndex:0];
-    [self configureControlsFromDefaults];
-}
-
 - (IBAction)clearHistoryPressed:(id)sender {
     [self showClearHistoryAlert];
 }

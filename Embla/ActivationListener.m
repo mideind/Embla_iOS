@@ -16,11 +16,11 @@
  */
 
 /*
-    Singleton wrapper class around OpenEars Pocketsphinx local speech
-    recognition, used for voice activation ("Hæ Embla"). Currently uses
-    an English language model with custom phonemes. Going forward, this
-    should probably be replaced with a robust local neural network trained
-    on activation phrase audio. Quality is currently poorer than Siri's.
+    Singleton wrapper class around OpenEars' Pocketsphinx local speech recognition
+    used for voice activation ("Hæ Embla"/"Hey Embla"). Currently uses an English
+    language acoustic model with custom phonemes. Going forward, this should
+    probably be replaced with a robust local neural network trained on a large set
+    of activation phrase audio. Reliability is currently much poorer than Siri's.
 */
 
 #import "Common.h"
@@ -33,6 +33,7 @@
 @"hiembla", \
 @"hey embla", \
 @"heyembla", \
+@"heymbla", \
 @"hoy embla", \
 @"hoyembla", \
 ]
@@ -42,7 +43,7 @@
 
 // This is how long Pocketsphinx should wait after speech ends to
 // attempt to recognize speech. The default is 0.7 seconds.
-#define SILENCE_DELAY   0.5f
+#define SILENCE_DELAY   0.6f
 
 // Speech/Silence threshhold setting. If quiet background noises are triggering
 // speech recognition, this can be raised to a value from 2-3 to 3.5 for the
