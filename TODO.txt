@@ -9,8 +9,10 @@ TODO list for Embla iOS app
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
 * More robust type validation of data received from server.
 * Fix Travis CI build
-* UI element to disable voice activation in Main View
+* Fade out text on scroll in web views
 
+DONE * UI element to disable voice activation in Main View
+DONE * Fade out text on scroll in text view
 DONE * Location sending is flaky when re-enabled, fix that.
 DONE * Obfuscate Google API key instead of including it as a file in the app bundle
 DONE * Change build process so that missing API key doesn't break build.

@@ -100,6 +100,12 @@
                         <barButtonItem key="backBarButtonItem" title="Til baka" id="U3V-jb-oZ6">
                             <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" image="mic.fill" catalog="system" id="ote-iW-Jbm" userLabel="Mic">
+                            <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="toggleVoiceActivation:" destination="BYZ-38-t0r" id="80n-hU-hlL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Menu" image="line.horizontal.3" catalog="system" id="Ju9-QP-wUC">
                             <color key="tintColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -109,6 +115,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="button" destination="uwa-6b-u4b" id="moq-YI-nv1"/>
+                        <outlet property="micItem" destination="ote-iW-Jbm" id="lUo-Ey-AxZ"/>
                         <outlet property="textView" destination="EMZ-uC-XPA" id="D3x-Pn-7Bq"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="I19-bM-Qp4"/>
                         <outlet property="waveformView" destination="186-3G-JKn" id="WQu-3S-T7u"/>
@@ -557,6 +564,7 @@
         <image name="Cube" width="200" height="200"/>
         <image name="Transparent" width="10" height="10"/>
         <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
+        <image name="mic.fill" catalog="system" width="54" height="64"/>
     </resources>
     <color key="tintColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
 </document>

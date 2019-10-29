@@ -27,7 +27,8 @@
 #import "Reachability.h"
 #import "NSString+Additions.h"
 
-static NSString * const kIntroMessage = @"Segðu „Hæ Embla“ til þess að tala við Emblu.";
+static NSString * const kIntroMessage = @"Segðu „Hæ Embla“ eða smelltu á hnappinn til þess að tala við Emblu.";
+static NSString * const kIntroNoVoiceActivationMessage = @"Smelltu á hnappinn til þess að tala við Emblu.";
 static NSString * const kNoInternetConnectivityMessage = @"Ekki næst samband við netið.";
 static NSString * const kServerErrorMessage = @"Villa kom upp í samskiptum við netþjón.";
 static NSString * const kReachabilityHostname = @"greynir.is";
@@ -39,6 +40,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     CADisplayLink *displayLink;
     Reachability *reach;
 }
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *micItem;
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet SDRecordButton *button;
 @property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
@@ -56,7 +58,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
     
-    self.textView.text = kIntroMessage;
+    self.textView.text = [self introMessage];
     
     [self preloadSounds];
     [self setUpReachability];
@@ -88,20 +90,27 @@ static NSString * const kReachabilityHostname = @"greynir.is";
                                                object:nil];
     // Prepare for audio recording
     [[AudioRecordingController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
+    [[ActivationListener sharedInstance] setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     DLog(@"Main view will appear");
     
     [self setUpReachability];
-    self.textView.text = kIntroMessage;
-    
+        
+    // Don't let device go to sleep while this view is active
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
-        [[ActivationListener sharedInstance] setDelegate:self];
+    // Voice activation
+    BOOL voiceActivation = [[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"];
+    if (voiceActivation) {
         [[ActivationListener sharedInstance] startListening];
     }
+    // Update state of voice activation bar button item
+    NSString *imgName = voiceActivation ? @"mic" : @"mic.slash";
+    self.micItem.image = [UIImage systemImageNamed:imgName];
+    
+    self.textView.text = [self introMessage];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -212,6 +221,33 @@ Aðgangi er stýrt í kerfisstillingum.";
 - (void)didHearActivationPhrase:(NSString *)phrase {
     [[ActivationListener sharedInstance] stopListening];
     [self startSession];
+}
+
+- (IBAction)toggleVoiceActivation:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL enabled = [defaults boolForKey:@"VoiceActivation"];
+    [defaults setBool:!enabled forKey:@"VoiceActivation"];
+    [defaults synchronize];
+    enabled = !enabled;
+    
+    DLog(@"Voice activation: %d", enabled);
+    
+    if (enabled) {
+        [[ActivationListener sharedInstance] startListening];
+    } else {
+        [[ActivationListener sharedInstance] stopListening];
+    }
+    NSString *imgName = enabled ? @"mic" : @"mic.slash";
+    self.micItem.image = [UIImage systemImageNamed:imgName];
+    self.textView.text = [self introMessage];
+}
+
+- (NSString *)introMessage {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
+        return kIntroMessage;
+    } else {
+        return kIntroNoVoiceActivationMessage;
+    }
 }
 
 #pragma mark - Session
