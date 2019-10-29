@@ -53,6 +53,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    DLog(@"Application will terminate");
 }
 
 #pragma mark - Defaults

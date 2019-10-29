@@ -15,6 +15,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+    View controller for the main Embla session view.
+*/
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -27,11 +30,17 @@
 #import "Reachability.h"
 #import "NSString+Additions.h"
 
-static NSString * const kIntroMessage = @"Segðu „Hæ Embla“ eða smelltu á hnappinn til þess að tala við Emblu.";
-static NSString * const kIntroNoVoiceActivationMessage = @"Smelltu á hnappinn til þess að tala við Emblu.";
-static NSString * const kNoInternetConnectivityMessage = @"Ekki næst samband við netið.";
-static NSString * const kServerErrorMessage = @"Villa kom upp í samskiptum við netþjón.";
-static NSString * const kReachabilityHostname = @"greynir.is";
+static NSString * const kIntroMessage = \
+@"Segðu „Hæ Embla“ eða smelltu á hnappinn til þess að tala við Emblu.";
+
+static NSString * const kIntroNoVoiceActivationMessage = \
+@"Smelltu á hnappinn til þess að tala við Emblu.";
+
+static NSString * const kNoInternetConnectivityMessage = \
+@"Ekki næst samband við netið.";
+
+static NSString * const kServerErrorMessage = \
+@"Villa kom upp í samskiptum við netþjón.";
 
 @interface MainViewController () <QuerySessionDelegate>
 {
@@ -49,7 +58,6 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 
 @end
 
-
 @implementation MainViewController
 
 - (void)viewDidLoad {
@@ -65,6 +73,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     
     // Set up user interface
     
+    // Waveform
     [self.waveformView setDensity:8];
     [self.waveformView setIdleAmplitude:0.0f];
     [self.waveformView setFrequency:2.0];
@@ -126,7 +135,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
 }
 
 - (void)viewDidLayoutSubviews {
-    // Gradient for text view
+    // Fadeout gradient for text view
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.textView.superview.bounds;
     gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor blackColor].CGColor, (id)[UIColor blackColor].CGColor, (id)[UIColor clearColor].CGColor];
@@ -172,7 +181,7 @@ static NSString * const kReachabilityHostname = @"greynir.is";
     if (reach) {
         [reach stopNotifier];
     }
-    reach = [Reachability reachabilityWithHostname:kReachabilityHostname];
+    reach = [Reachability reachabilityWithHostname:REACHABILITY_HOSTNAME];
 
     id controller = self;
     reach.reachableBlock = ^(Reachability*reach) {
@@ -302,13 +311,10 @@ Aðgangi er stýrt í kerfisstillingum.";
 - (void)sessionDidStartRecording {
     [self.textView setContentOffset:CGPointZero animated:NO];
     [self.waveformView setIdleAmplitude:0.025f];
-//    self.button.tintColor = [UIColor redColor];
-//    [self.button setImage:[UIImage imageNamed:@"Microphone"] forState:UIControlStateNormal];
 }
 
 - (void)sessionDidStopRecording {
     [self.waveformView setIdleAmplitude:0.0f];
-//    self.button.tintColor = self.view.tintColor;
 }
 
 - (void)sessionDidReceiveInterimResults:(NSArray<NSString *> *)results {
@@ -322,8 +328,6 @@ Aðgangi er stýrt í kerfisstillingum.";
         NSString *questionStr = [[alternatives firstObject] sentenceCapitalizedString];
         [self log:@"%@", questionStr];
         [self playUISound:@"rec_confirm"];
-//        [self.button setImage:[UIImage imageNamed:@"Radio"] forState:UIControlStateNormal];
-//        [self.button setTitle:@"🔊" forState:UIControlStateNormal];
     } else {
         [self playUISound:@"rec_cancel"];
     }
@@ -348,8 +352,6 @@ Aðgangi er stýrt í kerfisstillingum.";
                                            options:@{}
                                  completionHandler:^(BOOL success){}];
     }
-    
-//    [self.button setImage:[UIImage imageNamed:@"Audio"] forState:UIControlStateNormal];
 }
 
 - (void)sessionDidRaiseError:(NSError *)error {
@@ -455,9 +457,5 @@ Aðgangi er stýrt í kerfisstillingum.";
         }
     }
 }
-
--(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
-}
-
 
 @end

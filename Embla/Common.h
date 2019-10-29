@@ -20,6 +20,8 @@
 #define QUERY_API_PATH              @"/query.api/v1"
 #define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
 
+#define REACHABILITY_HOSTNAME       @"greynir.is"
+
 #define ABOUT_URL                   @"http://embla.mideind.is/about.html"
 #define PRIVACY_URL                 @"http://embla.mideind.is/privacy.html"
 

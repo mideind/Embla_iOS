@@ -16,7 +16,7 @@
  */
 
 /*
-    Wrapper singleton class for sending requests to the query API.
+    Wrapper singleton class for sending requests to the Greynir query API.
 */
 
 #import "QueryService.h"

@@ -119,7 +119,7 @@ static OSStatus recordingCallback(void *inRefCon,
     // [session setPreferredIOBufferDuration:10 error:&error];
     
     double sampleRate = session.sampleRate;
-    DLog(@"hardware sample rate = %f, using specified rate = %f", sampleRate, specifiedSampleRate);
+    DLog(@"Hardware sample rate = %f, using specified rate = %f", sampleRate, specifiedSampleRate);
     sampleRate = specifiedSampleRate;
     if (!audioComponentInitialized) {
         audioComponentInitialized = YES;

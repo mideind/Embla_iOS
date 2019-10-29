@@ -12,6 +12,7 @@ TODO list for Embla iOS app
 * Fix Travis CI build
 * Fade out text on scroll in web views
 * Local file fallback if unable to fetch HTML from remote server in web views
+* Only show query server selection in Settings if debug build
 
 DONE * UI element to disable voice activation in Main View
 DONE * Fade out text on scroll in text view

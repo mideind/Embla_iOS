@@ -39,10 +39,6 @@
     [self.webView loadRequest:req];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-//    [self.textView setContentOffset:CGPointZero animated:NO];
-}
-
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     DLog(@"%@ failed to load remote URL %@", NSStringFromClass([self class]), self.url);
 }

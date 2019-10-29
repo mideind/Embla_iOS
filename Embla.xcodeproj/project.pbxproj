@@ -312,8 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				F4E7855B23690273004E29D1 /* about.html */,
-				F4E7855C23690273004E29D1 /* style.css */,
 				F4E7855D23690273004E29D1 /* privacy.html */,
+				F4E7855C23690273004E29D1 /* style.css */,
 			);
 			path = Docs;
 			sourceTree = "<group>";
