@@ -1,7 +1,6 @@
 build/
 products/
 DerivedData
-## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -11,7 +10,6 @@ DerivedData
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
-## Other
 *.xccheckout
 *.moved-aside
 *.xcuserstate
@@ -21,7 +19,7 @@ dsa_priv.pem
 Pods
 Podfile.lock
 *.DS_Store
-AWSPoolID.key
 GoogleAPI.key
 Keys/GoogleAPI.key
 Keys/Keys.c
+Docs/deploy.sh

@@ -43,6 +43,9 @@
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
 		F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854F2368BDEA004E29D1 /* SessionButton.m */; };
 		F4E785592368FA9F004E29D1 /* Keys.c in Sources */ = {isa = PBXBuildFile; fileRef = F4E785572368FA88004E29D1 /* Keys.c */; };
+		F4E7855E23690549004E29D1 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = F4E7855B23690273004E29D1 /* about.html */; };
+		F4E7855F2369054C004E29D1 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = F4E7855D23690273004E29D1 /* privacy.html */; };
+		F4E7856023690550004E29D1 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = F4E7855C23690273004E29D1 /* style.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +120,7 @@
 		F4E7855B23690273004E29D1 /* about.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		F4E7855C23690273004E29D1 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		F4E7855D23690273004E29D1 /* privacy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
+		F4E78561236905A9004E29D1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +318,7 @@
 				F4E7855B23690273004E29D1 /* about.html */,
 				F4E7855D23690273004E29D1 /* privacy.html */,
 				F4E7855C23690273004E29D1 /* style.css */,
+				F4E78561236905A9004E29D1 /* deploy.sh */,
 			);
 			path = Docs;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F469639C22CE3AE700645F69 /* err-dora.caf in Resources */,
+				F4E7856023690550004E29D1 /* style.css in Resources */,
 				F469639622C26F3600645F69 /* rec_cancel.caf in Resources */,
 				F427692C22C122F300BB6977 /* dunno-dora.caf in Resources */,
 				F4430DB822F0AB8800AE64C4 /* err-karl.caf in Resources */,
@@ -400,9 +406,11 @@
 				D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */,
 				D34C17D91C948F5800D69BCA /* Assets.xcassets in Resources */,
 				F469639722C26F3600645F69 /* rec_confirm.caf in Resources */,
+				F4E7855E23690549004E29D1 /* about.html in Resources */,
 				F427692E22C122F300BB6977 /* conn-dora.caf in Resources */,
 				F4430DB922F0AB8800AE64C4 /* conn-karl.caf in Resources */,
 				F4430DBA22F0AB8800AE64C4 /* dunno-karl.caf in Resources */,
+				F4E7855F2369054C004E29D1 /* privacy.html in Resources */,
 				F427692D22C122F300BB6977 /* rec_begin.caf in Resources */,
 				F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */,
 				F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */,
