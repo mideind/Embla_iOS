@@ -42,6 +42,7 @@
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
+		F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854F2368BDEA004E29D1 /* SessionButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,8 @@
 		F4E7854923676639004E29D1 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		F4E7854B236766E0004E29D1 /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
 		F4E7854C236766E0004E29D1 /* PrivacyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyViewController.m; sourceTree = "<group>"; };
+		F4E7854E2368BDEA004E29D1 /* SessionButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SessionButton.h; sourceTree = "<group>"; };
+		F4E7854F2368BDEA004E29D1 /* SessionButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SessionButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +179,8 @@
 				F469639922C5086700645F69 /* QuerySession.m */,
 				F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */,
 				F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */,
+				F4E7854E2368BDEA004E29D1 /* SessionButton.h */,
+				F4E7854F2368BDEA004E29D1 /* SessionButton.m */,
 				F427692122C1216A00BB6977 /* View Controllers */,
 				F427692022C1216300BB6977 /* Services */,
 				F427691F22C1215900BB6977 /* Util */,
@@ -457,6 +462,7 @@
 			files = (
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
 				F4CDF6D4235F77A200E88CF6 /* Keys.c in Sources */,
+				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
 				D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */,
@@ -613,7 +619,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OpenEars",
 				);
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) \"${PODS_ROOT}/Headers/Public\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler\" \"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\" \"$(SRCROOT)/\"";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler\"",
+					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\"",
+					"\"$(SRCROOT)/\"",
+				);
 				INFOPLIST_FILE = Embla/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
