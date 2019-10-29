@@ -26,7 +26,6 @@
 #import "Common.h"
 #import "ActivationListener.h"
 
-
 // Valid phrases to listen for
 #define PHRASES @[\
 @"hi embla", \

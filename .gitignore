@@ -23,5 +23,5 @@ Podfile.lock
 *.DS_Store
 AWSPoolID.key
 GoogleAPI.key
-Embla/Keys/GoogleAPI.key
-Embla/Keys.c
+Keys/GoogleAPI.key
+Keys/Keys.c

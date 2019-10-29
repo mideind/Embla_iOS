@@ -38,11 +38,11 @@
 		F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
-		F4CDF6D4235F77A200E88CF6 /* Keys.c in Sources */ = {isa = PBXBuildFile; fileRef = F4CDF6D3235F77A200E88CF6 /* Keys.c */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
 		F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854F2368BDEA004E29D1 /* SessionButton.m */; };
+		F4E785592368FA9F004E29D1 /* Keys.c in Sources */ = {isa = PBXBuildFile; fileRef = F4E785572368FA88004E29D1 /* Keys.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,18 +94,14 @@
 		F492123322D61D5300337AF8 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		F492123422D61D5300337AF8 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		F497BB1D229EF73D00F66BD4 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		F497BB1F229EF94900F66BD4 /* GoogleAPI.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
 		F497BB23229EFC2800F66BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F497BB2522A169DA00F66BD4 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AcousticModelEnglish.bundle; path = ../OpenEars/AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		F4BBD1A8233A69A700B6A55A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenEars.framework; path = OpenEars/OpenEars.framework; sourceTree = "<group>"; };
-		F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ActivationListener.h; path = Embla/ActivationListener.h; sourceTree = SOURCE_ROOT; };
-		F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ActivationListener.m; path = Embla/ActivationListener.m; sourceTree = SOURCE_ROOT; };
+		F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ActivationListener.h; path = Embla/Services/ActivationListener.h; sourceTree = SOURCE_ROOT; };
+		F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ActivationListener.m; path = Embla/Services/ActivationListener.m; sourceTree = SOURCE_ROOT; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
-		F4CDF6D2235F77A200E88CF6 /* Keys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
-		F4CDF6D3235F77A200E88CF6 /* Keys.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Keys.c; sourceTree = "<group>"; };
-		F4CDF6D5235F782400E88CF6 /* keys.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = keys.sh; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 		F4E7854823676639004E29D1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -114,6 +110,13 @@
 		F4E7854C236766E0004E29D1 /* PrivacyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyViewController.m; sourceTree = "<group>"; };
 		F4E7854E2368BDEA004E29D1 /* SessionButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SessionButton.h; sourceTree = "<group>"; };
 		F4E7854F2368BDEA004E29D1 /* SessionButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SessionButton.m; sourceTree = "<group>"; };
+		F4E785542368FA88004E29D1 /* Keys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
+		F4E785552368FA88004E29D1 /* GoogleAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GoogleAPI.key; sourceTree = "<group>"; };
+		F4E785572368FA88004E29D1 /* Keys.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Keys.c; sourceTree = "<group>"; };
+		F4E785582368FA88004E29D1 /* keys.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = keys.sh; sourceTree = "<group>"; };
+		F4E7855B23690273004E29D1 /* about.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		F4E7855C23690273004E29D1 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		F4E7855D23690273004E29D1 /* privacy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,13 +151,14 @@
 				F497BB23229EFC2800F66BD4 /* README.md */,
 				F497BB2522A169DA00F66BD4 /* TODO.txt */,
 				F48D15A422DCD31800B2996C /* build.sh */,
-				F4CDF6D5235F782400E88CF6 /* keys.sh */,
 				F48D15A522DCD44500B2996C /* .travis.yml */,
 				F48D15A622DCD44E00B2996C /* .gitignore */,
 				D34C17CB1C948F5700D69BCA /* Embla */,
-				D34C17CA1C948F5700D69BCA /* Products */,
+				F4E7855A23690273004E29D1 /* Docs */,
+				F4E785532368FA88004E29D1 /* Keys */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,
 				32C6BA1B2FA20A9904F13B95 /* Frameworks */,
+				D34C17CA1C948F5700D69BCA /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,16 +173,12 @@
 		D34C17CB1C948F5700D69BCA /* Embla */ = {
 			isa = PBXGroup;
 			children = (
-				F497BB1D229EF73D00F66BD4 /* Common.h */,
 				D34C17CD1C948F5700D69BCA /* main.m */,
-				F4CDF6D2235F77A200E88CF6 /* Keys.h */,
-				F4CDF6D3235F77A200E88CF6 /* Keys.c */,
+				F497BB1D229EF73D00F66BD4 /* Common.h */,
 				D34C17CF1C948F5700D69BCA /* AppDelegate.h */,
 				D34C17D01C948F5700D69BCA /* AppDelegate.m */,
 				F469639822C5086700645F69 /* QuerySession.h */,
 				F469639922C5086700645F69 /* QuerySession.m */,
-				F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */,
-				F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */,
 				F4E7854E2368BDEA004E29D1 /* SessionButton.h */,
 				F4E7854F2368BDEA004E29D1 /* SessionButton.m */,
 				F427692122C1216A00BB6977 /* View Controllers */,
@@ -195,7 +195,6 @@
 				F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */,
 				F4CDF6CD235F541E00E88CF6 /* Fonts */,
 				F427692822C122F200BB6977 /* Audio */,
-				F497BB1E229EF94900F66BD4 /* Keys */,
 				D34C17DD1C948F5800D69BCA /* Info.plist */,
 				D392D9851C94937D002F5132 /* Main.storyboard */,
 				D34C17DA1C948F5800D69BCA /* LaunchScreen.storyboard */,
@@ -220,6 +219,8 @@
 		F427692022C1216300BB6977 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */,
+				F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */,
 				F4E160F722A977620019EDE7 /* QueryService.h */,
 				F4E160F822A977620019EDE7 /* QueryService.m */,
 				D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */,
@@ -235,9 +236,9 @@
 				D392D9881C94938F002F5132 /* MainViewController.m */,
 				F427692222C1218A00BB6977 /* SettingsViewController.h */,
 				F427692322C1218A00BB6977 /* SettingsViewController.m */,
-				F4E785472367655C004E29D1 /* Web View Controllers */,
 				F454EE302357A90D003C2715 /* OnboardingViewController.h */,
 				F454EE312357A90D003C2715 /* OnboardingViewController.m */,
+				F4E785472367655C004E29D1 /* Web-based View Controllers */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -274,15 +275,6 @@
 			path = Dora;
 			sourceTree = "<group>";
 		};
-		F497BB1E229EF94900F66BD4 /* Keys */ = {
-			isa = PBXGroup;
-			children = (
-				F497BB1F229EF94900F66BD4 /* GoogleAPI.key */,
-			);
-			name = Keys;
-			path = Embla/Keys;
-			sourceTree = SOURCE_ROOT;
-		};
 		F4CDF6CD235F541E00E88CF6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,7 +284,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		F4E785472367655C004E29D1 /* Web View Controllers */ = {
+		F4E785472367655C004E29D1 /* Web-based View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F427692522C1219A00BB6977 /* RemoteWebViewController.h */,
@@ -302,7 +294,28 @@
 				F4E7854B236766E0004E29D1 /* PrivacyViewController.h */,
 				F4E7854C236766E0004E29D1 /* PrivacyViewController.m */,
 			);
-			path = "Web View Controllers";
+			path = "Web-based View Controllers";
+			sourceTree = "<group>";
+		};
+		F4E785532368FA88004E29D1 /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				F4E785582368FA88004E29D1 /* keys.sh */,
+				F4E785552368FA88004E29D1 /* GoogleAPI.key */,
+				F4E785542368FA88004E29D1 /* Keys.h */,
+				F4E785572368FA88004E29D1 /* Keys.c */,
+			);
+			path = Keys;
+			sourceTree = "<group>";
+		};
+		F4E7855A23690273004E29D1 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				F4E7855B23690273004E29D1 /* about.html */,
+				F4E7855C23690273004E29D1 /* style.css */,
+				F4E7855D23690273004E29D1 /* privacy.html */,
+			);
+			path = Docs;
 			sourceTree = "<group>";
 		};
 		F657FA334EB8D9ABF1ACF569 /* Pods */ = {
@@ -451,7 +464,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n/bin/bash keys.sh > \"Embla/Keys.c\"\n\n";
+			shellScript = "\n/bin/bash \"Keys/keys.sh\" > \"Keys/Keys.c\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -461,7 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
-				F4CDF6D4235F77A200E88CF6 /* Keys.c in Sources */,
+				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
 				D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
