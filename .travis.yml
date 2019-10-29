@@ -2,7 +2,6 @@ language: objective-c
 
 osx_image: xcode11 # 10.14
 
-
 branches:
   only:
     - master

@@ -7,7 +7,6 @@
 # verbosity and keep it within Travis log length limit.
 
 xcodebuild  -parallelizeTargets \
-            -jobs 4 \
             -workspace "Embla.xcworkspace" \
             -scheme "Embla" \
             -configuration "Debug" \

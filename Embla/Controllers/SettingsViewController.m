@@ -41,18 +41,27 @@
     if (@available(iOS 13.0, *)) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
-    // Do any additional setup after loading the view.
+//#ifdef DEBUG
+//    [self.tableView beginUpdates];
+//    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [self.tableView endUpdates];
+//#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.useLocationSwitch becomeFirstResponder];
     [self configureControlsFromDefaults];
     [self updateLocationControl];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self saveToDefaults];
 }
+
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return 2;
+//}
 
 #pragma mark - Location control handling
 

@@ -185,7 +185,7 @@
 				F469639922C5086700645F69 /* QuerySession.m */,
 				F4E7854E2368BDEA004E29D1 /* SessionButton.h */,
 				F4E7854F2368BDEA004E29D1 /* SessionButton.m */,
-				F427692122C1216A00BB6977 /* View Controllers */,
+				F427692122C1216A00BB6977 /* Controllers */,
 				F427692022C1216300BB6977 /* Services */,
 				F427691F22C1215900BB6977 /* Util */,
 				D34C17CC1C948F5700D69BCA /* Supporting Files */,
@@ -233,7 +233,7 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F427692122C1216A00BB6977 /* View Controllers */ = {
+		F427692122C1216A00BB6977 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				D392D9871C94938F002F5132 /* MainViewController.h */,
@@ -242,9 +242,9 @@
 				F427692322C1218A00BB6977 /* SettingsViewController.m */,
 				F454EE302357A90D003C2715 /* OnboardingViewController.h */,
 				F454EE312357A90D003C2715 /* OnboardingViewController.m */,
-				F4E785472367655C004E29D1 /* Web-based View Controllers */,
+				F4E785472367655C004E29D1 /* Web */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		F427692822C122F200BB6977 /* Audio */ = {
@@ -288,7 +288,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		F4E785472367655C004E29D1 /* Web-based View Controllers */ = {
+		F4E785472367655C004E29D1 /* Web */ = {
 			isa = PBXGroup;
 			children = (
 				F427692522C1219A00BB6977 /* RemoteWebViewController.h */,
@@ -298,7 +298,7 @@
 				F4E7854B236766E0004E29D1 /* PrivacyViewController.h */,
 				F4E7854C236766E0004E29D1 /* PrivacyViewController.m */,
 			);
-			path = "Web-based View Controllers";
+			path = Web;
 			sourceTree = "<group>";
 		};
 		F4E785532368FA88004E29D1 /* Keys */ = {
