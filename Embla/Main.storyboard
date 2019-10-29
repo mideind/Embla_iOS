@@ -32,7 +32,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit.</string>
                                 <color key="textColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Lato-Italic" family="Lato" pointSize="21"/>
+                                <fontDescription key="fontDescription" name="Lato-Italic" family="Lato" pointSize="23"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="186-3G-JKn" customClass="SCSiriWaveformView">
@@ -401,22 +401,22 @@
                         <sections>
                             <tableViewSection id="bZ2-Fq-WHb">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yJj-po-nTP" imageView="YBp-2C-Kmt" style="IBUITableViewCellStyleDefault" id="VCh-4h-ChD">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yJj-po-nTP" imageView="YBp-2C-Kmt" rowHeight="50" style="IBUITableViewCellStyleDefault" id="VCh-4h-ChD">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VCh-4h-ChD" id="dNi-np-YBf">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Stillingar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yJj-po-nTP">
-                                                    <rect key="frame" x="79" y="0.0" width="296" height="43.5"/>
+                                                    <rect key="frame" x="85" y="0.0" width="290" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Cube" id="YBp-2C-Kmt">
-                                                    <rect key="frame" x="20" y="0.0" width="44" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -426,22 +426,22 @@
                                             <segue destination="0fs-On-g95" kind="show" id="RJD-MJ-JUE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GPb-Ri-SBC" imageView="zZ4-8X-S42" style="IBUITableViewCellStyleDefault" id="7n1-TO-s6u">
-                                        <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GPb-Ri-SBC" imageView="zZ4-8X-S42" rowHeight="50" style="IBUITableViewCellStyleDefault" id="7n1-TO-s6u">
+                                        <rect key="frame" x="0.0" y="78" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7n1-TO-s6u" id="YbQ-fo-Dej">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Um Emblu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GPb-Ri-SBC">
-                                                    <rect key="frame" x="79" y="0.0" width="296" height="43.5"/>
+                                                    <rect key="frame" x="85" y="0.0" width="290" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Cube" id="zZ4-8X-S42">
-                                                    <rect key="frame" x="20" y="0.0" width="44" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -451,22 +451,22 @@
                                             <segue destination="yJc-aV-98j" kind="show" id="o2Z-gJ-TMw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="K4W-sY-M8I" imageView="1PP-hV-3Af" style="IBUITableViewCellStyleDefault" id="QJ5-sf-b3x">
-                                        <rect key="frame" x="0.0" y="115" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="K4W-sY-M8I" imageView="1PP-hV-3Af" rowHeight="50" style="IBUITableViewCellStyleDefault" id="QJ5-sf-b3x">
+                                        <rect key="frame" x="0.0" y="128" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QJ5-sf-b3x" id="Q98-HB-uB4">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Persónuvernd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K4W-sY-M8I">
-                                                    <rect key="frame" x="79" y="0.0" width="296" height="43.5"/>
+                                                    <rect key="frame" x="85" y="0.0" width="290" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Cube" id="1PP-hV-3Af">
-                                                    <rect key="frame" x="20" y="0.0" width="44" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
