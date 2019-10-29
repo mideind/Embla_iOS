@@ -40,7 +40,7 @@
 #pragma mark - Util
 
 - (NSString *)_APIEndpoint {
-    NSString *server = [[NSUserDefaults standardUserDefaults] stringForKey:@"QueryServer"];
+    NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
     return [NSString stringWithFormat:@"%@%@", server, QUERY_API_PATH];
 }
 
@@ -75,15 +75,15 @@
     NSString *apiEndpoint = [self _APIEndpoint];
     
     // Query key/value pairs
-    NSString *voiceName = [[NSUserDefaults standardUserDefaults] integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";
+    NSString *voiceName = [DEFAULTS integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";
     NSMutableDictionary *parameters = [@{
         @"q": qstr,
         @"voice": @(YES),
         @"voice_id": voiceName,
     } mutableCopy];
     
-    BOOL privacyMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"PrivacyMode"];
-    BOOL useLocation = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"];
+    BOOL privacyMode = [DEFAULTS boolForKey:@"PrivacyMode"];
+    BOOL useLocation = [DEFAULTS boolForKey:@"UseLocation"];
     
     // Add location info, if enabled and available
     if (useLocation && !privacyMode) {
@@ -151,7 +151,7 @@
     
     // Create request
     NSError *err = nil;
-    NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:@"QueryServer"];
+    NSString *server = [DEFAULTS objectForKey:@"QueryServer"];
     NSString *remoteURLStr = [NSString stringWithFormat:@"%@%@", server, CLEAR_QHISTORY_API_PATH];
     NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
                                                                       URLString:remoteURLStr

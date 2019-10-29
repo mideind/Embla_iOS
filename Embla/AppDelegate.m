@@ -27,9 +27,9 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self registerDefaults];
+    [DEFAULTS registerDefaults:[self startingDefaults]];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"]) {
+    if ([DEFAULTS boolForKey:@"UseLocation"]) {
         [self startLocationServices];
     }
     
@@ -67,10 +67,6 @@
         @"Voice": [NSNumber numberWithInteger:0],
         @"QueryServer": DEFAULT_QUERY_SERVER
     };
-}
-
-- (void)registerDefaults {
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[self startingDefaults]];
 }
 
 #pragma mark - Location services

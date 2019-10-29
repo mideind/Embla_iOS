@@ -68,7 +68,7 @@
 // Use Location switch shouldn't be on if the app doesn't
 // have permission from the OS to receive location data
 - (void)updateLocationControl {
-    BOOL locEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"];
+    BOOL locEnabled = [DEFAULTS boolForKey:@"UseLocation"];
     [self.useLocationSwitch setOn:[self canUseLocation] && locEnabled];
 }
     
@@ -96,21 +96,19 @@
 // Configure controls according to defaults
 // Horrible to have to do this manually. Why no bindings on iOS?
 - (void)configureControlsFromDefaults {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [self.voiceActivationSwitch setOn:[defaults boolForKey:@"VoiceActivation"]];
-    [self.useLocationSwitch setOn:[defaults boolForKey:@"UseLocation"]];
-    [self.privacyModeSwitch setOn:[defaults boolForKey:@"PrivacyMode"]];
-    [self.voiceSegmentedControl setSelectedSegmentIndex:[defaults integerForKey:@"Voice"]];
-    [self.queryServerTextField setText:[defaults stringForKey:@"QueryServer"]];
+    [self.voiceActivationSwitch setOn:[DEFAULTS boolForKey:@"VoiceActivation"]];
+    [self.useLocationSwitch setOn:[DEFAULTS boolForKey:@"UseLocation"]];
+    [self.privacyModeSwitch setOn:[DEFAULTS boolForKey:@"PrivacyMode"]];
+    [self.voiceSegmentedControl setSelectedSegmentIndex:[DEFAULTS integerForKey:@"Voice"]];
+    [self.queryServerTextField setText:[DEFAULTS stringForKey:@"QueryServer"]];
 }
 
 // Configure defaults according to controls in Settings view, synchronize
 - (void)saveToDefaults {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:self.voiceActivationSwitch.isOn forKey:@"VoiceActivation"];
-    [defaults setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
-    [defaults setBool:self.privacyModeSwitch.isOn forKey:@"PrivacyMode"];
-    [defaults setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
+    [DEFAULTS setBool:self.voiceActivationSwitch.isOn forKey:@"VoiceActivation"];
+    [DEFAULTS setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
+    [DEFAULTS setBool:self.privacyModeSwitch.isOn forKey:@"PrivacyMode"];
+    [DEFAULTS setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
     
     // Sanitize query server URL
     NSString *server = [self.queryServerTextField text];
@@ -119,8 +117,8 @@
         // Make sure URL has URI scheme component
         trimmed = [@"http://" stringByAppendingString:trimmed];
     }
-    [defaults setObject:trimmed forKey:@"QueryServer"];
-    [defaults synchronize];
+    [DEFAULTS setObject:trimmed forKey:@"QueryServer"];
+    [DEFAULTS synchronize];
 }
 
 #pragma mark - Button actions

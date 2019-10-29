@@ -421,7 +421,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 }
 
 - (void)playDontKnow {
-    NSUInteger vid = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Voice"] unsignedIntegerValue];
+    NSUInteger vid = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
     NSString *suffix = vid == 0 ? @"dora" : @"karl";
     NSString *fn = [NSString stringWithFormat:@"dunno-%@", suffix];
     [self playAudio:fn];

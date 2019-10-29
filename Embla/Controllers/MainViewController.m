@@ -111,7 +111,7 @@ static NSString * const kServerErrorMessage = \
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     // Voice activation
-    BOOL voiceActivation = [[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"];
+    BOOL voiceActivation = [DEFAULTS boolForKey:@"VoiceActivation"];
     if (voiceActivation) {
         [[ActivationListener sharedInstance] startListening];
     }
@@ -147,7 +147,7 @@ static NSString * const kServerErrorMessage = \
 
 - (void)becameActive:(NSNotification *)notification {
     DLog(@"%@", [notification description]);
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
+    if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
         [[ActivationListener sharedInstance] startListening];
     }
 }
@@ -233,10 +233,9 @@ Aðgangi er stýrt í kerfisstillingum.";
 }
 
 - (IBAction)toggleVoiceActivation:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL enabled = [defaults boolForKey:@"VoiceActivation"];
-    [defaults setBool:!enabled forKey:@"VoiceActivation"];
-    [defaults synchronize];
+    BOOL enabled = [DEFAULTS boolForKey:@"VoiceActivation"];
+    [DEFAULTS setBool:!enabled forKey:@"VoiceActivation"];
+    [DEFAULTS synchronize];
     enabled = !enabled;
     
     DLog(@"Voice activation: %d", enabled);
@@ -252,7 +251,7 @@ Aðgangi er stýrt í kerfisstillingum.";
 }
 
 - (NSString *)introMessage {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"VoiceActivation"]) {
+    if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
         return kIntroMessage;
     } else {
         return kIntroNoVoiceActivationMessage;
@@ -426,7 +425,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     NSArray *voiceSounds = @[@"err", @"conn", @"dunno"];
     
     if ([voiceSounds containsObject:fileName]) {
-        NSUInteger vid = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Voice"] unsignedIntegerValue];
+        NSUInteger vid = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
         NSString *suffix = vid == 0 ? @"dora" : @"karl";
         fileName = [NSString stringWithFormat:@"%@-%@", fileName, suffix];
     }

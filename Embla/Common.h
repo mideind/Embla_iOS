@@ -34,3 +34,6 @@
     #define DLog(...)
 #endif
 
+// Use macro to abbreviate standard defaults and
+// combat some of Objective C's horrible verbosity
+#define DEFAULTS    [NSUserDefaults standardUserDefaults]
