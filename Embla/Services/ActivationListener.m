@@ -38,7 +38,7 @@
 ]
 
 // 0 is certainty.
-#define MIN_SCORE       -200000
+#define MIN_SCORE       -180000
 
 // This is how long Pocketsphinx should wait after speech ends to
 // attempt to recognize speech. The default is 0.7 seconds.

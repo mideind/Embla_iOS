@@ -70,9 +70,7 @@ static NSString * const kServerErrorMessage = \
     
     [self preloadSounds];
     [self setUpReachability];
-    
-    // Set up user interface
-    
+        
     // Waveform
     [self.waveformView setDensity:8];
     [self.waveformView setIdleAmplitude:0.0f];
@@ -81,10 +79,6 @@ static NSString * const kServerErrorMessage = \
     [self.waveformView setSecondaryWaveLineWidth:1.5f];
     [self.waveformView updateWithLevel:0.f];
     
-    // Adjust spacing between button image and title
-    CGFloat spacing = 10;
-    self.button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
-    self.button.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
     [self.button setButtonColor:[UIColor whiteColor]];
     [self.button setProgressColor:[UIColor whiteColor]];
     
@@ -97,9 +91,12 @@ static NSString * const kServerErrorMessage = \
                                              selector:@selector(resignedActive:)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
+    
+    // Receive messages from activation listener
+    [[ActivationListener sharedInstance] setDelegate:self];
+    
     // Prepare for audio recording
     [[AudioRecordingController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
-    [[ActivationListener sharedInstance] setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -125,6 +122,7 @@ static NSString * const kServerErrorMessage = \
 - (void)viewWillDisappear:(BOOL)animated {
     DLog(@"Main view will disappear");
     
+    // Terminate any ongoing session
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;
@@ -135,10 +133,13 @@ static NSString * const kServerErrorMessage = \
 }
 
 - (void)viewDidLayoutSubviews {
-    // Fadeout gradient for text view
+    // Add fadeout gradient to text view
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.textView.superview.bounds;
-    gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor blackColor].CGColor, (id)[UIColor blackColor].CGColor, (id)[UIColor clearColor].CGColor];
+    gradient.colors = @[(id)[UIColor clearColor].CGColor,
+                        (id)[UIColor blackColor].CGColor,
+                        (id)[UIColor blackColor].CGColor,
+                        (id)[UIColor clearColor].CGColor];
     gradient.locations = @[@0.0, @0.05, @0.95, @1.0];
     self.textView.superview.layer.mask = gradient;
 }
@@ -154,6 +155,7 @@ static NSString * const kServerErrorMessage = \
 
 - (void)resignedActive:(NSNotification *)notification {
     DLog(@"%@", [notification description]);
+    // Terminate any ongoing session
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
         self.currentSession = nil;
@@ -164,10 +166,12 @@ static NSString * const kServerErrorMessage = \
 #pragma mark - Reachability
 
 - (void)becameReachable {
+    DLog(@"Network became reachable");
     self.connected = YES;
 }
 
 - (void)becameUnreachable {
+    DLog(@"Network became unreachable");
     self.connected = NO;
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
