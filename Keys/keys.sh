@@ -1,6 +1,6 @@
 # Bash script to simplistically obfuscate API key
 
-KEY_PATH="Embla/Keys/GoogleAPI.key"
+KEY_PATH="Keys/GoogleAPI.key"
 OBF=""
 
 if [ ! -e $KEY_PATH ]; then

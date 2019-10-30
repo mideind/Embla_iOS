@@ -12,6 +12,8 @@ before_install:
   - pod update
 
 script:
+  - echo "123456789" > Keys/GoogleAPI.key
+  - echo "const char *gak = \"MTIzNDU2Nzg5CgoK\";" > Keys/Keys.c
   - ./build.sh
 
 notifications:
