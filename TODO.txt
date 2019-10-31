@@ -4,17 +4,14 @@ TODO list for Embla iOS app
 * Option to use HR's Kaldi speech recognition API instead of Google's? - https://tal.ru.is/
 * Privacy notification on app setup/onboarding (show blurb about not storing personally identifiable information)
 * We need new sound files for recording notifications. Currently using Apple's Siri sounds.
-* Stream MP3 directly from Polly service instead of downloading prior to playback? Might accelerate time to playback slightly.
-* Acc. to Google, FLAC is the recommended encoding for streaming speech (reduces bandwidth use by 50%).
-  Is fast FLAC encoding viable on iOS? Battery life vs. bandwidth tradeoff.
+* Stream MP3 directly from Polly service instead of downloading prior to playback? Might accelerate time to playback slightly, at the risk of interrupted playback on slow networks.
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
-* More robust type validation of data received from server.
-* Fix Travis CI build
-* Fade out text on scroll in web views
 * Local file fallback if unable to fetch HTML from remote server in web views
-* Only show query server selection in Settings if debug build
 
+DONE * More robust type validation of data received from server.
+DONE * Only show query server selection in Settings if debug build
 DONE * Don't use 10.13-only SFSymbols in UI
+DONE * Fade out text on scroll in web views
 DONE * UI element to disable voice activation in Main View
 DONE * Fade out text on scroll in text view
 DONE * Location sending is flaky when re-enabled, fix that.

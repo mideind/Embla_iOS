@@ -41,11 +41,6 @@
     if (@available(iOS 13.0, *)) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
-//#ifdef DEBUG
-//    [self.tableView beginUpdates];
-//    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-//    [self.tableView endUpdates];
-//#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,9 +54,13 @@
     [self saveToDefaults];
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 2;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Only show query server selection in debug mode
+#ifdef DEBUG
+    return 3;
+#endif
+    return 2;
+}
 
 #pragma mark - Location control handling
 
