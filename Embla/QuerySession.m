@@ -311,7 +311,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     NSURL *url;
     
     // If response data is valid, play back the provided audio URL
-    if ([r isKindOfClass:[NSDictionary class]] && [r[@"valid"] boolValue]) {
+    if ([r isKindOfClass:[NSDictionary class]]) {
         
         answer = [r objectForKey:@"answer"] ? r[@"answer"] : [r objectForKey:@"voice"];
         question = [r objectForKey:@"q"];
@@ -330,9 +330,12 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
             [self playDontKnow];
         }
     }
+    // Malformed response from query server
     else {
-        // If response is not valid, use local "I don't know" reply
-        [self playDontKnow];
+        NSString *msg = [NSString stringWithFormat:@"Malformed response from query server: %@", [r description]];
+        NSError *error = [NSError errorWithDomain:@"Greynir" code:0 userInfo:@{ NSLocalizedDescriptionKey: msg }];
+        [self.delegate sessionDidRaiseError:error];
+        return;
     }
     
     // Notify delegate

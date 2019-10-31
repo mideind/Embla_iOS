@@ -370,6 +370,7 @@ Aðgangi er stýrt í kerfisstillingum.";
         [self playUISound:@"conn"];
     }
     [self.currentSession terminate];
+    self.currentSession = nil;
 }
 
 - (void)sessionDidTerminate {
