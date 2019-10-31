@@ -113,8 +113,7 @@ static NSString * const kServerErrorMessage = \
         [[ActivationListener sharedInstance] startListening];
     }
     // Update state of voice activation bar button item
-    NSString *imgName = voiceActivation ? @"mic" : @"mic.slash";
-    self.micItem.image = [UIImage systemImageNamed:imgName];
+    self.micItem.image = [UIImage imageNamed:voiceActivation ? @"Microphone" : @"MicrophoneSlash"];
     
     self.textView.text = [self introMessage];
 }
@@ -249,8 +248,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     } else {
         [[ActivationListener sharedInstance] stopListening];
     }
-    NSString *imgName = enabled ? @"mic" : @"mic.slash";
-    self.micItem.image = [UIImage systemImageNamed:imgName];
+    self.micItem.image = [UIImage imageNamed:enabled ? @"Microphone" : @"MicrophoneSlash"];
     self.textView.text = [self introMessage];
 }
 

@@ -14,6 +14,7 @@ TODO list for Embla iOS app
 * Local file fallback if unable to fetch HTML from remote server in web views
 * Only show query server selection in Settings if debug build
 
+DONE * Don't use 10.13-only SFSymbols in UI
 DONE * UI element to disable voice activation in Main View
 DONE * Fade out text on scroll in text view
 DONE * Location sending is flaky when re-enabled, fix that.

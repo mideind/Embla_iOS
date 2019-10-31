@@ -101,13 +101,13 @@
                         <barButtonItem key="backBarButtonItem" title="Til baka" id="U3V-jb-oZ6">
                             <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
-                        <barButtonItem key="leftBarButtonItem" title="Raddvirkjun" image="mic" catalog="system" id="ote-iW-Jbm" userLabel="Mic">
+                        <barButtonItem key="leftBarButtonItem" title="Raddvirkjun" image="Microphone" id="ote-iW-Jbm">
                             <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="toggleVoiceActivation:" destination="BYZ-38-t0r" id="80n-hU-hlL"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Valblað" image="line.horizontal.3" catalog="system" id="Ju9-QP-wUC">
+                        <barButtonItem key="rightBarButtonItem" title="Valblað" image="Menu" id="Ju9-QP-wUC">
                             <color key="tintColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="alF-fD-xUu" kind="show" id="jD6-ap-rNU"/>
@@ -563,9 +563,9 @@
     </scenes>
     <resources>
         <image name="Cube" width="200" height="200"/>
+        <image name="Menu" width="24" height="24"/>
+        <image name="Microphone" width="24" height="24"/>
         <image name="Transparent" width="10" height="10"/>
-        <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
-        <image name="mic" catalog="system" width="54" height="64"/>
     </resources>
     <color key="tintColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
 </document>
