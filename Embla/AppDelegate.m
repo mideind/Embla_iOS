@@ -33,6 +33,8 @@
         [self startLocationServices];
     }
     
+    //[self showOnboarding];
+    
     return YES;
 }
 
@@ -54,6 +56,15 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     DLog(@"Application will terminate");
+}
+
+#pragma mark - Onboarding
+
+- (void)showOnboarding {
+    UINavigationController *rootController = (UINavigationController *)self.window.rootViewController;
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
+    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"start"];
+    [rootController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Defaults
