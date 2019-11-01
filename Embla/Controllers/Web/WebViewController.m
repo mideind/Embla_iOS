@@ -42,7 +42,20 @@
 #pragma mark - WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [self handleFailure];
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+    [self handleFailure];
+}
+
+- (void)handleFailure {
     DLog(@"%@ failed to load remote URL %@", NSStringFromClass([self class]), self.url);
+    NSURL *url = [[NSBundle mainBundle] URLForResource:self.fallbackFilename
+                                         withExtension:nil
+                                          subdirectory:nil];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:request];
 }
 
 @end

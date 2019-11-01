@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     self.url = PRIVACY_URL;
+    self.fallbackFilename = [PRIVACY_URL lastPathComponent];
     [super viewDidLoad];
 }
 

@@ -21,6 +21,7 @@
 @interface WebViewController : UIViewController <WKNavigationDelegate>
 
 @property (nonatomic) NSString *url;
+@property (nonatomic) NSString *fallbackFilename;
 
 @end
 

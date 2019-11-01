@@ -3,11 +3,12 @@ TODO list for Embla iOS app
 
 * Option to use HR's Kaldi speech recognition API instead of Google's? - https://tal.ru.is/
 * Privacy notification on app setup/onboarding (show blurb about not storing personally identifiable information)
-* We need new sound files for recording notifications. Currently using Apple's Siri sounds.
-* Stream MP3 directly from Polly service instead of downloading prior to playback? Might accelerate time to playback slightly, at the risk of interrupted playback on slow networks.
+* We need new sound files for recording notifications. Currently using Apple's Siri sounds (Halldór)
+* Stream MP3 directly from Polly service instead of downloading prior to playback? Might accelerate time to playback slightly, at the risk of interrupted or imperfect playback on slow networks.
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
-* Local file fallback if unable to fetch HTML from remote server in web views
+* Use local Lato font in about and privacy HTML documents
 
+DONE * Local file fallback if unable to fetch HTML from remote server in web views
 DONE * More robust type validation of data received from server.
 DONE * Only show query server selection in Settings if debug build
 DONE * Don't use 10.13-only SFSymbols in UI

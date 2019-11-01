@@ -22,8 +22,8 @@
 
 #define REACHABILITY_HOSTNAME       @"greynir.is"
 
-#define ABOUT_URL                   @"http://embla.mideind.is/about.html"
-#define PRIVACY_URL                 @"http://embla.mideind.is/privacy.html"
+#define ABOUT_URL                   @"https://embla.is/about.html"
+#define PRIVACY_URL                 @"https://embla.is/privacy.html"
 
 #define REC_SAMPLE_RATE             16000.0f
 
