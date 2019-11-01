@@ -18,7 +18,7 @@
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
 		F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B12552343908F00CBE9B4 /* WebKit.framework */; };
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
-		F427692722C1219A00BB6977 /* RemoteWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* RemoteWebViewController.m */; };
+		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
 		F427692C22C122F300BB6977 /* dunno-dora.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692922C122F200BB6977 /* dunno-dora.caf */; };
 		F427692D22C122F300BB6977 /* rec_begin.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692A22C122F200BB6977 /* rec_begin.caf */; };
 		F427692E22C122F300BB6977 /* conn-dora.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692B22C122F200BB6977 /* conn-dora.caf */; };
@@ -73,8 +73,8 @@
 		F40B12552343908F00CBE9B4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F427692222C1218A00BB6977 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		F427692322C1218A00BB6977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		F427692522C1219A00BB6977 /* RemoteWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoteWebViewController.h; sourceTree = "<group>"; };
-		F427692622C1219A00BB6977 /* RemoteWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoteWebViewController.m; sourceTree = "<group>"; };
+		F427692522C1219A00BB6977 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		F427692922C122F200BB6977 /* dunno-dora.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dunno-dora.caf"; sourceTree = "<group>"; };
 		F427692A22C122F200BB6977 /* rec_begin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_begin.caf; sourceTree = "<group>"; };
 		F427692B22C122F200BB6977 /* conn-dora.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "conn-dora.caf"; sourceTree = "<group>"; };
@@ -291,8 +291,8 @@
 		F4E785472367655C004E29D1 /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				F427692522C1219A00BB6977 /* RemoteWebViewController.h */,
-				F427692622C1219A00BB6977 /* RemoteWebViewController.m */,
+				F427692522C1219A00BB6977 /* WebViewController.h */,
+				F427692622C1219A00BB6977 /* WebViewController.m */,
 				F4E7854823676639004E29D1 /* AboutViewController.h */,
 				F4E7854923676639004E29D1 /* AboutViewController.m */,
 				F4E7854B236766E0004E29D1 /* PrivacyViewController.h */,
@@ -492,7 +492,7 @@
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F454EE322357A90D003C2715 /* OnboardingViewController.m in Sources */,
 				F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */,
-				F427692722C1219A00BB6977 /* RemoteWebViewController.m in Sources */,
+				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
@@ -648,7 +648,7 @@
 					"\"$(SRCROOT)/\"",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -675,7 +675,7 @@
 					"$(PROJECT_DIR)/OpenEars",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

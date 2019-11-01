@@ -15,16 +15,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteWebViewController.h"
+#import "WebViewController.h"
 #import "Common.h"
 
-@interface RemoteWebViewController ()
+@interface WebViewController ()
 
 @property (nonatomic, weak) IBOutlet WKWebView *webView;
 
 @end
 
-@implementation RemoteWebViewController
+@implementation WebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +38,8 @@
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
     [self.webView loadRequest:req];
 }
+
+#pragma mark - WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     DLog(@"%@ failed to load remote URL %@", NSStringFromClass([self class]), self.url);

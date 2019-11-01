@@ -15,9 +15,9 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "RemoteWebViewController.h"
+#import "WebViewController.h"
 
-@interface AboutViewController : RemoteWebViewController
+@interface AboutViewController : WebViewController
 
 @end
 

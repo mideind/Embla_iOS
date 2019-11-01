@@ -18,7 +18,7 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-@interface RemoteWebViewController : UIViewController <WKNavigationDelegate>
+@interface WebViewController : UIViewController <WKNavigationDelegate>
 
 @property (nonatomic) NSString *url;
 
