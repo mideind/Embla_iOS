@@ -6,6 +6,7 @@ TODO list for Embla iOS app
 * We need new sound files for recording notifications. Currently using Apple's Siri sounds (Halldór)
 * Stream MP3 directly from Polly service instead of downloading prior to playback? Might accelerate time to playback slightly, at the risk of interrupted or imperfect playback on slow networks.
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
+* Test Bluetooth audio input/output switching
 
 DONE * Use local Lato font in about and privacy HTML documents
 DONE * Local file fallback if unable to fetch HTML from remote server in web views
