@@ -41,6 +41,12 @@
     if (@available(iOS 13.0, *)) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
+    
+    UIFont *font = [UIFont fontWithName:@"Lato" size:15.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:NSFontAttributeName];
+    [self.voiceSegmentedControl setTitleTextAttributes:attributes
+                                              forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,6 +58,12 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self saveToDefaults];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return -5.0f;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
