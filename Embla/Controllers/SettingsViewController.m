@@ -57,9 +57,9 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Only show query server selection in debug mode
 #ifdef DEBUG
-    return 3;
-#endif
     return 2;
+#endif
+    return 1;
 }
 
 #pragma mark - Location control handling
