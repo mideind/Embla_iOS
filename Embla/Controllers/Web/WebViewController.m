@@ -35,6 +35,7 @@
     
     [self.webView setNavigationDelegate:self];
     
+    DLog(@"Requesting URL %@", self.url);
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
     [self.webView loadRequest:req];
 }

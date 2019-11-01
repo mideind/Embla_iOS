@@ -4,7 +4,10 @@
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("Lato-Regular.ttf") format('truetype');
+  src: local('Lato'),
+       url("Lato-Regular.woff2") format('woff2'),
+       url("Lato-Regular.woff") format('woff'),
+       url("Lato-Regular.ttf") format('truetype');
 }
 
 body {
