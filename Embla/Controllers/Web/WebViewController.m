@@ -54,6 +54,7 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:self.fallbackFilename
                                          withExtension:nil
                                           subdirectory:nil];
+    DLog(@"Using local fallback %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
