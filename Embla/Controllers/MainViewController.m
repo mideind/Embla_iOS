@@ -25,7 +25,7 @@
 #import "MainViewController.h"
 #import "QuerySession.h"
 #import "Common.h"
-#import "SDRecordButton.h"
+#import "SessionButton.h"
 #import "AudioRecordingController.h"
 #import "Reachability.h"
 #import "NSString+Additions.h"
@@ -51,7 +51,7 @@ static NSString * const kServerErrorMessage = \
 }
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *micItem;
 @property (nonatomic, weak) IBOutlet UITextView *textView;
-@property (nonatomic, weak) IBOutlet SDRecordButton *button;
+@property (nonatomic, weak) IBOutlet SessionButton *button;
 @property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
 @property (nonatomic, retain) QuerySession *currentSession;
 @property BOOL connected;
@@ -78,9 +78,6 @@ static NSString * const kServerErrorMessage = \
     [self.waveformView setPrimaryWaveLineWidth:3.0f];
     [self.waveformView setSecondaryWaveLineWidth:1.5f];
     [self.waveformView updateWithLevel:0.f];
-    
-    [self.button setButtonColor:[UIColor whiteColor]];
-    [self.button setProgressColor:[UIColor whiteColor]];
     
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -289,11 +286,12 @@ Aðgangi er stýrt í kerfisstillingum.";
     }
     
     [self activateWaveform];
-    [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
+//    [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
     
     // Create new session
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
     [self playUISound:@"rec_begin"];
+    [self.button expand];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.35 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.currentSession start];
     });
@@ -372,11 +370,15 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidTerminate {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
-        [self.button setImage:nil forState:UIControlStateNormal];
+//        [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
+//        [self.button setImage:nil forState:UIControlStateNormal];
         [self deactivateWaveform];
+        [self.button contract];
         if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
             [[ActivationListener sharedInstance] startListening];
+        }
+        if ([self.textView.text isEqualToString:@""]) {
+            self.textView.text = [self introMessage];
         }
     }];
 }

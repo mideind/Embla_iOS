@@ -19,4 +19,8 @@
 
 @interface SessionButton : UIButton
 
+- (void)expand;
+- (void)contract;
+
+
 @end
