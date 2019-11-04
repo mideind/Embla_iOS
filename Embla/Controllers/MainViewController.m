@@ -112,9 +112,8 @@ static NSString * const kServerErrorMessage = \
     if (voiceActivation) {
         [[ActivationListener sharedInstance] startListening];
     }
-    // Update state of voice activation bar button item
+    // Update state of voice activation bar button item and intro message
     self.micItem.image = [UIImage imageNamed:voiceActivation ? @"Microphone" : @"MicrophoneSlash"];
-    
     self.textView.text = [self introMessage];
 }
 
@@ -376,7 +375,9 @@ Aðgangi er stýrt í kerfisstillingum.";
         [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
         [self.button setImage:nil forState:UIControlStateNormal];
         [self deactivateWaveform];
-        [[ActivationListener sharedInstance] startListening];
+        if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
+            [[ActivationListener sharedInstance] startListening];
+        }
     }];
 }
 
