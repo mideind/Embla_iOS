@@ -21,7 +21,6 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "SCSiriWaveformView.h"
 #import "MainViewController.h"
 #import "QuerySession.h"
 #import "Common.h"
@@ -52,7 +51,6 @@ static NSString * const kServerErrorMessage = \
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *micItem;
 @property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet SessionButton *button;
-@property (nonatomic, weak) IBOutlet SCSiriWaveformView *waveformView;
 @property (nonatomic, retain) QuerySession *currentSession;
 @property BOOL connected;
 
@@ -70,14 +68,6 @@ static NSString * const kServerErrorMessage = \
     
     [self preloadSounds];
     [self setUpReachability];
-        
-    // Waveform
-    [self.waveformView setDensity:8];
-    [self.waveformView setIdleAmplitude:0.0f];
-    [self.waveformView setFrequency:2.0];
-    [self.waveformView setPrimaryWaveLineWidth:3.0f];
-    [self.waveformView setSecondaryWaveLineWidth:1.5f];
-    [self.waveformView updateWithLevel:0.f];
     
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -308,11 +298,9 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidStartRecording {
     [self.textView setContentOffset:CGPointZero animated:NO];
-    [self.waveformView setIdleAmplitude:0.025f];
 }
 
 - (void)sessionDidStopRecording {
-    [self.waveformView setIdleAmplitude:0.0f];
 }
 
 - (void)sessionDidReceiveInterimResults:(NSArray<NSString *> *)results {
@@ -412,7 +400,6 @@ Aðgangi er stýrt í kerfisstillingum.";
 }
 
 - (void)deactivateWaveform {
-    [self.waveformView updateWithLevel:0.f];
     if (displayLink) {
         [displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         displayLink = nil;
@@ -421,7 +408,6 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)updateWaveform {
     CGFloat level = self.currentSession ? [self.currentSession audioLevel] : 0.0f;
-    [self.waveformView updateWithLevel:level];
 }
 
 #pragma mark - UI sounds

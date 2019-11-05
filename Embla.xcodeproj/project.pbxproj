@@ -133,7 +133,6 @@
 		F47D20DA2371B83000E4DB6A /* EMBLA_256px_00032.png in Resources */ = {isa = PBXBuildFile; fileRef = F47D20762371B82F00E4DB6A /* EMBLA_256px_00032.png */; };
 		F47D20DB2371B83000E4DB6A /* EMBLA_256px_00033.png in Resources */ = {isa = PBXBuildFile; fileRef = F47D20772371B82F00E4DB6A /* EMBLA_256px_00033.png */; };
 		F47D20DC2371B83000E4DB6A /* EMBLA_256px_00027.png in Resources */ = {isa = PBXBuildFile; fileRef = F47D20782371B82F00E4DB6A /* EMBLA_256px_00027.png */; };
-		F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */; };
 		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
@@ -297,8 +296,6 @@
 		F48D15A422DCD31800B2996C /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		F48D15A522DCD44500B2996C /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		F48D15A622DCD44E00B2996C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		F492122F22D4E4D200337AF8 /* SCSiriWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSiriWaveformView.h; sourceTree = "<group>"; };
-		F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSiriWaveformView.m; sourceTree = "<group>"; };
 		F492123322D61D5300337AF8 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		F492123422D61D5300337AF8 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		F497BB1D229EF73D00F66BD4 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -417,8 +414,6 @@
 		F427691F22C1215900BB6977 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				F492122F22D4E4D200337AF8 /* SCSiriWaveformView.h */,
-				F492123022D4E4D200337AF8 /* SCSiriWaveformView.m */,
 				D379BE361C99FEC70049D06F /* AudioRecordingController.h */,
 				D379BE371C99FEC70049D06F /* AudioRecordingController.m */,
 				F492123322D61D5300337AF8 /* NSString+Additions.h */,
@@ -926,7 +921,6 @@
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F454EE322357A90D003C2715 /* OnboardingViewController.m in Sources */,
-				F492123122D4E4D200337AF8 /* SCSiriWaveformView.m in Sources */,
 				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
 				F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */,

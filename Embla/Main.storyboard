@@ -50,51 +50,33 @@
                                     <constraint firstItem="EMZ-uC-XPA" firstAttribute="height" secondItem="EiJ-xq-0fy" secondAttribute="height" id="m2b-El-cDS"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="186-3G-JKn" customClass="SCSiriWaveformView">
-                                <rect key="frame" x="0.0" y="669" width="414" height="130"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SessionButton">
-                                        <rect key="frame" x="117" y="-27" width="180" height="180"/>
-                                        <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="180" id="2TV-aN-0uz"/>
-                                            <constraint firstAttribute="width" secondItem="uwa-6b-u4b" secondAttribute="height" multiplier="1:1" id="Hyb-Xn-b9b"/>
-                                            <constraint firstAttribute="width" constant="180" id="hHE-WB-TZU"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
-                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal">
-                                            <color key="titleColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7K-cV-azV"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SessionButton">
+                                <rect key="frame" x="117" y="635" width="180" height="180"/>
+                                <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="SIk-Io-8HT"/>
+                                    <constraint firstAttribute="height" constant="180" id="2TV-aN-0uz"/>
+                                    <constraint firstAttribute="width" secondItem="uwa-6b-u4b" secondAttribute="height" multiplier="1:1" id="Hyb-Xn-b9b"/>
+                                    <constraint firstAttribute="width" constant="180" id="hHE-WB-TZU"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="waveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7K-cV-azV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uwa-6b-u4b" firstAttribute="top" secondItem="EiJ-xq-0fy" secondAttribute="bottom" constant="15" id="3kg-tH-nRP"/>
-                            <constraint firstItem="186-3G-JKn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="812-CC-QEq"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="40" id="EFw-Vo-Gtx"/>
-                            <constraint firstAttribute="trailing" secondItem="186-3G-JKn" secondAttribute="trailing" id="Pm9-Mq-fA1"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="186-3G-JKn" secondAttribute="bottom" constant="63" id="Wwq-D5-tGy"/>
+                            <constraint firstItem="uwa-6b-u4b" firstAttribute="top" secondItem="EMZ-uC-XPA" secondAttribute="bottom" constant="8" id="HzD-sG-uwL"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="47" id="LYk-ra-vb5"/>
+                            <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a3h-Bj-6YD"/>
                             <constraint firstAttribute="trailing" secondItem="EiJ-xq-0fy" secondAttribute="trailing" constant="20" id="ar0-Eo-UXe"/>
                             <constraint firstItem="EiJ-xq-0fy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ayx-ON-KQL"/>
                             <constraint firstItem="EiJ-xq-0fy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="bNl-Pu-EBg"/>
-                            <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r3j-am-AtK"/>
-                            <constraint firstItem="186-3G-JKn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vMb-MT-568"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CPw-yR-1iI">
@@ -119,7 +101,6 @@
                         <outlet property="micItem" destination="ote-iW-Jbm" id="lUo-Ey-AxZ"/>
                         <outlet property="textView" destination="EMZ-uC-XPA" id="D3x-Pn-7Bq"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="I19-bM-Qp4"/>
-                        <outlet property="waveformView" destination="186-3G-JKn" id="WQu-3S-T7u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
