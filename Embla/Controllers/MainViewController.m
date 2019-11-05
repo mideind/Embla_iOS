@@ -286,11 +286,11 @@ Aðgangi er stýrt í kerfisstillingum.";
     }
     
     [self activateWaveform];
-//    [self.button setTitle:@"Hætta" forState:UIControlStateNormal];
     
     // Create new session
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
     [self playUISound:@"rec_begin"];
+    [self.button startAnimating];
     [self.button expand];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.35 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.currentSession start];
@@ -370,10 +370,9 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidTerminate {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//        [self.button setTitle:@"Hlusta" forState:UIControlStateNormal];
-//        [self.button setImage:nil forState:UIControlStateNormal];
         [self deactivateWaveform];
         [self.button contract];
+        [self.button stopAnimating];
         if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
             [[ActivationListener sharedInstance] startListening];
         }

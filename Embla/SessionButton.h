@@ -22,5 +22,7 @@
 - (void)expand;
 - (void)contract;
 
+- (void)startAnimating;
+- (void)stopAnimating;
 
 @end

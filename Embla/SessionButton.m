@@ -30,7 +30,7 @@
     CGRect defaultRect;
     CGPoint centerPoint;
     
-    UIImageView *animImageView;
+    UIImageView *animatedImageView;
     
     BOOL expanded;
 }
@@ -151,31 +151,8 @@
         imageLayer.position = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
         imageLayer.contents = (__bridge id _Nullable)([UIImage imageNamed:@"EmblaLogo"].CGImage);
         
-//        [layer insertSublayer:imageLayer atIndex:3];
+        [layer insertSublayer:imageLayer atIndex:3];
     }
-    
-    if (!animImageView) {
-         NSMutableArray *framePaths = [NSMutableArray new];
-         NSMutableArray *times = [NSMutableArray new];
-         for (int i = 0; i < 100; i++) {
-             NSString *s = [NSString stringWithFormat:@"EMBLA_256px_%05d", i];
-             s = [[NSBundle mainBundle] pathForResource:s ofType:@"png"];
-             [framePaths addObject:s];
-             [times addObject:@(0.05)];
-         }
-         
-         UIImage *image = [[YYFrameImage alloc] initWithImagePaths:framePaths
-                                                  oneFrameDuration:0.05
-                                                         loopCount:0];
-         UIImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
-         [self addSubview:imageView];
-         CGRect r = imageView.bounds;
-         r.size.width = 100;
-         r.size.height = 100;
-         imageView.bounds = r;
-         imageView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
-//         NSLog(NSStringFromCGPoint(centerPoint));
-     }
 }
 
 - (void)layoutSubviews {
@@ -204,6 +181,37 @@
     } completion:^(BOOL finished) {
         //code for completion
     }];
+}
+
+- (void)startAnimating {
+    imageLayer.hidden = YES;
+    if (!animatedImageView) {
+         NSMutableArray *framePaths = [NSMutableArray new];
+         NSMutableArray *times = [NSMutableArray new];
+         for (int i = 0; i < 100; i++) {
+             NSString *s = [NSString stringWithFormat:@"EMBLA_256px_%05d", i];
+             s = [[NSBundle mainBundle] pathForResource:s ofType:@"png"];
+             [framePaths addObject:s];
+             [times addObject:@(0.05)];
+         }
+         
+         UIImage *image = [[YYFrameImage alloc] initWithImagePaths:framePaths
+                                                  oneFrameDuration:0.05
+                                                         loopCount:0];
+         animatedImageView = [[YYAnimatedImageView alloc] initWithImage:image];
+         [self addSubview:animatedImageView];
+         CGRect r = animatedImageView.bounds;
+         r.size.width = 100;
+         r.size.height = 100;
+         animatedImageView.bounds = r;
+         animatedImageView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
+     }
+    animatedImageView.hidden = NO;
+}
+
+- (void)stopAnimating {
+    animatedImageView.hidden = YES;
+    imageLayer.hidden = NO;
 }
 
 @end
