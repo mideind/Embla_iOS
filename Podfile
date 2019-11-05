@@ -10,6 +10,7 @@ target 'Embla' do
     pod 'AFNetworking', '~> 3.0'
     pod 'SDRecordButton', '~> 1.0'
     pod 'Reachability', '~> 3.2'
+    pod 'YYImage', '~> 1.0.4'
 end
 
 post_install do |installer|
