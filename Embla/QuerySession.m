@@ -438,7 +438,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 // Audio playback of the response is the final task in the pipeline.
 // Once the speech audio file is done playing, the session is over.
-
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
     [self terminate];
 }
@@ -447,20 +446,17 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 // The session has an audio level property. If we are recording, this is the volume of
 // the latest microphone input. Otherwise, the volume of the audio player is returned.
-
 - (CGFloat)audioLevel {
-    CGFloat level = recordingSampleAvg / 16383.f;
-    if (level > 1.0) {
-        level = 1.0;
+    if (_isRecording) {
+        CGFloat level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
+        DLog(@"Audio level: %.2f", level);
+        if (isnan(level) || level < 0.07) {
+            level = 0.05;
+        }
+        return level;
+    } else {
+        return 0.f;
     }
-    if (level < 0.05) {
-        level = 0.05;
-    }
-    return level;
-//    CGFloat level = 0.0f;
-//    if (_isRecording) {
-//        level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
-//    }
 //    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
 //        [self.audioPlayer updateMeters];
 //        float decibels = [self.audioPlayer averagePowerForChannel:0];
@@ -470,17 +466,15 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 }
 
 - (CGFloat)_normalizedPowerLevelFromDecibels:(CGFloat)decibels {
-    if (decibels < -64.0f || decibels == 0.0f) {
+    if (decibels < -60.0f || decibels == 0.0f) {
         return 0.0f;
     }
     // TODO: Tweak this for better results?
     return powf(
-                // 10 to the power of 0.1*DB  - 10 to the power of 0.1*-60
-                (powf(10.0f, 0.1f * decibels) - powf(10.0f, 0.1f * -60.0f)) *
-                // Multiplied by
-                (1.0f / (1.0f - powf(10.0f, 0.1f * -60.0f))),
-                // To the power of 0.5
-                1.0f / 2.0f);
+                    (powf(10.0f, 0.03f * decibels) - powf(10.0f, 0.03f * -60.0f))
+                    * (1.0f / (1.0f - powf(10.0f, 0.03f * -60.0f))),
+                    1.0f / 2.0f
+                );
 }
 
 @end

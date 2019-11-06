@@ -18,8 +18,7 @@
 #import "SessionButton.h"
 #import "UIColor+Hex.h"
 #import "YYImage.h"
-#import "AudioVisualizerView.h"
-#import "VisView.h"
+#import "AudioWaveformView.h"
 
 #define EXPANSION_DURATION  0.2
 
@@ -29,13 +28,10 @@
     CALayer *thirdCircleLayer;
     CALayer *imageLayer;
     
-    CGRect defaultRect;
-    CGPoint centerPoint;
-    
     UIImageView *animationView;
-    AudioVisualizerView *audioView;
-    NSTimer *visualizerTimer;
-    VisView *visView;
+    
+    AudioWaveformView *waveformView;
+    NSTimer *waveformTimer;
     
     BOOL expanded;
 }
@@ -47,8 +43,6 @@
     self = [super initWithFrame:rect];
     
     if (self) {
-        defaultRect = rect;
-        centerPoint = self.center;
         [self addTarget:self action:@selector(didTouchDown) forControlEvents:UIControlEventTouchDown];
         [self addTarget:self action:@selector(didTouchUp) forControlEvents:UIControlEventTouchUpInside];
         [self addTarget:self action:@selector(didTouchUp) forControlEvents:UIControlEventTouchUpOutside];
@@ -86,10 +80,6 @@
 }
 
 #pragma mark - Draw
-
-- (void)drawRect:(CGRect)rect {
-    
-}
 
 - (void)drawButton {
     self.backgroundColor = [UIColor clearColor];
@@ -156,12 +146,10 @@
 }
 
 - (void)layoutSubviews {
-    
     for (CALayer *layer in @[firstCircleLayer, secondCircleLayer, thirdCircleLayer, imageLayer]) {
         layer.anchorPoint = CGPointMake(0.5, 0.5);
         layer.position = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
     }
-
     [super layoutSubviews];
 }
 
@@ -186,6 +174,8 @@
 - (void)startAnimating {
     imageLayer.hidden = YES;
     if (!animationView) {
+        // TODO: Don't recreate for each session. Set to frame 0 and use APNG.
+        
         // Load PNG frames
         NSMutableArray *framePaths = [NSMutableArray new];
         for (int i = 0; i < 100; i++) {
@@ -193,6 +183,7 @@
             s = [[NSBundle mainBundle] pathForResource:s ofType:@"png"];
             [framePaths addObject:s];
         }
+        
         // Create animated image and put it in an image view
         UIImage *image = [[YYFrameImage alloc] initWithImagePaths:framePaths
                                                  oneFrameDuration:0.04166 // 24 fps
@@ -217,47 +208,35 @@
 }
 
 - (void)startVisualizer {
-    
-    visView = [[VisView alloc] initWithBars:17 frame:thirdCircleLayer.bounds color:nil];
-    [self addSubview:visView];
-    visView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
+    // Create and position waveform view
+    waveformView = [[AudioWaveformView alloc] initWithBars:17 frame:thirdCircleLayer.bounds];
+    [self addSubview:waveformView];
+    waveformView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
     imageLayer.hidden = YES;
-        
-    [visualizerTimer invalidate];
-    visualizerTimer = nil;
-    visualizerTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(visualizerTimer:) userInfo:nil repeats:YES];
+    
+    // Set off update timer for waveform
+    [waveformTimer invalidate];
+    waveformTimer = nil;
+    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:0.05
+                                                     target:self
+                                                   selector:@selector(waveformTicker)
+                                                   userInfo:nil
+                                                    repeats:YES];
 }
 
 - (void)stopVisualizer {
-    [visView removeFromSuperview];
-    visView = nil;
+    [waveformView removeFromSuperview];
+    waveformView = nil;
     imageLayer.hidden = NO;
     
-    [visualizerTimer invalidate];
-    visualizerTimer = nil;
-
-    return;
-    [audioView stopAudioVisualizer];
-    [audioView removeFromSuperview];
-    audioView = nil;
-    
-    imageLayer.hidden = NO;
+    // Kill timer
+    [waveformTimer invalidate];
+    waveformTimer = nil;
 }
 
-- (void)visualizerTimer:(CADisplayLink *)timer {
-    
-//    const double ALPHA = 1.05;
-//
-//    double averagePowerForChannel = pow(10, (0.05 * [_audioPlayer averagePowerForChannel:0]));
-//    lowPassReslts = ALPHA * averagePowerForChannel + (1.0 - ALPHA) * lowPassReslts;
-//
-//    double averagePowerForChannel1 = pow(10, (0.05 * [_audioPlayer averagePowerForChannel:1]));
-//    lowPassReslts1 = ALPHA * averagePowerForChannel1 + (1.0 - ALPHA) * lowPassReslts1;
-    
+- (void)waveformTicker {
     CGFloat f = [self.audioLevelDataSource audioVisualizerLevel];
-    [visView addSampleLevel:f];
-    NSLog(@"%.2f", f);
-//    [audioView animateAudioVisualizerWithChannel0Level:f andChannel1Level:f];
+    [waveformView addSampleLevel:f];
 }
 
 @end
