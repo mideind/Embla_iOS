@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C35C1D0057789BFCE789E42 /* libPods-Embla.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C480A8697C218071EDA11AB0 /* libPods-Embla.a */; };
+		58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF1E2EC415384E4A4629D2F /* libPods-Embla.a */; };
 		D34C17CE1C948F5700D69BCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C17CD1C948F5700D69BCA /* main.m */; };
 		D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C17D01C948F5700D69BCA /* AppDelegate.m */; };
 		D34C17D91C948F5800D69BCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34C17D81C948F5800D69BCA /* Assets.xcassets */; };
@@ -152,7 +152,6 @@
 /* Begin PBXFileReference section */
 		4A9721C02DC1D460E02043CD /* Pods-Embla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Embla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Embla/Pods-Embla.debug.xcconfig"; sourceTree = "<group>"; };
 		6C682F8DD9C94E41979FE816 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		C480A8697C218071EDA11AB0 /* libPods-Embla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Embla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECB645A36BDC7BD3FF6E417 /* Pods-Greynir.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greynir.release.xcconfig"; path = "Pods/Target Support Files/Pods-Greynir/Pods-Greynir.release.xcconfig"; sourceTree = "<group>"; };
 		D34C17C91C948F5700D69BCA /* Embla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Embla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34C17CD1C948F5700D69BCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -293,6 +292,8 @@
 		F47D20762371B82F00E4DB6A /* EMBLA_256px_00032.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMBLA_256px_00032.png; sourceTree = "<group>"; };
 		F47D20772371B82F00E4DB6A /* EMBLA_256px_00033.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMBLA_256px_00033.png; sourceTree = "<group>"; };
 		F47D20782371B82F00E4DB6A /* EMBLA_256px_00027.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMBLA_256px_00027.png; sourceTree = "<group>"; };
+		F47D20DD2371EAB000E4DB6A /* AudioVisualizerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioVisualizerView.h; path = Embla/AudioVisualizerView.h; sourceTree = SOURCE_ROOT; };
+		F47D20DE2371EAB100E4DB6A /* AudioVisualizerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioVisualizerView.m; path = Embla/AudioVisualizerView.m; sourceTree = SOURCE_ROOT; };
 		F48D15A422DCD31800B2996C /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		F48D15A522DCD44500B2996C /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		F48D15A622DCD44E00B2996C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 		F4E7855C23690273004E29D1 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		F4E7855D23690273004E29D1 /* privacy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
 		F4E78561236905A9004E29D1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
+		FDF1E2EC415384E4A4629D2F /* libPods-Embla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Embla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,8 +334,8 @@
 			files = (
 				F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */,
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
-				0C35C1D0057789BFCE789E42 /* libPods-Embla.a in Frameworks */,
 				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
+				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +348,7 @@
 				F40B12552343908F00CBE9B4 /* WebKit.framework */,
 				F4BBD1A8233A69A700B6A55A /* OpenEars.framework */,
 				F4482F2B22B930530050148E /* CoreLocation.framework */,
-				C480A8697C218071EDA11AB0 /* libPods-Embla.a */,
+				FDF1E2EC415384E4A4629D2F /* libPods-Embla.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -414,6 +416,8 @@
 		F427691F22C1215900BB6977 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				F47D20DD2371EAB000E4DB6A /* AudioVisualizerView.h */,
+				F47D20DE2371EAB100E4DB6A /* AudioVisualizerView.m */,
 				D379BE361C99FEC70049D06F /* AudioRecordingController.h */,
 				D379BE371C99FEC70049D06F /* AudioRecordingController.m */,
 				F492123322D61D5300337AF8 /* NSString+Additions.h */,
@@ -660,7 +664,7 @@
 				D34C17C51C948F5700D69BCA /* Sources */,
 				D34C17C61C948F5700D69BCA /* Frameworks */,
 				D34C17C71C948F5700D69BCA /* Resources */,
-				0B2C80AFE15BF1FD44C60569 /* [CP] Copy Pods Resources */,
+				E3F91C2BE4A38FD6E100A64F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -833,23 +837,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B2C80AFE15BF1FD44C60569 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Embla/Pods-Embla-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Embla/Pods-Embla-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Embla/Pods-Embla-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D7376F491EC06AD174E07DB4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -866,6 +853,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3F91C2BE4A38FD6E100A64F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Embla/Pods-Embla-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Embla/Pods-Embla-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Embla/Pods-Embla-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F4971E75236C7AAE00C8D2B5 /* Update CFBundleVersion number */ = {
@@ -1080,7 +1084,7 @@
 					"\"$(SRCROOT)/\"",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1107,7 +1111,7 @@
 					"$(PROJECT_DIR)/OpenEars",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

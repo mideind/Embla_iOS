@@ -17,6 +17,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, SessionButtonState) {
+  ButtonStateNormal,
+  ButtonStateAudio,
+  ButtonStateThinking,
+};
+
 @interface SessionButton : UIButton
 
 - (void)expand;

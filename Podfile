@@ -8,7 +8,6 @@ inhibit_all_warnings!
 target 'Embla' do
     pod 'googleapis', :path => '.'
     pod 'AFNetworking', '~> 3.0'
-    pod 'SDRecordButton', '~> 1.0'
     pod 'Reachability', '~> 3.2'
     pod 'YYImage', '~> 1.0.4'
 end
