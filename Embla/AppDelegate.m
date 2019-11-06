@@ -80,7 +80,7 @@
     };
 }
 
-#pragma mark - Location services
+#pragma mark - Location Services
 
 - (void)startLocationServices {
     self.locationManager = [[CLLocationManager alloc] init];

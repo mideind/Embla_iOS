@@ -68,7 +68,6 @@
 #pragma mark - Events
 
 - (void)didTouchDown {
-    
 }
 
 - (void)didTouchUp {
@@ -153,6 +152,8 @@
     [super layoutSubviews];
 }
 
+#pragma mark - Animate size
+
 - (void)expand {
     [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         self.transform = CGAffineTransformMakeScale(1.4, 1.4);
@@ -170,6 +171,8 @@
         //code for completion
     }];
 }
+
+#pragma mark - Logo animation
 
 - (void)startAnimating {
     imageLayer.hidden = YES;
@@ -207,7 +210,9 @@
     imageLayer.hidden = NO;
 }
 
-- (void)startVisualizer {
+#pragma mark - Waveform
+
+- (void)startWaveform {
     // Create and position waveform view
     waveformView = [[AudioWaveformView alloc] initWithBars:17 frame:thirdCircleLayer.bounds];
     [self addSubview:waveformView];
@@ -224,7 +229,8 @@
                                                     repeats:YES];
 }
 
-- (void)stopVisualizer {
+- (void)stopWaveform {
+    // Remove
     [waveformView removeFromSuperview];
     waveformView = nil;
     imageLayer.hidden = NO;
@@ -235,8 +241,8 @@
 }
 
 - (void)waveformTicker {
-    CGFloat f = [self.audioLevelDataSource audioVisualizerLevel];
-    [waveformView addSampleLevel:f];
+    CGFloat lvl = [self.audioLevelDataSource audioLevel];
+    [waveformView addSampleLevel:lvl];
 }
 
 @end

@@ -298,11 +298,11 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidStartRecording {
     [self.textView setContentOffset:CGPointZero animated:NO];
-    [self.button startVisualizer];
+    [self.button startWaveform];
 }
 
 - (void)sessionDidStopRecording {
-    [self.button stopVisualizer];
+    [self.button stopWaveform];
     [self.button startAnimating];
 }
 
@@ -363,7 +363,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.button contract];
         [self.button stopAnimating];
-        [self.button stopVisualizer];
+        [self.button stopWaveform];
         if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
             [[ActivationListener sharedInstance] startListening];
         }
@@ -394,22 +394,7 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 #pragma mark - Waveform view
 
-- (void)activateWaveform {
-//    if (displayLink) {
-//        return;
-//    }
-//    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateWaveform)];
-//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-}
-
-- (void)deactivateWaveform {
-//    if (displayLink) {
-//        [displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-//        displayLink = nil;
-//    }
-}
-
-- (CGFloat)audioVisualizerLevel {
+- (CGFloat)audioLevel {
     return self.currentSession ? [self.currentSession audioLevel] : 0.0f;
 }
 

@@ -17,21 +17,15 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, SessionButtonState) {
-  ButtonStateNormal,
-  ButtonStateAudio,
-  ButtonStateThinking,
-};
+@protocol AudioLevelSource <NSObject>
 
-@protocol AudioLevelDataSource <NSObject>
-
-- (CGFloat)audioVisualizerLevel;
+- (CGFloat)audioLevel;
 
 @end
 
 @interface SessionButton : UIButton
 
-@property (weak) id<AudioLevelDataSource> audioLevelDataSource;
+@property (weak) id<AudioLevelSource> audioLevelDataSource;
 
 - (void)expand;
 - (void)contract;
@@ -39,7 +33,7 @@ typedef NS_ENUM(NSInteger, SessionButtonState) {
 - (void)startAnimating;
 - (void)stopAnimating;
 
-- (void)startVisualizer;
-- (void)stopVisualizer;
+- (void)startWaveform;
+- (void)stopWaveform;
 
 @end
