@@ -264,7 +264,7 @@
                                                     <rect key="frame" x="214" y="6" width="184" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <segments>
-                                                        <segment title="Dóra"/>
+                                                        <segment title="Kona"/>
                                                         <segment title="Karl"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

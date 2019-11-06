@@ -214,7 +214,8 @@
 }
 
 - (void)stopAnimating {
-    animatedImageView.hidden = YES;
+    [animatedImageView removeFromSuperview];
+    animatedImageView = nil;
     imageLayer.hidden = NO;
 }
 
