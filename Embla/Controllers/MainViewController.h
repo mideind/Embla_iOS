@@ -17,7 +17,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivationListener.h"
+#import "SessionButton.h"
 
-@interface MainViewController : UIViewController <ActivationListenerDelegate>
+@interface MainViewController : UIViewController <ActivationListenerDelegate, AudioLevelDataSource>
 
 @end

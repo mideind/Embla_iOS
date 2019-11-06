@@ -24,7 +24,6 @@
 #import "MainViewController.h"
 #import "QuerySession.h"
 #import "Common.h"
-#import "SessionButton.h"
 #import "AudioRecordingController.h"
 #import "Reachability.h"
 #import "NSString+Additions.h"
@@ -68,6 +67,8 @@ static NSString * const kServerErrorMessage = \
     
     [self preloadSounds];
     [self setUpReachability];
+    
+    self.button.audioLevelDataSource = self;
     
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -217,8 +218,10 @@ Aðgangi er stýrt í kerfisstillingum.";
 #pragma mark - ActivationListenerDelegate
 
 - (void)didHearActivationPhrase:(NSString *)phrase {
-    [[ActivationListener sharedInstance] stopListening];
-    [self startSession];
+    if (!(self.currentSession && !self.currentSession.terminated)) {
+        [[ActivationListener sharedInstance] stopListening];
+        [self startSession];
+    }
 }
 
 - (IBAction)toggleVoiceActivation:(id)sender {
@@ -274,13 +277,10 @@ Aðgangi er stýrt í kerfisstillingum.";
         [self log:kNoInternetConnectivityMessage];
         return;
     }
-    
-    [self activateWaveform];
-    
+        
     // Create new session
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
     [self playUISound:@"rec_begin"];
-    [self.button startAnimating];
     [self.button expand];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.35 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.currentSession start];
@@ -298,9 +298,12 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidStartRecording {
     [self.textView setContentOffset:CGPointZero animated:NO];
+    [self.button startVisualizer];
 }
 
 - (void)sessionDidStopRecording {
+    [self.button stopVisualizer];
+    [self.button startAnimating];
 }
 
 - (void)sessionDidReceiveInterimResults:(NSArray<NSString *> *)results {
@@ -358,9 +361,9 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidTerminate {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self deactivateWaveform];
         [self.button contract];
         [self.button stopAnimating];
+        [self.button stopVisualizer];
         if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
             [[ActivationListener sharedInstance] startListening];
         }
@@ -392,22 +395,22 @@ Aðgangi er stýrt í kerfisstillingum.";
 #pragma mark - Waveform view
 
 - (void)activateWaveform {
-    if (displayLink) {
-        return;
-    }
-    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateWaveform)];
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+//    if (displayLink) {
+//        return;
+//    }
+//    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateWaveform)];
+//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
 }
 
 - (void)deactivateWaveform {
-    if (displayLink) {
-        [displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-        displayLink = nil;
-    }
+//    if (displayLink) {
+//        [displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+//        displayLink = nil;
+//    }
 }
 
-- (void)updateWaveform {
-    CGFloat level = self.currentSession ? [self.currentSession audioLevel] : 0.0f;
+- (CGFloat)audioVisualizerLevel {
+    return self.currentSession ? [self.currentSession audioLevel] : 0.0f;
 }
 
 #pragma mark - UI sounds

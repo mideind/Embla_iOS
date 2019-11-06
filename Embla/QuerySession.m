@@ -38,6 +38,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 @interface QuerySession () <AudioRecordingControllerDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
+    CGFloat recordingSampleAvg;
     CGFloat speechDuration;
     int speechAudioSize;
     BOOL endOfSingleUtteranceReceived;
@@ -134,11 +135,14 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
 //    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), (int)avg, (int)max);
     
+    //DLog(@"Sample: %d", avg);
+    
     float ampl = max/32767.f; // Divide by max value of signed 16-bit integer
     float decibels = 20 * log10(ampl);
     //    DLog(@"Ampl: %.8f", ampl);
     //    DLog(@"DecB: %.2f", decibels);
     
+    recordingSampleAvg = avg;
     recordingDecibelLevel = decibels;
         
     // Google recommends sending samples in 100 ms chunks
@@ -445,16 +449,24 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 // the latest microphone input. Otherwise, the volume of the audio player is returned.
 
 - (CGFloat)audioLevel {
-    CGFloat level = 0.0f;
-    if (_isRecording) {
-        level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
+    CGFloat level = recordingSampleAvg / 16383.f;
+    if (level > 1.0) {
+        level = 1.0;
     }
-    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
-        [self.audioPlayer updateMeters];
-        float decibels = [self.audioPlayer averagePowerForChannel:0];
-        level = [self _normalizedPowerLevelFromDecibels:decibels];
+    if (level < 0.05) {
+        level = 0.05;
     }
     return level;
+//    CGFloat level = 0.0f;
+//    if (_isRecording) {
+//        level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
+//    }
+//    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
+//        [self.audioPlayer updateMeters];
+//        float decibels = [self.audioPlayer averagePowerForChannel:0];
+//        level = [self _normalizedPowerLevelFromDecibels:decibels];
+//    }
+//    return level;
 }
 
 - (CGFloat)_normalizedPowerLevelFromDecibels:(CGFloat)decibels {

@@ -23,12 +23,23 @@ typedef NS_ENUM(NSInteger, SessionButtonState) {
   ButtonStateThinking,
 };
 
+@protocol AudioLevelDataSource <NSObject>
+
+- (CGFloat)audioVisualizerLevel;
+
+@end
+
 @interface SessionButton : UIButton
+
+@property (weak) id<AudioLevelDataSource> audioLevelDataSource;
 
 - (void)expand;
 - (void)contract;
 
 - (void)startAnimating;
 - (void)stopAnimating;
+
+- (void)startVisualizer;
+- (void)stopVisualizer;
 
 @end

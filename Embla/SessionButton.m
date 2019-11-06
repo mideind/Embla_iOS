@@ -18,6 +18,8 @@
 #import "SessionButton.h"
 #import "UIColor+Hex.h"
 #import "YYImage.h"
+#import "AudioVisualizerView.h"
+#import "VisView.h"
 
 #define EXPANSION_DURATION  0.2
 
@@ -30,8 +32,10 @@
     CGRect defaultRect;
     CGPoint centerPoint;
     
-    UIImageView *animatedImageView;
-    
+    UIImageView *animationView;
+    AudioVisualizerView *audioView;
+    NSTimer *visualizerTimer;
+    VisView *visView;
     
     BOOL expanded;
 }
@@ -88,16 +92,11 @@
 }
 
 - (void)drawButton {
-    
     self.backgroundColor = [UIColor clearColor];
-    
- 
-    
     
     UIColor *firstColor = [UIColor colorFromHexString:@"#f5eaea"];
     UIColor *secondColor = [UIColor colorFromHexString:@"#f8dedd"];
     UIColor *thirdColor = [UIColor colorFromHexString:@"#f8d7d6"];
-
     
     // Get the root layer
     CALayer *layer = self.layer;
@@ -167,7 +166,7 @@
 }
 
 - (void)expand {
-    [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+    [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         self.transform = CGAffineTransformMakeScale(1.4, 1.4);
         expanded = YES;
     } completion:^(BOOL finished) {
@@ -176,7 +175,7 @@
 }
 
 - (void)contract {
-    [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+    [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         self.transform = CGAffineTransformIdentity;
         expanded = NO;
     } completion:^(BOOL finished) {
@@ -186,37 +185,79 @@
 
 - (void)startAnimating {
     imageLayer.hidden = YES;
-    if (!animatedImageView) {
+    if (!animationView) {
         // Load PNG frames
         NSMutableArray *framePaths = [NSMutableArray new];
-        NSMutableArray *times = [NSMutableArray new];
         for (int i = 0; i < 100; i++) {
             NSString *s = [NSString stringWithFormat:@"EMBLA_256px_%05d", i];
             s = [[NSBundle mainBundle] pathForResource:s ofType:@"png"];
             [framePaths addObject:s];
-            [times addObject:@(0.05)];
         }
         // Create animated image and put it in an image view
         UIImage *image = [[YYFrameImage alloc] initWithImagePaths:framePaths
-                                                 oneFrameDuration:0.05 // 20 fps
+                                                 oneFrameDuration:0.04166 // 24 fps
                                                         loopCount:0];
-        animatedImageView = [[YYAnimatedImageView alloc] initWithImage:image];
-        [self addSubview:animatedImageView];
+        animationView = [[YYAnimatedImageView alloc] initWithImage:image];
+        [self addSubview:animationView];
         
         // Center in button
-        CGRect r = animatedImageView.bounds;
+        CGRect r = animationView.bounds;
         r.size.width = 100;
         r.size.height = 100;
-        animatedImageView.bounds = r;
-        animatedImageView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
-     }
-    animatedImageView.hidden = NO;
+        animationView.bounds = r;
+        animationView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
+    }
+    animationView.hidden = NO;
 }
 
 - (void)stopAnimating {
-    [animatedImageView removeFromSuperview];
-    animatedImageView = nil;
+    [animationView removeFromSuperview];
+    animationView = nil;
     imageLayer.hidden = NO;
+}
+
+- (void)startVisualizer {
+    
+    visView = [[VisView alloc] initWithBars:17 frame:thirdCircleLayer.bounds color:nil];
+    [self addSubview:visView];
+    visView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
+    imageLayer.hidden = YES;
+        
+    [visualizerTimer invalidate];
+    visualizerTimer = nil;
+    visualizerTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(visualizerTimer:) userInfo:nil repeats:YES];
+}
+
+- (void)stopVisualizer {
+    [visView removeFromSuperview];
+    visView = nil;
+    imageLayer.hidden = NO;
+    
+    [visualizerTimer invalidate];
+    visualizerTimer = nil;
+
+    return;
+    [audioView stopAudioVisualizer];
+    [audioView removeFromSuperview];
+    audioView = nil;
+    
+    imageLayer.hidden = NO;
+}
+
+- (void)visualizerTimer:(CADisplayLink *)timer {
+    
+//    const double ALPHA = 1.05;
+//
+//    double averagePowerForChannel = pow(10, (0.05 * [_audioPlayer averagePowerForChannel:0]));
+//    lowPassReslts = ALPHA * averagePowerForChannel + (1.0 - ALPHA) * lowPassReslts;
+//
+//    double averagePowerForChannel1 = pow(10, (0.05 * [_audioPlayer averagePowerForChannel:1]));
+//    lowPassReslts1 = ALPHA * averagePowerForChannel1 + (1.0 - ALPHA) * lowPassReslts1;
+    
+    CGFloat f = [self.audioLevelDataSource audioVisualizerLevel];
+    [visView addSampleLevel:f];
+    NSLog(@"%.2f", f);
+//    [audioView animateAudioVisualizerWithChannel0Level:f andChannel1Level:f];
 }
 
 @end

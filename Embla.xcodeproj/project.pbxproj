@@ -139,6 +139,8 @@
 		F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
+		F4E1537523730FE300388420 /* AudioVisualizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D20DE2371EAB100E4DB6A /* AudioVisualizerView.m */; };
+		F4E1537F23732C1B00388420 /* VisView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1537E23732C1B00388420 /* VisView.m */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
@@ -308,6 +310,8 @@
 		F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ActivationListener.m; path = Embla/Services/ActivationListener.m; sourceTree = SOURCE_ROOT; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		F4E1537D23732C1B00388420 /* VisView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisView.h; sourceTree = "<group>"; };
+		F4E1537E23732C1B00388420 /* VisView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisView.m; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 		F4E7854823676639004E29D1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 		F427691F22C1215900BB6977 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				F4E1537D23732C1B00388420 /* VisView.h */,
+				F4E1537E23732C1B00388420 /* VisView.m */,
 				F47D20DD2371EAB000E4DB6A /* AudioVisualizerView.h */,
 				F47D20DE2371EAB100E4DB6A /* AudioVisualizerView.m */,
 				D379BE361C99FEC70049D06F /* AudioRecordingController.h */,
@@ -920,8 +926,10 @@
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
 				D379BE381C99FEC70049D06F /* AudioRecordingController.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
+				F4E1537F23732C1B00388420 /* VisView.m in Sources */,
 				F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
+				F4E1537523730FE300388420 /* AudioVisualizerView.m in Sources */,
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F454EE322357A90D003C2715 /* OnboardingViewController.m in Sources */,
