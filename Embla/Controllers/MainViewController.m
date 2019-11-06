@@ -68,7 +68,7 @@ static NSString * const kServerErrorMessage = \
     [self preloadSounds];
     [self setUpReachability];
     
-    self.button.audioLevelDataSource = self;
+    self.button.audioLevelSource = self;
     
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -259,9 +259,8 @@ Aðgangi er stýrt í kerfisstillingum.";
         if ([AVAudioSession sharedInstance].recordPermission != AVAudioSessionRecordPermissionGranted) {
             [self showMicAlert];
             return;
-        } else {
-            [self startSession];
         }
+        [self startSession];
     }
 }
 
@@ -272,6 +271,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     [self clearLog];
     
+    // Abort if no internet connection
     if (!self.connected) {
         [self playUISound:@"conn"];
         [self log:kNoInternetConnectivityMessage];

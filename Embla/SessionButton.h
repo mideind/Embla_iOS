@@ -25,7 +25,7 @@
 
 @interface SessionButton : UIButton
 
-@property (weak) id<AudioLevelSource> audioLevelDataSource;
+@property (weak) id<AudioLevelSource> audioLevelSource;
 
 - (void)expand;
 - (void)contract;

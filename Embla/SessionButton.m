@@ -21,6 +21,7 @@
 #import "AudioWaveformView.h"
 
 #define EXPANSION_DURATION  0.2
+#define EXPANSION_SCALE     1.4
 
 @interface SessionButton() {
     CALayer *firstCircleLayer;
@@ -32,8 +33,6 @@
     
     AudioWaveformView *waveformView;
     NSTimer *waveformTimer;
-    
-    BOOL expanded;
 }
 @end
 
@@ -68,14 +67,11 @@
 #pragma mark - Events
 
 - (void)didTouchDown {
+    // Nothing here for now
 }
 
 - (void)didTouchUp {
-//    if (expanded) {
-//        [self contract];
-//    } else {
-//        [self expand];
-//    }
+    // Nothing here for now
 }
 
 #pragma mark - Draw
@@ -156,8 +152,7 @@
 
 - (void)expand {
     [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
-        self.transform = CGAffineTransformMakeScale(1.4, 1.4);
-        expanded = YES;
+        self.transform = CGAffineTransformMakeScale(EXPANSION_SCALE, EXPANSION_SCALE);
     } completion:^(BOOL finished) {
         //code for completion
     }];
@@ -166,7 +161,6 @@
 - (void)contract {
     [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         self.transform = CGAffineTransformIdentity;
-        expanded = NO;
     } completion:^(BOOL finished) {
         //code for completion
     }];
@@ -176,6 +170,7 @@
 
 - (void)startAnimating {
     imageLayer.hidden = YES;
+    
     if (!animationView) {
         // TODO: Don't recreate for each session. Set to frame 0 and use APNG.
         
@@ -201,28 +196,29 @@
         animationView.bounds = r;
         animationView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
     }
-    animationView.hidden = NO;
 }
 
 - (void)stopAnimating {
     [animationView removeFromSuperview];
     animationView = nil;
+    
     imageLayer.hidden = NO;
 }
 
 #pragma mark - Waveform
 
 - (void)startWaveform {
+    imageLayer.hidden = YES;
+
     // Create and position waveform view
     waveformView = [[AudioWaveformView alloc] initWithBars:17 frame:thirdCircleLayer.bounds];
     [self addSubview:waveformView];
     waveformView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
-    imageLayer.hidden = YES;
     
     // Set off update timer for waveform
     [waveformTimer invalidate];
     waveformTimer = nil;
-    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:0.05
+    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 // 20 fps
                                                      target:self
                                                    selector:@selector(waveformTicker)
                                                    userInfo:nil
@@ -230,9 +226,9 @@
 }
 
 - (void)stopWaveform {
-    // Remove
     [waveformView removeFromSuperview];
     waveformView = nil;
+    
     imageLayer.hidden = NO;
     
     // Kill timer
@@ -241,8 +237,8 @@
 }
 
 - (void)waveformTicker {
-    CGFloat lvl = [self.audioLevelDataSource audioLevel];
-    [waveformView addSampleLevel:lvl];
+    CGFloat level = [self.audioLevelSource audioLevel];
+    [waveformView addSampleLevel:level];
 }
 
 @end

@@ -447,24 +447,23 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 // The session has an audio level property. If we are recording, this is the volume of
 // the latest microphone input. Otherwise, the volume of the audio player is returned.
 - (CGFloat)audioLevel {
+    CGFloat level = 0.f;
     if (_isRecording) {
-        CGFloat level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
+        level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
         DLog(@"Audio level: %.2f", level);
         if (isnan(level) || level < 0.07) {
             level = 0.05;
         }
-        return level;
-    } else {
-        return 0.f;
     }
-//    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
-//        [self.audioPlayer updateMeters];
-//        float decibels = [self.audioPlayer averagePowerForChannel:0];
-//        level = [self _normalizedPowerLevelFromDecibels:decibels];
-//    }
-//    return level;
+    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
+        [self.audioPlayer updateMeters];
+        float decibels = [self.audioPlayer averagePowerForChannel:0];
+        level = [self _normalizedPowerLevelFromDecibels:decibels];
+    }
+    return level;
 }
 
+// Given a decibel range, normalize it to a value between 0.0 and 1.0
 - (CGFloat)_normalizedPowerLevelFromDecibels:(CGFloat)decibels {
     if (decibels < -60.0f || decibels == 0.0f) {
         return 0.0f;
