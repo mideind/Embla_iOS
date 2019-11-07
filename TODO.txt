@@ -8,7 +8,9 @@ TODO list for Embla iOS app
 * Test Bluetooth audio input/output switching
 * Onboarding/Intro view when app is first launched
 * More accurate dB measurement (accumulate and average out dB level instead of grabbing the exact value at the given moment)
+* Pick another icon for muting voice activation? Microphone perhaps too generic?
 
+DONE * Use Lato for top nav bar item titles
 DONE * Finish Session Button animations and waveform
 DONE * Add instructions web view
 DONE * Use local Lato font in about and privacy HTML documents
@@ -16,7 +18,6 @@ DONE * Local file fallback if unable to fetch HTML from remote server in web vie
 DONE * More robust type validation of data received from server.
 DONE * Only show query server selection in Settings if debug build
 DONE * Don't use 10.13-only SFSymbols in UI
-DONE * Fade out text on scroll in web views
 DONE * UI element to disable voice activation in Main View
 DONE * Fade out text on scroll in text view
 DONE * Location sending is flaky when re-enabled, fix that.

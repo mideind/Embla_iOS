@@ -28,10 +28,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiJ-xq-0fy">
-                                <rect key="frame" x="20" y="88" width="374" height="539"/>
+                                <rect key="frame" x="20" y="88" width="374" height="519"/>
                                 <subviews>
                                     <textView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-uC-XPA">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="539"/>
+                                        <rect key="frame" x="0.0" y="20" width="374" height="519"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration" label="Texti"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit.</string>
@@ -45,9 +45,9 @@
                                     <constraint firstAttribute="bottom" secondItem="EMZ-uC-XPA" secondAttribute="bottom" id="7iE-tl-Bnm"/>
                                     <constraint firstItem="EMZ-uC-XPA" firstAttribute="leading" secondItem="EiJ-xq-0fy" secondAttribute="leading" id="IW9-a3-Uap"/>
                                     <constraint firstItem="EMZ-uC-XPA" firstAttribute="width" secondItem="EiJ-xq-0fy" secondAttribute="width" id="ctM-Ve-DEf"/>
-                                    <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="EiJ-xq-0fy" secondAttribute="top" id="gfb-2v-ycg"/>
                                     <constraint firstAttribute="trailing" secondItem="EMZ-uC-XPA" secondAttribute="trailing" id="j2r-u0-EDK"/>
                                     <constraint firstItem="EMZ-uC-XPA" firstAttribute="height" secondItem="EiJ-xq-0fy" secondAttribute="height" id="m2b-El-cDS"/>
+                                    <constraint firstItem="EMZ-uC-XPA" firstAttribute="top" secondItem="EiJ-xq-0fy" secondAttribute="top" constant="20" id="owl-5W-YFN"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SessionButton">
@@ -379,6 +379,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
