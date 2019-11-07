@@ -177,13 +177,9 @@
     }
     [self addSubview:animationView];
     
-    // Center in button
-    CGRect r = animationView.bounds;
-    r.size.width = 100;
-    r.size.height = 100;
-    animationView.bounds = r;
+    // Animation should have same frame as the logo image layer.
+    animationView.bounds = imageLayer.bounds;
     animationView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
-
 }
 
 - (void)stopAnimating {

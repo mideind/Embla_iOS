@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "EmblaLogo@1x.png",
+      "filename" : "embla_logo@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "EmblaLogo@2x.png",
+      "filename" : "embla_logo@2x.png",
       "scale" : "2x"
     },
     {
