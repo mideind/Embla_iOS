@@ -29,7 +29,7 @@
     CALayer *thirdCircleLayer;
     CALayer *imageLayer;
     
-    UIImageView *animationView;
+    YYAnimatedImageView *animationView;
     
     AudioWaveformView *waveformView;
     NSTimer *waveformTimer;
@@ -172,35 +172,24 @@
     imageLayer.hidden = YES;
     
     if (!animationView) {
-        // TODO: Don't recreate for each session. Set to frame 0 and use APNG.
-        
-        // Load PNG frames
-        NSMutableArray *framePaths = [NSMutableArray new];
-        for (int i = 0; i < 100; i++) {
-            NSString *s = [NSString stringWithFormat:@"EMBLA_256px_%05d", i];
-            s = [[NSBundle mainBundle] pathForResource:s ofType:@"png"];
-            [framePaths addObject:s];
-        }
-        
-        // Create animated image and put it in an image view
-        UIImage *image = [[YYFrameImage alloc] initWithImagePaths:framePaths
-                                                 oneFrameDuration:0.04166 // 24 fps
-                                                        loopCount:0];
+        UIImage *image = [YYImage imageNamed:@"animation.apng"];
         animationView = [[YYAnimatedImageView alloc] initWithImage:image];
-        [self addSubview:animationView];
-        
-        // Center in button
-        CGRect r = animationView.bounds;
-        r.size.width = 100;
-        r.size.height = 100;
-        animationView.bounds = r;
-        animationView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
     }
+    [self addSubview:animationView];
+    
+    // Center in button
+    CGRect r = animationView.bounds;
+    r.size.width = 100;
+    r.size.height = 100;
+    animationView.bounds = r;
+    animationView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
+
 }
 
 - (void)stopAnimating {
     [animationView removeFromSuperview];
-    animationView = nil;
+    [animationView stopAnimating];
+    animationView.currentAnimatedImageIndex = 0;
     
     imageLayer.hidden = NO;
 }

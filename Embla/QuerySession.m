@@ -470,7 +470,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         return 0.0f;
     }
     // TODO: Tweak this for better results?
-    CGFloat exp = 0.04f;
+    CGFloat exp = 0.05f;
     return powf(
                     (powf(10.0f, exp * decibels) - powf(10.0f, exp * -60.0f))
                     * (1.0f / (1.0f - powf(10.0f, exp * -60.0f))),

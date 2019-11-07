@@ -57,6 +57,7 @@
 - (void)handleFailure {
     DLog(@"%@ failed to load remote URL %@", NSStringFromClass([self class]), self.url);
     if (!self.fallbackFilename) {
+        DLog(@"No local file fallback");
         return; // No fallback
     }
     NSURL *url = [[NSBundle mainBundle] URLForResource:self.fallbackFilename
