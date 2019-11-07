@@ -80,22 +80,32 @@
         CGFloat level = [waveformArray[i] floatValue];
         
         // Draw top bar
-        CGRect topRect = {  i * (barWidth + margin),
-                            barHeight - (level * barHeight),
-                            barWidth,
-                            level * barHeight };
+        CGRect topRect = {  i * (barWidth + margin), // x
+                            barHeight - (level * barHeight), // y
+                            barWidth, // width
+                            level * barHeight }; // height
         CGContextSetRGBFillColor(c, 232/255.f, 57/255.f, 57/255.f, 1.0);
-        CGContextSetRGBStrokeColor(c, 232/255.f, 57/255.f, 57/255.f, 1.0);
         CGContextFillRect(c, topRect);
+        CGContextAddArc(c,
+                        i * (barWidth + margin) + barWidth/2, // x
+                        barHeight - (level * barHeight), // y
+                        barWidth/2, // radius
+                        0.0, M_PI*2, YES);
+        CGContextFillPath(c);
         
         // Draw bottom bar
-        CGRect bottomRect = {   i * (barWidth + margin),
-                                centerY,
-                                barWidth,
-                                level * barHeight };
+        CGRect bottomRect = {   i * (barWidth + margin), // x
+                                centerY, // y
+                                barWidth, // width
+                                level * barHeight }; // height
         CGContextSetRGBFillColor(c, 242/255.f, 145/255.f, 143/255.f, 1.0);
-        CGContextSetRGBStrokeColor(c, 242/255.f, 145/255.f, 143/255.f, 1.0);
         CGContextFillRect(c, bottomRect);
+        CGContextAddArc(c,
+                        i * (barWidth + margin) + barWidth/2, // x
+                        centerY + (level * barHeight), // y
+                        barWidth/2, // radius
+                        0.0, M_PI*2, YES);
+        CGContextFillPath(c);
     }
 }
 

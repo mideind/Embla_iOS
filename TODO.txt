@@ -7,7 +7,10 @@ TODO list for Embla iOS app
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
 * Test Bluetooth audio input/output switching
 * Onboarding/Intro view when app is first launched
+* More accurate dB measurement (accumulate and average out dB level instead of grabbing the exact value at the given moment)
 
+DONE * Finish Session Button animations and waveform
+DONE * Add instructions web view
 DONE * Use local Lato font in about and privacy HTML documents
 DONE * Local file fallback if unable to fetch HTML from remote server in web views
 DONE * More robust type validation of data received from server.
