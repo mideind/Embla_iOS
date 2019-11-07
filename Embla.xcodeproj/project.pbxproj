@@ -140,6 +140,7 @@
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
 		F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1537E23732C1B00388420 /* AudioWaveformView.m */; };
+		F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1538223744F2000388420 /* InstructionsViewController.m */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
@@ -309,6 +310,8 @@
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		F4E1537D23732C1B00388420 /* AudioWaveformView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioWaveformView.h; sourceTree = "<group>"; };
 		F4E1537E23732C1B00388420 /* AudioWaveformView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioWaveformView.m; sourceTree = "<group>"; };
+		F4E1538223744F2000388420 /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsViewController.m; sourceTree = "<group>"; };
+		F4E1538323744F2000388420 /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsViewController.h; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 		F4E7854823676639004E29D1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -617,6 +620,8 @@
 			children = (
 				F427692522C1219A00BB6977 /* WebViewController.h */,
 				F427692622C1219A00BB6977 /* WebViewController.m */,
+				F4E1538323744F2000388420 /* InstructionsViewController.h */,
+				F4E1538223744F2000388420 /* InstructionsViewController.m */,
 				F4E7854823676639004E29D1 /* AboutViewController.h */,
 				F4E7854923676639004E29D1 /* AboutViewController.m */,
 				F4E7854B236766E0004E29D1 /* PrivacyViewController.h */,
@@ -925,6 +930,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
+				F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */,
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
 				D379BE381C99FEC70049D06F /* AudioRecordingService.m in Sources */,

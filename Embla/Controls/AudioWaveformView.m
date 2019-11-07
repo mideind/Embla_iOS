@@ -40,7 +40,7 @@
         self.numBars = barCount;
         self.spacing = DEFAULT_SPACING;
         waveformArray = [NSMutableArray new];
-        [self resetWithLevel:0.05];
+        [self resetWithLevel:0.1];
     }
     return self;
 }
@@ -75,9 +75,10 @@
     CGContextSetAllowsAntialiasing(c, YES);
     CGContextSetShouldAntialias(c, YES);
     
+    // Draw bar for each value in waveform array
     for (int i = 0; i < [waveformArray count]; i++) {
         CGFloat level = [waveformArray[i] floatValue];
-    
+        
         // Draw top bar
         CGRect topRect = {  i * (barWidth + margin),
                             barHeight - (level * barHeight),

@@ -400,7 +400,7 @@
                         <sections>
                             <tableViewSection id="bZ2-Fq-WHb">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yJj-po-nTP" imageView="YBp-2C-Kmt" rowHeight="50" style="IBUITableViewCellStyleDefault" id="VCh-4h-ChD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yJj-po-nTP" imageView="YBp-2C-Kmt" rowHeight="50" style="IBUITableViewCellStyleDefault" id="VCh-4h-ChD" userLabel="Stillingar">
                                         <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VCh-4h-ChD" id="dNi-np-YBf">
@@ -425,8 +425,33 @@
                                             <segue destination="0fs-On-g95" kind="show" id="RJD-MJ-JUE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GPb-Ri-SBC" imageView="zZ4-8X-S42" rowHeight="50" style="IBUITableViewCellStyleDefault" id="7n1-TO-s6u">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="CIP-AA-O2D" imageView="Zvf-zj-AZd" rowHeight="50" style="IBUITableViewCellStyleDefault" id="oVZ-z1-Er7" userLabel="Leiðbeiningar">
                                         <rect key="frame" x="0.0" y="78" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oVZ-z1-Er7" id="3Oj-lS-W2R">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Leiðbeiningar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CIP-AA-O2D" userLabel="Leiðbeiningar">
+                                                    <rect key="frame" x="85" y="0.0" width="290" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
+                                                    <color key="textColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Cube" id="Zvf-zj-AZd">
+                                                    <rect key="frame" x="20" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="V32-83-jlN" kind="show" id="l19-2e-OA2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GPb-Ri-SBC" imageView="zZ4-8X-S42" rowHeight="50" style="IBUITableViewCellStyleDefault" id="7n1-TO-s6u" userLabel="Um Emblu">
+                                        <rect key="frame" x="0.0" y="128" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7n1-TO-s6u" id="YbQ-fo-Dej">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
@@ -450,8 +475,8 @@
                                             <segue destination="yJc-aV-98j" kind="show" id="o2Z-gJ-TMw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="K4W-sY-M8I" imageView="1PP-hV-3Af" rowHeight="50" style="IBUITableViewCellStyleDefault" id="QJ5-sf-b3x">
-                                        <rect key="frame" x="0.0" y="128" width="414" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="K4W-sY-M8I" imageView="1PP-hV-3Af" rowHeight="50" style="IBUITableViewCellStyleDefault" id="QJ5-sf-b3x" userLabel="Persónuvernd">
+                                        <rect key="frame" x="0.0" y="178" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QJ5-sf-b3x" id="Q98-HB-uB4">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
@@ -536,6 +561,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dc-jq-40k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2930" y="1370"/>
+        </scene>
+        <!--Instructions-->
+        <scene sceneID="9i4-Ed-DQB">
+            <objects>
+                <viewController title="Um" id="V32-83-jlN" userLabel="Instructions" customClass="InstructionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VnG-OG-jVX"/>
+                        <viewControllerLayoutGuide type="bottom" id="zj7-uK-09z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f0J-3b-6Ar">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView opaque="NO" contentMode="scaleToFill" allowsLinkPreview="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwx-R5-hA2">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO" allowsPictureInPictureMediaPlayback="NO" suppressesIncrementalRendering="YES">
+                                    <dataDetectorTypes key="dataDetectorTypes" none="YES"/>
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences" javaScriptEnabled="NO"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zj7-uK-09z" firstAttribute="top" secondItem="Mwx-R5-hA2" secondAttribute="bottom" id="9iq-95-AhK"/>
+                            <constraint firstItem="Mwx-R5-hA2" firstAttribute="leading" secondItem="f0J-3b-6Ar" secondAttribute="leading" id="Hm1-on-OUC"/>
+                            <constraint firstItem="Mwx-R5-hA2" firstAttribute="top" secondItem="VnG-OG-jVX" secondAttribute="bottom" id="TXI-IY-gBG"/>
+                            <constraint firstAttribute="trailing" secondItem="Mwx-R5-hA2" secondAttribute="trailing" id="fij-SZ-HCB"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="iDp-rU-XC3">
+                        <barButtonItem key="backBarButtonItem" title="Til baka" id="W4W-RG-hsI"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="view" destination="f0J-3b-6Ar" id="zjl-Tk-O5t"/>
+                        <outlet property="webView" destination="Mwx-R5-hA2" id="hPC-n8-12Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ID8-Nd-qj6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4542" y="233"/>
         </scene>
     </scenes>
     <resources>

@@ -24,6 +24,7 @@
 
 #define ABOUT_URL                   @"https://embla.is/about.html"
 #define PRIVACY_URL                 @"https://embla.is/privacy.html"
+#define INSTRUCTIONS_URL            @"https://embla.is/instructions.html"
 
 #define REC_SAMPLE_RATE             16000.0f
 
