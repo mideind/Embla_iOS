@@ -29,6 +29,8 @@
 
 #define GOOGLE_HOST     @"speech.googleapis.com"
 
+// Phrases sent to Google API as part of speech context. Should make their speech
+// recognition more likely to identify these words. Doesn't seem to work that well :/
 #define PHRASES_ARRAY   @[@"Miðeind", @"Miðeindar"] // Just testing, for now...
 
 @interface SpeechRecognitionService ()

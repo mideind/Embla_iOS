@@ -18,15 +18,15 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AudioRecordingControllerDelegate <NSObject>
+@protocol AudioRecordingServiceDelegate <NSObject>
 
 - (void)processSampleData:(NSData *)data;
 
 @end
 
-@interface AudioRecordingController : NSObject
+@interface AudioRecordingService : NSObject
 
-@property(nonatomic, weak) id<AudioRecordingControllerDelegate> delegate;
+@property(nonatomic, weak) id<AudioRecordingServiceDelegate> delegate;
 
 + (instancetype)sharedInstance;
 - (OSStatus)prepareWithSampleRate:(double)sampleRate;

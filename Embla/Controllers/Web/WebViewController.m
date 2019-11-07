@@ -15,6 +15,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+    View controller superclass to load a web page into a web view
+*/
+
 #import "WebViewController.h"
 #import "Common.h"
 
@@ -52,6 +56,9 @@
 
 - (void)handleFailure {
     DLog(@"%@ failed to load remote URL %@", NSStringFromClass([self class]), self.url);
+    if (!self.fallbackFilename) {
+        return; // No fallback
+    }
     NSURL *url = [[NSBundle mainBundle] URLForResource:self.fallbackFilename
                                          withExtension:nil
                                           subdirectory:nil];

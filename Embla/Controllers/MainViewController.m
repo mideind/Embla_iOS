@@ -24,7 +24,7 @@
 #import "MainViewController.h"
 #import "QuerySession.h"
 #import "Common.h"
-#import "AudioRecordingController.h"
+#import "AudioRecordingService.h"
 #import "Reachability.h"
 #import "NSString+Additions.h"
 
@@ -84,7 +84,7 @@ static NSString * const kServerErrorMessage = \
     [[ActivationListener sharedInstance] setDelegate:self];
     
     // Prepare for audio recording
-    [[AudioRecordingController sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
+    [[AudioRecordingService sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

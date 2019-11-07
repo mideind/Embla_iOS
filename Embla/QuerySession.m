@@ -22,7 +22,7 @@
 */
 
 #import "QuerySession.h"
-#import "AudioRecordingController.h"
+#import "AudioRecordingService.h"
 #import "Common.h"
 #import "QueryService.h"
 #import "SpeechRecognitionService.h"
@@ -35,7 +35,7 @@
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 
-@interface QuerySession () <AudioRecordingControllerDelegate, AVAudioPlayerDelegate>
+@interface QuerySession () <AudioRecordingServiceDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
     CGFloat recordingSampleAvg;
@@ -92,8 +92,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     
     self.audioData = [NSMutableData new];
 
-    [[AudioRecordingController sharedInstance] setDelegate:self];
-    [[AudioRecordingController sharedInstance] start];
+    [[AudioRecordingService sharedInstance] setDelegate:self];
+    [[AudioRecordingService sharedInstance] start];
     
     [self.delegate sessionDidStartRecording];
 }
@@ -102,7 +102,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     _isRecording = NO;
     recordingDecibelLevel = 0.f;
     
-    [[AudioRecordingController sharedInstance] stop];
+    [[AudioRecordingService sharedInstance] stop];
     [[SpeechRecognitionService sharedInstance] stopStreaming];
     
     DLog(@"Speech recognition duration: %.2f seconds (%d bytes)", speechDuration, speechAudioSize);
@@ -448,11 +448,12 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 // the latest microphone input. Otherwise, the volume of the audio player is returned.
 - (CGFloat)audioLevel {
     CGFloat level = 0.f;
+    CGFloat minLevel = 0.04f;
     if (_isRecording) {
         level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
         DLog(@"Audio level: %.2f", level);
-        if (isnan(level) || level < 0.07) {
-            level = 0.05;
+        if (isnan(level) || level < minLevel) {
+            level = minLevel;
         }
     }
     else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
@@ -469,9 +470,10 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         return 0.0f;
     }
     // TODO: Tweak this for better results?
+    CGFloat exp = 0.04f;
     return powf(
-                    (powf(10.0f, 0.03f * decibels) - powf(10.0f, 0.03f * -60.0f))
-                    * (1.0f / (1.0f - powf(10.0f, 0.03f * -60.0f))),
+                    (powf(10.0f, exp * decibels) - powf(10.0f, exp * -60.0f))
+                    * (1.0f / (1.0f - powf(10.0f, exp * -60.0f))),
                     1.0f / 2.0f
                 );
 }

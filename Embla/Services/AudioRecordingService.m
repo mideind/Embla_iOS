@@ -21,20 +21,20 @@
 */
 
 #import <AVFoundation/AVFoundation.h>
-#import "AudioRecordingController.h"
+#import "AudioRecordingService.h"
 #import "Common.h"
 
-@interface AudioRecordingController ()
+@interface AudioRecordingService ()
 {
     AudioComponentInstance remoteIOUnit;
     BOOL audioComponentInitialized;
 }
 @end
 
-@implementation AudioRecordingController
+@implementation AudioRecordingService
 
 + (instancetype)sharedInstance {
-    static AudioRecordingController *instance = nil;
+    static AudioRecordingService *instance = nil;
     if (!instance) {
         instance = [self new];
     }
@@ -71,7 +71,7 @@ static OSStatus recordingCallback(void *inRefCon,
                                   AudioBufferList *ioData) {
     OSStatus status;
     
-    AudioRecordingController *audioController = (__bridge AudioRecordingController *)inRefCon;
+    AudioRecordingService *audioController = (__bridge AudioRecordingService *)inRefCon;
     
     int channelCount = 1;
     

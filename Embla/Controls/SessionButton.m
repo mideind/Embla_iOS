@@ -21,7 +21,7 @@
 #import "AudioWaveformView.h"
 
 #define EXPANSION_DURATION  0.2
-#define EXPANSION_SCALE     1.4
+#define EXPANSION_SCALE     1.5
 
 @interface SessionButton() {
     CALayer *firstCircleLayer;
@@ -211,7 +211,7 @@
     imageLayer.hidden = YES;
 
     // Create and position waveform view
-    waveformView = [[AudioWaveformView alloc] initWithBars:17 frame:thirdCircleLayer.bounds];
+    waveformView = [[AudioWaveformView alloc] initWithBars:15 frame:thirdCircleLayer.bounds];
     [self addSubview:waveformView];
     waveformView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
     

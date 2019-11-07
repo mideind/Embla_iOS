@@ -22,8 +22,7 @@
 
 #import "AudioWaveformView.h"
 
-#define MAX_BAR_COUNT       50
-#define DEFAULT_SPACING     3.0f
+#define DEFAULT_SPACING     3.5f
 
 @interface AudioWaveformView()
 {
@@ -41,6 +40,7 @@
         self.numBars = barCount;
         self.spacing = DEFAULT_SPACING;
         waveformArray = [NSMutableArray new];
+        [self resetWithLevel:0.05];
     }
     return self;
 }
@@ -52,6 +52,14 @@
     }
     // Tell display server this view needs to be redrawn.
     [self setNeedsDisplay];
+}
+
+// Populate waveform array with a given value
+- (void)resetWithLevel:(CGFloat)level {
+    [waveformArray removeAllObjects];
+    while ([waveformArray count] < self.numBars) {
+        [waveformArray addObject:@(level)];
+    }
 }
 
 - (void)drawRect:(CGRect)rect {
