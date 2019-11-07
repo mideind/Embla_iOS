@@ -448,7 +448,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 // the latest microphone input. Otherwise, the volume of the audio player is returned.
 - (CGFloat)audioLevel {
     CGFloat level = 0.f;
-    CGFloat minLevel = 0.04f;
+    CGFloat minLevel = 0.03f;
     if (_isRecording) {
         level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
         DLog(@"Audio level: %.2f", level);

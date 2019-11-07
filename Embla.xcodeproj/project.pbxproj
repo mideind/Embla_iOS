@@ -42,6 +42,7 @@
 		F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1537E23732C1B00388420 /* AudioWaveformView.m */; };
 		F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1538223744F2000388420 /* InstructionsViewController.m */; };
 		F4E153862374657C00388420 /* animation.apng in Resources */ = {isa = PBXBuildFile; fileRef = F4E153852374657C00388420 /* animation.apng */; };
+		F4E15388237473A300388420 /* instructions.html in Resources */ = {isa = PBXBuildFile; fileRef = F4E15387237473A200388420 /* instructions.html */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
@@ -114,6 +115,7 @@
 		F4E1538223744F2000388420 /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsViewController.m; sourceTree = "<group>"; };
 		F4E1538323744F2000388420 /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsViewController.h; sourceTree = "<group>"; };
 		F4E153852374657C00388420 /* animation.apng */ = {isa = PBXFileReference; lastKnownFileType = file; path = animation.apng; sourceTree = "<group>"; };
+		F4E15387237473A200388420 /* instructions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = instructions.html; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 		F4E7854823676639004E29D1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 			children = (
 				F4E7855B23690273004E29D1 /* about.html */,
 				F4E7855D23690273004E29D1 /* privacy.html */,
+				F4E15387237473A200388420 /* instructions.html */,
 				F4E7855C23690273004E29D1 /* style.css */,
 				F4E78561236905A9004E29D1 /* deploy.sh */,
 			);
@@ -448,6 +451,7 @@
 				F427692D22C122F300BB6977 /* rec_begin.caf in Resources */,
 				F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */,
 				F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */,
+				F4E15388237473A300388420 /* instructions.html in Resources */,
 				F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
