@@ -152,10 +152,13 @@
 
 - (void)expand {
     [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+        // Expand
         self.transform = CGAffineTransformMakeScale(EXPANSION_SCALE, EXPANSION_SCALE);
+        // Reposition upwards
         CGPoint c = self.center;
         c.y -= 30;
         self.center = c;
+        // Fade out logo
         imageLayer.opacity = 0.0f;
     } completion:^(BOOL finished) {
         //code for completion
@@ -164,10 +167,13 @@
 
 - (void)contract {
     [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+        // Contract to original size
         self.transform = CGAffineTransformIdentity;
+        // Move to original position
         CGPoint c = self.center;
         c.y += 30;
         self.center = c;
+        // Fade in logo
         imageLayer.opacity = 1.0f;
     } completion:^(BOOL finished) {
         //code for completion
@@ -177,24 +183,26 @@
 #pragma mark - Logo animation
 
 - (void)startAnimating {
-    
+    // Create animation view, if necessary
     if (!animationView) {
         UIImage *image = [YYImage imageNamed:@"animation.apng"];
         animationView = [[YYAnimatedImageView alloc] initWithImage:image];
     }
-    [self addSubview:animationView];
-    
     // Animation should have same frame as the logo image layer.
     animationView.bounds = imageLayer.bounds;
     animationView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
+    // Show it
+    [self addSubview:animationView];
 }
 
 - (void)stopAnimating {
     [animationView stopAnimating];
-    animationView.currentAnimatedImageIndex = 99;
+    animationView.currentAnimatedImageIndex = 99; // Fix at final image (full logo)
+    // Fade it out
     [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         animationView.alpha = 0.0f;
     } completion:^(BOOL finished) {
+        // Once faded out, remove it from view and reset to first frame
         animationView.currentAnimatedImageIndex = 0;
         [animationView removeFromSuperview];
         animationView.alpha = 1.0f;
@@ -205,14 +213,25 @@
 
 - (void)startWaveform {
 
-    // Create and position waveform view
+    // Create waveform view, if necessary
     if (!waveformView) {
         waveformView = [[AudioWaveformView alloc] initWithBars:15 frame:thirdCircleLayer.bounds];
     }
-    waveformView.alpha = 0.0f;
+    
+    // Reset and make transparent
     [waveformView reset];
-    [self addSubview:waveformView];
+    [waveformView setNeedsDisplay]; // Pre-render the reset waveform
+    waveformView.alpha = 0.0f;
+    
+    // Add to view and position it
     waveformView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
+    [self addSubview:waveformView];
+    
+    // Fade it in
+    [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+        waveformView.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+    }];
     
     // Set off update timer for waveform
     [waveformTimer invalidate];
@@ -222,18 +241,12 @@
                                                    selector:@selector(waveformTicker)
                                                    userInfo:nil
                                                     repeats:YES];
-    
-    [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
-        waveformView.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-        //code for completion
-    }];
 }
 
 - (void)stopWaveform {
     [waveformView removeFromSuperview];
         
-    // Kill timer
+    // Kill update timer
     [waveformTimer invalidate];
     waveformTimer = nil;
 }
