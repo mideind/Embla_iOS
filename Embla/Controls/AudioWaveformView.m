@@ -23,6 +23,7 @@
 #import "AudioWaveformView.h"
 
 #define DEFAULT_SPACING     3.5f
+#define DEFAULT_LEVEL       0.1f
 
 @interface AudioWaveformView()
 {
@@ -40,7 +41,7 @@
         self.numBars = barCount;
         self.spacing = DEFAULT_SPACING;
         waveformArray = [NSMutableArray new];
-        [self resetWithLevel:0.1];
+        [self reset];
     }
     return self;
 }
@@ -60,6 +61,10 @@
     while ([waveformArray count] < self.numBars) {
         [waveformArray addObject:@(level)];
     }
+}
+
+- (void)reset {
+    [self resetWithLevel:DEFAULT_LEVEL];
 }
 
 - (void)drawRect:(CGRect)rect {

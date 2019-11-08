@@ -20,7 +20,7 @@
 #import "YYImage.h"
 #import "AudioWaveformView.h"
 
-#define EXPANSION_DURATION  0.2
+#define EXPANSION_DURATION  0.15
 #define EXPANSION_SCALE     1.4
 
 @interface SessionButton() {
@@ -156,6 +156,7 @@
         CGPoint c = self.center;
         c.y -= 30;
         self.center = c;
+        imageLayer.opacity = 0.0f;
     } completion:^(BOOL finished) {
         //code for completion
     }];
@@ -167,6 +168,7 @@
         CGPoint c = self.center;
         c.y += 30;
         self.center = c;
+        imageLayer.opacity = 1.0f;
     } completion:^(BOOL finished) {
         //code for completion
     }];
@@ -175,7 +177,6 @@
 #pragma mark - Logo animation
 
 - (void)startAnimating {
-    imageLayer.hidden = YES;
     
     if (!animationView) {
         UIImage *image = [YYImage imageNamed:@"animation.apng"];
@@ -185,24 +186,31 @@
     
     // Animation should have same frame as the logo image layer.
     animationView.bounds = imageLayer.bounds;
-    animationView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};;
+    animationView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
 }
 
 - (void)stopAnimating {
-    [animationView removeFromSuperview];
     [animationView stopAnimating];
-    animationView.currentAnimatedImageIndex = 0;
-    
-    imageLayer.hidden = NO;
+    animationView.currentAnimatedImageIndex = 99;
+    [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+        animationView.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        animationView.currentAnimatedImageIndex = 0;
+        [animationView removeFromSuperview];
+        animationView.alpha = 1.0f;
+    }];
 }
 
 #pragma mark - Waveform
 
 - (void)startWaveform {
-    imageLayer.hidden = YES;
 
     // Create and position waveform view
-    waveformView = [[AudioWaveformView alloc] initWithBars:15 frame:thirdCircleLayer.bounds];
+    if (!waveformView) {
+        waveformView = [[AudioWaveformView alloc] initWithBars:15 frame:thirdCircleLayer.bounds];
+    }
+    waveformView.alpha = 0.0f;
+    [waveformView reset];
     [self addSubview:waveformView];
     waveformView.center = (CGPoint){CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
     
@@ -214,14 +222,17 @@
                                                    selector:@selector(waveformTicker)
                                                    userInfo:nil
                                                     repeats:YES];
+    
+    [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+        waveformView.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        //code for completion
+    }];
 }
 
 - (void)stopWaveform {
     [waveformView removeFromSuperview];
-    waveformView = nil;
-    
-    imageLayer.hidden = NO;
-    
+        
     // Kill timer
     [waveformTimer invalidate];
     waveformTimer = nil;

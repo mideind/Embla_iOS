@@ -25,5 +25,6 @@
 
 - (instancetype)initWithBars:(NSInteger)barCount frame:(CGRect)frame;
 - (void)addSampleLevel:(CGFloat)level;
+- (void)reset;
 
 @end
