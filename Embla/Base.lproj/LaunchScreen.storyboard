@@ -6,6 +6,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -20,14 +25,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmblaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="sJi-A2-bRT">
-                                <rect key="frame" x="45" y="23" width="324" height="850"/>
+                                <rect key="frame" x="45" y="278" width="324" height="340"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="996" constant="340" id="tVT-QJ-bn2"/>
+                                    <constraint firstAttribute="width" priority="996" constant="340" id="wbJ-3k-AhA"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BETA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sla-3E-m69">
+                                <rect key="frame" x="163.5" y="590" width="87.5" height="44"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="36"/>
+                                <color key="textColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="sJi-A2-bRT" secondAttribute="trailing" constant="45" id="99S-1Q-8Ix"/>
-                            <constraint firstItem="sJi-A2-bRT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="45" id="S9b-Je-aF9"/>
+                            <constraint firstAttribute="trailing" secondItem="sJi-A2-bRT" secondAttribute="trailing" constant="45" id="RMr-KB-fKo"/>
                             <constraint firstItem="sJi-A2-bRT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Srf-yU-bv1"/>
+                            <constraint firstItem="sla-3E-m69" firstAttribute="top" secondItem="sJi-A2-bRT" secondAttribute="bottom" constant="-28" id="Uhu-XO-zbr"/>
+                            <constraint firstItem="sJi-A2-bRT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="45" id="Yma-X3-b9h"/>
+                            <constraint firstItem="sla-3E-m69" firstAttribute="centerX" secondItem="sJi-A2-bRT" secondAttribute="centerX" id="jNc-hC-vBn"/>
                             <constraint firstItem="sJi-A2-bRT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yzr-iF-a1k"/>
                         </constraints>
                     </view>
@@ -38,6 +55,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EmblaLogo" width="425" height="425"/>
+        <image name="EmblaLogo" width="1000" height="1000"/>
     </resources>
 </document>
