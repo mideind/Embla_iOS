@@ -79,9 +79,9 @@
 - (void)drawButton {
     self.backgroundColor = [UIColor clearColor];
     
-    UIColor *firstColor = [UIColor colorFromHexString:@"#f5eaea"];
-    UIColor *secondColor = [UIColor colorFromHexString:@"#f8dedd"];
-    UIColor *thirdColor = [UIColor colorFromHexString:@"#f8d7d6"];
+    UIColor *firstColor = [UIColor colorFromHexString:@"#FACDCC" alpha:0.2];
+    UIColor *secondColor = [UIColor colorFromHexString:@"#F98582" alpha:0.2];
+    UIColor *thirdColor = [UIColor colorFromHexString:@"#F86662" alpha:0.2];
     
     // Get the root layer
     CALayer *layer = self.layer;

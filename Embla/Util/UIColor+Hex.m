@@ -32,8 +32,12 @@
 
 @implementation UIColor (Hex)
 
-// Assumes input of the form "#00FF00" (#RRGGBB) or "00ff00"
 + (UIColor *)colorFromHexString:(NSString *)hexString {
+    return [self colorFromHexString:hexString alpha:1.0];
+}
+
+// Assumes input of the form "#00FF00" (#RRGGBB) or "00ff00"
++ (UIColor *)colorFromHexString:(NSString *)hexString alpha:(CGFloat)alpha {
     unsigned rgbValue = 0;
     NSScanner *scanner = [NSScanner scannerWithString:hexString];
     if ([hexString hasPrefix:@"#"]) {
@@ -43,7 +47,7 @@
     return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0
                            green:((rgbValue & 0xFF00) >> 8)/255.0
                             blue:(rgbValue & 0xFF)/255.0
-                           alpha:1.0];
+                           alpha:alpha];
 }
 
 @end
