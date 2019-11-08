@@ -21,7 +21,7 @@
 #import "AudioWaveformView.h"
 
 #define EXPANSION_DURATION  0.2
-#define EXPANSION_SCALE     1.5
+#define EXPANSION_SCALE     1.4
 
 @interface SessionButton() {
     CALayer *firstCircleLayer;
@@ -78,14 +78,14 @@
 
 - (void)drawButton {
     self.backgroundColor = [UIColor clearColor];
-    
-    UIColor *firstColor = [UIColor colorFromHexString:@"#FACDCC" alpha:0.2];
-    UIColor *secondColor = [UIColor colorFromHexString:@"#F98582" alpha:0.2];
-    UIColor *thirdColor = [UIColor colorFromHexString:@"#F86662" alpha:0.2];
+
+    UIColor *firstColor = [UIColor colorFromHexString:@"#F9F0F0"]; // outermost circle
+    UIColor *secondColor = [UIColor colorFromHexString:@"#F9E2E1"];
+    UIColor *thirdColor = [UIColor colorFromHexString:@"#F9DCDB"]; // innermost circle
     
     // Get the root layer
     CALayer *layer = self.layer;
-
+    
     if (!firstCircleLayer) {
         
         // First circle
@@ -153,6 +153,9 @@
 - (void)expand {
     [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         self.transform = CGAffineTransformMakeScale(EXPANSION_SCALE, EXPANSION_SCALE);
+        CGPoint c = self.center;
+        c.y -= 30;
+        self.center = c;
     } completion:^(BOOL finished) {
         //code for completion
     }];
@@ -161,6 +164,9 @@
 - (void)contract {
     [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         self.transform = CGAffineTransformIdentity;
+        CGPoint c = self.center;
+        c.y += 30;
+        self.center = c;
     } completion:^(BOOL finished) {
         //code for completion
     }];

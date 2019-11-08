@@ -43,7 +43,6 @@
 		F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1538223744F2000388420 /* InstructionsViewController.m */; };
 		F4E153862374657C00388420 /* animation.apng in Resources */ = {isa = PBXBuildFile; fileRef = F4E153852374657C00388420 /* animation.apng */; };
 		F4E15388237473A300388420 /* instructions.html in Resources */ = {isa = PBXBuildFile; fileRef = F4E15387237473A200388420 /* instructions.html */; };
-		F4E1538B2374DC2E00388420 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1538A2374DC2E00388420 /* GradientView.m */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
@@ -117,8 +116,6 @@
 		F4E1538323744F2000388420 /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsViewController.h; sourceTree = "<group>"; };
 		F4E153852374657C00388420 /* animation.apng */ = {isa = PBXFileReference; lastKnownFileType = file; path = animation.apng; sourceTree = "<group>"; };
 		F4E15387237473A200388420 /* instructions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = instructions.html; sourceTree = "<group>"; };
-		F4E153892374DC2E00388420 /* GradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
-		F4E1538A2374DC2E00388420 /* GradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 		F4E7854823676639004E29D1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -226,8 +223,6 @@
 		F427691F22C1215900BB6977 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				F4E153892374DC2E00388420 /* GradientView.h */,
-				F4E1538A2374DC2E00388420 /* GradientView.m */,
 				F492123322D61D5300337AF8 /* NSString+Additions.h */,
 				F492123422D61D5300337AF8 /* NSString+Additions.m */,
 				F47D200D2370880900E4DB6A /* UIColor+Hex.h */,
@@ -552,7 +547,6 @@
 				F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
-				F4E1538B2374DC2E00388420 /* GradientView.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F454EE322357A90D003C2715 /* OnboardingViewController.m in Sources */,
 				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
