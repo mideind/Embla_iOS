@@ -23,7 +23,7 @@
 #import "AudioWaveformView.h"
 
 #define DEFAULT_SPACING     3.5f
-#define DEFAULT_LEVEL       0.1f
+#define DEFAULT_LEVEL       0.07f
 
 @interface AudioWaveformView()
 {

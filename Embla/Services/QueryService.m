@@ -21,7 +21,8 @@
 
 #import "QueryService.h"
 #import "Common.h"
-#import "AFNetworking.h"
+#import "AFURLSessionManager.h"
+#import "AFURLRequestSerialization.h"
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 

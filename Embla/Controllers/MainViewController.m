@@ -99,6 +99,7 @@ static NSString * const kServerErrorMessage = \
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     DLog(@"Main view will appear");
     
     [self setUpReachability];
@@ -117,6 +118,7 @@ static NSString * const kServerErrorMessage = \
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     DLog(@"Main view will disappear");
     
     // Terminate any ongoing session
@@ -259,7 +261,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     DLog(@"Voice activation: %d", enabled);
     
-    if (enabled) {
+    if (enabled && !self.currentSession) {
         [[ActivationListener sharedInstance] startListening];
     } else {
         [[ActivationListener sharedInstance] stopListening];
@@ -304,7 +306,9 @@ Aðgangi er stýrt í kerfisstillingum.";
         [self log:kNoInternetConnectivityMessage];
         return;
     }
-        
+    
+    [[ActivationListener sharedInstance] stopListening];
+    
     // Create new session
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
     [self playUISound:@"rec_begin"];

@@ -251,6 +251,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 }
 
 - (NSArray<NSString *> *)_transcriptsFromRecognitionResult:(StreamingRecognitionResult *)result {
+    // Take data structure received from speech recognition server and
+    // boil it down to an array of strings ordered by likelihood.
     NSMutableArray<NSString *> *res = [NSMutableArray new];
     if ([result.alternativesArray count]) {
         for (SpeechRecognitionAlternative *a in result.alternativesArray) {
@@ -431,7 +433,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     CGFloat minLevel = 0.03f;
     if (_isRecording) {
         level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
-        DLog(@"Audio level: %.2f", level);
+//        DLog(@"Audio level: %.2f", level);
         if (isnan(level) || level < minLevel) {
             level = minLevel;
         }

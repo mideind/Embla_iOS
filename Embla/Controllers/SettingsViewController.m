@@ -50,6 +50,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.useLocationSwitch becomeFirstResponder];
     [self configureControlsFromDefaults];
     [self updateLocationControl];
@@ -57,6 +58,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self saveToDefaults];
 }
 
