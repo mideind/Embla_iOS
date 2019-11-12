@@ -79,6 +79,14 @@ static NSString * const kServerErrorMessage = \
                                              selector:@selector(resignedActive:)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cancelCommandReceived:)
+                                                 name:QSessionCancelCommandNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(disableVoiceActivationReceived:)
+                                                 name:QSessionDisableVoiceActivationNotification
+                                               object:nil];
     
     // Receive messages from activation listener
     [[ActivationListener sharedInstance] setDelegate:self];
@@ -130,7 +138,7 @@ static NSString * const kServerErrorMessage = \
     self.textView.superview.layer.mask = gradient;
 }
 
-#pragma mark - Respond to app state changes
+#pragma mark - Respond to notifications
 
 - (void)becameActive:(NSNotification *)notification {
     DLog(@"%@", [notification description]);
@@ -152,6 +160,17 @@ static NSString * const kServerErrorMessage = \
     }
     
     [[ActivationListener sharedInstance] stopListening];
+}
+
+- (void)cancelCommandReceived:(NSNotification *)notification {
+    [self sessionDidReceiveTranscripts:nil];
+    [self.currentSession terminate];
+}
+
+- (void)disableVoiceActivationReceived:(NSNotification *)notification {
+    [self toggleVoiceActivation:self];
+    [self sessionDidReceiveTranscripts:nil];
+    [self.currentSession terminate];
 }
 
 #pragma mark - Reachability

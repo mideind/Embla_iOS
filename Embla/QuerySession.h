@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+static NSString * const QSessionCancelCommandNotification = @"QSessionCancelCommand";
+static NSString * const QSessionDisableVoiceActivationNotification = @"QSessionDisableVoiceActivation";
 
 @protocol QuerySessionDelegate <NSObject>
 

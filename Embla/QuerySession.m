@@ -29,7 +29,11 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-#define CANCEL_COMMANDS @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli", @"þegiðu"]
+#define CANCEL_COMMANDS \
+@[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
+
+#define DISABLE_VOICEACTIV_COMMANDS \
+@[@"þegiðu", @"þegi þú", "ekki hlusta", "hættu að hlusta"]
 
 
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
@@ -242,11 +246,18 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     if (finished) {
         [self stopRecording];
         if ([res count]) {
-            // Handle cancellation
-            NSString *cancelCmd = [self _containsCancelCommand:res];
-            if (cancelCmd) {
-                [self.delegate sessionDidReceiveTranscripts:nil];
-                [self terminate];
+            // Deal with special commands handled locally in the client
+            // without sending recognition results to query server.
+            if ([self _containsCancelCommand:res]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:QSessionCancelCommandNotification
+                                                                    object:self];
+//                [self.delegate sessionDidReceiveTranscripts:nil];
+//                [self terminate];
+            } else if ([self _containsDisableVoiceActivationCommand:res]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:QSessionDisableVoiceActivationNotification
+                                                                    object:self];
+//                [self.delegate sessionDidReceiveTranscripts:nil];
+//                [self terminate];
             } else {
                 // Send to query server
                 [self.delegate sessionDidReceiveTranscripts:res];
@@ -268,12 +279,26 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     return [res copy]; // Return immutable copy
 }
 
+#pragma mark - Special commands not handled by query server
+
 - (NSString *)_containsCancelCommand:(NSArray *)strings {
     if ([strings count] == 0) {
         return nil;
     }
     for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
         if ([CANCEL_COMMANDS containsObject:s]) {
+            return s;
+        }
+    }
+    return nil;
+}
+
+- (NSString *)_containsDisableVoiceActivationCommand:(NSArray *)strings {
+    if ([strings count] == 0) {
+        return nil;
+    }
+    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
+        if ([DISABLE_VOICEACTIV_COMMANDS containsObject:s]) {
             return s;
         }
     }
