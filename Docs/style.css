@@ -11,27 +11,32 @@
 }
 
 body {
-    background-color: rgba(249, 249, 249, 1.0);
-    font-family: "Lato", "Georgia";
-    font-size: 18px;
-    text-align: center;
-    color: rgba(51, 51, 51, 1.0);
+  background-color: rgba(249, 249, 249, 1.0);
+  font-family: "Lato", "Georgia";
+  font-size: 18px;
+  text-align: center;
+  color: rgba(51, 51, 51, 1.0);
 }
 
 p {
-    text-align: justify;
+  text-align: justify;
 }
 
 h1 {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .content {
-    padding-left: 15px;
-    padding-right: 15px;
-    max-width: 600px;
-    margin: auto;
-    display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 600px;
+  margin: auto;
+  display: inline-block;
+}
+
+.content ul {
+  list-style-type:none;
+  padding-left: 0;
 }
 
 .content ul li {
