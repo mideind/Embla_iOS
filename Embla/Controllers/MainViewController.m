@@ -19,6 +19,7 @@
     View controller for the main Embla session view.
 */
 
+
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "MainViewController.h"
@@ -27,6 +28,7 @@
 #import "AudioRecordingService.h"
 #import "Reachability.h"
 #import "NSString+Additions.h"
+
 
 static NSString * const kIntroMessage = \
 @"Segðu „Hæ Embla“ eða smelltu á hnappinn til þess að tala við Emblu.";
@@ -39,6 +41,14 @@ static NSString * const kNoInternetConnectivityMessage = \
 
 static NSString * const kServerErrorMessage = \
 @"Villa kom upp í samskiptum við netþjón.";
+
+
+#define CANCEL_COMMANDS \
+@[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
+
+#define DISABLE_VOICEACTIV_COMMANDS \
+@[@"þegiðu", @"þegi þú", @"ekki hlusta", @"hættu að hlusta"]
+
 
 @interface MainViewController () <QuerySessionDelegate>
 {
@@ -54,6 +64,7 @@ static NSString * const kServerErrorMessage = \
 @property BOOL connected;
 
 @end
+
 
 @implementation MainViewController
 
@@ -78,14 +89,6 @@ static NSString * const kServerErrorMessage = \
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resignedActive:)
                                                  name:UIApplicationWillResignActiveNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(cancelCommandReceived:)
-                                                 name:QSessionCancelCommandNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(disableVoiceActivationReceived:)
-                                                 name:QSessionDisableVoiceActivationNotification
                                                object:nil];
     
     // Receive messages from activation listener
@@ -337,13 +340,58 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidReceiveTranscripts:(NSArray<NSString *> *)alternatives {
     [self clearLog];
-    if (alternatives && [alternatives count]) {
+    if (!alternatives || ![alternatives count]) {
+        [self playUISound:@"rec_cancel"];
+        return;
+    }
+    
+    // Check if the transcript contains a command to be handled locally
+    // on the client without sending transcripts to query server.
+    // TODO: Make this cleaner.
+    NSString *cmd;
+    if ((cmd = [self _containsCancelCommand:alternatives])) {
+        [self log:@"%@", [cmd sentenceCapitalizedString]];
+        [self playUISound:@"rec_cancel"];
+        [self.currentSession terminate];
+    }
+    else if ((cmd = [self _containsDisableVoiceActivationCommand:alternatives])) {
+        [self log:@"%@", [cmd sentenceCapitalizedString]];
+        [self playUISound:@"rec_confirm"];
+        if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
+            [self toggleVoiceActivation:self];
+        }
+        [self.currentSession terminate];
+    }
+    // This is not a local command, handle normally
+    else {
         NSString *questionStr = [[alternatives firstObject] sentenceCapitalizedString];
         [self log:@"%@", questionStr];
         [self playUISound:@"rec_confirm"];
-    } else {
-        [self playUISound:@"rec_cancel"];
     }
+}
+
+- (NSString *)_containsCancelCommand:(NSArray *)strings {
+    if ([strings count] == 0) {
+        return nil;
+    }
+    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
+        if ([CANCEL_COMMANDS containsObject:s]) {
+            return s;
+        }
+    }
+    return nil;
+}
+
+- (NSString *)_containsDisableVoiceActivationCommand:(NSArray *)strings {
+    if ([strings count] == 0) {
+        return nil;
+    }
+    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
+        if ([DISABLE_VOICEACTIV_COMMANDS containsObject:s]) {
+            return s;
+        }
+    }
+    return nil;
 }
 
 - (void)sessionDidReceiveAnswer:(NSString *)answer

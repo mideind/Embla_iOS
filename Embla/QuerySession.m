@@ -29,13 +29,6 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-#define CANCEL_COMMANDS \
-@[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
-
-#define DISABLE_VOICEACTIV_COMMANDS \
-@[@"þegiðu", @"þegi þú", "ekki hlusta", "hættu að hlusta"]
-
-
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 
@@ -214,9 +207,9 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         return;
     }
     
-    if (!response.resultsArray_Count) {
-        // TODO: Handle this case.
-    }
+//    if (!response.resultsArray_Count) {
+//        What to do with empty results?
+//    }
     
     // Iterate through speech recognition results.
     // The response contains an array of StreamingRecognitionResult
@@ -225,7 +218,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     BOOL finished = NO;
     NSArray *res;
     for (StreamingRecognitionResult *result in response.resultsArray) {
-        // For now, we're only interested in final results.
         if (result.isFinal) {
             // If true, this is the final time the speech service will return
             // this particular `StreamingRecognitionResult`. The recognizer
@@ -234,6 +226,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
             res = [self _transcriptsFromRecognitionResult:result];
             finished = YES;
         } else {
+            // These are interim results, with more results from the speech service
+            // expected. Notify delegate if the results are sufficently stable.
             if (result.stability > 0.3) { // TODO: Arbitrary stability requirement
                 res = [self _transcriptsFromRecognitionResult:result];
                 [self.delegate sessionDidReceiveInterimResults:res];
@@ -242,27 +236,14 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
     
     // We've received a final answer from the speech recognition server.
-    // Terminate recording and submit query, if any, to query server.
+    // Stop recording and submit query, if any, to query server.
     if (finished) {
         [self stopRecording];
         if ([res count]) {
-            // Deal with special commands handled locally in the client
-            // without sending recognition results to query server.
-            if ([self _containsCancelCommand:res]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:QSessionCancelCommandNotification
-                                                                    object:self];
-//                [self.delegate sessionDidReceiveTranscripts:nil];
-//                [self terminate];
-            } else if ([self _containsDisableVoiceActivationCommand:res]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:QSessionDisableVoiceActivationNotification
-                                                                    object:self];
-//                [self.delegate sessionDidReceiveTranscripts:nil];
-//                [self terminate];
-            } else {
-                // Send to query server
-                [self.delegate sessionDidReceiveTranscripts:res];
-                [self sendQuery:[res copy]];
-            }
+            // Notify delegate
+            [self.delegate sessionDidReceiveTranscripts:res];
+            // Send to query server
+            [self sendQuery:[res copy]];
         } else {
             [self terminate];
         }
@@ -277,32 +258,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         }
     }
     return [res copy]; // Return immutable copy
-}
-
-#pragma mark - Special commands not handled by query server
-
-- (NSString *)_containsCancelCommand:(NSArray *)strings {
-    if ([strings count] == 0) {
-        return nil;
-    }
-    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
-        if ([CANCEL_COMMANDS containsObject:s]) {
-            return s;
-        }
-    }
-    return nil;
-}
-
-- (NSString *)_containsDisableVoiceActivationCommand:(NSArray *)strings {
-    if ([strings count] == 0) {
-        return nil;
-    }
-    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
-        if ([DISABLE_VOICEACTIV_COMMANDS containsObject:s]) {
-            return s;
-        }
-    }
-    return nil;
 }
 
 #pragma mark - Send query to server
