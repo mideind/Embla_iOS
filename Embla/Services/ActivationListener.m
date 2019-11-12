@@ -20,7 +20,7 @@
     used for voice activation ("Hæ Embla"/"Hey Embla"). Currently uses an English
     language acoustic model with custom phonemes. Going forward, this should
     probably be replaced with a robust local neural network trained on a large set
-    of activation phrase audio. Reliability is currently much poorer than Siri's.
+    of activation phrase recordings. Reliability is currently much poorer than Siri's.
 */
 
 #import "Common.h"
@@ -34,11 +34,11 @@
 @"heyembla", \
 @"heymbla", \
 @"hoy embla", \
-/*@"hoyembla",*/ \
+@"hoyembla", \
 ]
 
 // 0 is certainty.
-#define MIN_SCORE       -180000
+#define MIN_SCORE       -190000
 
 // This is how long Pocketsphinx should wait after speech ends to
 // attempt to recognize speech. The default is 0.7 seconds.
@@ -47,7 +47,7 @@
 // Speech/Silence threshhold setting. If quiet background noises are triggering
 // speech recognition, this can be raised to a value from 2-3 to 3.5 for the
 // English acoustic model being used. Default is 2.3.
-#define VAD_THRESHOLD   3.5f
+#define VAD_THRESHOLD   3.2f
 
 
 @interface ActivationListener()
