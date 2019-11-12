@@ -7,7 +7,7 @@ inhibit_all_warnings!
 
 target 'Embla' do
     pod 'googleapis', :path => '.'
-    pod 'AFNetworking', '~> 3.2.1'
+    pod 'AFNetworking', '~> 3.2.1', :subspecs => ['Reachability', 'Serialization', 'Security', 'NSURLSession']
     pod 'Reachability', '~> 3.2'
     pod 'YYImage', '~> 1.0.4'
 end

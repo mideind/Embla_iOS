@@ -10,3 +10,5 @@ TODO list for Embla iOS app
 * More accurate dB measurement (accumulate and average out dB level instead of grabbing the exact value at the given moment)
 * Pick another icon for muting voice activation? Microphone perhaps too generic?
 * Use AFNetworking's Reachability instead of Reachability lib
+
+DONE * Fix AFNetworking's use of UIWebView
