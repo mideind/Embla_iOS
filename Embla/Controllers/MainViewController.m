@@ -135,7 +135,11 @@ static NSString * const kServerErrorMessage = \
 - (void)becameActive:(NSNotification *)notification {
     DLog(@"%@", [notification description]);
     if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
-        [[ActivationListener sharedInstance] startListening];
+        // Only reactivate if this is the frontmost view controller
+        UINavigationController *navCtrl = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+        if (navCtrl.topViewController == self) {
+            [[ActivationListener sharedInstance] startListening];
+        }
     }
 }
 
@@ -146,6 +150,7 @@ static NSString * const kServerErrorMessage = \
         [self.currentSession terminate];
         self.currentSession = nil;
     }
+    
     [[ActivationListener sharedInstance] stopListening];
 }
 
