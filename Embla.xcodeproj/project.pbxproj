@@ -16,20 +16,20 @@
 		D392D9891C94938F002F5132 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* MainViewController.m */; };
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
 		F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B12552343908F00CBE9B4 /* WebKit.framework */; };
+		F421878B237C78880097E5D4 /* conn-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218788237C78880097E5D4 /* conn-karl.wav */; };
+		F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218789237C78880097E5D4 /* dunno-karl.wav */; };
+		F421878D237C78880097E5D4 /* err-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421878A237C78880097E5D4 /* err-karl.wav */; };
+		F4218791237C789C0097E5D4 /* dunno-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421878E237C789C0097E5D4 /* dunno-dora.wav */; };
+		F4218792237C789C0097E5D4 /* conn-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421878F237C789C0097E5D4 /* conn-dora.wav */; };
+		F4218793237C789C0097E5D4 /* err-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218790237C789C0097E5D4 /* err-dora.wav */; };
+		F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421879A237C79640097E5D4 /* rec_cancel.wav */; };
+		F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421879B237C79640097E5D4 /* rec_confirm.wav */; };
+		F421879F237C79640097E5D4 /* rec_begin.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421879C237C79640097E5D4 /* rec_begin.wav */; };
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
-		F427692C22C122F300BB6977 /* dunno-dora.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692922C122F200BB6977 /* dunno-dora.caf */; };
-		F427692D22C122F300BB6977 /* rec_begin.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692A22C122F200BB6977 /* rec_begin.caf */; };
-		F427692E22C122F300BB6977 /* conn-dora.caf in Resources */ = {isa = PBXBuildFile; fileRef = F427692B22C122F200BB6977 /* conn-dora.caf */; };
-		F4430DB822F0AB8800AE64C4 /* err-karl.caf in Resources */ = {isa = PBXBuildFile; fileRef = F4430DB522F0AB8800AE64C4 /* err-karl.caf */; };
-		F4430DB922F0AB8800AE64C4 /* conn-karl.caf in Resources */ = {isa = PBXBuildFile; fileRef = F4430DB622F0AB8800AE64C4 /* conn-karl.caf */; };
-		F4430DBA22F0AB8800AE64C4 /* dunno-karl.caf in Resources */ = {isa = PBXBuildFile; fileRef = F4430DB722F0AB8800AE64C4 /* dunno-karl.caf */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F454EE322357A90D003C2715 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F454EE312357A90D003C2715 /* OnboardingViewController.m */; };
-		F469639622C26F3600645F69 /* rec_cancel.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639522C26F2F00645F69 /* rec_cancel.caf */; };
-		F469639722C26F3600645F69 /* rec_confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639422C26F2F00645F69 /* rec_confirm.caf */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
-		F469639C22CE3AE700645F69 /* err-dora.caf in Resources */ = {isa = PBXBuildFile; fileRef = F469639B22CE3AE600645F69 /* err-dora.caf */; };
 		F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
@@ -75,24 +75,24 @@
 		EBFF549A15D921031174FE01 /* Pods-Greynir.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greynir.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Greynir/Pods-Greynir.debug.xcconfig"; sourceTree = "<group>"; };
 		F3215BCD5D87DFF7F2965B8A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F40B12552343908F00CBE9B4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		F4218788237C78880097E5D4 /* conn-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "conn-karl.wav"; sourceTree = "<group>"; };
+		F4218789237C78880097E5D4 /* dunno-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno-karl.wav"; sourceTree = "<group>"; };
+		F421878A237C78880097E5D4 /* err-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "err-karl.wav"; sourceTree = "<group>"; };
+		F421878E237C789C0097E5D4 /* dunno-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno-dora.wav"; sourceTree = "<group>"; };
+		F421878F237C789C0097E5D4 /* conn-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "conn-dora.wav"; sourceTree = "<group>"; };
+		F4218790237C789C0097E5D4 /* err-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "err-dora.wav"; sourceTree = "<group>"; };
+		F421879A237C79640097E5D4 /* rec_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rec_cancel.wav; sourceTree = "<group>"; };
+		F421879B237C79640097E5D4 /* rec_confirm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rec_confirm.wav; sourceTree = "<group>"; };
+		F421879C237C79640097E5D4 /* rec_begin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rec_begin.wav; sourceTree = "<group>"; };
 		F427692222C1218A00BB6977 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		F427692322C1218A00BB6977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		F427692522C1219A00BB6977 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		F427692922C122F200BB6977 /* dunno-dora.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dunno-dora.caf"; sourceTree = "<group>"; };
-		F427692A22C122F200BB6977 /* rec_begin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_begin.caf; sourceTree = "<group>"; };
-		F427692B22C122F200BB6977 /* conn-dora.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "conn-dora.caf"; sourceTree = "<group>"; };
-		F4430DB522F0AB8800AE64C4 /* err-karl.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "err-karl.caf"; sourceTree = "<group>"; };
-		F4430DB622F0AB8800AE64C4 /* conn-karl.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "conn-karl.caf"; sourceTree = "<group>"; };
-		F4430DB722F0AB8800AE64C4 /* dunno-karl.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dunno-karl.caf"; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F454EE302357A90D003C2715 /* OnboardingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		F454EE312357A90D003C2715 /* OnboardingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
-		F469639422C26F2F00645F69 /* rec_confirm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_confirm.caf; sourceTree = "<group>"; };
-		F469639522C26F2F00645F69 /* rec_cancel.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rec_cancel.caf; sourceTree = "<group>"; };
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = Embla/QuerySession.m; sourceTree = SOURCE_ROOT; };
-		F469639B22CE3AE600645F69 /* err-dora.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "err-dora.caf"; sourceTree = "<group>"; };
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		F47D200C2370880800E4DB6A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		F47D200D2370880900E4DB6A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -263,11 +263,11 @@
 		F427692822C122F200BB6977 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				F421879C237C79640097E5D4 /* rec_begin.wav */,
+				F421879A237C79640097E5D4 /* rec_cancel.wav */,
+				F421879B237C79640097E5D4 /* rec_confirm.wav */,
 				F4430DBC22F0ABA900AE64C4 /* Dora */,
 				F4430DBB22F0AB9100AE64C4 /* Karl */,
-				F427692A22C122F200BB6977 /* rec_begin.caf */,
-				F469639522C26F2F00645F69 /* rec_cancel.caf */,
-				F469639422C26F2F00645F69 /* rec_confirm.caf */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -275,9 +275,9 @@
 		F4430DBB22F0AB9100AE64C4 /* Karl */ = {
 			isa = PBXGroup;
 			children = (
-				F4430DB622F0AB8800AE64C4 /* conn-karl.caf */,
-				F4430DB722F0AB8800AE64C4 /* dunno-karl.caf */,
-				F4430DB522F0AB8800AE64C4 /* err-karl.caf */,
+				F4218788237C78880097E5D4 /* conn-karl.wav */,
+				F4218789237C78880097E5D4 /* dunno-karl.wav */,
+				F421878A237C78880097E5D4 /* err-karl.wav */,
 			);
 			path = Karl;
 			sourceTree = "<group>";
@@ -285,9 +285,9 @@
 		F4430DBC22F0ABA900AE64C4 /* Dora */ = {
 			isa = PBXGroup;
 			children = (
-				F469639B22CE3AE600645F69 /* err-dora.caf */,
-				F427692B22C122F200BB6977 /* conn-dora.caf */,
-				F427692922C122F200BB6977 /* dunno-dora.caf */,
+				F421878F237C789C0097E5D4 /* conn-dora.wav */,
+				F421878E237C789C0097E5D4 /* dunno-dora.wav */,
+				F4218790237C789C0097E5D4 /* err-dora.wav */,
 			);
 			path = Dora;
 			sourceTree = "<group>";
@@ -432,24 +432,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F469639C22CE3AE700645F69 /* err-dora.caf in Resources */,
 				F4E7856023690550004E29D1 /* style.css in Resources */,
-				F469639622C26F3600645F69 /* rec_cancel.caf in Resources */,
-				F427692C22C122F300BB6977 /* dunno-dora.caf in Resources */,
+				F4218792237C789C0097E5D4 /* conn-dora.wav in Resources */,
 				F4E1538C2379BC5F00388420 /* Assets.xcassets in Resources */,
-				F4430DB822F0AB8800AE64C4 /* err-karl.caf in Resources */,
+				F421878B237C78880097E5D4 /* conn-karl.wav in Resources */,
 				D392D9861C94937D002F5132 /* Main.storyboard in Resources */,
 				F4E153862374657C00388420 /* animation.apng in Resources */,
 				D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */,
-				F469639722C26F3600645F69 /* rec_confirm.caf in Resources */,
 				F4E7855E23690549004E29D1 /* about.html in Resources */,
-				F427692E22C122F300BB6977 /* conn-dora.caf in Resources */,
+				F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */,
+				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
+				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
 				F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */,
-				F4430DB922F0AB8800AE64C4 /* conn-karl.caf in Resources */,
-				F4430DBA22F0AB8800AE64C4 /* dunno-karl.caf in Resources */,
+				F421878D237C78880097E5D4 /* err-karl.wav in Resources */,
 				F4E7855F2369054C004E29D1 /* privacy.html in Resources */,
-				F427692D22C122F300BB6977 /* rec_begin.caf in Resources */,
+				F421879F237C79640097E5D4 /* rec_begin.wav in Resources */,
+				F4218791237C789C0097E5D4 /* dunno-dora.wav in Resources */,
 				F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */,
+				F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */,
 				F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */,
 				F4E15388237473A300388420 /* instructions.html in Resources */,
 				F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */,

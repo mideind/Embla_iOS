@@ -343,7 +343,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     if ([filenameOrData isKindOfClass:[NSString class]]) {
         // Local filename specified, init player with local file URL
         NSString *filename = (NSString *)filenameOrData;
-        NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"caf"];
+        NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"wav"];
         if (url) {
             DLog(@"Playing audio file '%@'", filename);
             player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];

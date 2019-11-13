@@ -503,7 +503,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     // Load all sound files into memory
     for (NSString *fileName in files) {
-        NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"caf"];
+        NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"wav"];
         if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
             uiSounds[fileName] = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedAlways error:nil];
         } else {
