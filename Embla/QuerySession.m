@@ -348,7 +348,10 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
             DLog(@"Playing audio file '%@'", filename);
             player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
         } else {
-            DLog(@"Unable to find audio file '%@.caf' in bundle", filename);
+            NSString *errStr = [NSString stringWithFormat:@"Unable to find audio file '%@' in bundle", filename];
+            DLog(@"%@", errStr);
+            NSError *err = [NSError errorWithDomain:@"Greynir" code:0 userInfo:@{ NSLocalizedDescriptionKey: errStr }];
+            [self.delegate sessionDidRaiseError:err];
             return;
         }
     }
