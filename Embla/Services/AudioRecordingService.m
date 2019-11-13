@@ -78,7 +78,7 @@ static OSStatus recordingCallback(void *inRefCon,
     // Build the AudioBufferList structure
     AudioBufferList *bufferList = (AudioBufferList *)malloc(sizeof(AudioBufferList));
     bufferList->mNumberBuffers = channelCount;
-    bufferList->mBuffers[0].mNumberChannels = 1;
+    bufferList->mBuffers[0].mNumberChannels = channelCount;
     bufferList->mBuffers[0].mDataByteSize = inNumberFrames * 2;
     bufferList->mBuffers[0].mData = NULL;
     
@@ -91,8 +91,11 @@ static OSStatus recordingCallback(void *inRefCon,
     }
     
     // Create NSData object and send to delegate
-    NSData *data = [[NSData alloc] initWithBytes:bufferList->mBuffers[0].mData
-                                          length:bufferList->mBuffers[0].mDataByteSize];
+//    NSData *data = [[NSData alloc] initWithBytes:bufferList->mBuffers[0].mData
+//                                          length:bufferList->mBuffers[0].mDataByteSize];
+    NSData *data = [[NSData alloc] initWithBytesNoCopy:bufferList->mBuffers[0].mData
+                                                length:bufferList->mBuffers[0].mDataByteSize
+                                          freeWhenDone:NO];
     free(bufferList);
     
     dispatch_async(dispatch_get_main_queue(), ^{
