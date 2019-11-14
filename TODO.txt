@@ -11,4 +11,5 @@ TODO list for Embla iOS app
 * Pick another icon for muting voice activation? Microphone perhaps too generic?
 * Use AFNetworking's Reachability instead of Reachability lib
 
+DONE * Add BETA logo to bottom of main view
 DONE * Fix AFNetworking's use of UIWebView

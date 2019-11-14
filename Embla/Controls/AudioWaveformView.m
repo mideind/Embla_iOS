@@ -63,6 +63,7 @@
     }
 }
 
+// Populate waveform array with default value
 - (void)reset {
     [self resetWithLevel:DEFAULT_LEVEL];
 }
