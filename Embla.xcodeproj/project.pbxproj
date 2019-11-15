@@ -718,6 +718,7 @@
 					"\"$(SRCROOT)/google/cloud/speech/v1\"",
 					"$(inherited)",
 				);
+				MARKETING_VERSION = 1.0b;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -745,6 +746,7 @@
 					"\"$(SRCROOT)/google/cloud/speech/v1\"",
 					"$(inherited)",
 				);
+				MARKETING_VERSION = 1.0b;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

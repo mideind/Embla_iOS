@@ -70,9 +70,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Only show query server selection in debug mode
-#ifdef DEBUG
-    return 2;
-#endif
+//#ifdef DEBUG
+//    return 2;
+//#endif
     return 1;
 }
 
