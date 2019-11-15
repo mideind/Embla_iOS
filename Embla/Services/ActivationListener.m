@@ -42,7 +42,7 @@
 
 // This is how long Pocketsphinx should wait after speech ends to
 // attempt to recognize speech. The default is 0.7 seconds.
-#define SILENCE_DELAY   0.6f
+#define SILENCE_DELAY   0.55f
 
 // Speech/Silence threshhold setting. If quiet background noises are triggering
 // speech recognition, this can be raised to a value from 2-3 to 3.5 for the

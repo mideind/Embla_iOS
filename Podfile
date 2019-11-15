@@ -1,4 +1,4 @@
-platform :ios, '12.0'
+platform :ios, '11.0'
 
 ENV["COCOAPODS_DISABLE_STATS"] = "true"
 
@@ -18,7 +18,7 @@ post_install do |installer|
     end
     installer.pods_project.targets.each do |t|
       t.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
       end
     end
 end

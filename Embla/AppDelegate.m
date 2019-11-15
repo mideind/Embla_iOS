@@ -99,7 +99,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocation"] == NO) {
+    if ([DEFAULTS boolForKey:@"UseLocation"] == NO) {
         return;
     }
     
