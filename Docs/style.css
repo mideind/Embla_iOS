@@ -6,13 +6,30 @@
   font-display: block;
   src: local('Lato'),
        url("Lato-Regular.woff2") format('woff2'),
-       url("Lato-Regular.woff") format('woff'),
        url("Lato-Regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: local('Lato Bold'),
+       url("Lato-Bold.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  font-display: block;
+  src: local('Lato Italic'),
+       url("Lato-Italic.woff2") format('woff2');
 }
 
 body {
   background-color: rgba(249, 249, 249, 1.0);
-  font-family: "Lato", "Georgia";
+  font-family: "Lato";
   font-size: 18px;
 /*  text-align: center;*/
   color: rgba(51, 51, 51, 1.0);
