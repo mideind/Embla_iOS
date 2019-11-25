@@ -107,7 +107,7 @@
         
         // Client type and version
         [parameters setObject:@"ios" forKey:@"client_type"];
-        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         [parameters setObject:version forKey:@"client_version"];
     }
     
