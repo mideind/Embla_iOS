@@ -68,4 +68,15 @@
     [self.webView loadRequest:request];
 }
 
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))handler {
+    
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+        handler(WKNavigationActionPolicyCancel);
+        UIApplication *app = [UIApplication sharedApplication];
+        [app openURL:navigationAction.request.URL options:@{} completionHandler:nil];
+        return;
+    }
+    handler(WKNavigationActionPolicyAllow);
+}
+
 @end
