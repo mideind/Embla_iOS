@@ -22,6 +22,7 @@
 
 #import "AudioWaveformView.h"
 
+#define DEFAULT_NUM_BARS    15
 #define DEFAULT_SPACING     3.5f
 #define DEFAULT_LEVEL       0.07f
 
@@ -32,6 +33,10 @@
 @end
 
 @implementation AudioWaveformView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    return [self initWithBars:DEFAULT_NUM_BARS frame:frame];
+}
 
 - (instancetype)initWithBars:(NSInteger)barCount frame:(CGRect)frame {
     self = [super initWithFrame:frame];

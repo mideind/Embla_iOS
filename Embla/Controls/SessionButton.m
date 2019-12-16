@@ -214,7 +214,7 @@
 - (void)startWaveform {
     // Create waveform view, if necessary
     if (!waveformView) {
-        waveformView = [[AudioWaveformView alloc] initWithBars:15 frame:thirdCircleLayer.bounds];
+        waveformView = [[AudioWaveformView alloc] initWithFrame:thirdCircleLayer.bounds];
     }
     
     // Reset and make transparent
