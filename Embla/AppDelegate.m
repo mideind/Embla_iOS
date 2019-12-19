@@ -76,6 +76,7 @@
         @"UseLocation": @(YES),
         @"PrivacyMode": @(NO),
         @"Voice": [NSNumber numberWithInteger:0],
+        @"SpeechSpeed": [NSNumber numberWithFloat:1.0f],
         @"QueryServer": DEFAULT_QUERY_SERVER
     };
 }

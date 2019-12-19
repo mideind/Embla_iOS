@@ -25,8 +25,9 @@
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *voiceActivationSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *privacyModeSwitch;
-
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
+@property (nonatomic, weak) IBOutlet UISlider *speechSpeedSlider;
+
 @property (nonatomic, weak) IBOutlet UITextField *queryServerTextField;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *serverSegmentedControl;
 
@@ -113,6 +114,7 @@
     [self.useLocationSwitch setOn:[DEFAULTS boolForKey:@"UseLocation"]];
     [self.privacyModeSwitch setOn:[DEFAULTS boolForKey:@"PrivacyMode"]];
     [self.voiceSegmentedControl setSelectedSegmentIndex:[DEFAULTS integerForKey:@"Voice"]];
+    [self.speechSpeedSlider setValue:[DEFAULTS floatForKey:@"SpeechSpeed"]];
     [self.queryServerTextField setText:[DEFAULTS stringForKey:@"QueryServer"]];
 }
 
@@ -122,6 +124,7 @@
     [DEFAULTS setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
     [DEFAULTS setBool:self.privacyModeSwitch.isOn forKey:@"PrivacyMode"];
     [DEFAULTS setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
+    [DEFAULTS setFloat:[self.speechSpeedSlider value] forKey:@"SpeechSpeed"];
     
     // Sanitize query server URL
     NSString *server = [self.queryServerTextField text];

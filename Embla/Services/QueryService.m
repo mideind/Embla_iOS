@@ -77,10 +77,12 @@
     
     // Query key/value pairs
     NSString *voiceName = [DEFAULTS integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";
+    NSString *voiceSpeed = [NSString stringWithFormat:@"%.2f", [DEFAULTS floatForKey:@"SpeechSpeed"]];
     NSMutableDictionary *parameters = [@{
         @"q": qstr,
         @"voice": @(YES),
         @"voice_id": voiceName,
+        @"voice_speed": voiceSpeed
     } mutableCopy];
     
     BOOL privacyMode = [DEFAULTS boolForKey:@"PrivacyMode"];
