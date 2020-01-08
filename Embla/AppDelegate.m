@@ -18,6 +18,8 @@
 #import "AppDelegate.h"
 #import "Common.h"
 
+#import <WebKit/WKWebsiteDataStore.h>
+
 @interface AppDelegate ()
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @end
@@ -27,8 +29,16 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // Initial defaults
     [DEFAULTS registerDefaults:[self startingDefaults]];
     
+    // Clear web cache every time app is relaunched.
+    // Makes it easier to test changes to HTML documents and
+    // results in a faster rollout to end users.
+    [self clearWebCache];
+    
+    // Location tracking
     if ([DEFAULTS boolForKey:@"UseLocation"]) {
         [self startLocationServices];
     }
@@ -56,6 +66,14 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     DLog(@"Application will terminate");
+}
+
+#pragma mark - Web cache
+
+- (void)clearWebCache {
+    NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{}];
 }
 
 #pragma mark - Onboarding
