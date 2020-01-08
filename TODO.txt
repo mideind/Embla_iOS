@@ -2,7 +2,6 @@
 TODO list for Embla iOS app
 
 * Option to use HR's Kaldi speech recognition API instead of Google's? - https://tal.ru.is/
-* We need new sound files for recording notifications. Currently using Apple's Siri sounds (Halldór)
 * Stream MP3 directly from Polly service instead of downloading prior to playback? Might accelerate time to playback slightly, at the risk of interrupted or imperfect playback on slow networks.
 * Pre-set vocabulary to improve speech recognition results? Doesn't seem to work all that well.
 * Fix Bluetooth audio input/output source switching (semi-broken, it seems)
@@ -10,6 +9,4 @@ TODO list for Embla iOS app
 * More accurate dB measurement (accumulate and average out dB level instead of grabbing the exact value at the given moment)
 * Pick another icon for muting voice activation? Microphone perhaps too generic?
 * Use AFNetworking's Reachability instead of Reachability lib
-
-DONE * Add BETA logo to bottom of main view
-DONE * Fix AFNetworking's use of UIWebView
+* Decrease granularity of voice speed in Settings (new control)
