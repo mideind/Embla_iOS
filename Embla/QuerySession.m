@@ -294,6 +294,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     
     NSString *answer = kDontKnowAnswer;
     NSString *question = @"";
+    NSString *source;
     NSURL *url;
     
     // If response data is valid, play back the provided audio URL
@@ -301,6 +302,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         
         answer = [r objectForKey:@"answer"] ? r[@"answer"] : [r objectForKey:@"voice"];
         question = [r objectForKey:@"q"];
+        source = [r objectForKey:@"source"] ? r[@"source"] : nil;
         
         NSString *audioURLStr = [r objectForKey:@"audio"];
         NSString *openURLStr = [r objectForKey:@"open_url"];
@@ -325,7 +327,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
     
     // Notify delegate
-    [self.delegate sessionDidReceiveAnswer:answer toQuestion:question withURL:url];
+    [self.delegate sessionDidReceiveAnswer:answer toQuestion:question source:source withURL:url];
 }
 
 #pragma mark - Audio Playback

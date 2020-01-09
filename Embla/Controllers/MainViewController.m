@@ -400,13 +400,16 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidReceiveAnswer:(NSString *)answer
                      toQuestion:(NSString *)question
+                         source:(NSString *)source
                         withURL:(NSURL *)url {
     [self clearLog];
     
     NSString *aStr = answer ? answer : @"";
     NSString *separator = answer ? @"\n\n" : @"";
-    [self log:@"%@%@%@",  [question sentenceCapitalizedString], separator,
-                            [[aStr sentenceCapitalizedString] periodTerminatedString]];
+    NSString *srcStr = source ? [NSString stringWithFormat:@" (%@)", source] : @"";
+    [self log:@"%@%@%@%@",  [question sentenceCapitalizedString], separator,
+                            [[aStr sentenceCapitalizedString] periodTerminatedString],
+                            srcStr];
     
     // If we receive an URL in the response from the query server,
     // we terminate the session and ask the OS to open the URL.
