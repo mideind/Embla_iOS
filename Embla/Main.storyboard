@@ -311,6 +311,9 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="1.5" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIh-di-UZT">
                                                     <rect key="frame" x="215" y="7" width="181" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="speechSpeedChanged:" destination="0fs-On-g95" eventType="valueChanged" id="KHT-sH-Dku"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
                                         </tableViewCellContentView>

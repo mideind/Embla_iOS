@@ -170,6 +170,14 @@
     }
 }
 
+// Implements fixed step size for speech speed slider control.
+// Snaps to nearest value that is a multiple of 0.25
+-(IBAction)speechSpeedChanged:(UISlider *)sender {
+    float stepSize = 0.25;
+    float newStep = roundf((sender.value) / stepSize);
+    sender.value = newStep * stepSize;
+}
+
 - (IBAction)serverPresetSelected:(id)sender {
     NSString *url = DEFAULT_QUERY_SERVER;
     switch ([sender selectedSegmentIndex]) {
