@@ -7,13 +7,15 @@ branches:
     - master
 
 before_install:
-  - gem install cocoapods
-  - gem install xcpretty
-  - pod update
+  - gem install xcpretty # Required by build script
+  - gem install cocoapods # Dependency management
+  - pod update # Install dependencies
 
 script:
+  # Create dummy API key
   - echo "123456789" > Keys/GoogleAPI.key
   - echo "const char *gak = \"MTIzNDU2Nzg5CgoK\";" > Keys/Keys.c
+  # Run build script
   - ./build.sh
 
 notifications:

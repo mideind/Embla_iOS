@@ -357,11 +357,11 @@
 		F4E7855A23690273004E29D1 /* Docs */ = {
 			isa = PBXGroup;
 			children = (
+				F4E78561236905A9004E29D1 /* deploy.sh */,
 				F4E7855B23690273004E29D1 /* about.html */,
 				F4E7855D23690273004E29D1 /* privacy.html */,
 				F4E15387237473A200388420 /* instructions.html */,
 				F4E7855C23690273004E29D1 /* style.css */,
-				F4E78561236905A9004E29D1 /* deploy.sh */,
 				F4E5AD992385B7E8001C07A7 /* Lato-Bold.woff2 */,
 				F4E5AD9A2385B7E8001C07A7 /* Lato-Italic.woff2 */,
 				F4E5AD972385B7E8001C07A7 /* Lato-Regular.woff */,
