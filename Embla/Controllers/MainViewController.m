@@ -407,12 +407,13 @@ Aðgangi er stýrt í kerfisstillingum.";
     NSString *aStr = answer ? answer : @"";
     NSString *separator = answer ? @"\n\n" : @"";
     NSString *srcStr = source ? [NSString stringWithFormat:@" (%@)", source] : @"";
-    [self log:@"%@%@%@%@",  [question sentenceCapitalizedString], separator,
+    [self log:@"%@%@%@%@",  [question sentenceCapitalizedString],
+                            separator,
                             [[aStr sentenceCapitalizedString] periodTerminatedString],
                             srcStr];
     
-    // If we receive an URL in the response from the query server,
-    // we terminate the session and ask the OS to open the URL.
+    // If we receive an URL in the response from the query server, we terminate
+    // the session and ask the operating system to open the URL in question.
     if (url) {
         [self.currentSession terminate];
         DLog(@"Opening URL: %@", url);
@@ -440,6 +441,7 @@ Aðgangi er stýrt í kerfisstillingum.";
 
 - (void)sessionDidTerminate {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        // Update UI control on the main thread
         [self.button contract];
         [self.button stopAnimating];
         [self.button stopWaveform];
@@ -455,6 +457,7 @@ Aðgangi er stýrt í kerfisstillingum.";
 #pragma mark - User Interface Log
 
 - (void)clearLog {
+    // Update UI control on the main thread
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.text = @"";
     }];
@@ -465,7 +468,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     va_start(args, message);
     NSString *formattedString = [[NSString alloc] initWithFormat:message arguments:args];
     va_end(args);
-    
+    // Update UI control on the main thread
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, formattedString];
     }];
@@ -484,7 +487,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     if ([voiceSounds containsObject:fileName]) {
         NSUInteger vid = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
-        NSString *suffix = vid == 0 ? @"dora" : @"karl";
+        NSString *suffix = (vid == 0) ? @"dora" : @"karl";
         fileName = [NSString stringWithFormat:@"%@-%@", fileName, suffix];
     }
     

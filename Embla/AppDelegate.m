@@ -34,8 +34,8 @@
     [DEFAULTS registerDefaults:[self startingDefaults]];
     
     // Clear web cache every time app is relaunched.
-    // Makes it easier to test changes to HTML documents and
-    // results in a faster rollout to end users.
+    // Makes it easier to test changes to HTML documents and results
+    // in a faster rollout to end users at the cost of bandwidth.
     [self clearWebCache];
     
     // Location tracking

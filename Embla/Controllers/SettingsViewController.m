@@ -28,6 +28,7 @@
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
 @property (nonatomic, weak) IBOutlet UISlider *speechSpeedSlider;
 
+// Controls only visible in debug mode
 @property (nonatomic, weak) IBOutlet UITextField *queryServerTextField;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *serverSegmentedControl;
 
