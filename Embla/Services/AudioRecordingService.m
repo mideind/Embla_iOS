@@ -146,7 +146,7 @@ static OSStatus recordingCallback(void *inRefCon,
     }
     
     UInt32 oneFlag = 1;
-    AudioUnitElement bus0 = 0;
+//    AudioUnitElement bus0 = 0;
     AudioUnitElement bus1 = 1;
     
     // Configure the RemoteIO unit for input
@@ -168,11 +168,11 @@ static OSStatus recordingCallback(void *inRefCon,
     asbd.mBitsPerChannel = 16;
     
     // Set format for output (bus 0) on the RemoteIO's input scope
-    status = AudioUnitSetProperty(self->remoteIOUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, bus0,
-                                  &asbd, sizeof(asbd));
-    if (CheckError(status, "Couldn't set the ASBD for RemoteIO on input scope/bus 0")) {
-        return status;
-    }
+//    status = AudioUnitSetProperty(self->remoteIOUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, bus0,
+//                                  &asbd, sizeof(asbd));
+//    if (CheckError(status, "Couldn't set the ASBD for RemoteIO on input scope/bus 0")) {
+//        return status;
+//    }
     
     // Set format for mic input (bus 1) on RemoteIO's output scope
     status = AudioUnitSetProperty(self->remoteIOUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, bus1,
