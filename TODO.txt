@@ -9,3 +9,4 @@ TODO list for Embla iOS app
 * More accurate dB measurement (accumulate and calculate average dB level instead of grabbing the exact value at the given moment)
 * Pick another icon for muting voice activation in main view? Microphone perhaps too generic?
 * Use AFNetworking's Reachability instead of Reachability lib
+* Automatic text size adjustment via Dynamic Type (fix for Lato)
