@@ -1,5 +1,5 @@
 # Build script for the Embla iOS app
-# Only used for Travis CI testing.
+# Only used for Travis CI build tests.
 #
 # Builds an unsigned app binary in debug mode.
 #

@@ -16,19 +16,19 @@ After cloning the repository, run the following command from the repo root:
 $ pod install
 ```
 
-Once installation is complete, open `Embla.xcworkspace` with Xcode and build. Alternatively, you can build an unsigned app binary by running a build script from the repository root:
+Once installation is complete, open `Embla.xcworkspace` with Xcode and build. Alternatively, you can build an unsigned debug app binary by running the build script from the repository root:
 
 ```
 $ ./build.sh
 ```
 
-NB: In order to function correctly, the app requires a valid API key for Google's Speech API. The key should be saved in the following text file:
+NB: In order to function correctly, the app requires a valid API key for Google's Speech-to-Text API. The key should be saved in the following text file:
 
 * `Keys/GoogleAPI.key`
 
 ## Credits
 
-The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx) library, the [CMU CMUCMLTK](http://cmusphinx.sourceforge.net) library, Politepix’s [OpenEars](http://www.politepix.com/openears) and Google's Speech-to-Text API for speech recognition. Speech synthesis is accomplished via the Amazon Polly API.
+The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx) library, the [CMU CMUCMLTK](http://cmusphinx.sourceforge.net) library, Politepix’s [OpenEars](http://www.politepix.com/openears) and Google's Speech-to-Text API for speech recognition.
 
 ## GPL License
 

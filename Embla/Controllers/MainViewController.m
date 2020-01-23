@@ -42,6 +42,10 @@ static NSString * const kNoInternetConnectivityMessage = \
 static NSString * const kServerErrorMessage = \
 @"Villa kom upp í samskiptum við netþjón.";
 
+static NSString * const kMicrophoneDisabledMessage = \
+@"Þetta forrit þarf aðgang að hljóðnema til þess að virka sem skyldi. \
+Aðgangi er stýrt í kerfisstillingum.";
+
 
 #define CANCEL_COMMANDS \
 @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
@@ -222,10 +226,8 @@ static NSString * const kServerErrorMessage = \
 #pragma mark - Alerts
 
 - (void)showMicAlert {
-    NSString *msg = @"Þetta forrit þarf aðgang að hljóðnema til þess að virka sem skyldi.\
-Aðgangi er stýrt í kerfisstillingum.";
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Lokað á hljóðnema"
-                                                                   message:msg
+                                                                   message:kMicrophoneDisabledMessage
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *activateAction = [UIAlertAction actionWithTitle:@"Virkja"
@@ -294,6 +296,7 @@ Aðgangi er stýrt í kerfisstillingum.";
 }
 
 - (void)startSession {
+    // Terminate any ongoing session
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
     }
@@ -307,12 +310,14 @@ Aðgangi er stýrt í kerfisstillingum.";
         return;
     }
     
+    // Prepare for new session by pausing voice activation
     [[ActivationListener sharedInstance] stopListening];
     
-    // Create new session
-    self.currentSession = [[QuerySession alloc] initWithDelegate:self];
+    // Start new session
     [self playUISound:@"rec_begin"];
     [self.button expand];
+    self.currentSession = [[QuerySession alloc] initWithDelegate:self];
+    // Add slight delay so that UI sound isn't playing when recording starts
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.35 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.currentSession start];
     });
@@ -321,8 +326,8 @@ Aðgangi er stýrt í kerfisstillingum.";
 - (void)endSession {
     if (self.currentSession && !self.currentSession.terminated) {
         [self.currentSession terminate];
-        self.currentSession = nil;
     }
+    self.currentSession = nil;
 }
 
 #pragma mark - QuerySessionDelegate
@@ -351,7 +356,6 @@ Aðgangi er stýrt í kerfisstillingum.";
     
     // Check if the transcript contains a command to be handled locally
     // on the client without sending transcripts to query server.
-    // TODO: Make this cleaner.
     NSString *cmd;
     if ((cmd = [self _containsCancelCommand:alternatives])) {
         [self log:@"%@", [cmd sentenceCapitalizedString]];
@@ -372,30 +376,6 @@ Aðgangi er stýrt í kerfisstillingum.";
         [self log:@"%@", questionStr];
         [self playUISound:@"rec_confirm"];
     }
-}
-
-- (NSString *)_containsCancelCommand:(NSArray *)strings {
-    if ([strings count] == 0) {
-        return nil;
-    }
-    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
-        if ([CANCEL_COMMANDS containsObject:s]) {
-            return s;
-        }
-    }
-    return nil;
-}
-
-- (NSString *)_containsDisableVoiceActivationCommand:(NSArray *)strings {
-    if ([strings count] == 0) {
-        return nil;
-    }
-    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
-        if ([DISABLE_VOICEACTIV_COMMANDS containsObject:s]) {
-            return s;
-        }
-    }
-    return nil;
 }
 
 - (void)sessionDidReceiveAnswer:(NSString *)answer
@@ -452,6 +432,32 @@ Aðgangi er stýrt í kerfisstillingum.";
             self.textView.text = [self introMessage];
         }
     }];
+}
+
+#pragma mark - Local commands
+
+- (NSString *)_containsCancelCommand:(NSArray *)strings {
+    if ([strings count] == 0) {
+        return nil;
+    }
+    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
+        if ([CANCEL_COMMANDS containsObject:s]) {
+            return s;
+        }
+    }
+    return nil;
+}
+
+- (NSString *)_containsDisableVoiceActivationCommand:(NSArray *)strings {
+    if ([strings count] == 0) {
+        return nil;
+    }
+    for (NSString *s in [strings subarrayWithRange:NSMakeRange(0, MIN([strings count], 5))]) {
+        if ([DISABLE_VOICEACTIV_COMMANDS containsObject:s]) {
+            return s;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - User Interface Log
