@@ -140,7 +140,7 @@
     // This is a UUID that may be used to uniquely identify the
     // device, and is the same across apps from a single vendor.
     NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
     // Configure session
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];

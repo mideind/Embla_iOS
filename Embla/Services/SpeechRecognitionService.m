@@ -31,7 +31,7 @@
 
 // Phrases sent to Google API as part of speech context. Should make their speech
 // recognition more likely to identify these words. Doesn't seem to work that well :/
-#define PHRASES_ARRAY   @[@"miðeind", @"miðeindar"] // Just testing, for now...
+#define PHRASES_ARRAY   @[] // Empty for now
 
 @interface SpeechRecognitionService ()
 
