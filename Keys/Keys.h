@@ -1,2 +1,1 @@
-
 extern const char *gak;
