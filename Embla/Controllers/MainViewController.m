@@ -81,8 +81,6 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
     
-    self.textView.text = [self introMessage];
-    
     [self preloadSounds];
     [self setUpReachability];
     
