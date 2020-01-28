@@ -125,4 +125,8 @@
     return _streaming;
 }
 
+- (BOOL)hasAPIKey {
+    return ([self.apiKey length] > 0);
+}
+
 @end

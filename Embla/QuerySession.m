@@ -375,7 +375,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
     
     // Configure player and set it off
-    [player setMeteringEnabled:YES];
+    //[player setMeteringEnabled:YES];
     [player setDelegate:self];
     [player play];
     self.audioPlayer = player;

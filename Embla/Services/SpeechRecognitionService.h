@@ -31,5 +31,6 @@ typedef void (^SpeechRecognitionCompletionHandler)(StreamingRecognizeResponse *o
 - (void)streamAudioData:(NSData *)audioData withCompletion:(SpeechRecognitionCompletionHandler)completion;
 - (void)stopStreaming;
 - (BOOL)isStreaming;
+- (BOOL)hasAPIKey;
 
 @end

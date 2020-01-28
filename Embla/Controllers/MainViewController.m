@@ -26,6 +26,7 @@
 #import "QuerySession.h"
 #import "Common.h"
 #import "AudioRecordingService.h"
+#import "SpeechRecognitionService.h"
 #import "Reachability.h"
 #import "NSString+Additions.h"
 
@@ -46,6 +47,8 @@ static NSString * const kMicrophoneDisabledMessage = \
 @"Þetta forrit þarf aðgang að hljóðnema til þess að virka sem skyldi. \
 Aðgangi er stýrt í kerfisstillingum.";
 
+static NSString * const kNoSpeechAPIKeyMessage = \
+@"Enginn aðgangslykill fyrir forritaskil talgreiningar.";
 
 #define CANCEL_COMMANDS \
 @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
@@ -291,6 +294,13 @@ Aðgangi er stýrt í kerfisstillingum.";
             [self showMicAlert];
             return;
         }
+        // Make sure we have a speech recognition API key before proceeding
+        if ([[SpeechRecognitionService sharedInstance] hasAPIKey] == NO) {
+            [self clearLog];
+            [self log:kNoSpeechAPIKeyMessage];
+            [self playUISound:@"rec_cancel"];
+            return;
+        }
         [self startSession];
     }
 }
@@ -463,7 +473,7 @@ Aðgangi er stýrt í kerfisstillingum.";
 #pragma mark - User Interface Log
 
 - (void)clearLog {
-    // Update UI control on the main thread
+    // Update UI text view on the main thread
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.text = @"";
     }];
@@ -474,7 +484,7 @@ Aðgangi er stýrt í kerfisstillingum.";
     va_start(args, message);
     NSString *formattedString = [[NSString alloc] initWithFormat:message arguments:args];
     va_end(args);
-    // Update UI control on the main thread
+    // Update UI text view on the main thread
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, formattedString];
     }];
