@@ -5,7 +5,6 @@ TODO list for Embla iOS app
 * Stream MP3 directly from Polly service instead of downloading prior to playback? Might accelerate time to playback slightly, at the risk of interrupted or imperfect playback on slow networks.
 * Fix Bluetooth audio input/output source switching (semi-broken, it seems, but difficult to reproduce)
 * Onboarding/Intro view when app is first launched
-* More accurate dB measurement (accumulate and calculate average dB level instead of grabbing the exact value at the given moment)
 * Pick another icon for muting voice activation in main view? Microphone perhaps too generic?
 * Use AFNetworking's Reachability instead of Reachability lib
 * Automatic text size adjustment via Dynamic Type (fix for Lato custom font)

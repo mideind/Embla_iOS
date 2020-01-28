@@ -35,7 +35,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 @interface QuerySession () <AudioRecordingServiceDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
-    CGFloat recordingSampleAvg;
     CGFloat speechDuration;
     int speechAudioSize;
     BOOL endOfSingleUtteranceReceived;
@@ -109,19 +108,21 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 #pragma mark - AudioControllerDelegate
 
-// Receives audio data from microphone and accumulates until enough
-// samples have been received to send to speech recognition server.
+// Accumulates audio data from microphone until enough samples
+// have been received to send to speech recognition server.
 - (void)processSampleData:(NSData *)data {
     if (!_isRecording) {
-        DLog(@"Received audio data (%d bytes) after recording was ended.", (int)[data length]);
+        DLog(@"Received audio data (%d bytes) after recording ended.", (int)[data length]);
         return;
     }
     
     [self.audioData appendData:data];
     
     // Get audio frame properties
-    NSInteger frameCount = [data length] / 2;
+    NSInteger frameCount = [data length] / 2; // Mono 16-bit audio means each frame is 2 bytes
     int16_t *samples = (int16_t *)[data bytes]; // Cast void pointer
+    
+    // Calculate the average, max and sum of the received audio frames
     int64_t sum = 0;
     int64_t avg = 0;
     int16_t max = 0;
@@ -131,21 +132,22 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         max = (samples[i] > max) ? samples[i] : max;
     }
 //    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), (int)avg, (int)max);
+//
+//    DLog(@"Sample: %d", avg);
     
-    //DLog(@"Sample: %d", avg);
-    
-    float ampl = max/32767.f; // Divide by max value of signed 16-bit integer
-    float decibels = 20 * log10(ampl);
+    // We get amplitude by dividing by the max value of a signed 16-bit integer
+    float ampl = max/32767.f;
+//    float ampl = avg/32767.f; // This also works but produces boring waveforms :)
+    float decibels = 20.f * log10(ampl);
     //    DLog(@"Ampl: %.8f", ampl);
     //    DLog(@"DecB: %.2f", decibels);
     
-    recordingSampleAvg = avg;
     recordingDecibelLevel = decibels;
         
     // Google recommends sending samples in 100 ms chunks
-    float dur = 0.1;
+    float duration = 0.1f;
     int bytes_per_sample = 2;
-    int chunk_size = dur * REC_SAMPLE_RATE * bytes_per_sample;
+    int chunk_size = duration * REC_SAMPLE_RATE * bytes_per_sample;
     
     if ([self.audioData length] < chunk_size) {
         // Not enough data yet...
@@ -156,7 +158,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     [self sendSpeechData:self.audioData];
     
     // Keep track of stats on data sent to recognition server
-    speechDuration += dur;
+    speechDuration += duration;
     speechAudioSize += [self.audioData length];
     
     // Discard the accumulated audio data
@@ -207,10 +209,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         return;
     }
     
-//    if (!response.resultsArray_Count) {
-//        What to do with empty results?
-//    }
-    
     // Iterate through speech recognition results.
     // The response contains an array of StreamingRecognitionResult
     // objects (typically just one). Each result object has an associated array
@@ -228,7 +226,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         } else {
             // These are interim results, with more results from the speech service
             // expected. Notify delegate if the results are sufficently stable.
-            if (result.stability > 0.3) { // TODO: Arbitrary stability requirement
+            if (result.stability > 0.3f) { // TODO: Arbitrary stability requirement
                 res = [self _transcriptsFromRecognitionResult:result];
                 [self.delegate sessionDidReceiveInterimResults:res];
             }
