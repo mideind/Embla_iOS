@@ -21,15 +21,22 @@
 #define QUERY_API_PATH              @"/query.api/v1"
 #define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
 
+// Hostname used to determine if the device is connected to the internet
 #define REACHABILITY_HOSTNAME       @"greynir.is"
 
+// Remote HTML documentation
 #define ABOUT_URL                   @"https://embla.is/about.html"
 #define PRIVACY_URL                 @"https://embla.is/privacy.html"
 #define INSTRUCTIONS_URL            @"https://embla.is/instructions.html"
 
+// Sample rate for microphone audio recording
 #define REC_SAMPLE_RATE             16000.0f
 
-// Custom debug logging
+// Minimum acceptable speech to text result stability, on a range of 0-1.0,
+// used to determine whether an interim SST result is semi-reliable.
+#define MIN_STT_RESULT_STABILITY    0.3f
+
+// Logging in debug mode only
 #ifdef DEBUG
     #define DLog(...) NSLog(__VA_ARGS__)
 #else

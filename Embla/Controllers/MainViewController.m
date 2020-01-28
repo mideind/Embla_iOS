@@ -85,6 +85,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     [self preloadSounds];
     [self setUpReachability];
     
+    // Provide audio level to button in waveform state
     self.button.audioLevelSource = self;
     
     // Listen for notifications
@@ -489,7 +490,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     }];
 }
 
-#pragma mark - Waveform view
+#pragma mark - AudioLevelSource (for button)
 
 - (CGFloat)audioLevel {
     return self.currentSession ? [self.currentSession audioLevel] : 0.0f;
@@ -515,6 +516,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     }
 }
 
+// Preload audio files into memory so there isn't even the slightest delay when first played
 - (void)preloadSounds {
     uiSounds = [NSMutableDictionary new];
     
@@ -522,7 +524,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                        @"err-dora", @"conn-dora", @"dunno-dora",
                        @"err-karl", @"conn-karl", @"dunno-karl"];
     
-    // Load all sound files into memory
+    // Load files into memory, make the OS cache this shit
     for (NSString *fileName in files) {
         NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"wav"];
         if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {

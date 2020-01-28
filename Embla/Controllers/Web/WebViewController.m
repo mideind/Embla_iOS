@@ -55,6 +55,7 @@
     [self handleFailure];
 }
 
+// Load local file if web view fails to load remote URL
 - (void)handleFailure {
     DLog(@"%@ failed to load remote URL %@", NSStringFromClass([self class]), self.url);
     if (!self.fallbackFilename) {
@@ -69,6 +70,7 @@
     [self.webView loadRequest:request];
 }
 
+// Open clicked links in external web browser
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))handler {
     
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {

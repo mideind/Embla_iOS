@@ -136,12 +136,12 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 //
 //    DLog(@"Sample: %d", avg);
     
-    // We get amplitude by dividing by the max value of a signed 16-bit integer
-    float ampl = max/32767.f;
+    // We get amplitude range of 0.0-1.0 by dividing by the max value of a signed 16-bit integer
+    float ampl = max/SHRT_MAX;
 //    float ampl = avg/32767.f; // This also works but produces boring waveforms :)
     float decibels = 20.f * log10(ampl);
-    //    DLog(@"Ampl: %.8f", ampl);
-    //    DLog(@"DecB: %.2f", decibels);
+//    DLog(@"Ampl: %.8f", ampl);
+//    DLog(@"DecB: %.2f", decibels);
     
     recordingDecibelLevel = decibels;
         
@@ -227,7 +227,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         } else {
             // These are interim results, with more results from the speech service
             // expected. Notify delegate if the results are sufficently stable.
-            if (result.stability > 0.3f) { // TODO: Arbitrary stability requirement
+            if (result.stability > MIN_STT_RESULT_STABILITY) {
                 res = [self _transcriptsFromRecognitionResult:result];
                 [self.delegate sessionDidReceiveInterimResults:res];
             }
@@ -288,8 +288,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 }
 
 - (void)handleQueryResponse:(id)responseObject {
-    DLog(@"Handling query server response: %@", [responseObject description]);
     NSDictionary *r = responseObject;
+    DLog(@"Handling query server response: %@", [r description]);
     
     NSString *answer = kDontKnowAnswer;
     NSString *question = @"";
@@ -374,7 +374,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
     
     // Configure player and set it off
-    //[player setMeteringEnabled:YES];
+//    [player setMeteringEnabled:YES];
     [player setDelegate:self];
     [player play];
     self.audioPlayer = player;
@@ -455,7 +455,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     if (decibels < -60.0f || decibels == 0.0f) {
         return 0.0f;
     }
-    // TODO: Tweak this for better results?
     CGFloat exp = 0.05f;
     return powf(
                     (powf(10.0f, exp * decibels) - powf(10.0f, exp * -60.0f))

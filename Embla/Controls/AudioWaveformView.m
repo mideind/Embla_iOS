@@ -23,9 +23,9 @@
 
 #import "AudioWaveformView.h"
 
-#define DEFAULT_NUM_BARS    15
-#define DEFAULT_SPACING     3.5f
-#define DEFAULT_LEVEL       0.07f
+#define AWV_DEFAULT_NUM_BARS        15
+#define AWV_DEFAULT_BAR_SPACING     3.5f
+#define AWV_DEFAULT_AUDIO_LEVEL     0.07f // A hard lower limit above 0 looks better
 
 @interface AudioWaveformView()
 {
@@ -36,7 +36,7 @@
 @implementation AudioWaveformView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    return [self initWithBars:DEFAULT_NUM_BARS frame:frame];
+    return [self initWithBars:AWV_DEFAULT_NUM_BARS frame:frame];
 }
 
 - (instancetype)initWithBars:(NSInteger)barCount frame:(CGRect)frame {
@@ -45,7 +45,7 @@
         self.frame = frame;
         self.backgroundColor = [UIColor clearColor];
         self.numBars = barCount;
-        self.spacing = DEFAULT_SPACING;
+        self.spacing = AWV_DEFAULT_BAR_SPACING;
         waveformArray = [NSMutableArray new];
         [self reset];
     }
@@ -71,7 +71,7 @@
 
 // Populate waveform array with default value
 - (void)reset {
-    [self resetWithLevel:DEFAULT_LEVEL];
+    [self resetWithLevel:AWV_DEFAULT_AUDIO_LEVEL];
 }
 
 - (void)drawRect:(CGRect)rect {

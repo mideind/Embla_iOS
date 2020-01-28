@@ -30,13 +30,12 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     // Initial defaults
     [DEFAULTS registerDefaults:[self startingDefaults]];
     
     // Clear web cache every time app is relaunched.
-    // Makes it easier to test changes to HTML documents and results
-    // in a faster rollout to end users at the cost of bandwidth.
+    // Makes it easier to test changes to HTML documents and results in a
+    // faster rollout of doc updates to end users at the cost of bandwidth.
     [self clearWebCache];
     
     // Location tracking
@@ -79,12 +78,12 @@
 
 #pragma mark - Onboarding
 
-- (void)showOnboarding {
-    UINavigationController *rootController = (UINavigationController *)self.window.rootViewController;
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"start"];
-    [rootController pushViewController:vc animated:YES];
-}
+//- (void)showOnboarding {
+//    UINavigationController *rootController = (UINavigationController *)self.window.rootViewController;
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
+//    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"start"];
+//    [rootController pushViewController:vc animated:YES];
+//}
 
 #pragma mark - Defaults
 

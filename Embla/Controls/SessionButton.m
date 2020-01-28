@@ -21,6 +21,7 @@
 #import "YYImage.h"
 #import "AudioWaveformView.h"
 
+// Animation settings
 #define EXPANSION_DURATION  0.15
 #define EXPANSION_SCALE     1.4
 
