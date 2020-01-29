@@ -50,12 +50,12 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SessionButton">
-                                <rect key="frame" x="117" y="635" width="180" height="180"/>
+                                <rect key="frame" x="107" y="615" width="200" height="200"/>
                                 <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="2TV-aN-0uz"/>
+                                    <constraint firstAttribute="height" constant="200" id="2TV-aN-0uz"/>
                                     <constraint firstAttribute="width" secondItem="uwa-6b-u4b" secondAttribute="height" multiplier="1:1" id="Hyb-Xn-b9b"/>
-                                    <constraint firstAttribute="width" constant="180" id="hHE-WB-TZU"/>
+                                    <constraint firstAttribute="width" constant="200" id="hHE-WB-TZU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,7 +83,7 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="47" id="LYk-ra-vb5"/>
                             <constraint firstItem="EiJ-xq-0fy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="19" id="RaR-8p-4fn"/>
-                            <constraint firstItem="uwa-6b-u4b" firstAttribute="top" secondItem="EMZ-uC-XPA" secondAttribute="bottom" constant="76" id="ZgN-dC-mmF"/>
+                            <constraint firstItem="uwa-6b-u4b" firstAttribute="top" secondItem="EMZ-uC-XPA" secondAttribute="bottom" constant="56" id="ZgN-dC-mmF"/>
                             <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a3h-Bj-6YD"/>
                             <constraint firstAttribute="trailing" secondItem="EiJ-xq-0fy" secondAttribute="trailing" constant="20" id="ar0-Eo-UXe"/>
                             <constraint firstItem="EiJ-xq-0fy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="bNl-Pu-EBg"/>
