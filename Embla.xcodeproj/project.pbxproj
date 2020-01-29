@@ -121,7 +121,6 @@
 		F4E15387237473A200388420 /* instructions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = instructions.html; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
-		F4E5AD972385B7E8001C07A7 /* Lato-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.woff"; sourceTree = "<group>"; };
 		F4E5AD982385B7E8001C07A7 /* Lato-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.woff2"; sourceTree = "<group>"; };
 		F4E5AD992385B7E8001C07A7 /* Lato-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.woff2"; sourceTree = "<group>"; };
 		F4E5AD9A2385B7E8001C07A7 /* Lato-Italic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.woff2"; sourceTree = "<group>"; };
@@ -363,7 +362,6 @@
 				F4E7855C23690273004E29D1 /* style.css */,
 				F4E5AD992385B7E8001C07A7 /* Lato-Bold.woff2 */,
 				F4E5AD9A2385B7E8001C07A7 /* Lato-Italic.woff2 */,
-				F4E5AD972385B7E8001C07A7 /* Lato-Regular.woff */,
 				F4E5AD982385B7E8001C07A7 /* Lato-Regular.woff2 */,
 			);
 			path = Docs;
