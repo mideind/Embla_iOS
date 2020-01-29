@@ -2,7 +2,6 @@
  * This file is part of the Embla iOS app
  * Copyright (c) 2019-2020 Miðeind ehf.
  * Author: Sveinbjorn Thordarson
- * Adapted from Apache 2-licensed code Copyright 2016 Google Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +24,7 @@
 
 #define AWV_DEFAULT_NUM_BARS        15
 #define AWV_DEFAULT_BAR_SPACING     3.5f
-#define AWV_DEFAULT_AUDIO_LEVEL     0.07f // A hard lower limit above 0 looks better
+#define AWV_DEFAULT_SAMPLE_LEVEL     0.07f // A hard lower limit above 0 looks better
 
 @interface AudioWaveformView()
 {
@@ -52,17 +51,19 @@
     return self;
 }
 
+#pragma mark -
+
 - (void)addSampleLevel:(CGFloat)level {
     [waveformArray addObject:@(level)];
     while ([waveformArray count] > self.numBars && [waveformArray count]) {
         [waveformArray removeObjectAtIndex:0];
     }
-    // Tell display server this view needs to be redrawn.
+    // Tell display server this view needs to be redrawn
     [self setNeedsDisplay];
 }
 
 // Populate waveform array with a given value
-- (void)resetWithLevel:(CGFloat)level {
+- (void)resetWithSampleLevel:(CGFloat)level {
     [waveformArray removeAllObjects];
     while ([waveformArray count] < self.numBars) {
         [waveformArray addObject:@(level)];
@@ -71,8 +72,10 @@
 
 // Populate waveform array with default value
 - (void)reset {
-    [self resetWithLevel:AWV_DEFAULT_AUDIO_LEVEL];
+    [self resetWithSampleLevel:AWV_DEFAULT_SAMPLE_LEVEL];
 }
+
+#pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
