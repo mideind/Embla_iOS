@@ -24,7 +24,7 @@
 
 #define AWV_DEFAULT_NUM_BARS        15
 #define AWV_DEFAULT_BAR_SPACING     3.5f
-#define AWV_DEFAULT_SAMPLE_LEVEL     0.07f // A hard lower limit above 0 looks better
+#define AWV_DEFAULT_SAMPLE_LEVEL    0.07f // A hard lower limit above 0 looks better
 
 @interface AudioWaveformView()
 {
@@ -54,6 +54,9 @@
 #pragma mark -
 
 - (void)addSampleLevel:(CGFloat)level {
+    if (level < AWV_DEFAULT_SAMPLE_LEVEL) {
+        level = AWV_DEFAULT_SAMPLE_LEVEL;
+    }
     [waveformArray addObject:@(level)];
     while ([waveformArray count] > self.numBars && [waveformArray count]) {
         [waveformArray removeObjectAtIndex:0];

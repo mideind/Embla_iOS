@@ -137,8 +137,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 //    DLog(@"Sample: %d", avg);
     
     // We get amplitude range of 0.0-1.0 by dividing by the max value of a signed 16-bit integer
-    float ampl = max/SHRT_MAX;
-//    float ampl = avg/32767.f; // This also works but produces boring waveforms :)
+    float ampl = max/(float)SHRT_MAX;
+//    float ampl = avg/(float)SHRT_MAX; // This also works but produces boring waveforms
     float decibels = 20.f * log10(ampl);
 //    DLog(@"Ampl: %.8f", ampl);
 //    DLog(@"DecB: %.2f", decibels);
@@ -374,7 +374,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
     
     // Configure player and set it off
-//    [player setMeteringEnabled:YES];
+    [player setMeteringEnabled:YES];
     [player setDelegate:self];
     [player play];
     self.audioPlayer = player;

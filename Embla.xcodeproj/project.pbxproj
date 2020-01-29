@@ -16,6 +16,9 @@
 		D392D9891C94938F002F5132 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* MainViewController.m */; };
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
 		F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B12552343908F00CBE9B4 /* WebKit.framework */; };
+		F4121B4823E217B800AC8F13 /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4E5AD982385B7E8001C07A7 /* Lato-Regular.woff2 */; };
+		F4121B4923E217BA00AC8F13 /* Lato-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4E5AD9A2385B7E8001C07A7 /* Lato-Italic.woff2 */; };
+		F4121B4A23E217BD00AC8F13 /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4E5AD992385B7E8001C07A7 /* Lato-Bold.woff2 */; };
 		F421878B237C78880097E5D4 /* conn-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218788237C78880097E5D4 /* conn-karl.wav */; };
 		F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218789237C78880097E5D4 /* dunno-karl.wav */; };
 		F421878D237C78880097E5D4 /* err-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421878A237C78880097E5D4 /* err-karl.wav */; };
@@ -44,10 +47,6 @@
 		F4E15388237473A300388420 /* instructions.html in Resources */ = {isa = PBXBuildFile; fileRef = F4E15387237473A200388420 /* instructions.html */; };
 		F4E1538C2379BC5F00388420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34C17D81C948F5800D69BCA /* Assets.xcassets */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
-		F4E5AD9B2385B7E8001C07A7 /* Lato-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = F4E5AD972385B7E8001C07A7 /* Lato-Regular.woff */; };
-		F4E5AD9C2385B7E8001C07A7 /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4E5AD982385B7E8001C07A7 /* Lato-Regular.woff2 */; };
-		F4E5AD9D2385B7E8001C07A7 /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4E5AD992385B7E8001C07A7 /* Lato-Bold.woff2 */; };
-		F4E5AD9E2385B7E8001C07A7 /* Lato-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4E5AD9A2385B7E8001C07A7 /* Lato-Italic.woff2 */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
 		F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854F2368BDEA004E29D1 /* SessionButton.m */; };
@@ -447,28 +446,27 @@
 				F4E7856023690550004E29D1 /* style.css in Resources */,
 				F4218792237C789C0097E5D4 /* conn-dora.wav in Resources */,
 				F4E1538C2379BC5F00388420 /* Assets.xcassets in Resources */,
-				F4E5AD9C2385B7E8001C07A7 /* Lato-Regular.woff2 in Resources */,
+				F4121B4923E217BA00AC8F13 /* Lato-Italic.woff2 in Resources */,
 				F421878B237C78880097E5D4 /* conn-karl.wav in Resources */,
 				D392D9861C94937D002F5132 /* Main.storyboard in Resources */,
 				F4E153862374657C00388420 /* animation.apng in Resources */,
-				F4E5AD9B2385B7E8001C07A7 /* Lato-Regular.woff in Resources */,
 				D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */,
 				F4E7855E23690549004E29D1 /* about.html in Resources */,
 				F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */,
 				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
 				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
 				F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */,
-				F4E5AD9E2385B7E8001C07A7 /* Lato-Italic.woff2 in Resources */,
 				F421878D237C78880097E5D4 /* err-karl.wav in Resources */,
 				F4E7855F2369054C004E29D1 /* privacy.html in Resources */,
 				F421879F237C79640097E5D4 /* rec_begin.wav in Resources */,
 				F4218791237C789C0097E5D4 /* dunno-dora.wav in Resources */,
 				F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */,
+				F4121B4823E217B800AC8F13 /* Lato-Regular.woff2 in Resources */,
 				F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */,
 				F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */,
 				F4E15388237473A300388420 /* instructions.html in Resources */,
 				F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */,
-				F4E5AD9D2385B7E8001C07A7 /* Lato-Bold.woff2 in Resources */,
+				F4121B4A23E217BD00AC8F13 /* Lato-Bold.woff2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

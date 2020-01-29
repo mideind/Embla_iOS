@@ -33,7 +33,7 @@
 #define REC_SAMPLE_RATE             16000.0f
 
 // Minimum acceptable speech to text result stability, on a range of 0-1.0,
-// used to determine whether an interim SST result is semi-reliable.
+// used to determine whether an interim STT result is reasonably reliable.
 #define MIN_STT_RESULT_STABILITY    0.25f
 
 // Logging in debug mode only
