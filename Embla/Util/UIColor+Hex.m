@@ -44,9 +44,9 @@
         [scanner setScanLocation:1]; // Bypass '#' character
     }
     [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0
-                           green:((rgbValue & 0xFF00) >> 8)/255.0
-                            blue:(rgbValue & 0xFF)/255.0
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0f
+                           green:((rgbValue & 0xFF00) >> 8)/255.0f
+                            blue:(rgbValue & 0xFF)/255.0f
                            alpha:alpha];
 }
 

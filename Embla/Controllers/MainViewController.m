@@ -76,6 +76,8 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
 @implementation MainViewController
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 13.0, *)) {
@@ -150,7 +152,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     self.textView.superview.layer.mask = gradient;
 }
 
-#pragma mark - Respond to notifications
+#pragma mark - Respond to app state changes
 
 - (void)becameActive:(NSNotification *)notification {
     DLog(@"%@", [notification description]);
@@ -172,17 +174,6 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     }
     
     [[ActivationListener sharedInstance] stopListening];
-}
-
-- (void)cancelCommandReceived:(NSNotification *)notification {
-    [self sessionDidReceiveTranscripts:nil];
-    [self.currentSession terminate];
-}
-
-- (void)disableVoiceActivationReceived:(NSNotification *)notification {
-    [self toggleVoiceActivation:self];
-    [self sessionDidReceiveTranscripts:nil];
-    [self.currentSession terminate];
 }
 
 #pragma mark - Reachability
@@ -445,6 +436,17 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 }
 
 #pragma mark - Local commands
+
+- (void)cancelCommandReceived:(NSNotification *)notification {
+    [self sessionDidReceiveTranscripts:nil];
+    [self.currentSession terminate];
+}
+
+- (void)disableVoiceActivationReceived:(NSNotification *)notification {
+    [self toggleVoiceActivation:self];
+    [self sessionDidReceiveTranscripts:nil];
+    [self.currentSession terminate];
+}
 
 - (NSString *)_containsCancelCommand:(NSArray *)strings {
     if ([strings count] == 0) {

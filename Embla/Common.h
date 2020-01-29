@@ -21,7 +21,7 @@
 #define QUERY_API_PATH              @"/query.api/v1"
 #define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
 
-// Hostname used to determine if the device is connected to the internet
+// Hostname used to determine if the device is connected to the internet.
 #define REACHABILITY_HOSTNAME       @"greynir.is"
 
 // Remote HTML documentation
@@ -34,7 +34,7 @@
 
 // Minimum acceptable speech to text result stability, on a range of 0-1.0,
 // used to determine whether an interim SST result is semi-reliable.
-#define MIN_STT_RESULT_STABILITY    0.3f
+#define MIN_STT_RESULT_STABILITY    0.25f
 
 // Logging in debug mode only
 #ifdef DEBUG
@@ -44,5 +44,5 @@
 #endif
 
 // Use macro to abbreviate standard user defaults and
-// combat the excessive verbosity of the Cocoa APIs
+// combat the excessive verbosity of the Cocoa APIs.
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]
