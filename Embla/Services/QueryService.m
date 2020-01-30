@@ -27,7 +27,8 @@
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 
-#define REQ_TIMEOUT 15.0f
+// Number of seconds before a query server request should time out
+#define QUERY_SERVICE_REQ_TIMEOUT   15.0f
 
 @implementation QueryService
 
@@ -71,7 +72,7 @@
     NSString *qstr = [alternatives componentsJoinedByString:@"|"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [configuration setTimeoutIntervalForRequest:REQ_TIMEOUT];
+    [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSString *apiEndpoint = [self _APIEndpoint];
@@ -100,18 +101,16 @@
     if (privacyMode) {
         // User has set the client to private mode. Notify server that
         // queries should not be logged.
-        [parameters setObject:@"1" forKey:@"private"];
+        parameters[@"private"] = @"1";
     } else {
         // Send unique device ID
         // This is a UUID that may be used to uniquely identify the
         // device, and is the same across apps from a single vendor.
-        NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-        [parameters setObject:uniqueID forKey:@"client_id"];
+        parameters[@"client_id"] = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
         
         // Client type and version
-        [parameters setObject:@"ios" forKey:@"client_type"];
-        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-        [parameters setObject:version forKey:@"client_version"];
+        parameters[@"client_type"] = CLIENT_TYPE;
+        parameters[@"client_version"] = CLIENT_VERSION;
     }
     
     // Create request

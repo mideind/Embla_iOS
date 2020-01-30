@@ -29,6 +29,10 @@
 #define PRIVACY_URL                 @"https://embla.is/privacy.html"
 #define INSTRUCTIONS_URL            @"https://embla.is/instructions.html"
 
+// Unique client type identifier string
+#define CLIENT_TYPE                 @"ios"
+#define CLIENT_VERSION              [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
+
 // Sample rate for microphone audio recording
 #define REC_SAMPLE_RATE             16000.0f
 

@@ -43,9 +43,14 @@
 }
 
 - (void)dealloc {
-    AudioComponentInstanceDispose(remoteIOUnit);
+    if (remoteIOUnit) {
+        AudioComponentInstanceDispose(remoteIOUnit);
+    }
 }
 
+#pragma mark -
+
+// Generate clean error message using 4 char codes if appropriate
 static OSStatus CheckError(OSStatus error, const char *operation) {
     if (error == noErr) {
         return error;
@@ -64,6 +69,7 @@ static OSStatus CheckError(OSStatus error, const char *operation) {
     return error;
 }
 
+// Callback invoked when audio data is received from the input source
 static OSStatus recordingCallback(void *inRefCon,
                                   AudioUnitRenderActionFlags *ioActionFlags,
                                   const AudioTimeStamp *inTimeStamp,
@@ -91,14 +97,13 @@ static OSStatus recordingCallback(void *inRefCon,
         return status;
     }
     
-    // Create NSData object and send to delegate
-//    NSData *data = [[NSData alloc] initWithBytes:bufferList->mBuffers[0].mData
-//                                          length:bufferList->mBuffers[0].mDataByteSize];
+    // Create NSData object from audio buffer and send to delegate
     NSData *data = [[NSData alloc] initWithBytesNoCopy:bufferList->mBuffers[0].mData
                                                 length:bufferList->mBuffers[0].mDataByteSize
                                           freeWhenDone:NO];
     free(bufferList);
     
+    // Notify delegate on main thread
     dispatch_async(dispatch_get_main_queue(), ^{
         [audioController.delegate processSampleData:data];
     });
@@ -106,6 +111,9 @@ static OSStatus recordingCallback(void *inRefCon,
     return noErr;
 }
 
+#pragma mark -
+
+// Configure audio recording session
 - (OSStatus)prepareWithSampleRate:(double)specifiedSampleRate {
     OSStatus status = noErr;
     
@@ -114,15 +122,20 @@ static OSStatus recordingCallback(void *inRefCon,
     // Set up audio session for recording and playback.
     [session setMode:AVAudioSessionModeVoiceChat error:nil];
     NSError *error;
+    AVAudioSessionCategoryOptions opts = \
+    AVAudioSessionCategoryOptionDefaultToSpeaker
+    |AVAudioSessionCategoryOptionAllowBluetooth
+    |AVAudioSessionCategoryOptionAllowBluetoothA2DP;
+    
     BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord
-                       withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionAllowBluetoothA2DP
+                       withOptions:opts
                              error:&error];
     if (!ok) {
         DLog(@"Failed to change audio session category: %@", [error localizedDescription]);
     }
     [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:nil];
     
-    // Buffer configuration breaks audio via Bluetooth and should not be set
+    // Buffer configuration breaks audio via Bluetooth and should not be set!
     // [session setPreferredIOBufferDuration:10 error:&error];
     
     double sampleRate = session.sampleRate;
@@ -201,10 +214,12 @@ static OSStatus recordingCallback(void *inRefCon,
     return status;
 }
 
+// Start recording session
 - (OSStatus)start {
     return AudioOutputUnitStart(self->remoteIOUnit);
 }
 
+// Stop recording session
 - (OSStatus)stop {
     return AudioOutputUnitStop(self->remoteIOUnit);
 }

@@ -73,7 +73,11 @@
 - (void)clearWebCache {
     NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
     NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
-    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{}];
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes
+                                               modifiedSince:dateFrom
+                                           completionHandler:^{
+        DLog(@"Cleared web cache");
+    }];
 }
 
 #pragma mark - Onboarding
@@ -116,6 +120,8 @@
 - (BOOL)locationServicesAvailable {
     return [CLLocationManager locationServicesEnabled];
 }
+
+#pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if ([DEFAULTS boolForKey:@"UseLocation"] == NO) {
