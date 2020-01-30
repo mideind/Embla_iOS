@@ -230,8 +230,7 @@
     
     // Set off update timer for waveform
     [waveformTimer invalidate];
-    waveformTimer = nil;
-    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 // 20 fps
+    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:0.0416666667 // 24 fps
                                                      target:self
                                                    selector:@selector(waveformTicker)
                                                    userInfo:nil

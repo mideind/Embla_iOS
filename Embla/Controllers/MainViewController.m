@@ -225,6 +225,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                                                                    message:kMicrophoneDisabledMessage
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
+    // Open settings if user wants to enable mic
     UIAlertAction *activateAction = [UIAlertAction actionWithTitle:@"Virkja"
                                                              style:UIAlertActionStyleDefault
                                                            handler:^(UIAlertAction * action) {
@@ -233,6 +234,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                                                            }];
     [alert addAction:activateAction];
     
+    // Cancel
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Hætta við"
                                                            style:UIAlertActionStyleCancel
                                                          handler:nil];
@@ -401,7 +403,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         DLog(@"Opening URL: %@", url);
         [[UIApplication sharedApplication] openURL:url
                                            options:@{}
-                                 completionHandler:^(BOOL success){}];
+                                 completionHandler:nil];
     }
 }
 
