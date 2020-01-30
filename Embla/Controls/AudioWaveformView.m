@@ -54,9 +54,9 @@
 #pragma mark -
 
 - (void)addSampleLevel:(CGFloat)level {
-    if (level < AWV_DEFAULT_SAMPLE_LEVEL) {
-        level = AWV_DEFAULT_SAMPLE_LEVEL;
-    }
+//    if (level < AWV_DEFAULT_SAMPLE_LEVEL) {
+//        level = AWV_DEFAULT_SAMPLE_LEVEL;
+//    }
     [waveformArray addObject:@(level)];
     while ([waveformArray count] > self.numBars && [waveformArray count]) {
         [waveformArray removeObjectAtIndex:0];

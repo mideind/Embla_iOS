@@ -28,10 +28,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiJ-xq-0fy" userLabel="EnclosingTextView">
-                                <rect key="frame" x="20" y="107" width="374" height="452"/>
+                                <rect key="frame" x="20" y="107" width="374" height="462"/>
                                 <subviews>
                                     <textView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-uC-XPA">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="452"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="462"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration" label="Texti"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. proident, sunt in culpa qui officia deserunt mollit.</string>
@@ -49,13 +49,13 @@
                                     <constraint firstAttribute="trailing" secondItem="EMZ-uC-XPA" secondAttribute="trailing" id="j2r-u0-EDK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SessionButton">
-                                <rect key="frame" x="107" y="615" width="200" height="200"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SessionButton">
+                                <rect key="frame" x="107" y="615" width="190" height="190"/>
                                 <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="2TV-aN-0uz"/>
+                                    <constraint firstAttribute="height" constant="190" id="2TV-aN-0uz"/>
                                     <constraint firstAttribute="width" secondItem="uwa-6b-u4b" secondAttribute="height" multiplier="1:1" id="Hyb-Xn-b9b"/>
-                                    <constraint firstAttribute="width" constant="200" id="hHE-WB-TZU"/>
+                                    <constraint firstAttribute="width" constant="190" id="hHE-WB-TZU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
