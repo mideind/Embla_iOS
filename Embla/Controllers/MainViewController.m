@@ -158,7 +158,8 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     DLog(@"%@", [notification description]);
     if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
         // Only reactivate if this is the frontmost view controller
-        UINavigationController *navCtrl = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+        id rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        UINavigationController *navCtrl = (UINavigationController *)rootVC;
         if (navCtrl.topViewController == self) {
             [[ActivationListener sharedInstance] startListening];
         }
@@ -172,11 +173,11 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         [self.currentSession terminate];
         self.currentSession = nil;
     }
-    
+    // And stop listening for the activation phrase, no longer in foreground
     [[ActivationListener sharedInstance] stopListening];
 }
 
-#pragma mark - Reachability
+#pragma mark - Reachability (internet connectivity)
 
 - (void)becameReachable {
     DLog(@"Network became reachable");
