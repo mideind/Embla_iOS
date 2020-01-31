@@ -22,8 +22,8 @@
 #import "AudioWaveformView.h"
 
 // Animation settings
-#define EXPANSION_DURATION  0.15
-#define EXPANSION_SCALE     1.4
+#define EXPANSION_DURATION  0.14
+#define EXPANSION_SCALE     1.33
 
 @interface SessionButton() {
     CALayer *firstCircleLayer;

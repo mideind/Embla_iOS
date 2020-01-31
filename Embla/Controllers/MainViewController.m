@@ -85,7 +85,6 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     }
     
     [self preloadSounds];
-    [self setUpReachability];
     
     // Provide audio level to button in waveform state
     self.button.audioLevelSource = self;
@@ -179,22 +178,6 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
 #pragma mark - Reachability (internet connectivity)
 
-- (void)becameReachable {
-    DLog(@"Network became reachable");
-    self.connected = YES;
-}
-
-- (void)becameUnreachable {
-    DLog(@"Network became unreachable");
-    self.connected = NO;
-    if (self.currentSession && !self.currentSession.terminated) {
-        [self.currentSession terminate];
-        self.currentSession = nil;
-        [self playUISound:@"conn"];
-        [self log:kNoInternetConnectivityMessage];
-    }
-}
-
 - (void)setUpReachability {
     if (reach) {
         [reach stopNotifier];
@@ -216,6 +199,22 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
     // Start the notifier, which will cause the reachability object to retain itself!
     [reach startNotifier];
+}
+
+- (void)becameReachable {
+    DLog(@"Network became reachable");
+    self.connected = YES;
+}
+
+- (void)becameUnreachable {
+    DLog(@"Network became unreachable");
+    self.connected = NO;
+    if (self.currentSession && !self.currentSession.terminated) {
+        [self.currentSession terminate];
+        self.currentSession = nil;
+        [self playUISound:@"conn"];
+        [self log:kNoInternetConnectivityMessage];
+    }
 }
 
 #pragma mark - Alerts
