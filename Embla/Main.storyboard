@@ -82,6 +82,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uwa-6b-u4b" secondAttribute="bottom" constant="47" id="LYk-ra-vb5"/>
                             <constraint firstItem="EiJ-xq-0fy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="19" id="RaR-8p-4fn"/>
@@ -92,6 +93,9 @@
                             <constraint firstItem="lKs-MA-wVD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e2L-6C-PSJ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lKs-MA-wVD" secondAttribute="bottom" id="ndp-UG-s3o"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="a03-3L-qgp" appends="YES" id="A16-4z-ZQ9"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="CPw-yR-1iI">
                         <barButtonItem key="backBarButtonItem" title="Til baka" id="U3V-jb-oZ6">
@@ -118,6 +122,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="a03-3L-qgp">
+                    <connections>
+                        <segue destination="alF-fD-xUu" kind="show" id="5Qz-r2-zOK"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1237.68115942029" y="1016.5178571428571"/>
         </scene>
@@ -459,7 +468,7 @@
                         <sections>
                             <tableViewSection id="bZ2-Fq-WHb">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="20" id="8rb-3C-kKK" userLabel="Empty">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="20" id="8rb-3C-kKK" userLabel="Empty">
                                         <rect key="frame" x="0.0" y="28" width="414" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8rb-3C-kKK" id="N7f-aj-D9y">
@@ -586,6 +595,7 @@
                         <connections>
                             <outlet property="dataSource" destination="alF-fD-xUu" id="nru-lm-bDB"/>
                             <outlet property="delegate" destination="alF-fD-xUu" id="y0I-6n-ZAA"/>
+                            <outletCollection property="gestureRecognizers" destination="ULN-lB-qW2" appends="YES" id="cXY-ah-qQ7"/>
                         </connections>
                     </tableView>
                     <toolbarItems/>
@@ -597,6 +607,11 @@
                     <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIq-To-953" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="ULN-lB-qW2">
+                    <connections>
+                        <segue destination="0fs-On-g95" kind="show" id="MxW-5r-n0G"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2028" y="1017"/>
         </scene>
@@ -693,5 +708,9 @@
         <image name="Microphone" width="24" height="24"/>
         <image name="Transparent" width="10" height="10"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5Qz-r2-zOK"/>
+        <segue reference="RJD-MJ-JUE"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
 </document>
