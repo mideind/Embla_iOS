@@ -95,7 +95,7 @@
                                                              withFilesNamed:@"OEDynamicLanguageModel"
                                                      forAcousticModelAtPath:[OEAcousticModel pathToModel:@"AcousticModelEnglish"]];
         if (error) {
-            NSLog(@"Dynamic language model generator error: %@", [error description]);
+            DLog(@"Dynamic language model generator error: %@", [error description]);
             return FALSE;
         }
         

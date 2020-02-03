@@ -30,6 +30,8 @@
 @property(nonatomic, weak) id<AudioRecordingServiceDelegate> delegate;
 
 + (instancetype)sharedInstance;
+
+- (OSStatus)prepare;
 - (OSStatus)prepareWithSampleRate:(double)sampleRate;
 - (OSStatus)start;
 - (OSStatus)stop;

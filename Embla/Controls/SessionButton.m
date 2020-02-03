@@ -22,8 +22,10 @@
 #import "AudioWaveformView.h"
 
 // Animation settings
-#define EXPANSION_DURATION  0.14
-#define EXPANSION_SCALE     1.33
+#define EXPANSION_DURATION      0.15f
+#define EXPANSION_SCALE         1.33f
+#define ANIMATION_FRAMERATE     24.0f
+#define FADE_DURATION           0.075f
 
 @interface SessionButton() {
     CALayer *firstCircleLayer;
@@ -201,7 +203,7 @@
     [animationView stopAnimating];
     animationView.currentAnimatedImageIndex = 99; // Fix at final image (full logo)
     // Fade it out
-    [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+    [UIView animateWithDuration:FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         animationView.alpha = 0.0f;
     } completion:^(BOOL finished) {
         // Once faded out, remove it from view and reset to first frame
@@ -230,13 +232,13 @@
     
     // Set off update timer for waveform
     [waveformTimer invalidate];
-    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:0.0416666667 // 24 fps
+    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/ANIMATION_FRAMERATE
                                                      target:self
                                                    selector:@selector(waveformTicker)
                                                    userInfo:nil
                                                     repeats:YES];
     // Fade it in
-    [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+    [UIView animateWithDuration:FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         waveformView.alpha = 1.0f;
     } completion:^(BOOL finished) {
     }];
@@ -244,7 +246,7 @@
 
 - (void)stopWaveform {
     // Fade it out
-    [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+    [UIView animateWithDuration:FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         waveformView.alpha = 0.0f;
     } completion:^(BOOL finished) {
         [waveformView removeFromSuperview];

@@ -48,7 +48,7 @@
     }
 }
 
-#pragma mark -
+#pragma mark - CoreAudio Callback
 
 // Generate clean error message using 4 char codes if appropriate
 static OSStatus CheckError(OSStatus error, const char *operation) {
@@ -111,7 +111,11 @@ static OSStatus recordingCallback(void *inRefCon,
     return noErr;
 }
 
-#pragma mark -
+#pragma mark - Initialization
+
+- (OSStatus)prepare {
+    return [self prepareWithSampleRate:REC_SAMPLE_RATE];
+}
 
 // Configure audio recording session
 - (OSStatus)prepareWithSampleRate:(double)specifiedSampleRate {
@@ -213,6 +217,8 @@ static OSStatus recordingCallback(void *inRefCon,
     
     return status;
 }
+
+#pragma mark -
 
 // Start recording session
 - (OSStatus)start {
