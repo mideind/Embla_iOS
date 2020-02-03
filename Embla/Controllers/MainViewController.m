@@ -84,7 +84,16 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
     
+    // Preload/pre-initialize the following to prevent any delay when session is activated
     [self preloadSounds];
+    [AVAudioSession sharedInstance];
+    [SpeechRecognitionService sharedInstance];
+    
+    // Receive messages from activation listener
+    [[ActivationListener sharedInstance] setDelegate:self];
+    
+    // Prepare for audio recording
+    [[AudioRecordingService sharedInstance] prepare];
     
     // Provide audio level to button in waveform state
     self.button.audioLevelSource = self;
@@ -99,11 +108,6 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
     
-    // Receive messages from activation listener
-    [[ActivationListener sharedInstance] setDelegate:self];
-    
-    // Prepare for audio recording
-    [[AudioRecordingService sharedInstance] prepareWithSampleRate:REC_SAMPLE_RATE];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
