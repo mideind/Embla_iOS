@@ -24,11 +24,13 @@
     of activation phrase recordings. Reliability is currently much poorer than Siri's.
 */
 
+// TODO: Debug and fix Bluetooth issue, probably related to isListening flag
+
 #import "Common.h"
 #import "ActivationListener.h"
 
-// Valid phrases to listen for
-#define PHRASES @[\
+// Valid activation phrases to listen for
+#define ACTIVATION_PHRASES @[\
 @"hi embla", \
 @"hiembla", \
 @"hey embla", \
@@ -41,17 +43,16 @@
 ]
 
 // 0 is certainty.
-#define MIN_SCORE       -190000
+#define MIN_HYPOTHESIS_SCORE    -190000
 
 // This is how long Pocketsphinx should wait after speech ends to
 // attempt to recognize speech. The default is 0.7 seconds.
-#define SILENCE_DELAY   0.6f
+#define SILENCE_DELAY           0.6f
 
 // Speech/Silence threshhold setting. If quiet background noises are triggering
 // speech recognition, this can be raised to a value from 2-3 to 3.5 for the
 // English acoustic model being used. Default is 2.3.
-#define VAD_THRESHOLD   3.25f
-
+#define VAD_THRESHOLD           3.25f
 
 @interface ActivationListener()
 
@@ -87,7 +88,7 @@
         [[OEPocketsphinxController sharedInstance] setDisablePreferredBufferSize:YES];
         
         // Generate language model
-        NSArray *langArray = PHRASES;
+        NSArray *langArray = ACTIVATION_PHRASES;
         OELanguageModelGenerator *langModelGenerator = [[OELanguageModelGenerator alloc] init];
         // Uncomment for verbose language model generator debug output.
 //        langModelGenerator.verboseLanguageModelGenerator = TRUE;
@@ -146,8 +147,8 @@
     }
     
     // Check if it matches activation phrase
-    for (NSString *phrase in PHRASES) {
-        if ([hypothesis isEqualToString:phrase] && [score integerValue] > MIN_SCORE) {
+    for (NSString *phrase in ACTIVATION_PHRASES) {
+        if ([hypothesis isEqualToString:phrase] && [score integerValue] > MIN_HYPOTHESIS_SCORE) {
             [self.delegate didHearActivationPhrase:hypothesis];
             return;
         }

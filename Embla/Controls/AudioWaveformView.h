@@ -26,7 +26,7 @@
 - (instancetype)initWithBars:(NSInteger)barCount frame:(CGRect)frame;
 - (void)addSampleLevel:(CGFloat)level;
 - (void)resetWithSampleLevel:(CGFloat)level;
-- (void)resetWithSampleMinLevel:(CGFloat)minLevel maxLevel:(CGFloat)maxLevel
+- (void)resetWithSampleMinLevel:(CGFloat)minLevel maxLevel:(CGFloat)maxLevel;
 - (void)reset;
 
 @end
