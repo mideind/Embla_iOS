@@ -25,6 +25,8 @@
 #define AWV_DEFAULT_NUM_BARS        15
 #define AWV_DEFAULT_BAR_SPACING     3.5f
 #define AWV_DEFAULT_SAMPLE_LEVEL    0.07f // A hard lower limit above 0 looks better
+#define AWV_DEFAULT_VARIATION       0.01f // Variation range for bars when reset
+#define AWV_MIN_SAMPLE_LEVEL        0.035f // Hard limit on lowest level
 
 @interface AudioWaveformView()
 {
@@ -54,9 +56,9 @@
 #pragma mark -
 
 - (void)addSampleLevel:(CGFloat)level {
-//    if (level < AWV_DEFAULT_SAMPLE_LEVEL) {
-//        level = AWV_DEFAULT_SAMPLE_LEVEL;
-//    }
+    if (level < AWV_MIN_SAMPLE_LEVEL) {
+        level = AWV_MIN_SAMPLE_LEVEL;
+    }
     [waveformArray addObject:@(level)];
     while ([waveformArray count] > self.numBars && [waveformArray count]) {
         [waveformArray removeObjectAtIndex:0];
@@ -65,17 +67,24 @@
     [self setNeedsDisplay];
 }
 
-// Populate waveform array with a given value
-- (void)resetWithSampleLevel:(CGFloat)level {
-    [waveformArray removeAllObjects];
-    while ([waveformArray count] < self.numBars) {
-        [waveformArray addObject:@(level)];
-    }
+// Populate waveform array with default value (range)
+- (void)reset {
+    [self resetWithSampleMinLevel:AWV_DEFAULT_SAMPLE_LEVEL - AWV_DEFAULT_VARIATION
+                         maxLevel:AWV_DEFAULT_SAMPLE_LEVEL + AWV_DEFAULT_VARIATION];
 }
 
-// Populate waveform array with default value
-- (void)reset {
-    [self resetWithSampleLevel:AWV_DEFAULT_SAMPLE_LEVEL];
+// Populate waveform array with a given value
+- (void)resetWithSampleLevel:(CGFloat)level {
+    [self resetWithSampleMinLevel:level maxLevel:level];
+}
+
+// Populate waveform array with random values in a specified range
+- (void)resetWithSampleMinLevel:(CGFloat)minLevel maxLevel:(CGFloat)maxLevel {
+    [waveformArray removeAllObjects];
+    while ([waveformArray count] < self.numBars) {
+        float randomLevel = (maxLevel - minLevel) * ((((float) rand()) / (float) RAND_MAX)) + minLevel;
+        [waveformArray addObject:@(randomLevel)];
+    }
 }
 
 #pragma mark - Drawing
