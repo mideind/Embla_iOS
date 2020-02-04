@@ -73,6 +73,7 @@
 }
 
 - (BOOL)startListening {
+    // TODO: Maybe re-initialise every time listening is resumed?
     if (!self.openEarsEventsObserver) {
         // Set up speech recognition via Pocketsphinx
         self.openEarsEventsObserver = [[OEEventsObserver alloc] init];
@@ -82,9 +83,8 @@
         [[OEPocketsphinxController sharedInstance] setActive:TRUE error:nil];
         // Configure it
         [[OEPocketsphinxController sharedInstance] setSecondsOfSilenceToDetect:SILENCE_DELAY]; // Default is 0.7
-//        DLog(@"VAD threshold: %.2f", [OEPocketsphinxController sharedInstance].vadThreshold);
         [[OEPocketsphinxController sharedInstance] setVadThreshold:VAD_THRESHOLD]; // Default is 2.3
-        // Must be disabled in order to work with Bluetooth devices
+        // Custom buffer size be disabled in order to work with Bluetooth devices and device switching
         [[OEPocketsphinxController sharedInstance] setDisablePreferredBufferSize:YES];
         
         // Generate language model
@@ -125,6 +125,7 @@
 #pragma mark -
 
 - (void)_startOEListening {
+    DLog(@"StartOEListening");
     if ([OEPocketsphinxController sharedInstance].isListening == FALSE) {
         [[OEPocketsphinxController sharedInstance] startListeningWithLanguageModelAtPath:self.langModelPath
                                                                         dictionaryAtPath:self.genDictPath
@@ -138,7 +139,6 @@
 - (void)pocketsphinxDidReceiveHypothesis:(NSString *)hypothesis
                         recognitionScore:(NSString *)score
                              utteranceID:(NSString *)utteranceID {
-    
     DLog(@"\"%@\" (Score: %@)", hypothesis, score);
     
     // If no delegate, we're done here

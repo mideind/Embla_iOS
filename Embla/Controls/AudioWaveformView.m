@@ -24,9 +24,9 @@
 
 #define AWV_DEFAULT_NUM_BARS        15
 #define AWV_DEFAULT_BAR_SPACING     3.5f
-#define AWV_DEFAULT_SAMPLE_LEVEL    0.07f // A hard lower limit above 0 looks better
-#define AWV_DEFAULT_VARIATION       0.01f // Variation range for bars when reset
-#define AWV_MIN_SAMPLE_LEVEL        0.035f // Hard limit on lowest level
+#define AWV_DEFAULT_SAMPLE_LEVEL    0.05f // A hard lower limit above 0 looks better
+#define AWV_DEFAULT_VARIATION       0.025f // Variation range for bars when reset
+#define AWV_MIN_SAMPLE_LEVEL        0.025f // Hard limit on lowest level
 
 @interface AudioWaveformView()
 {
@@ -82,7 +82,7 @@
 - (void)resetWithSampleMinLevel:(CGFloat)minLevel maxLevel:(CGFloat)maxLevel {
     [waveformArray removeAllObjects];
     while ([waveformArray count] < self.numBars) {
-        float randomLevel = (maxLevel - minLevel) * ((((float) rand()) / (float) RAND_MAX)) + minLevel;
+        float randomLevel = (maxLevel - minLevel) * ((((float)rand()) / (float)RAND_MAX)) + minLevel;
         [waveformArray addObject:@(randomLevel)];
     }
 }

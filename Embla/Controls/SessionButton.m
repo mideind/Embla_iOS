@@ -22,10 +22,10 @@
 #import "AudioWaveformView.h"
 
 // Animation settings
-#define EXPANSION_DURATION      0.15f
-#define EXPANSION_SCALE         1.33f
-#define ANIMATION_FRAMERATE     24.0f
-#define FADE_DURATION           0.075f
+#define SB_EXPANSION_DURATION      0.15f
+#define SB_EXPANSION_SCALE         1.33f
+#define SB_ANIMATION_FRAMERATE     24.0f
+#define SB_FADE_DURATION           0.075f
 
 @interface SessionButton() {
     CALayer *firstCircleLayer;
@@ -155,9 +155,9 @@
 #pragma mark - Animate size
 
 - (void)expand {
-    [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+    [UIView animateWithDuration:SB_EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         // Expand
-        self.transform = CGAffineTransformMakeScale(EXPANSION_SCALE, EXPANSION_SCALE);
+        self.transform = CGAffineTransformMakeScale(SB_EXPANSION_SCALE, SB_EXPANSION_SCALE);
         // Reposition upwards
         CGPoint c = self.center;
         c.y -= 30;
@@ -170,7 +170,7 @@
 }
 
 - (void)contract {
-    [UIView animateWithDuration:EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+    [UIView animateWithDuration:SB_EXPANSION_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         // Contract to original size
         self.transform = CGAffineTransformIdentity;
         // Move to original position
@@ -203,7 +203,7 @@
     [animationView stopAnimating];
     animationView.currentAnimatedImageIndex = 99; // Fix at final image (full logo)
     // Fade it out
-    [UIView animateWithDuration:FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+    [UIView animateWithDuration:SB_FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
         animationView.alpha = 0.0f;
     } completion:^(BOOL finished) {
         // Once faded out, remove it from view and reset to first frame
@@ -232,13 +232,13 @@
     
     // Set off update timer for waveform
     [waveformTimer invalidate];
-    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/ANIMATION_FRAMERATE
+    waveformTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/SB_ANIMATION_FRAMERATE
                                                      target:self
                                                    selector:@selector(waveformTicker)
                                                    userInfo:nil
                                                     repeats:YES];
     // Fade it in
-    [UIView animateWithDuration:FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:SB_FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         waveformView.alpha = 1.0f;
     } completion:^(BOOL finished) {
     }];
@@ -246,7 +246,7 @@
 
 - (void)stopWaveform {
     // Fade it out
-    [UIView animateWithDuration:FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:SB_FADE_DURATION delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         waveformView.alpha = 0.0f;
     } completion:^(BOOL finished) {
         [waveformView removeFromSuperview];
