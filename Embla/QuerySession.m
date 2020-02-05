@@ -124,17 +124,15 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     int16_t *samples = (int16_t *)[data bytes]; // Cast void pointer
     
     // Calculate the average, max and sum of the received audio frames
-    int64_t sum = 0;
-    int64_t avg = 0;
+//    int64_t sum = 0;
+//    int64_t avg = 0;
     int16_t max = 0;
     for (int i = 0; i < frameCount; i++) {
-        sum += abs(samples[i]);
-        avg = !avg ? abs(samples[i]) : (avg + abs(samples[i])) / 2;
+//        sum += abs(samples[i]);
+//        avg = !avg ? abs(samples[i]) : (avg + abs(samples[i])) / 2;
         max = (samples[i] > max) ? samples[i] : max;
     }
-//    DLog(@"Audio frame count %d %d %d %d", (int)frameCount, (int)(sum * 1.0 / frameCount), (int)avg, (int)max);
-//
-//    DLog(@"Sample: %d", avg);
+//    DLog(@"Audio frame count: %d avg: %d max: %d", (int)frameCount, (int)avg, (int)max);
     
     // We get amplitude range of 0.0-1.0 by dividing by the max value of a signed 16-bit integer
     float ampl = max/(float)SHRT_MAX;
@@ -296,22 +294,25 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     NSString *source;
     NSURL *url;
     
-    // If response data is valid, play back the provided audio URL
+    // If response data is valid, handle it
     if ([r isKindOfClass:[NSDictionary class]]) {
         
-        answer = [r objectForKey:@"answer"] ? r[@"answer"] : [r objectForKey:@"voice"];
+        answer = [r objectForKey:@"answer"];
         question = [r objectForKey:@"q"];
-        source = [r objectForKey:@"source"] ? r[@"source"] : nil;
+        source = [r objectForKey:@"source"];
         
         NSString *audioURLStr = [r objectForKey:@"audio"];
         NSString *openURLStr = [r objectForKey:@"open_url"];
         
+        // If response contains a URL to open, there's no audio response playback
         if (openURLStr && [openURLStr isKindOfClass:[NSString class]]) {
             url = [NSURL URLWithString:openURLStr];
         }
+        // Play back audio response
         else if (audioURLStr && [audioURLStr isKindOfClass:[NSString class]]) {
             [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
         }
+        // No audio response...
         else {
             answer = kDontKnowAnswer;
             [self playDontKnow];
