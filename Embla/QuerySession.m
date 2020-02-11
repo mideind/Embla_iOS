@@ -30,6 +30,9 @@
 #import <AVFoundation/AVFoundation.h>
 
 
+#define SESSION_MIN_AUDIO_LEVEL 0.03f
+
+
 static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 
@@ -107,7 +110,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     [self.delegate sessionDidStopRecording];
 }
 
-#pragma mark - AudioControllerDelegate
+#pragma mark - AudioRecordingServiceDelegate
 
 // Accumulates audio data from microphone until enough samples
 // have been received to send to speech recognition server.
@@ -210,24 +213,24 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     
     // Iterate through speech recognition results.
     // The response contains an array of StreamingRecognitionResult
-    // objects (typically just one). Each result object has an associated array
+    // objects (typically just one). Each result object contains an array
     // of SpeechRecognitionAlternative objects ordered by probability.
     BOOL finished = NO;
-    NSArray *res;
+    NSArray *transcripts;
     for (StreamingRecognitionResult *result in response.resultsArray) {
         if (result.isFinal) {
             // If true, this is the final time the speech service will return
             // this particular `StreamingRecognitionResult`. The recognizer
             // will not return any further hypotheses for this portion of
             // the transcript and corresponding audio.
-            res = [self _transcriptsFromRecognitionResult:result];
+            transcripts = [self _transcriptsFromRecognitionResult:result];
             finished = YES;
         } else {
             // These are interim results, with more results from the speech service
             // expected. Notify delegate if the results are sufficently stable.
             if (result.stability > MIN_STT_RESULT_STABILITY) {
-                res = [self _transcriptsFromRecognitionResult:result];
-                [self.delegate sessionDidReceiveInterimResults:res];
+                transcripts = [self _transcriptsFromRecognitionResult:result];
+                [self.delegate sessionDidReceiveInterimResults:transcripts];
             }
         }
     }
@@ -236,11 +239,11 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     // Stop recording and submit query, if any, to query server.
     if (finished) {
         [self stopRecording];
-        if ([res count]) {
+        if ([transcripts count]) {
             // Notify delegate
-            [self.delegate sessionDidReceiveTranscripts:res];
+            [self.delegate sessionDidReceiveTranscripts:transcripts];
             // Send to query server
-            [self sendQuery:[res copy]];
+            [self sendQuery:[transcripts copy]];
         } else {
             [self terminate];
         }
@@ -321,7 +324,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     // Malformed response from query server
     else {
         NSString *msg = [NSString stringWithFormat:@"Malformed response from query server: %@", [r description]];
-        NSError *error = [NSError errorWithDomain:@"Greynir" code:0 userInfo:@{ NSLocalizedDescriptionKey: msg }];
+        NSError *error = [NSError errorWithDomain:@"Embla" code:0 userInfo:@{ NSLocalizedDescriptionKey: msg }];
         [self.delegate sessionDidRaiseError:error];
         return;
     }
@@ -334,6 +337,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 
 - (void)playAudio:(id)filenameOrData {
     // Utility function that creates an AVAudioPlayer to play either a local file or audio data
+    NSAssert([filenameOrData isKindOfClass:[NSString class]] || [filenameOrData isKindOfClass:[NSData class]],
+             @"playAudio argument neither filename string nor data.");
     
     // Change audio session to playback mode
 //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
@@ -351,21 +356,14 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
             player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&err];
         } else {
             NSString *errStr = [NSString stringWithFormat:@"Unable to find audio file '%@' in bundle", filename];
-            DLog(@"%@", errStr);
-            NSError *err = [NSError errorWithDomain:@"Greynir" code:0 userInfo:@{ NSLocalizedDescriptionKey: errStr }];
-            [self.delegate sessionDidRaiseError:err];
-            return;
+            err = [NSError errorWithDomain:@"Embla" code:0 userInfo:@{ NSLocalizedDescriptionKey: errStr }];
         }
     }
-    else if ([filenameOrData isKindOfClass:[NSData class]]) {
+    else {
         // Init player with audio data
         NSData *data = (NSData *)filenameOrData;
         DLog(@"Playing audio data (size %d bytes)", (int)[data length]);
         player = [[AVAudioPlayer alloc] initWithData:data error:&err];
-    }
-    else {
-        DLog(@"playAudio argument neither filename nor data.");
-        return;
     }
     
     if (err) {
@@ -375,10 +373,10 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
     
     // Configure player and set it off
-    [player setMeteringEnabled:YES];
+    self.audioPlayer = player;
+//    [player setMeteringEnabled:YES];
     [player setDelegate:self];
     [player play];
-    self.audioPlayer = player;
 }
 
 - (void)playRemoteURL:(NSURL *)url {
@@ -399,9 +397,9 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         
         // Make sure content-type is audio/mpeg
         NSString *contentType = [headerFields objectForKey:@"Content-Type"];
-        if (!contentType || ![contentType isEqualToString:@"audio/mpeg"]) {
+        if (!error && (!contentType || ![contentType isEqualToString:@"audio/mpeg"])) {
             NSString *msg = [NSString stringWithFormat:@"Wrong content type from speech audio server: %@", contentType];
-            error = [NSError errorWithDomain:@"Greynir" code:0 userInfo:@{ NSLocalizedDescriptionKey: msg }];
+            error = [NSError errorWithDomain:@"Embla" code:0 userInfo:@{ NSLocalizedDescriptionKey: msg }];
         }
         
         if (error) {
@@ -435,20 +433,17 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 // the latest microphone input. Otherwise, the volume of the audio player is returned.
 - (CGFloat)audioLevel {
     CGFloat level = 0.f;
-    CGFloat minLevel = 0.03f;
+    CGFloat min = SESSION_MIN_AUDIO_LEVEL;
     if (_isRecording) {
         level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
 //        DLog(@"Audio level: %.2f", level);
-        if (isnan(level) || level < minLevel) {
-            level = minLevel;
-        }
     }
-    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
-        [self.audioPlayer updateMeters];
-        float decibels = [self.audioPlayer averagePowerForChannel:0];
-        level = [self _normalizedPowerLevelFromDecibels:decibels];
-    }
-    return level;
+//    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
+//        [self.audioPlayer updateMeters];
+//        float decibels = [self.audioPlayer averagePowerForChannel:0];
+//        level = [self _normalizedPowerLevelFromDecibels:decibels];
+//    }
+    return (isnan(level) || level < min) ? min : level;
 }
 
 // Given a decibel range, normalize it to a value between 0.0 and 1.0
