@@ -20,7 +20,6 @@
     View controller for the main Embla session view.
 */
 
-
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "MainViewController.h"
@@ -108,6 +107,13 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
     
+    // Configure Dynamic Type for the text view. Setting this in Interface Builder doesn't
+    // work because we're using a custom bundled font so we have to do it manually.
+    UIFont *customFont = [UIFont fontWithName:@"Lato-Italic" size:23.0f];
+    if (customFont) {
+        self.textView.font = [[UIFontMetrics metricsForTextStyle:UIFontTextStyleBody] scaledFontForFont:customFont];
+        self.textView.adjustsFontForContentSizeCategory = YES;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
