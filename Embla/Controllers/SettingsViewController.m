@@ -21,6 +21,12 @@
 #import "Common.h"
 #import "QueryService.h"
 
+#define QUERY_SERVER_PRESETS \
+@[DEFAULT_QUERY_SERVER,\
+@"http://46.4.45.9:5000",\
+@"http://192.168.1.45:5000",\
+@"http://192.168.1.3:5000"]
+
 @interface SettingsViewController ()
 
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
@@ -117,7 +123,13 @@
     [self.privacyModeSwitch setOn:[DEFAULTS boolForKey:@"PrivacyMode"]];
     [self.voiceSegmentedControl setSelectedSegmentIndex:[DEFAULTS integerForKey:@"Voice"]];
     [self.speechSpeedSlider setValue:[DEFAULTS floatForKey:@"SpeechSpeed"]];
-    [self.queryServerTextField setText:[DEFAULTS stringForKey:@"QueryServer"]];
+    
+#ifdef DEBUG
+    NSString *url = [DEFAULTS stringForKey:@"QueryServer"];
+    [self.queryServerTextField setText:url];
+    NSInteger toSelect = [QUERY_SERVER_PRESETS indexOfObject:url];
+    [self.serverSegmentedControl setSelectedSegmentIndex:toSelect];
+#endif
 }
 
 // Configure defaults according to controls in Settings view, synchronize
@@ -182,18 +194,11 @@
 
 - (IBAction)serverPresetSelected:(id)sender {
     NSString *url = DEFAULT_QUERY_SERVER;
-    switch ([sender selectedSegmentIndex]) {
-        case 1:
-            url = @"http://46.4.45.9:5000";
-            break;
-        case 2:
-            url = @"http://192.168.1.45:5000";
-            break;
-        case 3:
-            url = @"http://192.168.1.3:5000";
-            break;
-        default:
-            break;
+    NSArray *presets = QUERY_SERVER_PRESETS;
+    NSInteger idx = [sender selectedSegmentIndex];
+    
+    if (idx < [presets count]) {
+        url = [presets objectAtIndex:(NSUInteger)idx];
     }
     [self.queryServerTextField setText:url];
 }
