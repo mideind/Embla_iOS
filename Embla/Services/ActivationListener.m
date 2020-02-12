@@ -84,8 +84,11 @@
         // Configure it
         [[OEPocketsphinxController sharedInstance] setSecondsOfSilenceToDetect:SILENCE_DELAY]; // Default is 0.7
         [[OEPocketsphinxController sharedInstance] setVadThreshold:VAD_THRESHOLD]; // Default is 2.3
-        // Custom buffer size be disabled in order to work with Bluetooth devices and device switching
+        // Custom buffer size is disabled in order to work with Bluetooth devices and device switching
         [[OEPocketsphinxController sharedInstance] setDisablePreferredBufferSize:YES];
+//        [[OEPocketsphinxController sharedInstance] setAudioMode:@"VoiceChat"];
+//        [[OEPocketsphinxController sharedInstance] setDisableMixing:YES];
+//        [[OEPocketsphinxController sharedInstance] setVerbosePocketSphinx:YES];
         
         // Generate language model
         NSArray *langArray = ACTIVATION_PHRASES;

@@ -23,7 +23,7 @@
 
 #define QUERY_SERVER_PRESETS \
 @[DEFAULT_QUERY_SERVER,\
-@"http://46.4.45.9:5000",\
+@"http://brandur.mideind.is:5000",\
 @"http://192.168.1.45:5000",\
 @"http://192.168.1.3:5000"]
 

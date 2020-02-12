@@ -70,7 +70,7 @@ static OSStatus CheckError(OSStatus error, const char *operation) {
 }
 
 // Callback invoked when audio data is received from the input source
-static OSStatus recordingCallback(void *inRefCon,
+static OSStatus RecordingCallback(void *inRefCon,
                                   AudioUnitRenderActionFlags *ioActionFlags,
                                   const AudioTimeStamp *inTimeStamp,
                                   UInt32 inBusNumber,
@@ -124,12 +124,11 @@ static OSStatus recordingCallback(void *inRefCon,
     AVAudioSession *session = [AVAudioSession sharedInstance];
     
     // Set up audio session for recording and playback.
-    [session setMode:AVAudioSessionModeVoiceChat error:nil];
+    [session setMode:AVAudioSessionModeDefault error:nil];
     NSError *error;
     AVAudioSessionCategoryOptions opts = \
     AVAudioSessionCategoryOptionDefaultToSpeaker
-    |AVAudioSessionCategoryOptionAllowBluetooth
-    |AVAudioSessionCategoryOptionAllowBluetoothA2DP;
+    |AVAudioSessionCategoryOptionAllowBluetooth;
     
     BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord
                        withOptions:opts
@@ -201,7 +200,7 @@ static OSStatus recordingCallback(void *inRefCon,
     
     // Set the recording callback
     AURenderCallbackStruct callbackStruct;
-    callbackStruct.inputProc = recordingCallback;
+    callbackStruct.inputProc = RecordingCallback;
     callbackStruct.inputProcRefCon = (__bridge void *)self;
     status = AudioUnitSetProperty(self->remoteIOUnit, kAudioOutputUnitProperty_SetInputCallback, kAudioUnitScope_Global,
                                   bus1, &callbackStruct, sizeof(callbackStruct));

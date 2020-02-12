@@ -92,9 +92,11 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     
     self.audioData = [NSMutableData new];
 
-    [[AudioRecordingService sharedInstance] setDelegate:self];
-    [[AudioRecordingService sharedInstance] start];
-    
+//    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
+//        [[AudioRecordingService sharedInstance] prepare];
+        [[AudioRecordingService sharedInstance] setDelegate:self];
+        [[AudioRecordingService sharedInstance] start];
+//    });
     [self.delegate sessionDidStartRecording];
 }
 
@@ -160,7 +162,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     [self sendSpeechData:self.audioData];
     
     // Keep track of stats on data sent to recognition server
-    speechDuration += duration;
+    speechDuration += ([self.audioData length]/(REC_SAMPLE_RATE * bytes_per_sample));
     speechAudioSize += [self.audioData length];
     
     // Discard the accumulated audio data
@@ -194,7 +196,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 }
 
 - (void)handleSpeechRecognitionResponse:(StreamingRecognizeResponse *)response {
-    DLog(@"Received speech recognition response: %@", response);
+//    DLog(@"Received speech recognition response: %@", response);
     
     if (endOfSingleUtteranceReceived && !hasSentQuery && response == nil) {
         // The speech recognition session has timed out without recognition
@@ -238,6 +240,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     // We've received a final answer from the speech recognition server.
     // Stop recording and submit query, if any, to query server.
     if (finished) {
+        DLog(@"Received final speech recognition response: %@", [transcripts description]);
         [self stopRecording];
         if ([transcripts count]) {
             // Notify delegate
@@ -340,10 +343,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     NSAssert([filenameOrData isKindOfClass:[NSString class]] || [filenameOrData isKindOfClass:[NSData class]],
              @"playAudio argument neither filename string nor data.");
     
-    // Change audio session to playback mode
-//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
-//                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
-//                                           error:nil];
     NSError *err;
     AVAudioPlayer *player;
     
@@ -362,8 +361,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     else {
         // Init player with audio data
         NSData *data = (NSData *)filenameOrData;
-        DLog(@"Playing audio data (size %d bytes)", (int)[data length]);
         player = [[AVAudioPlayer alloc] initWithData:data error:&err];
+        DLog(@"Playing audio data (%.2f seconds, size %d bytes)", player.duration, (int)[data length]);
     }
     
     if (err) {
