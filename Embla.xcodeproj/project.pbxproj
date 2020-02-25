@@ -31,7 +31,6 @@
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
-		F454EE322357A90D003C2715 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F454EE312357A90D003C2715 /* OnboardingViewController.m */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
@@ -92,8 +91,6 @@
 		F427692522C1219A00BB6977 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		F454EE302357A90D003C2715 /* OnboardingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
-		F454EE312357A90D003C2715 /* OnboardingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = Embla/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -259,8 +256,6 @@
 				D392D9881C94938F002F5132 /* MainViewController.m */,
 				F427692222C1218A00BB6977 /* SettingsViewController.h */,
 				F427692322C1218A00BB6977 /* SettingsViewController.m */,
-				F454EE302357A90D003C2715 /* OnboardingViewController.h */,
-				F454EE312357A90D003C2715 /* OnboardingViewController.m */,
 				F4E785472367655C004E29D1 /* Web */,
 			);
 			path = Controllers;
@@ -560,7 +555,6 @@
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
-				F454EE322357A90D003C2715 /* OnboardingViewController.m in Sources */,
 				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
 				F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */,
@@ -733,6 +727,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -761,6 +756,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

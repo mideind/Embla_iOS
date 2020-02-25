@@ -22,6 +22,9 @@
 #import <WebKit/WKWebsiteDataStore.h>
 
 @interface AppDelegate ()
+{
+
+}
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @end
 
@@ -35,15 +38,29 @@
     
     // Clear web cache every time app is relaunched.
     // Makes it easier to test changes to HTML documents and results in a
-    // faster rollout of doc updates to end users at the cost of bandwidth.
+    // faster rollout of doc updates to end users.
     [self clearWebCache];
     
-    // Location tracking
+    // Manually create window and load storyboard
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    [DEFAULTS setBool:NO forKey:@"InitialLaunch"];
+    
+    if ([DEFAULTS boolForKey:@"InitialLaunch"]) {
+        // Present onboarding view controller
+        [self showOnboarding];
+        [DEFAULTS setBool:NO forKey:@"InitialLaunch"];
+    } else {
+        // Present main storyboard
+        [self showMainStoryboard];
+    }
+    // Show window
+    [self.window makeKeyAndVisible];
+    
+    // Enable location tracking
     if ([DEFAULTS boolForKey:@"UseLocation"]) {
         [self startLocationServices];
     }
-    
-    //[self showOnboarding];
     
     return YES;
 }
@@ -82,18 +99,22 @@
 
 #pragma mark - Onboarding
 
-//- (void)showOnboarding {
-//    UINavigationController *rootController = (UINavigationController *)self.window.rootViewController;
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
-//    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"start"];
-//    [rootController pushViewController:vc animated:YES];
-//}
+- (void)showMainStoryboard {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"Main"];
+    self.window.rootViewController = viewController;
+}
+
+- (void)showOnboarding {
+//    self.window.rootViewController = onboardingVC;
+}
 
 #pragma mark - Defaults
 
 - (NSDictionary *)startingDefaults {
     // Default settings for app
     return @{
+        @"InitialLaunch": @(YES),
         @"VoiceActivation": @(YES),
         @"UseLocation": @(YES),
         @"PrivacyMode": @(NO),

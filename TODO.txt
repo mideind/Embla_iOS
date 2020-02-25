@@ -2,7 +2,7 @@
 TODO list for Embla iOS app
 
 * Option to use HR's Kaldi speech recognition API instead of Google's? - https://tal.ru.is/
-* Stream MP3 directly instead of downloading prior to playback? Might accelerate time to playback slightly, at the risk of interrupted or imperfect playback on slow networks.
 * Fix Bluetooth audio input/output source switching (semi-broken, it seems, but difficult to reproduce)
 * Onboarding/Intro view when app is first launched
 * Pick another icon for muting voice activation in main view? Microphone perhaps too generic?
+* Fix voice activation issues

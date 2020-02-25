@@ -10,12 +10,10 @@ target 'Embla' do
     pod 'AFNetworking', '~> 3.2.1', :subspecs => ['Serialization', 'Security', 'NSURLSession']
     pod 'Reachability', '~> 3.2'
     pod 'YYImage', '~> 1.0.4'
+    pod 'EAIntroView'
 end
 
 post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-        config.build_settings['SWIFT_VERSION'] = '5.0'
-    end
     installer.pods_project.targets.each do |t|
       t.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
