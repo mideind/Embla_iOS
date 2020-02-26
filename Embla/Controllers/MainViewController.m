@@ -27,9 +27,9 @@
 #import "Common.h"
 #import "AudioRecordingService.h"
 #import "SpeechRecognitionService.h"
+#import "JSExecutor.h"
 #import "Reachability.h"
 #import "NSString+Additions.h"
-
 
 static NSString * const kIntroMessage = \
 @"Segðu „Hæ Embla“ eða smelltu á hnappinn til þess að tala við Emblu.";
@@ -394,25 +394,39 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 - (void)sessionDidReceiveAnswer:(NSString *)answer
                      toQuestion:(NSString *)question
                          source:(NSString *)source
-                        withURL:(NSURL *)url {
+                        openURL:(NSURL *)url
+                        command:(NSString *)cmd {
     [self clearLog];
     
-    NSString *aStr = answer ? answer : @"";
-    NSString *separator = answer ? @"\n\n" : @"";
-    NSString *srcStr = source ? [NSString stringWithFormat:@" (%@)", source] : @"";
-    [self log:@"%@%@%@%@",  [question sentenceCapitalizedString],
-                            separator,
-                            [[aStr sentenceCapitalizedString] periodTerminatedString],
-                            srcStr];
-    
-    // If we receive an URL in the response from the query server, we terminate
-    // the session and ask the operating system to open the URL in question.
-    if (url) {
-        [self.currentSession terminate];
-        DLog(@"Opening URL: %@", url);
-        [[UIApplication sharedApplication] openURL:url
-                                           options:@{}
-                                 completionHandler:nil];
+    // We have received a JS command
+    if (cmd) {
+        [[JSExecutor sharedInstance] run:cmd completionHandler:^(id res, NSError *err) {
+            [self.currentSession terminate];
+            // Put JS eval result into text field on main thread
+            NSString *str = err ? [err localizedDescription] : res;
+            [self clearLog];
+            [self log:str];
+        }];
+    }
+    // Standard answer (w. optional URL to open)
+    else {
+        NSString *aStr = answer ? answer : @"";
+        NSString *separator = answer ? @"\n\n" : @"";
+        NSString *srcStr = source ? [NSString stringWithFormat:@" (%@)", source] : @"";
+        [self log:@"%@%@%@%@",  [question sentenceCapitalizedString],
+                                separator,
+                                [[aStr sentenceCapitalizedString] periodTerminatedString],
+                                srcStr];
+        
+        // If we receive an URL in the response from the query server, we terminate
+        // the session and ask the operating system to open the URL in question.
+        if (url) {
+            [self.currentSession terminate];
+            DLog(@"Opening URL: %@", url);
+            [[UIApplication sharedApplication] openURL:url
+                                               options:@{}
+                                     completionHandler:nil];
+        }
     }
 }
 
@@ -494,10 +508,13 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 }
 
 - (void)log:(NSString *)message, ... {
-    va_list args;
-    va_start(args, message);
-    NSString *formattedString = [[NSString alloc] initWithFormat:message arguments:args];
-    va_end(args);
+    NSString *formattedString = @"(null)";
+    if (message) {
+        va_list args;
+        va_start(args, message);
+        formattedString = [[NSString alloc] initWithFormat:message arguments:args];
+        va_end(args);
+    }
     // Update UI text view on the main thread
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, formattedString];

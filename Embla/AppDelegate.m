@@ -22,9 +22,6 @@
 #import <WebKit/WKWebsiteDataStore.h>
 
 @interface AppDelegate ()
-{
-
-}
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @end
 

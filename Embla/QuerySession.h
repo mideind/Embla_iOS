@@ -30,7 +30,8 @@
 - (void)sessionDidReceiveAnswer:(NSString *)answer
                      toQuestion:(NSString *)question
                          source:(NSString *)source
-                        withURL:(NSURL *)url;
+                        openURL:(NSURL *)url
+                        command:(NSString *)cmd;
 - (void)sessionDidRaiseError:(NSError *)err;
 - (void)sessionDidTerminate;
 

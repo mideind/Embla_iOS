@@ -61,7 +61,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     return self;
 }
 
-#pragma mark -
+#pragma mark - Start / stop
 
 - (void)start {
     NSAssert(self.terminated == FALSE, @"Reusing one-off QuerySession object");
@@ -299,6 +299,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     NSString *question = @"";
     NSString *source;
     NSURL *url;
+    NSString *cmd;
     
     // If response data is valid, handle it
     if ([r isKindOfClass:[NSDictionary class]]) {
@@ -306,6 +307,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         answer = [r objectForKey:@"answer"];
         question = [r objectForKey:@"q"];
         source = [r objectForKey:@"source"];
+        cmd = [r objectForKey:@"command"];
         
         NSString *audioURLStr = [r objectForKey:@"audio"];
         NSString *openURLStr = [r objectForKey:@"open_url"];
@@ -313,6 +315,10 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         // If response contains a URL to open, there's no audio response playback
         if (openURLStr && [openURLStr isKindOfClass:[NSString class]]) {
             url = [NSURL URLWithString:openURLStr];
+        }
+        // If response contains a cmd
+        else if (cmd && [cmd isKindOfClass:[NSString class]]) {
+            // pass
         }
         // Play back audio response
         else if (audioURLStr && [audioURLStr isKindOfClass:[NSString class]]) {
@@ -333,13 +339,17 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     }
     
     // Notify delegate
-    [self.delegate sessionDidReceiveAnswer:answer toQuestion:question source:source withURL:url];
+    [self.delegate sessionDidReceiveAnswer:answer
+                                toQuestion:question
+                                    source:source
+                                   openURL:url
+                                   command:cmd];
 }
 
 #pragma mark - Audio Playback
 
+// Utility function that creates an AVAudioPlayer to play either a local file or audio data
 - (void)playAudio:(id)filenameOrData {
-    // Utility function that creates an AVAudioPlayer to play either a local file or audio data
     NSAssert([filenameOrData isKindOfClass:[NSString class]] || [filenameOrData isKindOfClass:[NSData class]],
              @"playAudio argument neither filename string nor data.");
     
@@ -378,8 +388,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     [player play];
 }
 
+// Download remote MP3 file and play it when download is complete
 - (void)playRemoteURL:(NSURL *)url {
-    // Download remote MP3 file and play it when download is complete
     DLog(@"Downloading audio URL: %@", [url description]);
 
     NSURLSessionDataTask *downloadTask = \
@@ -411,9 +421,10 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     [downloadTask resume];
 }
 
+// Play dunno-voice_id audio file
 - (void)playDontKnow {
-    NSUInteger vid = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
-    NSString *suffix = vid == 0 ? @"dora" : @"karl";
+    NSUInteger voiceID = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
+    NSString *suffix = voiceID == 0 ? @"dora" : @"karl";
     NSString *fn = [NSString stringWithFormat:@"dunno-%@", suffix];
     [self playAudio:fn];
 }

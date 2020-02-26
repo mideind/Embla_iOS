@@ -53,6 +53,7 @@
 		F4E7855E23690549004E29D1 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = F4E7855B23690273004E29D1 /* about.html */; };
 		F4E7855F2369054C004E29D1 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = F4E7855D23690273004E29D1 /* privacy.html */; };
 		F4E7856023690550004E29D1 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = F4E7855C23690273004E29D1 /* style.css */; };
+		F4E90AC52406C2F9004EE9A6 /* JSExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E90AC32406C2F9004EE9A6 /* JSExecutor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +136,8 @@
 		F4E7855C23690273004E29D1 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		F4E7855D23690273004E29D1 /* privacy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
 		F4E78561236905A9004E29D1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
+		F4E90AC32406C2F9004EE9A6 /* JSExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExecutor.m; sourceTree = "<group>"; };
+		F4E90AC42406C2F9004EE9A6 /* JSExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExecutor.h; sourceTree = "<group>"; };
 		FDF1E2EC415384E4A4629D2F /* libPods-Embla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Embla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -245,6 +248,8 @@
 				F4E160F822A977620019EDE7 /* QueryService.m */,
 				D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */,
 				D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */,
+				F4E90AC42406C2F9004EE9A6 /* JSExecutor.h */,
+				F4E90AC32406C2F9004EE9A6 /* JSExecutor.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -544,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4E90AC52406C2F9004EE9A6 /* JSExecutor.m in Sources */,
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
 				F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */,
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
