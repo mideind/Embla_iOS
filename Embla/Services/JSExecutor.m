@@ -45,9 +45,14 @@
 
 #pragma mark -
 
+// NB: This code runs asynchronously, so repeated serial invocations of this
+// method will result in shared JS namespace.
+// TODO: Perhaps better to initialise a new web view for each call
 - (void)run:(NSString *)jsCode completionHandler:(void (^)(id, NSError *))completionHandler {
-    [webView evaluateJavaScript:jsCode completionHandler:completionHandler];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    [webView evaluateJavaScript:jsCode completionHandler:^(id res, NSError *err) {
+        completionHandler(res, err);
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    }];
 }
 
 @end
