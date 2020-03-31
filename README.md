@@ -32,4 +32,4 @@ The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://gi
 
 ## GPL License
 
-This program and its source code is &copy; 2019-2020 [Miðeind ehf.](https://miðeind.is) and is released as open source software under the terms and conditions of the [GNU General Public License v3.](https://www.gnu.org/licenses/gpl-3.0.html)
+This program and its source code is &copy; 2019-2020 [Miðeind ehf.](https://miðeind.is) and is released as open source software under the terms and conditions of the [GNU General Public License v3.](https://www.gnu.org/licenses/gpl-3.0.html) Alternative licensing arrangements are negotiable.
