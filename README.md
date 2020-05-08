@@ -22,6 +22,12 @@ Once installation is complete, open `Embla.xcworkspace` with Xcode and build. Al
 $ ./build.sh
 ```
 
+The build script requires [`xcpretty`](https://github.com/xcpretty/xcpretty), which you can install with the following command:
+
+```
+sudo gem install xcpretty
+```
+
 NB: In order to function correctly, the app requires a valid API key for Google's Speech-to-Text API. The key should be saved in the following text file:
 
 * `Keys/GoogleAPI.key`

@@ -416,6 +416,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
             [self.delegate sessionDidRaiseError:error];
             return;
         }
+        DLog(@"Commencing audio answer playback");
         [self playAudio:data];
     }];
     [downloadTask resume];
@@ -440,7 +441,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 #pragma mark - Audio level
 
 // The session has an audio level property. If we are recording, this is the volume of
-// the latest microphone input. Otherwise, the volume of the audio player is returned.
+// the latest microphone input. Otherwise, it is zero.
 - (CGFloat)audioLevel {
     CGFloat level = 0.f;
     CGFloat min = SESSION_MIN_AUDIO_LEVEL;
@@ -448,11 +449,6 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         level = [self _normalizedPowerLevelFromDecibels:recordingDecibelLevel];
 //        DLog(@"Audio level: %.2f", level);
     }
-//    else if (self.audioPlayer && [self.audioPlayer isPlaying]) {
-//        [self.audioPlayer updateMeters];
-//        float decibels = [self.audioPlayer averagePowerForChannel:0];
-//        level = [self _normalizedPowerLevelFromDecibels:decibels];
-//    }
     return (isnan(level) || level < min) ? min : level;
 }
 
