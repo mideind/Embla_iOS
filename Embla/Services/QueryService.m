@@ -64,8 +64,7 @@
 
 - (void)sendQuery:(id)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
     BOOL isString = [query isKindOfClass:[NSString class]];
-    BOOL isArray = [query isKindOfClass:[NSArray class]];
-    NSAssert(isString || isArray, @"Query argument passed to sendQuery must be string or array.");
+    NSAssert(isString || [query isKindOfClass:[NSArray class]], @"Query argument passed to sendQuery must be string or array.");
     
     // Query argument is a |-separated list
     NSArray *alternatives = isString ? @[query] : query;
