@@ -1,4 +1,4 @@
-<img src="Embla/Assets.xcassets/EmblaLogo.imageset/embla_logo%401x.png" align="right" width="192" height="192">
+<img src="Embla/Assets.xcassets/EmblaLogo.imageset/embla_logo%401x.png" align="right" width="224" height="224" style="margin-left:20px;">
 
 # Embla iOS client
 
