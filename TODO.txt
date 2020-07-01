@@ -8,4 +8,4 @@ TODO list for Embla iOS app
 * Fix voice activation issues
 * Fix issue when app is restored from "sleep" (hangs when button pressed and waveform activated)
 * Onboarding/Intro view when app is first launched
-
+* Test re-initing pocketsphinx on start/stop listening

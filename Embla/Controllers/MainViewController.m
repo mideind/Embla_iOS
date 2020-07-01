@@ -403,7 +403,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         [[JSExecutor sharedInstance] run:cmd completionHandler:^(id res, NSError *err) {
             [self.currentSession terminate];
             // Put JS eval result into text field on main thread
-            NSString *str = err ? [err localizedDescription] : res;
+            NSString *str = err ? [err localizedDescription] : [NSString stringWithFormat:@"%@", res];
             [self clearLog];
             [self log:str];
         }];
@@ -509,7 +509,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
 - (void)log:(NSString *)message, ... {
     NSString *formattedString = @"(null)";
-    if (message) {
+    if (message && [message isKindOfClass:[NSString class]]) {
         va_list args;
         va_start(args, message);
         formattedString = [[NSString alloc] initWithFormat:message arguments:args];
