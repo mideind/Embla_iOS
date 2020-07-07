@@ -38,7 +38,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+        config.websiteDataStore = [WKWebsiteDataStore defaultDataStore];
+        webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) configuration:config];
     }
     return self;
 }
@@ -51,7 +53,7 @@
 - (void)run:(NSString *)jsCode completionHandler:(void (^)(id, NSError *))completionHandler {
     [webView evaluateJavaScript:jsCode completionHandler:^(id res, NSError *err) {
         completionHandler(res, err);
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+        //[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
     }];
 }
 

@@ -85,13 +85,13 @@
 #pragma mark - Web cache
 
 - (void)clearWebCache {
-    NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
-    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes
-                                               modifiedSince:dateFrom
-                                           completionHandler:^{
-        DLog(@"Cleared web cache");
-    }];
+//    NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+//    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+//    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes
+//                                               modifiedSince:dateFrom
+//                                           completionHandler:^{
+//        DLog(@"Cleared web cache");
+//    }];
 }
 
 #pragma mark - Onboarding
