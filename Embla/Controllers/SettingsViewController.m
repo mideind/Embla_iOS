@@ -24,7 +24,7 @@
 #define QUERY_SERVER_PRESETS \
 @[DEFAULT_QUERY_SERVER,\
 @"http://brandur.mideind.is:5000",\
-@"http://192.168.1.45:5000",\
+@"http://192.168.1.113:5000",\
 @"http://192.168.1.3:5000"]
 
 @interface SettingsViewController ()
