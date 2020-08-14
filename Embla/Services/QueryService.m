@@ -142,7 +142,9 @@
 
 #pragma mark - Speech synthesis
 
-- (void)requestSynthesis:(NSString *)str withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
+- (void)requestSpeechSynthesis:(NSString *)str
+         withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
