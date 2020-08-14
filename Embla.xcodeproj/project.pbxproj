@@ -91,6 +91,7 @@
 		F427692322C1218A00BB6977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		F427692522C1219A00BB6977 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		F447F8AC24E70AF90077063A /* GreynirSpeechAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GreynirSpeechAPI.key; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = Embla/QuerySession.m; sourceTree = SOURCE_ROOT; };
@@ -346,6 +347,7 @@
 			children = (
 				F4E785582368FA88004E29D1 /* keys.sh */,
 				F4E785552368FA88004E29D1 /* GoogleAPI.key */,
+				F447F8AC24E70AF90077063A /* GreynirSpeechAPI.key */,
 				F4E785542368FA88004E29D1 /* Keys.h */,
 				F4E785572368FA88004E29D1 /* Keys.c */,
 			);

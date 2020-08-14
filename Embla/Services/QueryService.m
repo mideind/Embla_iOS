@@ -22,6 +22,7 @@
 
 #import "QueryService.h"
 #import "Common.h"
+#import "Keys.h"
 #import "AFURLSessionManager.h"
 #import "AFURLRequestSerialization.h"
 #import "AppDelegate.h"
@@ -42,9 +43,14 @@
 
 #pragma mark - Util
 
-- (NSString *)_APIEndpoint {
+- (NSString *)_queryAPIEndpoint {
     NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
     return [NSString stringWithFormat:@"%@%@", server, QUERY_API_PATH];
+}
+
+- (NSString *)_speechAPIEndpoint {
+    NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
+    return [NSString stringWithFormat:@"%@%@", server, SPEECH_API_PATH];
 }
 
 - (NSDictionary *)_location {
@@ -74,7 +80,7 @@
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSString *apiEndpoint = [self _APIEndpoint];
+    NSString *apiEndpoint = [self _queryAPIEndpoint];
     
     // Query key/value pairs
     NSString *voiceName = [DEFAULTS integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";
@@ -94,6 +100,8 @@
         NSDictionary *loc = [self _location];
         if (loc) {
             [parameters addEntriesFromDictionary:loc];
+        } else {
+            DLog(@"User location not available");
         }
     }
     
@@ -132,6 +140,48 @@
     [dataTask resume];
 }
 
+#pragma mark - Speech synthesis
+
+- (void)requestSynthesis:(NSString *)str withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    // Generate API key NSString
+    NSData *d = [NSData dataWithBytes:sak length:strlen(sak)];
+    NSData *d2 = [[NSData alloc] initWithBase64EncodedData:d options:0];
+    NSString *apiKey = [[NSString alloc] initWithData:d2 encoding:NSASCIIStringEncoding];
+    if (!apiKey) {
+        apiKey = @"";
+    }
+    
+    NSDictionary *parameters = @{
+        @"text": str,
+        @"key": apiKey,
+        @"voice_id": @"Dora",
+        @"format": @"text"
+    };
+    
+    // Create request
+    NSError *err = nil;
+    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+                                                                      URLString:[self _speechAPIEndpoint]
+                                                                     parameters:parameters
+                                                                          error:&err];
+    if (req == nil) {
+        DLog(@"%@", [err localizedDescription]);
+        return;
+    }
+    DLog(@"Sending request %@\n%@", [req description], [parameters description]);
+    
+    // Run task with request
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req
+                                                   uploadProgress:nil
+                                                 downloadProgress:nil
+                                                completionHandler:completionHandler];
+    [dataTask resume];
+}
+
 #pragma mark - Clear history
 
 // Send HTTP request to query server asking for the deletion of the device's query history
@@ -143,6 +193,7 @@
     
     // Configure session
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
 
     NSDictionary *parameters = @{   @"action": @"clear",

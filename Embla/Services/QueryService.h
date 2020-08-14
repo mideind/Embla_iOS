@@ -23,6 +23,7 @@
 
 + (instancetype)sharedInstance;
 - (void)sendQuery:(id)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+- (void)requestSynthesis:(NSString *)str withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
 - (void)clearDeviceHistory:(id)completionHandler;
 
 @end

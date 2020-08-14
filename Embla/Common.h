@@ -20,6 +20,7 @@
 #define DEFAULT_QUERY_SERVER        @"https://greynir.is"
 #define QUERY_API_PATH              @"/query.api/v1"
 #define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
+#define SPEECH_API_PATH             @"/speech.api/v1"
 
 // Hostname used to determine if the device is connected to the internet.
 #define REACHABILITY_HOSTNAME       @"greynir.is"
