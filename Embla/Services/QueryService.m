@@ -155,11 +155,14 @@
         apiKey = @"";
     }
     
+    NSUInteger voiceID = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
+    NSString *voiceName = voiceID == 0 ? @"Dora" : @"Karl";
+    
     NSDictionary *parameters = @{
         @"text": str,
         @"key": apiKey,
-        @"voice_id": @"Dora",
-        @"format": @"text"
+        @"voice_id": voiceName,
+        @"format": @"text" // No SSML for now...
     };
     
     // Create request

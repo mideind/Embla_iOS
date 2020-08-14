@@ -48,5 +48,6 @@
 - (instancetype)initWithDelegate:(id<QuerySessionDelegate>)del;
 - (void)start;
 - (void)terminate;
+- (void)playRemoteURL:(NSURL *)url;
 
 @end

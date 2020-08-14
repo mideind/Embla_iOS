@@ -30,6 +30,7 @@
 #import "JSExecutor.h"
 #import "Reachability.h"
 #import "NSString+Additions.h"
+#import "QueryService.h"
 
 static NSString * const kIntroMessage = \
 @"Segðu „Hæ Embla“ eða smelltu á hnappinn til þess að tala við Emblu.";
@@ -398,35 +399,46 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                         command:(NSString *)cmd {
     [self clearLog];
     
+    id synthesisCompletionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
+        NSDictionary *respDict = (NSDictionary *)responseObject;
+        NSString *audioURLStr = [respDict objectForKey:@"audio_url"];
+        if ([[respDict objectForKey:@"err"] boolValue] || !audioURLStr || !self.currentSession) {
+            return;
+        }
+        NSURL *url = [NSURL URLWithString:audioURLStr];
+        [self.currentSession playRemoteURL:url];
+    };
+    
     // We have received a JS command
     if (cmd) {
         [[JSExecutor sharedInstance] run:cmd completionHandler:^(id res, NSError *err) {
-            [self.currentSession terminate];
             // Put JS eval result into text field on main thread
             NSString *str = err ? [NSString stringWithFormat:@"%@ - %@", [err localizedDescription], err.userInfo] : [NSString stringWithFormat:@"%@", res];
             [self clearLog];
             [self log:str];
+            // Speech synthesise text via Greynir API and play
+            [[QueryService sharedInstance] requestSynthesis:str withCompletionHandler:synthesisCompletionHandler];
         }];
+        return;
     }
+    
     // Standard answer (w. optional URL to open)
-    else {
-        NSString *aStr = answer ? answer : @"";
-        NSString *separator = answer ? @"\n\n" : @"";
-        NSString *srcStr = source ? [NSString stringWithFormat:@" (%@)", source] : @"";
-        [self log:@"%@%@%@%@",  [question sentenceCapitalizedString],
-                                separator,
-                                [[aStr sentenceCapitalizedString] periodTerminatedString],
-                                srcStr];
-        
-        // If we receive an URL in the response from the query server, we terminate
-        // the session and ask the operating system to open the URL in question.
-        if (url) {
-            [self.currentSession terminate];
-            DLog(@"Opening URL: %@", url);
-            [[UIApplication sharedApplication] openURL:url
-                                               options:@{}
-                                     completionHandler:nil];
-        }
+    NSString *aStr = answer ? answer : @"";
+    NSString *separator = answer ? @"\n\n" : @"";
+    NSString *srcStr = source ? [NSString stringWithFormat:@" (%@)", source] : @"";
+    [self log:@"%@%@%@%@",  [question sentenceCapitalizedString],
+                            separator,
+                            [[aStr sentenceCapitalizedString] periodTerminatedString],
+                            srcStr];
+    
+    // If we receive an URL in the response from the query server, we terminate
+    // the session and ask the operating system to open the URL in question.
+    if (url) {
+        [self.currentSession terminate];
+        DLog(@"Opening URL: %@", url);
+        [[UIApplication sharedApplication] openURL:url
+                                           options:@{}
+                                 completionHandler:nil];
     }
 }
 
