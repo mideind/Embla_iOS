@@ -417,7 +417,8 @@ static NSString * const kNoSpeechAPIKeyMessage = \
             [self clearLog];
             [self log:str];
             // Speech synthesise text via Greynir API and play
-            [[QueryService sharedInstance] requestSynthesis:str withCompletionHandler:synthesisCompletionHandler];
+            [[QueryService sharedInstance] requestSpeechSynthesis:str
+                                            withCompletionHandler:synthesisCompletionHandler];
         }];
         return;
     }
