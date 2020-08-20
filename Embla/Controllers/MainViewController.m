@@ -516,6 +516,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 - (void)clearLog {
     // Update UI text view on the main thread
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.textView setContentOffset:CGPointZero animated:NO];
         self.textView.text = @"";
     }];
 }

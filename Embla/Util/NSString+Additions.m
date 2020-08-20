@@ -21,7 +21,11 @@
 @implementation NSString (Additions)
 
 - (BOOL)isPunctuationTerminated {
-    return [self hasSuffix:@"."] || [self hasSuffix:@"?"] || [self hasSuffix:@"!"];
+    return [self hasSuffix:@"."] ||
+           [self hasSuffix:@"?"] ||
+           [self hasSuffix:@"!"] ||
+           [self hasSuffix:@".\""] ||
+           [self hasSuffix:@".“"];
 }
 
 - (NSString *)sentenceCapitalizedString {
