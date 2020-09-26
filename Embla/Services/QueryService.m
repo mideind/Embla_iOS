@@ -162,7 +162,7 @@
     
     NSDictionary *parameters = @{
         @"text": str,
-        @"key": apiKey,
+        @"api_key": apiKey,
         @"voice_id": voiceName,
         @"format": @"text" // No SSML for now...
     };
