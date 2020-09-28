@@ -149,7 +149,7 @@
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    // Generate API key NSString
+    // API key for query server
     NSData *d = [NSData dataWithBytes:sak length:strlen(sak)];
     NSData *d2 = [[NSData alloc] initWithBase64EncodedData:d options:0];
     NSString *apiKey = [[NSString alloc] initWithData:d2 encoding:NSASCIIStringEncoding];
@@ -187,24 +187,35 @@
     [dataTask resume];
 }
 
-#pragma mark - Clear history
+#pragma mark - Clear user data & history
 
-// Send HTTP request to query server asking for the deletion of the device's query history
-- (void)clearDeviceHistory:(id)completionHandler {
+// Send HTTP request to query server asking for the deletion of the device's query
+// history and (optionally) any other user data (allData boolean flag)
+- (void)clearUserData:(BOOL)allData completionHandler:(id)completionHandler {
     // This is a UUID that may be used to uniquely identify the
     // device, and is the same across apps from a single vendor.
     NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
+    // API key for query server
+    NSData *d = [NSData dataWithBytes:sak length:strlen(sak)];
+    NSData *d2 = [[NSData alloc] initWithBase64EncodedData:d options:0];
+    NSString *apiKey = [[NSString alloc] initWithData:d2 encoding:NSASCIIStringEncoding];
+    if (!apiKey) {
+        apiKey = @"";
+    }
+    
     // Configure session
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-
-    NSDictionary *parameters = @{   @"action": @"clear",
+    
+    NSString *action = allData ? @"clear_all" : @"clear";
+    NSDictionary *parameters = @{   @"action": action,
                                     @"client_id": uniqueID,
                                     @"client_type": @"ios",
-                                    @"client_version": version
+                                    @"client_version": version,
+                                    @"api_key": apiKey
                                 };
     
     // Create request

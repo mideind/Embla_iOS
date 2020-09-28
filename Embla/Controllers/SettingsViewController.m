@@ -207,11 +207,15 @@
     [self showClearHistoryAlert];
 }
 
+- (IBAction)clearAllDataPressed:(id)sender {
+    [self showClearAllDataAlert];
+}
+
 #pragma mark - Clear query history
 
 // Send HTTP request to query server asking for the deletion of the device's query history
 - (void)clearHistory {
-    [[QueryService sharedInstance] clearDeviceHistory:^(NSURLResponse *response, id responseObject, NSError *err) {
+    [[QueryService sharedInstance] clearUserData:NO completionHandler:^(NSURLResponse *response, id responseObject, NSError *err) {
          if (err == nil && [[responseObject objectForKey:@"valid"] boolValue]) {
              NSString *msg = @"Öllum fyrirspurnum frá þessu tæki hefur nú verið eytt.";
              [self showAlert:@"Fyrirspurnasögu eytt" message:msg];
@@ -219,6 +223,20 @@
              NSString *msg = @"Ekki tókst að eyða fyrirspurnasögu tækis.";
              [self showAlert:@"Villa kom upp" message:msg];
              DLog(@"Error deleting query history: %@", [err localizedDescription]);
+         }
+    }];
+}
+
+// Send HTTP request to query server asking for the deletion of all user data associated w. device
+- (void)clearAllUserData {
+    [[QueryService sharedInstance] clearUserData:YES completionHandler:^(NSURLResponse *response, id responseObject, NSError *err) {
+         if (err == nil && [[responseObject objectForKey:@"valid"] boolValue]) {
+             NSString *msg = @"Öllum gögnum sem tengjast þessu tæki hefur nú verið eytt.";
+             [self showAlert:@"Öllum gögnum eytt" message:msg];
+         } else {
+             NSString *msg = @"Ekki tókst að eyða gögnum sem tengjast þessu tæki.";
+             [self showAlert:@"Villa kom upp" message:msg];
+             DLog(@"Error deleting user data: %@", [err localizedDescription]);
          }
     }];
 }
@@ -260,6 +278,27 @@
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Hreinsa"
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) { [self clearHistory]; }];
+    [alert addAction:confirmAction];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Hætta við"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+// Show alert asking user whether he wants to delete query history
+- (void)showClearAllDataAlert {
+    NSString *msg = @"Þessi aðgerð hreinsar öll gögn Emblu sem tengjast þessu tæki.\
+ Gögnin eru einungis nýtt til þess að bæta svör.";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hreinsa öll gögn?"
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Hreinsa"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) { [self clearAllUserData]; }];
     [alert addAction:confirmAction];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Hætta við"

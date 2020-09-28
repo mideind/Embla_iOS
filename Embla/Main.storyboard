@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4608" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -49,7 +49,7 @@
                                     <constraint firstAttribute="trailing" secondItem="EMZ-uC-XPA" secondAttribute="trailing" id="j2r-u0-EDK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SessionButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-6b-u4b" customClass="SessionButton">
                                 <rect key="frame" x="92.5" y="430" width="190" height="190"/>
                                 <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="deviceRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Hnappur"/>
@@ -334,14 +334,14 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="64" id="AFx-XW-hRF" userLabel="Hreinsa fyrirspurnasögu">
-                                        <rect key="frame" x="0.0" y="268" width="375" height="64"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="52" id="AFx-XW-hRF" userLabel="Hreinsa fyrirspurnasögu">
+                                        <rect key="frame" x="0.0" y="268" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AFx-XW-hRF" id="TZL-LJ-Hgl">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWI-l6-Bd2">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWI-l6-Bd2">
                                                     <rect key="frame" x="15" y="6" width="344" height="47"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" label="Hreinsa fyrirspurnasögu"/>
@@ -358,12 +358,36 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="41" id="ydh-K2-T6p" userLabel="Hreinsa öll gögn">
+                                        <rect key="frame" x="0.0" y="320" width="375" height="41"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ydh-K2-T6p" id="8OH-bd-LlY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWt-gV-TkC">
+                                                    <rect key="frame" x="15" y="6" width="344" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Hreinsa fyrirspurnasögu"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
+                                                    <color key="tintColor" red="0.91764705879999997" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Hreinsa öll gögn">
+                                                        <color key="titleColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="clearAllDataPressed:" destination="0fs-On-g95" eventType="touchUpInside" id="Q2f-jc-uyf"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Fyrirspurnaþjónn" id="W1r-FA-sPF">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TtX-9J-mvj">
-                                        <rect key="frame" x="0.0" y="388" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="417" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TtX-9J-mvj" id="fRG-FZ-M1i">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -383,7 +407,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jjB-l5-rsq">
-                                        <rect key="frame" x="0.0" y="432" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="461" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jjB-l5-rsq" id="krB-cx-yu2">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -702,15 +726,15 @@
             <point key="canvasLocation" x="4542" y="233"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5Qz-r2-zOK"/>
+        <segue reference="RJD-MJ-JUE"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="Cube" width="200" height="200"/>
         <image name="Menu" width="24" height="24"/>
         <image name="Microphone" width="24" height="24"/>
         <image name="Transparent" width="10" height="10"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="5Qz-r2-zOK"/>
-        <segue reference="RJD-MJ-JUE"/>
-    </inferredMetricsTieBreakers>
-    <color key="tintColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
 </document>
