@@ -5,7 +5,5 @@ TODO list for Embla iOS app
 * Pick another icon for muting voice activation in main view? Microphone perhaps too generic?
 
 * Fix Bluetooth audio input/output source switching (semi-broken, it seems, but difficult to reproduce)
-* Fix voice activation issues
-* Fix issue when app is restored from "sleep" (hangs when button pressed and waveform activated)
 * Onboarding/Intro view when app is first launched
-* Test re-initing pocketsphinx on start/stop listening
+* Add beta version in corner in main view

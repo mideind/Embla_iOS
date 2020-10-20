@@ -100,13 +100,11 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     
     // Listen for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(becameActive:)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
+                                             selector:@selector(didBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resignedActive:)
-                                                 name:UIApplicationWillResignActiveNotification
-                                               object:nil];
+                                             selector:@selector(didResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification object:nil];
     
     // Configure Dynamic Type for the text view. Setting this in Interface Builder doesn't
     // work because we're using a custom bundled font so we have to do it manually.
@@ -117,9 +115,36 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     }
 }
 
+#pragma mark - Respond to app state changes
+
+- (void)didBecomeActive:(NSNotification *)notification {
+    DLog(@"%@", notification);
+    [self setup];
+}
+
+- (void)didResignActive:(NSNotification *)notification {
+    DLog(@"%@", notification);
+    [self teardown];
+}
+
+#pragma mark - Respond to view state changes
+
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     DLog(@"Main view will appear");
+    [super viewWillAppear:animated];
+    [self setup];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    DLog(@"Main view will disappear");
+    [super viewWillDisappear:animated];
+    [self teardown];
+}
+
+#pragma mark - Setup & teardown
+
+- (void)setup {
+    DLog(@"Main view setup");
     
     [self setUpReachability];
         
@@ -129,16 +154,20 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     // Voice activation
     BOOL voiceActivation = [DEFAULTS boolForKey:@"VoiceActivation"];
     if (voiceActivation) {
-        [[ActivationListener sharedInstance] startListening];
+        // Only reactivate voice activation if this is the frontmost view controller
+        id rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        UINavigationController *navCtrl = (UINavigationController *)rootVC;
+        if (navCtrl.topViewController == self) {
+            [[ActivationListener sharedInstance] startListening];
+        }
     }
     // Update state of voice activation bar button item and intro message
     self.micItem.image = [UIImage imageNamed:voiceActivation ? @"Microphone" : @"MicrophoneSlash"];
     self.textView.text = [self introMessage];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    DLog(@"Main view will disappear");
+- (void)teardown {
+    DLog(@"Main view teardown");
     
     // Terminate any ongoing session
     if (self.currentSession && !self.currentSession.terminated) {
@@ -160,31 +189,6 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                         (id)[UIColor clearColor].CGColor];
     gradient.locations = @[@0.0, @0.05, @0.95, @1.0];
     self.textView.superview.layer.mask = gradient;
-}
-
-#pragma mark - Respond to app state changes
-
-- (void)becameActive:(NSNotification *)notification {
-    DLog(@"%@", [notification description]);
-    if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
-        // Only reactivate if this is the frontmost view controller
-        id rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-        UINavigationController *navCtrl = (UINavigationController *)rootVC;
-        if (navCtrl.topViewController == self) {
-            [[ActivationListener sharedInstance] startListening];
-        }
-    }
-}
-
-- (void)resignedActive:(NSNotification *)notification {
-    DLog(@"%@", [notification description]);
-    // Terminate any ongoing session
-    if (self.currentSession && !self.currentSession.terminated) {
-        [self.currentSession terminate];
-        self.currentSession = nil;
-    }
-    // And stop listening for the activation phrase, no longer in foreground
-    [[ActivationListener sharedInstance] stopListening];
 }
 
 #pragma mark - Reachability (internet connectivity)
