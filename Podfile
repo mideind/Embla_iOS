@@ -10,7 +10,7 @@ target 'Embla' do
     pod 'AFNetworking', '~> 3.2.1', :subspecs => ['Serialization', 'Security', 'NSURLSession']
     pod 'Reachability', '~> 3.2'
     pod 'YYImage', '~> 1.0.4'
-    pod 'EAIntroView'
+    # pod 'EAIntroView'
 end
 
 post_install do |installer|
