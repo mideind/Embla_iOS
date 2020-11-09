@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4608" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -68,18 +68,6 @@
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7K-cV-azV"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BETA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKs-MA-wVD">
-                                <rect key="frame" x="158.5" y="640" width="58" height="27"/>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" label="Beta"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="27" id="Cbt-aM-cjO"/>
-                                    <constraint firstAttribute="width" constant="58" id="Gxh-mX-zql"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -90,8 +78,6 @@
                             <constraint firstItem="uwa-6b-u4b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a3h-Bj-6YD"/>
                             <constraint firstAttribute="trailing" secondItem="EiJ-xq-0fy" secondAttribute="trailing" constant="20" id="ar0-Eo-UXe"/>
                             <constraint firstItem="EiJ-xq-0fy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="bNl-Pu-EBg"/>
-                            <constraint firstItem="lKs-MA-wVD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e2L-6C-PSJ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lKs-MA-wVD" secondAttribute="bottom" id="ndp-UG-s3o"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="a03-3L-qgp" appends="YES" id="A16-4z-ZQ9"/>
