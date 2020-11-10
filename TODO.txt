@@ -3,7 +3,4 @@ TODO list for Embla iOS app
 
 * Option to use HR's Kaldi speech recognition API instead of Google's? - https://tal.ru.is/
 * Pick another icon for muting voice activation in main view? Microphone perhaps too generic?
-
-* Fix Bluetooth audio input/output source switching (semi-broken, it seems, but difficult to reproduce)
 * Onboarding/Intro view when app is first launched
-* Add beta version in corner in main view
