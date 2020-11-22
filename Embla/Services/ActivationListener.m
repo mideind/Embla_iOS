@@ -24,8 +24,6 @@
     of activation phrase recordings. Reliability is currently much poorer than Siri's.
 */
 
-// TODO: Debug and fix Bluetooth issue, probably related to isListening flag
-
 #import "Common.h"
 #import "ActivationListener.h"
 
