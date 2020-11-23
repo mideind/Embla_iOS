@@ -33,24 +33,27 @@
     // Initial defaults
     [DEFAULTS registerDefaults:[self startingDefaults]];
     
-    // Clear web cache every time app is relaunched.
-    // Makes it easier to test changes to HTML documents and results in a
-    // faster rollout of doc updates to end users.
-//    [self clearWebCache];
+#ifdef DEBUG
+    // Clear web cache every time app is relaunched when in debug mode
+    // Makes it easier to test changes to remote HTML documents
+    [self clearWebCache];
+#endif
     
     // Manually create window and load storyboard
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     [DEFAULTS setBool:NO forKey:@"InitialLaunch"];
     
-    if ([DEFAULTS boolForKey:@"InitialLaunch"]) {
-        // Present onboarding view controller
-        [self showOnboarding];
-        [DEFAULTS setBool:NO forKey:@"InitialLaunch"];
-    } else {
+    // Onboarding stuff disabled for now
+//    if ([DEFAULTS boolForKey:@"InitialLaunch"]) {
+//        // Present onboarding view controller
+//        [self showOnboarding];
+//        [DEFAULTS setBool:NO forKey:@"InitialLaunch"];
+//    } else {
         // Present main storyboard
         [self showMainStoryboard];
-    }
+//    }
+    
     // Show window
     [self.window makeKeyAndVisible];
     
