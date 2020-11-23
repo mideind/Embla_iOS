@@ -37,6 +37,14 @@ saved in the following text file:
 
 * `Keys/GoogleAPI.key`
 
+## Screenshots
+
+<p float="left">
+  <img src="Screenshots/embla_screenshot_55_1.png" width="30%" />
+  <img src="Screenshots/embla_screenshot_55_2.png" width="30%" /> 
+  <img src="Screenshots/embla_screenshot_55_3.png" width="30%" />
+</p>
+
 ## Credits
 
 The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx) library, 
