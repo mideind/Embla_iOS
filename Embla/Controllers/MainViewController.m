@@ -274,7 +274,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     
     DLog(@"Voice activation: %d", enabled);
     
-    if (enabled && !self.currentSession) {
+    if (enabled && (!self.currentSession || self.currentSession.terminated)) {
         [[ActivationListener sharedInstance] startListening];
     } else {
         [[ActivationListener sharedInstance] stopListening];
@@ -403,18 +403,18 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                         command:(NSString *)cmd {
     [self clearLog];
     
-    id synthesisCompletionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *respDict = (NSDictionary *)responseObject;
-        NSString *audioURLStr = [respDict objectForKey:@"audio_url"];
-        if ([[respDict objectForKey:@"err"] boolValue] || !audioURLStr || !self.currentSession) {
-            return;
-        }
-        NSURL *url = [NSURL URLWithString:audioURLStr];
-        [self.currentSession playRemoteURL:url];
-    };
-    
     // We have received a JS command
     if (cmd) {
+        id synthesisCompletionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
+            NSDictionary *respDict = (NSDictionary *)responseObject;
+            NSString *audioURLStr = [respDict objectForKey:@"audio_url"];
+            if ([[respDict objectForKey:@"err"] boolValue] || !audioURLStr || !self.currentSession) {
+                return;
+            }
+            NSURL *url = [NSURL URLWithString:audioURLStr];
+            [self.currentSession playRemoteURL:url];
+        };
+        
         [[JSExecutor sharedInstance] run:cmd completionHandler:^(id res, NSError *err) {
             // Put JS eval result into text field on main thread
             NSString *str = err ? [NSString stringWithFormat:@"%@ - %@", [err localizedDescription], err.userInfo] : [NSString stringWithFormat:@"%@", res];
@@ -578,8 +578,11 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"wav"];
         if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
             uiSounds[fileName] = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedAlways error:nil];
+            if (![uiSounds objectForKey:fileName]) {
+                DLog(@"Error loading audio file %@", fileName);
+            }
         } else {
-            DLog(@"Unable to load audio file '%@'", fileName);
+            DLog(@"Unable to load non-existent audio file '%@'", fileName);
         }
     }
 }
