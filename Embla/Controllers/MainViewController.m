@@ -89,8 +89,8 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     [AVAudioSession sharedInstance];
     [SpeechRecognitionService sharedInstance];
     
-    // Receive messages from activation listener
-    [[ActivationListener sharedInstance] setDelegate:self];
+    // Receive messages from hotword detector
+    [[HotwordDetector sharedInstance] setDelegate:self];
     
     // Prepare for audio recording
     [[AudioRecordingService sharedInstance] prepare];
@@ -158,7 +158,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         id rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
         UINavigationController *navCtrl = (UINavigationController *)rootVC;
         if (navCtrl.topViewController == self) {
-            [[ActivationListener sharedInstance] startListening];
+            [[HotwordDetector sharedInstance] startListening];
         }
     }
     // Update state of voice activation bar button item and intro message
@@ -175,7 +175,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         self.currentSession = nil;
     }
     player = nil; // Silence any sound being played
-    [[ActivationListener sharedInstance] stopListening];
+    [[HotwordDetector sharedInstance] stopListening];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
@@ -261,7 +261,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
 - (void)didHearActivationPhrase:(NSString *)phrase {
     if (!(self.currentSession && !self.currentSession.terminated)) {
-        [[ActivationListener sharedInstance] stopListening];
+        [[HotwordDetector sharedInstance] stopListening];
         [self startSession];
     }
 }
@@ -275,9 +275,9 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     DLog(@"Voice activation: %d", enabled);
     
     if (enabled && (!self.currentSession || self.currentSession.terminated)) {
-        [[ActivationListener sharedInstance] startListening];
+        [[HotwordDetector sharedInstance] startListening];
     } else {
-        [[ActivationListener sharedInstance] stopListening];
+        [[HotwordDetector sharedInstance] stopListening];
     }
     self.micItem.image = [UIImage imageNamed:enabled ? @"Microphone" : @"MicrophoneSlash"];
     self.textView.text = [self introMessage];
@@ -329,7 +329,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     }
     
     // Prepare for new session by pausing voice activation
-    [[ActivationListener sharedInstance] stopListening];
+    [[HotwordDetector sharedInstance] stopListening];
     
     // Start new session
     [self playUISound:@"rec_begin"];
@@ -470,7 +470,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         [self.button stopAnimating];
         [self.button stopWaveform];
         if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
-            [[ActivationListener sharedInstance] startListening];
+            [[HotwordDetector sharedInstance] startListening];
         }
         if ([self.textView.text isEqualToString:@""]) {
             self.textView.text = [self introMessage];

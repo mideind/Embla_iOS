@@ -25,7 +25,7 @@
 */
 
 #import "Common.h"
-#import "ActivationListener.h"
+#import "HotwordDetector.h"
 
 // Valid activation phrases to listen for
 #define ACTIVATION_PHRASES @[\
@@ -52,7 +52,7 @@
 // English acoustic model being used. Default is 2.3.
 #define VAD_THRESHOLD           3.25f
 
-@interface ActivationListener()
+@interface HotwordDetector()
 
 @property (nonatomic, strong) OEEventsObserver *openEarsEventsObserver;
 @property (nonatomic, copy) NSString *langModelPath;
@@ -60,10 +60,10 @@
 
 @end
 
-@implementation ActivationListener
+@implementation HotwordDetector
 
 + (instancetype)sharedInstance {
-    static ActivationListener *instance = nil;
+    static HotwordDetector *instance = nil;
     if (!instance) {
         instance = [self new];
     }

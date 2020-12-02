@@ -17,9 +17,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ActivationListener.h"
+#import "HotwordDetector.h"
 #import "SessionButton.h"
 
-@interface MainViewController : UIViewController <ActivationListenerDelegate, AudioLevelSource>
+@interface MainViewController : UIViewController <HotwordDetectorDelegate, AudioLevelSource>
 
 @end

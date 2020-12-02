@@ -37,7 +37,7 @@
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */; };
 		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
-		F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */; };
+		F4BBD1AD233A6A1100B6A55A /* HotwordDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
 		F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1537E23732C1B00388420 /* AudioWaveformView.m */; };
@@ -108,8 +108,8 @@
 		F497BB2522A169DA00F66BD4 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AcousticModelEnglish.bundle; path = ../OpenEars/AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		F4BBD1A8233A69A700B6A55A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenEars.framework; path = OpenEars/OpenEars.framework; sourceTree = "<group>"; };
-		F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ActivationListener.h; path = Embla/Services/ActivationListener.h; sourceTree = SOURCE_ROOT; };
-		F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ActivationListener.m; path = Embla/Services/ActivationListener.m; sourceTree = SOURCE_ROOT; };
+		F4BBD1AB233A6A1100B6A55A /* HotwordDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HotwordDetector.h; path = Embla/Services/HotwordDetector.h; sourceTree = SOURCE_ROOT; };
+		F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HotwordDetector.m; path = Embla/Services/HotwordDetector.m; sourceTree = SOURCE_ROOT; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		F4E1537D23732C1B00388420 /* AudioWaveformView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioWaveformView.h; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 		F427692022C1216300BB6977 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F4BBD1AB233A6A1100B6A55A /* ActivationListener.h */,
-				F4BBD1AC233A6A1100B6A55A /* ActivationListener.m */,
+				F4BBD1AB233A6A1100B6A55A /* HotwordDetector.h */,
+				F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */,
 				D379BE361C99FEC70049D06F /* AudioRecordingService.h */,
 				D379BE371C99FEC70049D06F /* AudioRecordingService.m */,
 				F4E160F722A977620019EDE7 /* QueryService.h */,
@@ -559,7 +559,7 @@
 				D379BE381C99FEC70049D06F /* AudioRecordingService.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */,
-				F4BBD1AD233A6A1100B6A55A /* ActivationListener.m in Sources */,
+				F4BBD1AD233A6A1100B6A55A /* HotwordDetector.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,

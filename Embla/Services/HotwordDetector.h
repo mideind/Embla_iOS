@@ -28,15 +28,15 @@
 #import <OpenEars/OEAcousticModel.h>
 #pragma clang diagnostic pop
 
-@protocol ActivationListenerDelegate <NSObject>
+@protocol HotwordDetectorDelegate <NSObject>
 
 - (void)didHearActivationPhrase:(NSString *)phrase;
 
 @end
 
-@interface ActivationListener : NSObject <OEEventsObserverDelegate>
+@interface HotwordDetector : NSObject <OEEventsObserverDelegate>
 
-@property (weak) id <ActivationListenerDelegate>delegate;
+@property (weak) id <HotwordDetectorDelegate>delegate;
 @property BOOL isListening;
 
 + (instancetype)sharedInstance;
