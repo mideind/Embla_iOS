@@ -32,8 +32,8 @@ command:
 sudo gem install xcpretty
 ```
 
-NB: In order to function correctly, the app requires a valid API key for Google's Speech-to-Text API. The key should be 
-saved in the following text file:
+NB: In order to function correctly, the app requires a valid API key for Google's Speech-to-Text API. The key should
+be  saved in the following text file:
 
 * `Keys/GoogleAPI.key`
 
@@ -47,9 +47,10 @@ saved in the following text file:
 
 ## Credits
 
-The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx) library, 
-the [CMU CMUCMLTK](http://cmusphinx.sourceforge.net) library, Politepix’s [OpenEars](http://www.politepix.com/openears)
-and Google's [Speech-to-Text API](https://cloud.google.com/speech-to-text) for speech recognition.
+The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx)
+and Politepix’s [OpenEars](http://www.politepix.com/openears) for hotword detection,  and Google's
+[Speech-to-Text API](https://cloud.google.com/speech-to-text) for speech recognition. Speech synthesis is
+accomplished via voices commissioned by [Blindrafélagið](https://blind.is), the Icelandic Association of the Visually Impaired.
 
 ## GPL License
 
