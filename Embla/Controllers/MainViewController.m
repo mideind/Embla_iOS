@@ -295,6 +295,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
 - (IBAction)buttonPressed:(id)sender {
     if (self.currentSession && !self.currentSession.terminated) {
+        [self playUISound:@"rec_cancel"];
         [self endSession];
     } else {
         // Make sure that we have permission to access the mic
