@@ -18,7 +18,7 @@
 
 /*
     Singleton wrapper class around OpenEars' Pocketsphinx local speech recognition
-    used for voice activation ("Hæ Embla"/"Hey Embla"). Currently uses an English
+    used for hotword activation ("Hæ Embla"/"Hey Embla"). Currently uses an English
     language acoustic model with custom phonemes. Going forward, this should
     probably be replaced with a robust local neural network trained on a large set
     of activation phrase recordings. Reliability is currently much poorer than Siri's.
@@ -28,7 +28,7 @@
 #import "HotwordDetector.h"
 
 // Valid activation phrases to listen for
-#define ACTIVATION_PHRASES @[\
+#define HOTWORD_PHRASES @[\
 @"hi embla", \
 @"hiembla", \
 @"hey embla", \
@@ -89,7 +89,7 @@
 //        [[OEPocketsphinxController sharedInstance] setVerbosePocketSphinx:YES];
         
         // Generate language model
-        NSArray *langArray = ACTIVATION_PHRASES;
+        NSArray *langArray = HOTWORD_PHRASES;
         OELanguageModelGenerator *langModelGenerator = [[OELanguageModelGenerator alloc] init];
         // Uncomment for verbose language model generator debug output.
 //        langModelGenerator.verboseLanguageModelGenerator = TRUE;
@@ -148,9 +148,9 @@
     }
     
     // Check if it matches activation phrase
-    for (NSString *phrase in ACTIVATION_PHRASES) {
+    for (NSString *phrase in HOTWORD_PHRASES) {
         if ([hypothesis isEqualToString:phrase] && [score integerValue] > MIN_HYPOTHESIS_SCORE) {
-            [self.delegate didHearActivationPhrase:hypothesis];
+            [self.delegate didHearHotword:hypothesis];
             return;
         }
     }

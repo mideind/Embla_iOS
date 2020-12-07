@@ -30,7 +30,7 @@
 
 @protocol HotwordDetectorDelegate <NSObject>
 
-- (void)didHearActivationPhrase:(NSString *)phrase;
+- (void)didHearHotword:(NSString *)phrase;
 
 @end
 

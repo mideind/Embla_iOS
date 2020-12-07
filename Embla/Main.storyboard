@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4608" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -427,13 +427,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="3BA-PW-M7V"/>
                     <connections>
+                        <outlet property="hotwordSwitch" destination="ker-sm-4FQ" id="jyK-yt-yP0"/>
                         <outlet property="privacyModeSwitch" destination="m31-x2-PCG" id="xb7-Mb-gBy"/>
                         <outlet property="queryServerTextField" destination="aTc-B7-CbT" id="25t-CI-2NF"/>
                         <outlet property="serverSegmentedControl" destination="Qfe-EN-Zsv" id="WvD-9W-as3"/>
                         <outlet property="speechSpeedSlider" destination="CIh-di-UZT" id="EHQ-zO-YOc"/>
                         <outlet property="useLocationSwitch" destination="M7w-rG-8JR" id="Lc8-Ws-uUu"/>
                         <outlet property="view" destination="B5b-7M-VuH" id="atr-5m-VKE"/>
-                        <outlet property="voiceActivationSwitch" destination="ker-sm-4FQ" id="jyK-yt-yP0"/>
                         <outlet property="voiceSegmentedControl" destination="6t8-80-9ic" id="4mt-JU-YqQ"/>
                     </connections>
                 </tableViewController>

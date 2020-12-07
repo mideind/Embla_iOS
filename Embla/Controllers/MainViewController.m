@@ -35,7 +35,7 @@
 static NSString * const kIntroMessage = \
 @"Segðu „Hæ Embla“ eða smelltu á hnappinn til þess að tala við Emblu.";
 
-static NSString * const kIntroNoVoiceActivationMessage = \
+static NSString * const kIntroNoHotwordMessage = \
 @"Smelltu á hnappinn til þess að tala við Emblu.";
 
 static NSString * const kNoInternetConnectivityMessage = \
@@ -151,18 +151,18 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     // Don't let device go to sleep while this view is active
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    // Voice activation
-    BOOL voiceActivation = [DEFAULTS boolForKey:@"VoiceActivation"];
-    if (voiceActivation) {
-        // Only reactivate voice activation if this is the frontmost view controller
+    // Hotword activation
+    BOOL hotwordActivation = [DEFAULTS boolForKey:@"VoiceActivation"];
+    if (hotwordActivation) {
+        // Only reactivate hotword detection if this is the frontmost view controller
         id rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
         UINavigationController *navCtrl = (UINavigationController *)rootVC;
         if (navCtrl.topViewController == self) {
             [[HotwordDetector sharedInstance] startListening];
         }
     }
-    // Update state of voice activation bar button item and intro message
-    self.micItem.image = [UIImage imageNamed:voiceActivation ? @"Microphone" : @"MicrophoneSlash"];
+    // Update state of hotword detection bar button item and intro message
+    self.micItem.image = [UIImage imageNamed:hotwordActivation ? @"Microphone" : @"MicrophoneSlash"];
     self.textView.text = [self introMessage];
 }
 
@@ -259,7 +259,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
 #pragma mark - ActivationListenerDelegate
 
-- (void)didHearActivationPhrase:(NSString *)phrase {
+- (void)didHearHotword:(NSString *)phrase {
     if (!(self.currentSession && !self.currentSession.terminated)) {
         [[HotwordDetector sharedInstance] stopListening];
         [self startSession];
@@ -272,7 +272,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     [DEFAULTS synchronize];
     enabled = !enabled;
     
-    DLog(@"Voice activation: %d", enabled);
+    DLog(@"Hotword activation: %d", enabled);
     
     if (enabled && (!self.currentSession || self.currentSession.terminated)) {
         [[HotwordDetector sharedInstance] startListening];
@@ -287,7 +287,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
         return kIntroMessage;
     } else {
-        return kIntroNoVoiceActivationMessage;
+        return kIntroNoHotwordMessage;
     }
 }
 
@@ -329,7 +329,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         return;
     }
     
-    // Prepare for new session by pausing voice activation
+    // Prepare for new session by pausing hotword activation
     [[HotwordDetector sharedInstance] stopListening];
     
     // Start new session

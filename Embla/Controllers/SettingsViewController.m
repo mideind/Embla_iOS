@@ -30,7 +30,7 @@
 @interface SettingsViewController ()
 
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
-@property (nonatomic, weak) IBOutlet UISwitch *voiceActivationSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *hotwordSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *privacyModeSwitch;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
 @property (nonatomic, weak) IBOutlet UISlider *speechSpeedSlider;
@@ -118,7 +118,7 @@
 // Configure controls according to defaults
 // Horrible to have to do this manually. Why no bindings on iOS?
 - (void)configureControlsFromDefaults {
-    [self.voiceActivationSwitch setOn:[DEFAULTS boolForKey:@"VoiceActivation"]];
+    [self.hotwordSwitch setOn:[DEFAULTS boolForKey:@"VoiceActivation"]];
     [self.useLocationSwitch setOn:[DEFAULTS boolForKey:@"UseLocation"]];
     [self.privacyModeSwitch setOn:[DEFAULTS boolForKey:@"PrivacyMode"]];
     [self.voiceSegmentedControl setSelectedSegmentIndex:[DEFAULTS integerForKey:@"Voice"]];
@@ -134,7 +134,7 @@
 
 // Configure defaults according to controls in Settings view, synchronize
 - (void)saveToDefaults {
-    [DEFAULTS setBool:self.voiceActivationSwitch.isOn forKey:@"VoiceActivation"];
+    [DEFAULTS setBool:self.hotwordSwitch.isOn forKey:@"VoiceActivation"];
     [DEFAULTS setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
     [DEFAULTS setBool:self.privacyModeSwitch.isOn forKey:@"PrivacyMode"];
     [DEFAULTS setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
