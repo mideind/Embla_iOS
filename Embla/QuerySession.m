@@ -128,6 +128,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     NSInteger frameCount = [data length] / 2; // Mono 16-bit audio means each frame is 2 bytes
     int16_t *samples = (int16_t *)[data bytes]; // Cast void pointer
     
+    //NSLog(@"Frame count: %d", (int)frameCount);
     // Calculate the average, max and sum of the received audio frames
 //    int64_t sum = 0;
 //    int64_t avg = 0;

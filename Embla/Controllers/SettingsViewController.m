@@ -29,8 +29,9 @@
 
 @interface SettingsViewController ()
 
-@property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
+@property (nonatomic, weak) IBOutlet UILabel *swVersionLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *hotwordSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *privacyModeSwitch;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
 @property (nonatomic, weak) IBOutlet UISlider *speechSpeedSlider;
@@ -56,6 +57,10 @@
                                                            forKey:NSFontAttributeName];
     [self.voiceSegmentedControl setTitleTextAttributes:attributes
                                               forState:UIControlStateNormal];
+    
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
+    [self.swVersionLabel setText:[NSString stringWithFormat:@"%@ (%@)", version, build]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
