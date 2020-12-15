@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "EmblaSplash@1x.png",
+      "filename" : "splash@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "EmblaSplash@2x.png",
+      "filename" : "splash.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "EmblaSplash@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
