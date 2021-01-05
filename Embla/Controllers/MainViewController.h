@@ -1,6 +1,6 @@
 /*
  * This file is part of the Embla iOS app
- * Copyright (c) 2019-2020 Miðeind ehf.
+ * Copyright (c) 2019-2021 Miðeind ehf.
  * Author: Sveinbjorn Thordarson
  *
  * This program is free software: you can redistribute it and/or modify

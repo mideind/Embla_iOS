@@ -30,6 +30,10 @@
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
 		F432E85325800C2900C05B46 /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F432E85225800C2900C05B46 /* AudioRecordingService.m */; };
+		F433A911258D121700DDF8D3 /* libpv_porcupine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */; };
+		F433A913258D122F00DDF8D3 /* libpv_porcupine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */; };
+		F433A933258D157400DDF8D3 /* PorcupineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433A91B258D144800DDF8D3 /* PorcupineManager.swift */; };
+		F433A939258D184A00DDF8D3 /* HotwordDetector2.m in Sources */ = {isa = PBXBuildFile; fileRef = F433A938258D184A00DDF8D3 /* HotwordDetector2.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */; };
@@ -37,7 +41,6 @@
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */; };
 		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
-		F4BBD1AD233A6A1100B6A55A /* HotwordDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
 		F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1537E23732C1B00388420 /* AudioWaveformView.m */; };
@@ -91,6 +94,14 @@
 		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		F432E85125800C2900C05B46 /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioRecordingService.h; path = Embla/AudioRecordingService.h; sourceTree = SOURCE_ROOT; };
 		F432E85225800C2900C05B46 /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioRecordingService.m; path = Embla/AudioRecordingService.m; sourceTree = SOURCE_ROOT; };
+		F433A90C258D11C500DDF8D3 /* Embla-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Embla-Bridging-Header.h"; sourceTree = "<group>"; };
+		F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpv_porcupine.a; path = porcupine/libpv_porcupine.a; sourceTree = "<group>"; };
+		F433A91A258D144800DDF8D3 /* picovoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picovoice.h; path = porcupine/picovoice.h; sourceTree = SOURCE_ROOT; };
+		F433A91B258D144800DDF8D3 /* PorcupineManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PorcupineManager.swift; path = porcupine/PorcupineManager.swift; sourceTree = SOURCE_ROOT; };
+		F433A91C258D144800DDF8D3 /* pv_porcupine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pv_porcupine.h; path = porcupine/pv_porcupine.h; sourceTree = SOURCE_ROOT; };
+		F433A932258D155700DDF8D3 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		F433A937258D184A00DDF8D3 /* HotwordDetector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotwordDetector2.h; sourceTree = "<group>"; };
+		F433A938258D184A00DDF8D3 /* HotwordDetector2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotwordDetector2.m; sourceTree = "<group>"; };
 		F447F8AC24E70AF90077063A /* GreynirAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GreynirAPI.key; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
@@ -148,9 +159,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */,
+				F433A913258D122F00DDF8D3 /* libpv_porcupine.a in Frameworks */,
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
 				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
 				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
+				F433A911258D121700DDF8D3 /* libpv_porcupine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +173,7 @@
 		32C6BA1B2FA20A9904F13B95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */,
 				F40B12552343908F00CBE9B4 /* WebKit.framework */,
 				F4BBD1A8233A69A700B6A55A /* OpenEars.framework */,
 				F4482F2B22B930530050148E /* CoreLocation.framework */,
@@ -196,9 +210,13 @@
 		D34C17CB1C948F5700D69BCA /* Embla */ = {
 			isa = PBXGroup;
 			children = (
+				F433A91A258D144800DDF8D3 /* picovoice.h */,
+				F433A91B258D144800DDF8D3 /* PorcupineManager.swift */,
+				F433A91C258D144800DDF8D3 /* pv_porcupine.h */,
 				D34C17CD1C948F5700D69BCA /* main.m */,
 				F497BB1D229EF73D00F66BD4 /* Common.h */,
 				D34C17CF1C948F5700D69BCA /* AppDelegate.h */,
+				F433A932258D155700DDF8D3 /* module.modulemap */,
 				D34C17D01C948F5700D69BCA /* AppDelegate.m */,
 				F469639822C5086700645F69 /* QuerySession.h */,
 				F469639922C5086700645F69 /* QuerySession.m */,
@@ -207,6 +225,7 @@
 				F427692022C1216300BB6977 /* Services */,
 				F427691F22C1215900BB6977 /* Util */,
 				D34C17CC1C948F5700D69BCA /* Supporting Files */,
+				F433A90C258D11C500DDF8D3 /* Embla-Bridging-Header.h */,
 			);
 			path = Embla;
 			sourceTree = "<group>";
@@ -241,6 +260,8 @@
 		F427692022C1216300BB6977 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F433A937258D184A00DDF8D3 /* HotwordDetector2.h */,
+				F433A938258D184A00DDF8D3 /* HotwordDetector2.m */,
 				F4BBD1AB233A6A1100B6A55A /* HotwordDetector.h */,
 				F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */,
 				F432E85125800C2900C05B46 /* AudioRecordingService.h */,
@@ -417,6 +438,7 @@
 				TargetAttributes = {
 					D34C17C81C948F5700D69BCA = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 1220;
 					};
 				};
 			};
@@ -558,15 +580,16 @@
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */,
-				F4BBD1AD233A6A1100B6A55A /* HotwordDetector.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
+				F433A933258D157400DDF8D3 /* PorcupineManager.swift in Sources */,
 				F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
+				F433A939258D184A00DDF8D3 /* HotwordDetector2.m in Sources */,
 				D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */,
 				F432E85325800C2900C05B46 /* AudioRecordingService.m in Sources */,
 				F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */,
@@ -711,6 +734,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = XT9WMG6U47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -722,6 +747,8 @@
 					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler\"",
 					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\"",
 					"\"$(SRCROOT)/\"",
+					"\"$(SRCROOT)/porcupine\"",
+					"\"$(PROJECT_DIR)/porcupine\"",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -733,10 +760,15 @@
 					"\"$(SRCROOT)/\"",
 					"\"$(SRCROOT)/google/cloud/speech/v1\"",
 					"$(inherited)",
+					"$(PROJECT_DIR)/porcupine",
 				);
 				MARKETING_VERSION = 1.0.1;
+				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Embla/Embla-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -747,10 +779,29 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = XT9WMG6U47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/OpenEars",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/BoringSSL-GRPC\"",
+					"\"${PODS_ROOT}/Headers/Public/Protobuf\"",
+					"\"${PODS_ROOT}/Headers/Public/Reachability\"",
+					"\"${PODS_ROOT}/Headers/Public/YYImage\"",
+					"\"${PODS_ROOT}/Headers/Public/abseil\"",
+					"\"${PODS_ROOT}/Headers/Public/gRPC\"",
+					"\"${PODS_ROOT}/Headers/Public/gRPC-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/gRPC-ProtoRPC\"",
+					"\"${PODS_ROOT}/Headers/Public/gRPC-RxLibrary\"",
+					"\"${PODS_ROOT}/Headers/Public/googleapis\"",
+					"\"$(SRCROOT)/porcupine\"",
+					"\"$(PROJECT_DIR)/porcupine\"",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -762,10 +813,14 @@
 					"\"$(SRCROOT)/\"",
 					"\"$(SRCROOT)/google/cloud/speech/v1\"",
 					"$(inherited)",
+					"$(PROJECT_DIR)/porcupine",
 				);
 				MARKETING_VERSION = 1.0.1;
+				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Embla/Embla-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

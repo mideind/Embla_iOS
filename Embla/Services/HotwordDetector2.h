@@ -16,11 +16,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "AppDelegate.h"
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "Embla-Swift.h"
 
-int main(int argc, char *argv[]) {
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
-}
+@protocol HotwordDetectorDelegate <NSObject>
+
+- (void)didHearHotword:(NSString *)phrase;
+
+@end
+
+@interface HotwordDetector : NSObject
+
+@property (weak) id <HotwordDetectorDelegate>delegate;
+@property BOOL isListening;
+
++ (instancetype)sharedInstance;
+- (BOOL)startListening;
+- (void)stopListening;
+
+@end
