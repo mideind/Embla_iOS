@@ -51,7 +51,7 @@
     self.pm = [[PorcupineManager alloc] initWithModelPath:@"" keywordPath:@"" sensitivity:0.0 error:&err onDetection:^(int32_t ix) {
         [self.delegate didHearHotword:@""];
     }];
-    [self.pm start];
+    //[self.pm start];
     return TRUE;
 }
 

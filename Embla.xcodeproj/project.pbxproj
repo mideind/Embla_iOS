@@ -30,7 +30,6 @@
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
 		F432E85325800C2900C05B46 /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F432E85225800C2900C05B46 /* AudioRecordingService.m */; };
-		F433A911258D121700DDF8D3 /* libpv_porcupine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */; };
 		F433A913258D122F00DDF8D3 /* libpv_porcupine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */; };
 		F433A933258D157400DDF8D3 /* PorcupineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433A91B258D144800DDF8D3 /* PorcupineManager.swift */; };
 		F433A939258D184A00DDF8D3 /* HotwordDetector2.m in Sources */ = {isa = PBXBuildFile; fileRef = F433A938258D184A00DDF8D3 /* HotwordDetector2.m */; };
@@ -163,7 +162,6 @@
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
 				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
 				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
-				F433A911258D121700DDF8D3 /* libpv_porcupine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,10 +211,10 @@
 				F433A91A258D144800DDF8D3 /* picovoice.h */,
 				F433A91B258D144800DDF8D3 /* PorcupineManager.swift */,
 				F433A91C258D144800DDF8D3 /* pv_porcupine.h */,
+				F433A932258D155700DDF8D3 /* module.modulemap */,
 				D34C17CD1C948F5700D69BCA /* main.m */,
 				F497BB1D229EF73D00F66BD4 /* Common.h */,
 				D34C17CF1C948F5700D69BCA /* AppDelegate.h */,
-				F433A932258D155700DDF8D3 /* module.modulemap */,
 				D34C17D01C948F5700D69BCA /* AppDelegate.m */,
 				F469639822C5086700645F69 /* QuerySession.h */,
 				F469639922C5086700645F69 /* QuerySession.m */,
@@ -433,7 +431,7 @@
 		D34C17C11C948F5700D69BCA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = Google;
 				TargetAttributes = {
 					D34C17C81C948F5700D69BCA = {
@@ -723,6 +721,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -762,7 +761,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/porcupine",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -815,7 +814,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/porcupine",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
