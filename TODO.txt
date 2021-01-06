@@ -1,6 +1,6 @@
 
 TODO list for Embla iOS app
 
-* Option to use HR's Kaldi speech recognition API instead of Google's? - https://tal.ru.is/
+* Option to use Tíró speech recognition API instead of Google's
 * Pick another icon for muting hotword activation in main view? Microphone perhaps too generic?
 * Onboarding/Intro view when app is first launched
