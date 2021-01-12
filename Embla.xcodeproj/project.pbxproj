@@ -99,13 +99,13 @@
 		F433A938258D184A00DDF8D3 /* HotwordDetector2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotwordDetector2.m; sourceTree = "<group>"; };
 		F447F8AC24E70AF90077063A /* GreynirAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GreynirAPI.key; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F44FC67125AD554B00BC72F5 /* ios.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = ios.yml; path = .github/workflows/ios.yml; sourceTree = "<group>"; };
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = Embla/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		F47D200C2370880800E4DB6A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		F47D200D2370880900E4DB6A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		F48D15A422DCD31800B2996C /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
-		F48D15A522DCD44500B2996C /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		F48D15A622DCD44E00B2996C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F492123322D61D5300337AF8 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		F492123422D61D5300337AF8 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
@@ -174,10 +174,10 @@
 		D34C17C01C948F5700D69BCA = {
 			isa = PBXGroup;
 			children = (
+				F44FC67125AD554B00BC72F5 /* ios.yml */,
 				F497BB23229EFC2800F66BD4 /* README.md */,
 				F497BB2522A169DA00F66BD4 /* TODO.txt */,
 				F48D15A422DCD31800B2996C /* build.sh */,
-				F48D15A522DCD44500B2996C /* .travis.yml */,
 				F48D15A622DCD44E00B2996C /* .gitignore */,
 				D34C17CB1C948F5700D69BCA /* Embla */,
 				F4E7855A23690273004E29D1 /* Docs */,
