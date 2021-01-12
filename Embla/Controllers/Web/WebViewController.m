@@ -26,6 +26,7 @@
 @interface WebViewController ()
 
 @property (nonatomic, weak) IBOutlet WKWebView *webView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *progressView;;
 
 @end
 
@@ -38,6 +39,13 @@
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
     
+    self.progressView = [[UIActivityIndicatorView alloc] initWithFrame:self.webView.bounds];
+    if (@available(iOS 13.0, *)) {
+        self.progressView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
+    }
+    [self.progressView startAnimating];
+    [self.webView addSubview:self.progressView];
+
     [self.webView setNavigationDelegate:self];
     
     DLog(@"Requesting URL %@", self.url);
@@ -53,6 +61,11 @@
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     [self handleFailure];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [self.progressView stopAnimating];
+    [self.progressView setHidden:YES];
 }
 
 // Load local file if web view fails to load remote URL
