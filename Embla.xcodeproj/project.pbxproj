@@ -27,8 +27,6 @@
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
 		F432E85325800C2900C05B46 /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F432E85225800C2900C05B46 /* AudioRecordingService.m */; };
-		F433A913258D122F00DDF8D3 /* libpv_porcupine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */; };
-		F433A933258D157400DDF8D3 /* PorcupineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433A91B258D144800DDF8D3 /* PorcupineManager.swift */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */; };
@@ -149,7 +147,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */,
-				F433A913258D122F00DDF8D3 /* libpv_porcupine.a in Frameworks */,
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
 				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
 				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
@@ -180,7 +177,6 @@
 				F48D15A422DCD31800B2996C /* build.sh */,
 				F48D15A622DCD44E00B2996C /* .gitignore */,
 				D34C17CB1C948F5700D69BCA /* Embla */,
-				F4E7855A23690273004E29D1 /* Docs */,
 				F4E785532368FA88004E29D1 /* Keys */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,
 				32C6BA1B2FA20A9904F13B95 /* Frameworks */,
@@ -199,6 +195,7 @@
 		D34C17CB1C948F5700D69BCA /* Embla */ = {
 			isa = PBXGroup;
 			children = (
+				F433A90C258D11C500DDF8D3 /* Embla-Bridging-Header.h */,
 				F433A91A258D144800DDF8D3 /* picovoice.h */,
 				F433A91B258D144800DDF8D3 /* PorcupineManager.swift */,
 				F433A91C258D144800DDF8D3 /* pv_porcupine.h */,
@@ -214,7 +211,6 @@
 				F427692022C1216300BB6977 /* Services */,
 				F427691F22C1215900BB6977 /* Util */,
 				D34C17CC1C948F5700D69BCA /* Supporting Files */,
-				F433A90C258D11C500DDF8D3 /* Embla-Bridging-Header.h */,
 			);
 			path = Embla;
 			sourceTree = "<group>";
@@ -365,13 +361,6 @@
 				F4E785572368FA88004E29D1 /* Keys.c */,
 			);
 			path = Keys;
-			sourceTree = "<group>";
-		};
-		F4E7855A23690273004E29D1 /* Docs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Docs;
 			sourceTree = "<group>";
 		};
 		F657FA334EB8D9ABF1ACF569 /* Pods */ = {
@@ -566,7 +555,6 @@
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
-				F433A933258D157400DDF8D3 /* PorcupineManager.swift in Sources */,
 				F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
