@@ -128,7 +128,8 @@ static OSStatus RecordingCallback(void *inRefCon,
     NSError *error;
     AVAudioSessionCategoryOptions opts = \
     AVAudioSessionCategoryOptionDefaultToSpeaker
-    |AVAudioSessionCategoryOptionAllowBluetooth;
+    |AVAudioSessionCategoryOptionAllowBluetooth
+    |AVAudioSessionCategoryOptionAllowBluetoothA2DP;
     
     BOOL ok = [session setCategory:AVAudioSessionCategoryPlayAndRecord
                        withOptions:opts

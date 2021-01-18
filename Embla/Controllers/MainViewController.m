@@ -574,7 +574,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
                        @"err-dora", @"conn-dora", @"dunno-dora",
                        @"err-karl", @"conn-karl", @"dunno-karl"];
     
-    // Load files into memory, make the OS cache this shit
+    // Load files into memory, make the OS cache them
     for (NSString *fileName in files) {
         NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"wav"];
         if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
