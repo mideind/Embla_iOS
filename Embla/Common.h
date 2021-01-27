@@ -32,7 +32,8 @@
 
 // Unique client type identifier string
 #define CLIENT_TYPE                 @"ios"
-#define CLIENT_VERSION              [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
+#define CLIENT_VERSION              [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+#define CLIENT_BUILD                [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]
 
 // Sample rate for microphone audio recording
 #define REC_SAMPLE_RATE             16000.0f

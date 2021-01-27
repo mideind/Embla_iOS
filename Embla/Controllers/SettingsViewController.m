@@ -52,15 +52,13 @@
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
     
+    // Configure segmented control text attributes
     UIFont *font = [UIFont fontWithName:@"Lato" size:15.0f];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                           forKey:NSFontAttributeName];
-    [self.voiceSegmentedControl setTitleTextAttributes:attributes
-                                              forState:UIControlStateNormal];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
+    [self.voiceSegmentedControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
     
-    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
-    NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
-    [self.swVersionLabel setText:[NSString stringWithFormat:@"%@ (%@)", version, build]];
+    // Software version label
+    [self.swVersionLabel setText:[NSString stringWithFormat:@"%@ (%@)", CLIENT_VERSION, CLIENT_BUILD]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
