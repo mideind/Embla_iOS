@@ -6,7 +6,16 @@ inhibit_all_warnings!
 #use_frameworks!
 
 target 'Embla' do
-    pod 'googleapis', :path => '.'
+#    pod 'googleapis', :path => '.'
+    pod "!ProtoCompiler"
+    pod "!ProtoCompiler-gRPCPlugin"
+    pod "BoringSSL-GRPC"
+    pod "Protobuf"
+    pod "abseil"
+    pod "gRPC"
+    pod "gRPC-Core"
+    pod "gRPC-ProtoRPC"
+    pod "gRPC-RxLibrary"
     pod 'AFNetworking', '~> 3.2.1', :subspecs => ['Serialization', 'Security', 'NSURLSession']
     pod 'Reachability', '~> 3.2'
     pod 'YYImage', '~> 1.0.4'

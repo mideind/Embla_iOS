@@ -15,7 +15,9 @@
 
 #import "google/longrunning/Operations.pbobjc.h"
 #import "google/api/Annotations.pbobjc.h"
+#import "google/api/Client.pbobjc.h"
 #import "google/rpc/Status.pbobjc.h"
+#import "google/protobuf/Descriptor.pbobjc.h"
 // @@protoc_insertion_point(imports)
 
 #pragma clang diagnostic push
@@ -28,8 +30,11 @@
 // static values in struct initializers.
 // We don't use [Foo class] because it is not a static value.
 GPBObjCClassDeclaration(GPBAny);
+GPBObjCClassDeclaration(GPBDuration);
+GPBObjCClassDeclaration(GPBMethodOptions);
 GPBObjCClassDeclaration(Operation);
-GPBObjCClassDeclaration(Status);
+GPBObjCClassDeclaration(OperationInfo);
+GPBObjCClassDeclaration(RPCStatus);
 
 #pragma mark - OperationsRoot
 
@@ -42,8 +47,28 @@ GPBObjCClassDeclaration(Status);
   if (!registry) {
     GPB_DEBUG_CHECK_RUNTIME_VERSIONS();
     registry = [[GPBExtensionRegistry alloc] init];
+    static GPBExtensionDescription descriptions[] = {
+      {
+        .defaultValue.valueMessage = nil,
+        .singletonName = GPBStringifySymbol(OperationsRoot_operationInfo),
+        .extendedClass.clazz = GPBObjCClass(GPBMethodOptions),
+        .messageOrGroupClass.clazz = GPBObjCClass(OperationInfo),
+        .enumDescriptorFunc = NULL,
+        .fieldNumber = 1049,
+        .dataType = GPBDataTypeMessage,
+        .options = GPBExtensionNone,
+      },
+    };
+    for (size_t i = 0; i < sizeof(descriptions) / sizeof(descriptions[0]); ++i) {
+      GPBExtensionDescriptor *extension =
+          [[GPBExtensionDescriptor alloc] initWithExtensionDescription:&descriptions[i]
+                                                         usesClassRefs:YES];
+      [registry addExtension:extension];
+      [self globallyRegisterExtension:extension];
+    }
     // Merge in the imports (direct or indirect) that defined extensions.
-    [registry addExtensions:[AnnotationsRoot extensionRegistry]];
+    [registry addExtensions:[GAPIAnnotationsRoot extensionRegistry]];
+    [registry addExtensions:[GAPIClientRoot extensionRegistry]];
   }
   return registry;
 }
@@ -79,7 +104,7 @@ typedef struct Operation__storage_ {
   uint32_t _has_storage_[2];
   NSString *name;
   GPBAny *metadata;
-  Status *error;
+  RPCStatus *error;
   GPBAny *response;
 } Operation__storage_;
 
@@ -118,7 +143,7 @@ typedef struct Operation__storage_ {
       },
       {
         .name = "error",
-        .dataTypeSpecific.clazz = GPBObjCClass(Status),
+        .dataTypeSpecific.clazz = GPBObjCClass(RPCStatus),
         .number = Operation_FieldNumber_Error,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(Operation__storage_, error),
@@ -422,6 +447,118 @@ typedef struct DeleteOperationRequest__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(DeleteOperationRequest__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - WaitOperationRequest
+
+@implementation WaitOperationRequest
+
+@dynamic name;
+@dynamic hasTimeout, timeout;
+
+typedef struct WaitOperationRequest__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *name;
+  GPBDuration *timeout;
+} WaitOperationRequest__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "name",
+        .dataTypeSpecific.clazz = Nil,
+        .number = WaitOperationRequest_FieldNumber_Name,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(WaitOperationRequest__storage_, name),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "timeout",
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBDuration),
+        .number = WaitOperationRequest_FieldNumber_Timeout,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(WaitOperationRequest__storage_, timeout),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[WaitOperationRequest class]
+                                     rootClass:[OperationsRoot class]
+                                          file:OperationsRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(WaitOperationRequest__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - OperationInfo
+
+@implementation OperationInfo
+
+@dynamic responseType;
+@dynamic metadataType;
+
+typedef struct OperationInfo__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *responseType;
+  NSString *metadataType;
+} OperationInfo__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "responseType",
+        .dataTypeSpecific.clazz = Nil,
+        .number = OperationInfo_FieldNumber_ResponseType,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(OperationInfo__storage_, responseType),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "metadataType",
+        .dataTypeSpecific.clazz = Nil,
+        .number = OperationInfo_FieldNumber_MetadataType,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(OperationInfo__storage_, metadataType),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[OperationInfo class]
+                                     rootClass:[OperationsRoot class]
+                                          file:OperationsRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(OperationInfo__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");

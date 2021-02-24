@@ -25,57 +25,44 @@
 // Forward declarations of Objective C classes that we can use as
 // static values in struct initializers.
 // We don't use [Foo class] because it is not a static value.
-GPBObjCClassDeclaration(CustomHttpPattern);
-GPBObjCClassDeclaration(HttpRule);
+GPBObjCClassDeclaration(GAPICustomHttpPattern);
+GPBObjCClassDeclaration(GAPIHttpRule);
 
-#pragma mark - HTTPRoot
+#pragma mark - GAPIHTTPRoot
 
-@implementation HTTPRoot
+@implementation GAPIHTTPRoot
 
 // No extensions in the file and no imports, so no need to generate
 // +extensionRegistry.
 
 @end
 
-#pragma mark - HTTPRoot_FileDescriptor
+#pragma mark - GAPIHTTPRoot_FileDescriptor
 
-static GPBFileDescriptor *HTTPRoot_FileDescriptor(void) {
+static GPBFileDescriptor *GAPIHTTPRoot_FileDescriptor(void) {
   // This is called by +initialize so there is no need to worry
   // about thread safety of the singleton.
   static GPBFileDescriptor *descriptor = NULL;
   if (!descriptor) {
     GPB_DEBUG_CHECK_RUNTIME_VERSIONS();
     descriptor = [[GPBFileDescriptor alloc] initWithPackage:@"google.api"
+                                                 objcPrefix:@"GAPI"
                                                      syntax:GPBFileSyntaxProto3];
   }
   return descriptor;
 }
 
-#pragma mark - HttpRule
+#pragma mark - GAPIHttp
 
-@implementation HttpRule
+@implementation GAPIHttp
 
-@dynamic patternOneOfCase;
-@dynamic get;
-@dynamic put;
-@dynamic post;
-@dynamic delete_p;
-@dynamic patch;
-@dynamic custom;
-@dynamic body;
-@dynamic additionalBindingsArray, additionalBindingsArray_Count;
+@dynamic rulesArray, rulesArray_Count;
+@dynamic fullyDecodeReservedExpansion;
 
-typedef struct HttpRule__storage_ {
-  uint32_t _has_storage_[2];
-  NSString *get;
-  NSString *put;
-  NSString *post;
-  NSString *delete_p;
-  NSString *patch;
-  NSString *body;
-  CustomHttpPattern *custom;
-  NSMutableArray *additionalBindingsArray;
-} HttpRule__storage_;
+typedef struct GAPIHttp__storage_ {
+  uint32_t _has_storage_[1];
+  NSMutableArray *rulesArray;
+} GAPIHttp__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -84,85 +71,176 @@ typedef struct HttpRule__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
+        .name = "rulesArray",
+        .dataTypeSpecific.clazz = GPBObjCClass(GAPIHttpRule),
+        .number = GAPIHttp_FieldNumber_RulesArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(GAPIHttp__storage_, rulesArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeMessage,
+      },
+      {
+        .name = "fullyDecodeReservedExpansion",
+        .dataTypeSpecific.clazz = Nil,
+        .number = GAPIHttp_FieldNumber_FullyDecodeReservedExpansion,
+        .hasIndex = 0,
+        .offset = 1,  // Stored in _has_storage_ to save space.
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeBool,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[GAPIHttp class]
+                                     rootClass:[GAPIHTTPRoot class]
+                                          file:GAPIHTTPRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(GAPIHttp__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - GAPIHttpRule
+
+@implementation GAPIHttpRule
+
+@dynamic patternOneOfCase;
+@dynamic selector;
+@dynamic get;
+@dynamic put;
+@dynamic post;
+@dynamic delete_p;
+@dynamic patch;
+@dynamic custom;
+@dynamic body;
+@dynamic responseBody;
+@dynamic additionalBindingsArray, additionalBindingsArray_Count;
+
+typedef struct GAPIHttpRule__storage_ {
+  uint32_t _has_storage_[2];
+  NSString *selector;
+  NSString *get;
+  NSString *put;
+  NSString *post;
+  NSString *delete_p;
+  NSString *patch;
+  NSString *body;
+  GAPICustomHttpPattern *custom;
+  NSMutableArray *additionalBindingsArray;
+  NSString *responseBody;
+} GAPIHttpRule__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "selector",
+        .dataTypeSpecific.clazz = Nil,
+        .number = GAPIHttpRule_FieldNumber_Selector,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, selector),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+      {
         .name = "get",
         .dataTypeSpecific.clazz = Nil,
-        .number = HttpRule_FieldNumber_Get,
+        .number = GAPIHttpRule_FieldNumber_Get,
         .hasIndex = -1,
-        .offset = (uint32_t)offsetof(HttpRule__storage_, get),
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, get),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "put",
         .dataTypeSpecific.clazz = Nil,
-        .number = HttpRule_FieldNumber_Put,
+        .number = GAPIHttpRule_FieldNumber_Put,
         .hasIndex = -1,
-        .offset = (uint32_t)offsetof(HttpRule__storage_, put),
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, put),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "post",
         .dataTypeSpecific.clazz = Nil,
-        .number = HttpRule_FieldNumber_Post,
+        .number = GAPIHttpRule_FieldNumber_Post,
         .hasIndex = -1,
-        .offset = (uint32_t)offsetof(HttpRule__storage_, post),
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, post),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "delete_p",
         .dataTypeSpecific.clazz = Nil,
-        .number = HttpRule_FieldNumber_Delete_p,
+        .number = GAPIHttpRule_FieldNumber_Delete_p,
         .hasIndex = -1,
-        .offset = (uint32_t)offsetof(HttpRule__storage_, delete_p),
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, delete_p),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "patch",
         .dataTypeSpecific.clazz = Nil,
-        .number = HttpRule_FieldNumber_Patch,
+        .number = GAPIHttpRule_FieldNumber_Patch,
         .hasIndex = -1,
-        .offset = (uint32_t)offsetof(HttpRule__storage_, patch),
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, patch),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "body",
         .dataTypeSpecific.clazz = Nil,
-        .number = HttpRule_FieldNumber_Body,
-        .hasIndex = 0,
-        .offset = (uint32_t)offsetof(HttpRule__storage_, body),
+        .number = GAPIHttpRule_FieldNumber_Body,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, body),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "custom",
-        .dataTypeSpecific.clazz = GPBObjCClass(CustomHttpPattern),
-        .number = HttpRule_FieldNumber_Custom,
+        .dataTypeSpecific.clazz = GPBObjCClass(GAPICustomHttpPattern),
+        .number = GAPIHttpRule_FieldNumber_Custom,
         .hasIndex = -1,
-        .offset = (uint32_t)offsetof(HttpRule__storage_, custom),
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, custom),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeMessage,
       },
       {
         .name = "additionalBindingsArray",
-        .dataTypeSpecific.clazz = GPBObjCClass(HttpRule),
-        .number = HttpRule_FieldNumber_AdditionalBindingsArray,
+        .dataTypeSpecific.clazz = GPBObjCClass(GAPIHttpRule),
+        .number = GAPIHttpRule_FieldNumber_AdditionalBindingsArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(HttpRule__storage_, additionalBindingsArray),
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, additionalBindingsArray),
         .flags = GPBFieldRepeated,
         .dataType = GPBDataTypeMessage,
       },
+      {
+        .name = "responseBody",
+        .dataTypeSpecific.clazz = Nil,
+        .number = GAPIHttpRule_FieldNumber_ResponseBody,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(GAPIHttpRule__storage_, responseBody),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[HttpRule class]
-                                     rootClass:[HTTPRoot class]
-                                          file:HTTPRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[GAPIHttpRule class]
+                                     rootClass:[GAPIHTTPRoot class]
+                                          file:GAPIHTTPRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(HttpRule__storage_)
+                                   storageSize:sizeof(GAPIHttpRule__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const char *oneofs[] = {
       "pattern",
@@ -180,23 +258,23 @@ typedef struct HttpRule__storage_ {
 
 @end
 
-void HttpRule_ClearPatternOneOfCase(HttpRule *message) {
-  GPBDescriptor *descriptor = [HttpRule descriptor];
+void GAPIHttpRule_ClearPatternOneOfCase(GAPIHttpRule *message) {
+  GPBDescriptor *descriptor = [GAPIHttpRule descriptor];
   GPBOneofDescriptor *oneof = [descriptor.oneofs objectAtIndex:0];
   GPBClearOneof(message, oneof);
 }
-#pragma mark - CustomHttpPattern
+#pragma mark - GAPICustomHttpPattern
 
-@implementation CustomHttpPattern
+@implementation GAPICustomHttpPattern
 
 @dynamic kind;
 @dynamic path;
 
-typedef struct CustomHttpPattern__storage_ {
+typedef struct GAPICustomHttpPattern__storage_ {
   uint32_t _has_storage_[1];
   NSString *kind;
   NSString *path;
-} CustomHttpPattern__storage_;
+} GAPICustomHttpPattern__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -207,29 +285,29 @@ typedef struct CustomHttpPattern__storage_ {
       {
         .name = "kind",
         .dataTypeSpecific.clazz = Nil,
-        .number = CustomHttpPattern_FieldNumber_Kind,
+        .number = GAPICustomHttpPattern_FieldNumber_Kind,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(CustomHttpPattern__storage_, kind),
+        .offset = (uint32_t)offsetof(GAPICustomHttpPattern__storage_, kind),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "path",
         .dataTypeSpecific.clazz = Nil,
-        .number = CustomHttpPattern_FieldNumber_Path,
+        .number = GAPICustomHttpPattern_FieldNumber_Path,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(CustomHttpPattern__storage_, path),
+        .offset = (uint32_t)offsetof(GAPICustomHttpPattern__storage_, path),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[CustomHttpPattern class]
-                                     rootClass:[HTTPRoot class]
-                                          file:HTTPRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[GAPICustomHttpPattern class]
+                                     rootClass:[GAPIHTTPRoot class]
+                                          file:GAPIHTTPRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(CustomHttpPattern__storage_)
+                                   storageSize:sizeof(GAPICustomHttpPattern__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");

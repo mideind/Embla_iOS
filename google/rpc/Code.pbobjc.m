@@ -21,18 +21,18 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-#pragma mark - CodeRoot
+#pragma mark - RPCCodeRoot
 
-@implementation CodeRoot
+@implementation RPCCodeRoot
 
 // No extensions in the file and no imports, so no need to generate
 // +extensionRegistry.
 
 @end
 
-#pragma mark - Enum Code
+#pragma mark - Enum RPCCode
 
-GPBEnumDescriptor *Code_EnumDescriptor(void) {
+GPBEnumDescriptor *RPCCode_EnumDescriptor(void) {
   static _Atomic(GPBEnumDescriptor*) descriptor = nil;
   if (!descriptor) {
     static const char *valueNames =
@@ -43,57 +43,57 @@ GPBEnumDescriptor *Code_EnumDescriptor(void) {
         "Range\000Unimplemented\000Internal\000Unavailable"
         "\000DataLoss\000";
     static const int32_t values[] = {
-        Code_Ok,
-        Code_Cancelled,
-        Code_Unknown,
-        Code_InvalidArgument,
-        Code_DeadlineExceeded,
-        Code_NotFound,
-        Code_AlreadyExists,
-        Code_PermissionDenied,
-        Code_Unauthenticated,
-        Code_ResourceExhausted,
-        Code_FailedPrecondition,
-        Code_Aborted,
-        Code_OutOfRange,
-        Code_Unimplemented,
-        Code_Internal,
-        Code_Unavailable,
-        Code_DataLoss,
+        RPCCode_Ok,
+        RPCCode_Cancelled,
+        RPCCode_Unknown,
+        RPCCode_InvalidArgument,
+        RPCCode_DeadlineExceeded,
+        RPCCode_NotFound,
+        RPCCode_AlreadyExists,
+        RPCCode_PermissionDenied,
+        RPCCode_Unauthenticated,
+        RPCCode_ResourceExhausted,
+        RPCCode_FailedPrecondition,
+        RPCCode_Aborted,
+        RPCCode_OutOfRange,
+        RPCCode_Unimplemented,
+        RPCCode_Internal,
+        RPCCode_Unavailable,
+        RPCCode_DataLoss,
     };
     GPBEnumDescriptor *worker =
-        [GPBEnumDescriptor allocDescriptorForName:GPBNSStringifySymbol(Code)
+        [GPBEnumDescriptor allocDescriptorForName:GPBNSStringifySymbol(RPCCode)
                                        valueNames:valueNames
                                            values:values
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
-                                     enumVerifier:Code_IsValidValue];
+                                     enumVerifier:RPCCode_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
-      [worker release];
+      
     }
   }
   return descriptor;
 }
 
-BOOL Code_IsValidValue(int32_t value__) {
+BOOL RPCCode_IsValidValue(int32_t value__) {
   switch (value__) {
-    case Code_Ok:
-    case Code_Cancelled:
-    case Code_Unknown:
-    case Code_InvalidArgument:
-    case Code_DeadlineExceeded:
-    case Code_NotFound:
-    case Code_AlreadyExists:
-    case Code_PermissionDenied:
-    case Code_Unauthenticated:
-    case Code_ResourceExhausted:
-    case Code_FailedPrecondition:
-    case Code_Aborted:
-    case Code_OutOfRange:
-    case Code_Unimplemented:
-    case Code_Internal:
-    case Code_Unavailable:
-    case Code_DataLoss:
+    case RPCCode_Ok:
+    case RPCCode_Cancelled:
+    case RPCCode_Unknown:
+    case RPCCode_InvalidArgument:
+    case RPCCode_DeadlineExceeded:
+    case RPCCode_NotFound:
+    case RPCCode_AlreadyExists:
+    case RPCCode_PermissionDenied:
+    case RPCCode_Unauthenticated:
+    case RPCCode_ResourceExhausted:
+    case RPCCode_FailedPrecondition:
+    case RPCCode_Aborted:
+    case RPCCode_OutOfRange:
+    case RPCCode_Unimplemented:
+    case RPCCode_Internal:
+    case RPCCode_Unavailable:
+    case RPCCode_DataLoss:
       return YES;
     default:
       return NO;

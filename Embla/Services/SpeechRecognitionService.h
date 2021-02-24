@@ -17,7 +17,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "google/cloud/speech/v1/CloudSpeech.pbrpc.h"
+//#import "google/cloud/speech/v1/CloudSpeech.pbrpc.h"
+#import "lr/speech/v2beta1/Speech.pbobjc.h"
 #import <Foundation/Foundation.h>
 
 typedef void (^SpeechRecognitionCompletionHandler)(StreamingRecognizeResponse *object, NSError *error);

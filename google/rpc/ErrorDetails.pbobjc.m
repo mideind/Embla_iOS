@@ -24,47 +24,51 @@
 // Forward declarations of Objective C classes that we can use as
 // static values in struct initializers.
 // We don't use [Foo class] because it is not a static value.
-GPBObjCClassDeclaration(BadRequest);
-GPBObjCClassDeclaration(BadRequest_FieldViolation);
 GPBObjCClassDeclaration(GPBDuration);
-GPBObjCClassDeclaration(Help);
-GPBObjCClassDeclaration(Help_Link);
-GPBObjCClassDeclaration(QuotaFailure);
-GPBObjCClassDeclaration(QuotaFailure_Violation);
+GPBObjCClassDeclaration(RPCBadRequest);
+GPBObjCClassDeclaration(RPCBadRequest_FieldViolation);
+GPBObjCClassDeclaration(RPCErrorInfo);
+GPBObjCClassDeclaration(RPCHelp);
+GPBObjCClassDeclaration(RPCHelp_Link);
+GPBObjCClassDeclaration(RPCPreconditionFailure);
+GPBObjCClassDeclaration(RPCPreconditionFailure_Violation);
+GPBObjCClassDeclaration(RPCQuotaFailure);
+GPBObjCClassDeclaration(RPCQuotaFailure_Violation);
 
-#pragma mark - ErrorDetailsRoot
+#pragma mark - RPCErrorDetailsRoot
 
-@implementation ErrorDetailsRoot
+@implementation RPCErrorDetailsRoot
 
 // No extensions in the file and none of the imports (direct or indirect)
 // defined extensions, so no need to generate +extensionRegistry.
 
 @end
 
-#pragma mark - ErrorDetailsRoot_FileDescriptor
+#pragma mark - RPCErrorDetailsRoot_FileDescriptor
 
-static GPBFileDescriptor *ErrorDetailsRoot_FileDescriptor(void) {
+static GPBFileDescriptor *RPCErrorDetailsRoot_FileDescriptor(void) {
   // This is called by +initialize so there is no need to worry
   // about thread safety of the singleton.
   static GPBFileDescriptor *descriptor = NULL;
   if (!descriptor) {
     GPB_DEBUG_CHECK_RUNTIME_VERSIONS();
     descriptor = [[GPBFileDescriptor alloc] initWithPackage:@"google.rpc"
+                                                 objcPrefix:@"RPC"
                                                      syntax:GPBFileSyntaxProto3];
   }
   return descriptor;
 }
 
-#pragma mark - RetryInfo
+#pragma mark - RPCRetryInfo
 
-@implementation RetryInfo
+@implementation RPCRetryInfo
 
 @dynamic hasRetryDelay, retryDelay;
 
-typedef struct RetryInfo__storage_ {
+typedef struct RPCRetryInfo__storage_ {
   uint32_t _has_storage_[1];
   GPBDuration *retryDelay;
-} RetryInfo__storage_;
+} RPCRetryInfo__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -75,20 +79,20 @@ typedef struct RetryInfo__storage_ {
       {
         .name = "retryDelay",
         .dataTypeSpecific.clazz = GPBObjCClass(GPBDuration),
-        .number = RetryInfo_FieldNumber_RetryDelay,
+        .number = RPCRetryInfo_FieldNumber_RetryDelay,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(RetryInfo__storage_, retryDelay),
+        .offset = (uint32_t)offsetof(RPCRetryInfo__storage_, retryDelay),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[RetryInfo class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCRetryInfo class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(RetryInfo__storage_)
+                                   storageSize:sizeof(RPCRetryInfo__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
@@ -100,18 +104,18 @@ typedef struct RetryInfo__storage_ {
 
 @end
 
-#pragma mark - DebugInfo
+#pragma mark - RPCDebugInfo
 
-@implementation DebugInfo
+@implementation RPCDebugInfo
 
 @dynamic stackEntriesArray, stackEntriesArray_Count;
 @dynamic detail;
 
-typedef struct DebugInfo__storage_ {
+typedef struct RPCDebugInfo__storage_ {
   uint32_t _has_storage_[1];
   NSMutableArray *stackEntriesArray;
   NSString *detail;
-} DebugInfo__storage_;
+} RPCDebugInfo__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -122,29 +126,29 @@ typedef struct DebugInfo__storage_ {
       {
         .name = "stackEntriesArray",
         .dataTypeSpecific.clazz = Nil,
-        .number = DebugInfo_FieldNumber_StackEntriesArray,
+        .number = RPCDebugInfo_FieldNumber_StackEntriesArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(DebugInfo__storage_, stackEntriesArray),
+        .offset = (uint32_t)offsetof(RPCDebugInfo__storage_, stackEntriesArray),
         .flags = GPBFieldRepeated,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "detail",
         .dataTypeSpecific.clazz = Nil,
-        .number = DebugInfo_FieldNumber_Detail,
+        .number = RPCDebugInfo_FieldNumber_Detail,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(DebugInfo__storage_, detail),
+        .offset = (uint32_t)offsetof(RPCDebugInfo__storage_, detail),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[DebugInfo class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCDebugInfo class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(DebugInfo__storage_)
+                                   storageSize:sizeof(RPCDebugInfo__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
@@ -156,16 +160,16 @@ typedef struct DebugInfo__storage_ {
 
 @end
 
-#pragma mark - QuotaFailure
+#pragma mark - RPCQuotaFailure
 
-@implementation QuotaFailure
+@implementation RPCQuotaFailure
 
 @dynamic violationsArray, violationsArray_Count;
 
-typedef struct QuotaFailure__storage_ {
+typedef struct RPCQuotaFailure__storage_ {
   uint32_t _has_storage_[1];
   NSMutableArray *violationsArray;
-} QuotaFailure__storage_;
+} RPCQuotaFailure__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -175,21 +179,21 @@ typedef struct QuotaFailure__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "violationsArray",
-        .dataTypeSpecific.clazz = GPBObjCClass(QuotaFailure_Violation),
-        .number = QuotaFailure_FieldNumber_ViolationsArray,
+        .dataTypeSpecific.clazz = GPBObjCClass(RPCQuotaFailure_Violation),
+        .number = RPCQuotaFailure_FieldNumber_ViolationsArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(QuotaFailure__storage_, violationsArray),
+        .offset = (uint32_t)offsetof(RPCQuotaFailure__storage_, violationsArray),
         .flags = GPBFieldRepeated,
         .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[QuotaFailure class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCQuotaFailure class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(QuotaFailure__storage_)
+                                   storageSize:sizeof(RPCQuotaFailure__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
@@ -201,18 +205,18 @@ typedef struct QuotaFailure__storage_ {
 
 @end
 
-#pragma mark - QuotaFailure_Violation
+#pragma mark - RPCQuotaFailure_Violation
 
-@implementation QuotaFailure_Violation
+@implementation RPCQuotaFailure_Violation
 
 @dynamic subject;
 @dynamic description_p;
 
-typedef struct QuotaFailure_Violation__storage_ {
+typedef struct RPCQuotaFailure_Violation__storage_ {
   uint32_t _has_storage_[1];
   NSString *subject;
   NSString *description_p;
-} QuotaFailure_Violation__storage_;
+} RPCQuotaFailure_Violation__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -223,31 +227,31 @@ typedef struct QuotaFailure_Violation__storage_ {
       {
         .name = "subject",
         .dataTypeSpecific.clazz = Nil,
-        .number = QuotaFailure_Violation_FieldNumber_Subject,
+        .number = RPCQuotaFailure_Violation_FieldNumber_Subject,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(QuotaFailure_Violation__storage_, subject),
+        .offset = (uint32_t)offsetof(RPCQuotaFailure_Violation__storage_, subject),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "description_p",
         .dataTypeSpecific.clazz = Nil,
-        .number = QuotaFailure_Violation_FieldNumber_Description_p,
+        .number = RPCQuotaFailure_Violation_FieldNumber_Description_p,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(QuotaFailure_Violation__storage_, description_p),
+        .offset = (uint32_t)offsetof(RPCQuotaFailure_Violation__storage_, description_p),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[QuotaFailure_Violation class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCQuotaFailure_Violation class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(QuotaFailure_Violation__storage_)
+                                   storageSize:sizeof(RPCQuotaFailure_Violation__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
-    [localDescriptor setupContainingMessageClass:GPBObjCClass(QuotaFailure)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(RPCQuotaFailure)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -258,16 +262,196 @@ typedef struct QuotaFailure_Violation__storage_ {
 
 @end
 
-#pragma mark - BadRequest
+#pragma mark - RPCErrorInfo
 
-@implementation BadRequest
+@implementation RPCErrorInfo
+
+@dynamic reason;
+@dynamic domain;
+@dynamic metadata, metadata_Count;
+
+typedef struct RPCErrorInfo__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *reason;
+  NSString *domain;
+  NSMutableDictionary *metadata;
+} RPCErrorInfo__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "reason",
+        .dataTypeSpecific.clazz = Nil,
+        .number = RPCErrorInfo_FieldNumber_Reason,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(RPCErrorInfo__storage_, reason),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "domain",
+        .dataTypeSpecific.clazz = Nil,
+        .number = RPCErrorInfo_FieldNumber_Domain,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(RPCErrorInfo__storage_, domain),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "metadata",
+        .dataTypeSpecific.clazz = Nil,
+        .number = RPCErrorInfo_FieldNumber_Metadata,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(RPCErrorInfo__storage_, metadata),
+        .flags = GPBFieldMapKeyString,
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[RPCErrorInfo class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(RPCErrorInfo__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - RPCPreconditionFailure
+
+@implementation RPCPreconditionFailure
+
+@dynamic violationsArray, violationsArray_Count;
+
+typedef struct RPCPreconditionFailure__storage_ {
+  uint32_t _has_storage_[1];
+  NSMutableArray *violationsArray;
+} RPCPreconditionFailure__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "violationsArray",
+        .dataTypeSpecific.clazz = GPBObjCClass(RPCPreconditionFailure_Violation),
+        .number = RPCPreconditionFailure_FieldNumber_ViolationsArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(RPCPreconditionFailure__storage_, violationsArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeMessage,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[RPCPreconditionFailure class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(RPCPreconditionFailure__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - RPCPreconditionFailure_Violation
+
+@implementation RPCPreconditionFailure_Violation
+
+@dynamic type;
+@dynamic subject;
+@dynamic description_p;
+
+typedef struct RPCPreconditionFailure_Violation__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *type;
+  NSString *subject;
+  NSString *description_p;
+} RPCPreconditionFailure_Violation__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "type",
+        .dataTypeSpecific.clazz = Nil,
+        .number = RPCPreconditionFailure_Violation_FieldNumber_Type,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(RPCPreconditionFailure_Violation__storage_, type),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "subject",
+        .dataTypeSpecific.clazz = Nil,
+        .number = RPCPreconditionFailure_Violation_FieldNumber_Subject,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(RPCPreconditionFailure_Violation__storage_, subject),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "description_p",
+        .dataTypeSpecific.clazz = Nil,
+        .number = RPCPreconditionFailure_Violation_FieldNumber_Description_p,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(RPCPreconditionFailure_Violation__storage_, description_p),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[RPCPreconditionFailure_Violation class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(RPCPreconditionFailure_Violation__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(RPCPreconditionFailure)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - RPCBadRequest
+
+@implementation RPCBadRequest
 
 @dynamic fieldViolationsArray, fieldViolationsArray_Count;
 
-typedef struct BadRequest__storage_ {
+typedef struct RPCBadRequest__storage_ {
   uint32_t _has_storage_[1];
   NSMutableArray *fieldViolationsArray;
-} BadRequest__storage_;
+} RPCBadRequest__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -277,21 +461,21 @@ typedef struct BadRequest__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "fieldViolationsArray",
-        .dataTypeSpecific.clazz = GPBObjCClass(BadRequest_FieldViolation),
-        .number = BadRequest_FieldNumber_FieldViolationsArray,
+        .dataTypeSpecific.clazz = GPBObjCClass(RPCBadRequest_FieldViolation),
+        .number = RPCBadRequest_FieldNumber_FieldViolationsArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(BadRequest__storage_, fieldViolationsArray),
+        .offset = (uint32_t)offsetof(RPCBadRequest__storage_, fieldViolationsArray),
         .flags = GPBFieldRepeated,
         .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[BadRequest class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCBadRequest class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(BadRequest__storage_)
+                                   storageSize:sizeof(RPCBadRequest__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
@@ -303,18 +487,18 @@ typedef struct BadRequest__storage_ {
 
 @end
 
-#pragma mark - BadRequest_FieldViolation
+#pragma mark - RPCBadRequest_FieldViolation
 
-@implementation BadRequest_FieldViolation
+@implementation RPCBadRequest_FieldViolation
 
 @dynamic field;
 @dynamic description_p;
 
-typedef struct BadRequest_FieldViolation__storage_ {
+typedef struct RPCBadRequest_FieldViolation__storage_ {
   uint32_t _has_storage_[1];
   NSString *field;
   NSString *description_p;
-} BadRequest_FieldViolation__storage_;
+} RPCBadRequest_FieldViolation__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -325,31 +509,31 @@ typedef struct BadRequest_FieldViolation__storage_ {
       {
         .name = "field",
         .dataTypeSpecific.clazz = Nil,
-        .number = BadRequest_FieldViolation_FieldNumber_Field,
+        .number = RPCBadRequest_FieldViolation_FieldNumber_Field,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(BadRequest_FieldViolation__storage_, field),
+        .offset = (uint32_t)offsetof(RPCBadRequest_FieldViolation__storage_, field),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "description_p",
         .dataTypeSpecific.clazz = Nil,
-        .number = BadRequest_FieldViolation_FieldNumber_Description_p,
+        .number = RPCBadRequest_FieldViolation_FieldNumber_Description_p,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(BadRequest_FieldViolation__storage_, description_p),
+        .offset = (uint32_t)offsetof(RPCBadRequest_FieldViolation__storage_, description_p),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[BadRequest_FieldViolation class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCBadRequest_FieldViolation class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(BadRequest_FieldViolation__storage_)
+                                   storageSize:sizeof(RPCBadRequest_FieldViolation__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
-    [localDescriptor setupContainingMessageClass:GPBObjCClass(BadRequest)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(RPCBadRequest)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -360,18 +544,18 @@ typedef struct BadRequest_FieldViolation__storage_ {
 
 @end
 
-#pragma mark - RequestInfo
+#pragma mark - RPCRequestInfo
 
-@implementation RequestInfo
+@implementation RPCRequestInfo
 
 @dynamic requestId;
 @dynamic servingData;
 
-typedef struct RequestInfo__storage_ {
+typedef struct RPCRequestInfo__storage_ {
   uint32_t _has_storage_[1];
   NSString *requestId;
   NSString *servingData;
-} RequestInfo__storage_;
+} RPCRequestInfo__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -382,29 +566,29 @@ typedef struct RequestInfo__storage_ {
       {
         .name = "requestId",
         .dataTypeSpecific.clazz = Nil,
-        .number = RequestInfo_FieldNumber_RequestId,
+        .number = RPCRequestInfo_FieldNumber_RequestId,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(RequestInfo__storage_, requestId),
+        .offset = (uint32_t)offsetof(RPCRequestInfo__storage_, requestId),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "servingData",
         .dataTypeSpecific.clazz = Nil,
-        .number = RequestInfo_FieldNumber_ServingData,
+        .number = RPCRequestInfo_FieldNumber_ServingData,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(RequestInfo__storage_, servingData),
+        .offset = (uint32_t)offsetof(RPCRequestInfo__storage_, servingData),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[RequestInfo class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCRequestInfo class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(RequestInfo__storage_)
+                                   storageSize:sizeof(RPCRequestInfo__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
@@ -416,22 +600,22 @@ typedef struct RequestInfo__storage_ {
 
 @end
 
-#pragma mark - ResourceInfo
+#pragma mark - RPCResourceInfo
 
-@implementation ResourceInfo
+@implementation RPCResourceInfo
 
 @dynamic resourceType;
 @dynamic resourceName;
 @dynamic owner;
 @dynamic description_p;
 
-typedef struct ResourceInfo__storage_ {
+typedef struct RPCResourceInfo__storage_ {
   uint32_t _has_storage_[1];
   NSString *resourceType;
   NSString *resourceName;
   NSString *owner;
   NSString *description_p;
-} ResourceInfo__storage_;
+} RPCResourceInfo__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -442,47 +626,47 @@ typedef struct ResourceInfo__storage_ {
       {
         .name = "resourceType",
         .dataTypeSpecific.clazz = Nil,
-        .number = ResourceInfo_FieldNumber_ResourceType,
+        .number = RPCResourceInfo_FieldNumber_ResourceType,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(ResourceInfo__storage_, resourceType),
+        .offset = (uint32_t)offsetof(RPCResourceInfo__storage_, resourceType),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "resourceName",
         .dataTypeSpecific.clazz = Nil,
-        .number = ResourceInfo_FieldNumber_ResourceName,
+        .number = RPCResourceInfo_FieldNumber_ResourceName,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(ResourceInfo__storage_, resourceName),
+        .offset = (uint32_t)offsetof(RPCResourceInfo__storage_, resourceName),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "owner",
         .dataTypeSpecific.clazz = Nil,
-        .number = ResourceInfo_FieldNumber_Owner,
+        .number = RPCResourceInfo_FieldNumber_Owner,
         .hasIndex = 2,
-        .offset = (uint32_t)offsetof(ResourceInfo__storage_, owner),
+        .offset = (uint32_t)offsetof(RPCResourceInfo__storage_, owner),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "description_p",
         .dataTypeSpecific.clazz = Nil,
-        .number = ResourceInfo_FieldNumber_Description_p,
+        .number = RPCResourceInfo_FieldNumber_Description_p,
         .hasIndex = 3,
-        .offset = (uint32_t)offsetof(ResourceInfo__storage_, description_p),
+        .offset = (uint32_t)offsetof(RPCResourceInfo__storage_, description_p),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[ResourceInfo class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCResourceInfo class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(ResourceInfo__storage_)
+                                   storageSize:sizeof(RPCResourceInfo__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
@@ -494,16 +678,16 @@ typedef struct ResourceInfo__storage_ {
 
 @end
 
-#pragma mark - Help
+#pragma mark - RPCHelp
 
-@implementation Help
+@implementation RPCHelp
 
 @dynamic linksArray, linksArray_Count;
 
-typedef struct Help__storage_ {
+typedef struct RPCHelp__storage_ {
   uint32_t _has_storage_[1];
   NSMutableArray *linksArray;
-} Help__storage_;
+} RPCHelp__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -513,21 +697,21 @@ typedef struct Help__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "linksArray",
-        .dataTypeSpecific.clazz = GPBObjCClass(Help_Link),
-        .number = Help_FieldNumber_LinksArray,
+        .dataTypeSpecific.clazz = GPBObjCClass(RPCHelp_Link),
+        .number = RPCHelp_FieldNumber_LinksArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(Help__storage_, linksArray),
+        .offset = (uint32_t)offsetof(RPCHelp__storage_, linksArray),
         .flags = GPBFieldRepeated,
         .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[Help class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCHelp class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(Help__storage_)
+                                   storageSize:sizeof(RPCHelp__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
@@ -539,18 +723,18 @@ typedef struct Help__storage_ {
 
 @end
 
-#pragma mark - Help_Link
+#pragma mark - RPCHelp_Link
 
-@implementation Help_Link
+@implementation RPCHelp_Link
 
 @dynamic description_p;
 @dynamic URL;
 
-typedef struct Help_Link__storage_ {
+typedef struct RPCHelp_Link__storage_ {
   uint32_t _has_storage_[1];
   NSString *description_p;
   NSString *URL;
-} Help_Link__storage_;
+} RPCHelp_Link__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -561,36 +745,92 @@ typedef struct Help_Link__storage_ {
       {
         .name = "description_p",
         .dataTypeSpecific.clazz = Nil,
-        .number = Help_Link_FieldNumber_Description_p,
+        .number = RPCHelp_Link_FieldNumber_Description_p,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(Help_Link__storage_, description_p),
+        .offset = (uint32_t)offsetof(RPCHelp_Link__storage_, description_p),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "URL",
         .dataTypeSpecific.clazz = Nil,
-        .number = Help_Link_FieldNumber_URL,
+        .number = RPCHelp_Link_FieldNumber_URL,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(Help_Link__storage_, URL),
+        .offset = (uint32_t)offsetof(RPCHelp_Link__storage_, URL),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[Help_Link class]
-                                     rootClass:[ErrorDetailsRoot class]
-                                          file:ErrorDetailsRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[RPCHelp_Link class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(Help_Link__storage_)
+                                   storageSize:sizeof(RPCHelp_Link__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
         "\001\002!!!\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
-    [localDescriptor setupContainingMessageClass:GPBObjCClass(Help)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(RPCHelp)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - RPCLocalizedMessage
+
+@implementation RPCLocalizedMessage
+
+@dynamic locale;
+@dynamic message;
+
+typedef struct RPCLocalizedMessage__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *locale;
+  NSString *message;
+} RPCLocalizedMessage__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "locale",
+        .dataTypeSpecific.clazz = Nil,
+        .number = RPCLocalizedMessage_FieldNumber_Locale,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(RPCLocalizedMessage__storage_, locale),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "message",
+        .dataTypeSpecific.clazz = Nil,
+        .number = RPCLocalizedMessage_FieldNumber_Message,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(RPCLocalizedMessage__storage_, message),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[RPCLocalizedMessage class]
+                                     rootClass:[RPCErrorDetailsRoot class]
+                                          file:RPCErrorDetailsRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(RPCLocalizedMessage__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG

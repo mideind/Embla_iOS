@@ -27,6 +27,7 @@
 #import <GRPCClient/GRPCCall.h>
 #import <ProtoRPC/ProtoRPC.h>
 #import <RxLibrary/GRXBufferedPipe.h>
+#import "lr/speech/v2beta1/Speech.pbrpc.h"
 
 #define GOOGLE_HOST     @"speech.googleapis.com"
 

@@ -29,7 +29,7 @@ CF_EXTERN_C_BEGIN
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - AnnotationsRoot
+#pragma mark - GAPIAnnotationsRoot
 
 /**
  * Exposes the extension registry for this file.
@@ -41,10 +41,10 @@ NS_ASSUME_NONNULL_BEGIN
  * which is a @c GPBExtensionRegistry that includes all the extensions defined by
  * this file and all files that it depends on.
  **/
-GPB_FINAL @interface AnnotationsRoot : GPBRootObject
+GPB_FINAL @interface GAPIAnnotationsRoot : GPBRootObject
 @end
 
-@interface AnnotationsRoot (DynamicMethods)
+@interface GAPIAnnotationsRoot (DynamicMethods)
 /** See `HttpRule`. */
 + (GPBExtensionDescriptor *)HTTP;
 @end

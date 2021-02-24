@@ -27,14 +27,15 @@
 
 CF_EXTERN_C_BEGIN
 
-@class BadRequest_FieldViolation;
 @class GPBDuration;
-@class Help_Link;
-@class QuotaFailure_Violation;
+@class RPCBadRequest_FieldViolation;
+@class RPCHelp_Link;
+@class RPCPreconditionFailure_Violation;
+@class RPCQuotaFailure_Violation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - ErrorDetailsRoot
+#pragma mark - RPCErrorDetailsRoot
 
 /**
  * Exposes the extension registry for this file.
@@ -46,13 +47,13 @@ NS_ASSUME_NONNULL_BEGIN
  * which is a @c GPBExtensionRegistry that includes all the extensions defined by
  * this file and all files that it depends on.
  **/
-GPB_FINAL @interface ErrorDetailsRoot : GPBRootObject
+GPB_FINAL @interface RPCErrorDetailsRoot : GPBRootObject
 @end
 
-#pragma mark - RetryInfo
+#pragma mark - RPCRetryInfo
 
-typedef GPB_ENUM(RetryInfo_FieldNumber) {
-  RetryInfo_FieldNumber_RetryDelay = 1,
+typedef GPB_ENUM(RPCRetryInfo_FieldNumber) {
+  RPCRetryInfo_FieldNumber_RetryDelay = 1,
 };
 
 /**
@@ -67,10 +68,10 @@ typedef GPB_ENUM(RetryInfo_FieldNumber) {
  * receiving the error response before retrying.  If retrying requests also
  * fail, clients should use an exponential backoff scheme to gradually increase
  * the delay between retries based on `retry_delay`, until either a maximum
- * number of retires have been reached or a maximum retry delay cap has been
+ * number of retries have been reached or a maximum retry delay cap has been
  * reached.
  **/
-GPB_FINAL @interface RetryInfo : GPBMessage
+GPB_FINAL @interface RPCRetryInfo : GPBMessage
 
 /** Clients should wait at least this long between retrying the same request. */
 @property(nonatomic, readwrite, strong, null_resettable) GPBDuration *retryDelay;
@@ -79,17 +80,17 @@ GPB_FINAL @interface RetryInfo : GPBMessage
 
 @end
 
-#pragma mark - DebugInfo
+#pragma mark - RPCDebugInfo
 
-typedef GPB_ENUM(DebugInfo_FieldNumber) {
-  DebugInfo_FieldNumber_StackEntriesArray = 1,
-  DebugInfo_FieldNumber_Detail = 2,
+typedef GPB_ENUM(RPCDebugInfo_FieldNumber) {
+  RPCDebugInfo_FieldNumber_StackEntriesArray = 1,
+  RPCDebugInfo_FieldNumber_Detail = 2,
 };
 
 /**
  * Describes additional debugging info.
  **/
-GPB_FINAL @interface DebugInfo : GPBMessage
+GPB_FINAL @interface RPCDebugInfo : GPBMessage
 
 /** The stack trace entries indicating where the error occurred. */
 @property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *stackEntriesArray;
@@ -101,10 +102,10 @@ GPB_FINAL @interface DebugInfo : GPBMessage
 
 @end
 
-#pragma mark - QuotaFailure
+#pragma mark - RPCQuotaFailure
 
-typedef GPB_ENUM(QuotaFailure_FieldNumber) {
-  QuotaFailure_FieldNumber_ViolationsArray = 1,
+typedef GPB_ENUM(RPCQuotaFailure_FieldNumber) {
+  RPCQuotaFailure_FieldNumber_ViolationsArray = 1,
 };
 
 /**
@@ -117,30 +118,30 @@ typedef GPB_ENUM(QuotaFailure_FieldNumber) {
  * a service could respond with the project id and set `service_disabled`
  * to true.
  *
- * Also see RetryDetail and Help types for other details about handling a
+ * Also see RetryInfo and Help types for other details about handling a
  * quota failure.
  **/
-GPB_FINAL @interface QuotaFailure : GPBMessage
+GPB_FINAL @interface RPCQuotaFailure : GPBMessage
 
 /** Describes all quota violations. */
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<QuotaFailure_Violation*> *violationsArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<RPCQuotaFailure_Violation*> *violationsArray;
 /** The number of items in @c violationsArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger violationsArray_Count;
 
 @end
 
-#pragma mark - QuotaFailure_Violation
+#pragma mark - RPCQuotaFailure_Violation
 
-typedef GPB_ENUM(QuotaFailure_Violation_FieldNumber) {
-  QuotaFailure_Violation_FieldNumber_Subject = 1,
-  QuotaFailure_Violation_FieldNumber_Description_p = 2,
+typedef GPB_ENUM(RPCQuotaFailure_Violation_FieldNumber) {
+  RPCQuotaFailure_Violation_FieldNumber_Subject = 1,
+  RPCQuotaFailure_Violation_FieldNumber_Description_p = 2,
 };
 
 /**
  * A message type used to describe a single quota violation.  For example, a
  * daily quota or a custom quota that was exceeded.
  **/
-GPB_FINAL @interface QuotaFailure_Violation : GPBMessage
+GPB_FINAL @interface RPCQuotaFailure_Violation : GPBMessage
 
 /**
  * The subject on which the quota check failed.
@@ -162,41 +163,170 @@ GPB_FINAL @interface QuotaFailure_Violation : GPBMessage
 
 @end
 
-#pragma mark - BadRequest
+#pragma mark - RPCErrorInfo
 
-typedef GPB_ENUM(BadRequest_FieldNumber) {
-  BadRequest_FieldNumber_FieldViolationsArray = 1,
+typedef GPB_ENUM(RPCErrorInfo_FieldNumber) {
+  RPCErrorInfo_FieldNumber_Reason = 1,
+  RPCErrorInfo_FieldNumber_Domain = 2,
+  RPCErrorInfo_FieldNumber_Metadata = 3,
+};
+
+/**
+ * Describes the cause of the error with structured details.
+ *
+ * Example of an error when contacting the "pubsub.googleapis.com" API when it
+ * is not enabled:
+ *
+ *     { "reason": "API_DISABLED"
+ *       "domain": "googleapis.com"
+ *       "metadata": {
+ *         "resource": "projects/123",
+ *         "service": "pubsub.googleapis.com"
+ *       }
+ *     }
+ *
+ * This response indicates that the pubsub.googleapis.com API is not enabled.
+ *
+ * Example of an error that is returned when attempting to create a Spanner
+ * instance in a region that is out of stock:
+ *
+ *     { "reason": "STOCKOUT"
+ *       "domain": "spanner.googleapis.com",
+ *       "metadata": {
+ *         "availableRegions": "us-central1,us-east2"
+ *       }
+ *     }
+ **/
+GPB_FINAL @interface RPCErrorInfo : GPBMessage
+
+/**
+ * The reason of the error. This is a constant value that identifies the
+ * proximate cause of the error. Error reasons are unique within a particular
+ * domain of errors. This should be at most 63 characters and match
+ * /[A-Z0-9_]+/.
+ **/
+@property(nonatomic, readwrite, copy, null_resettable) NSString *reason;
+
+/**
+ * The logical grouping to which the "reason" belongs. The error domain
+ * is typically the registered service name of the tool or product that
+ * generates the error. Example: "pubsub.googleapis.com". If the error is
+ * generated by some common infrastructure, the error domain must be a
+ * globally unique value that identifies the infrastructure. For Google API
+ * infrastructure, the error domain is "googleapis.com".
+ **/
+@property(nonatomic, readwrite, copy, null_resettable) NSString *domain;
+
+/**
+ * Additional structured details about this error.
+ *
+ * Keys should match /[a-zA-Z0-9-_]/ and be limited to 64 characters in
+ * length. When identifying the current value of an exceeded limit, the units
+ * should be contained in the key, not the value.  For example, rather than
+ * {"instanceLimit": "100/request"}, should be returned as,
+ * {"instanceLimitPerRequest": "100"}, if the client exceeds the number of
+ * instances that can be created in a single (batch) request.
+ **/
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableDictionary<NSString*, NSString*> *metadata;
+/** The number of items in @c metadata without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger metadata_Count;
+
+@end
+
+#pragma mark - RPCPreconditionFailure
+
+typedef GPB_ENUM(RPCPreconditionFailure_FieldNumber) {
+  RPCPreconditionFailure_FieldNumber_ViolationsArray = 1,
+};
+
+/**
+ * Describes what preconditions have failed.
+ *
+ * For example, if an RPC failed because it required the Terms of Service to be
+ * acknowledged, it could list the terms of service violation in the
+ * PreconditionFailure message.
+ **/
+GPB_FINAL @interface RPCPreconditionFailure : GPBMessage
+
+/** Describes all precondition violations. */
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<RPCPreconditionFailure_Violation*> *violationsArray;
+/** The number of items in @c violationsArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger violationsArray_Count;
+
+@end
+
+#pragma mark - RPCPreconditionFailure_Violation
+
+typedef GPB_ENUM(RPCPreconditionFailure_Violation_FieldNumber) {
+  RPCPreconditionFailure_Violation_FieldNumber_Type = 1,
+  RPCPreconditionFailure_Violation_FieldNumber_Subject = 2,
+  RPCPreconditionFailure_Violation_FieldNumber_Description_p = 3,
+};
+
+/**
+ * A message type used to describe a single precondition failure.
+ **/
+GPB_FINAL @interface RPCPreconditionFailure_Violation : GPBMessage
+
+/**
+ * The type of PreconditionFailure. We recommend using a service-specific
+ * enum type to define the supported precondition violation subjects. For
+ * example, "TOS" for "Terms of Service violation".
+ **/
+@property(nonatomic, readwrite, copy, null_resettable) NSString *type;
+
+/**
+ * The subject, relative to the type, that failed.
+ * For example, "google.com/cloud" relative to the "TOS" type would indicate
+ * which terms of service is being referenced.
+ **/
+@property(nonatomic, readwrite, copy, null_resettable) NSString *subject;
+
+/**
+ * A description of how the precondition failed. Developers can use this
+ * description to understand how to fix the failure.
+ *
+ * For example: "Terms of service not accepted".
+ **/
+@property(nonatomic, readwrite, copy, null_resettable) NSString *description_p;
+
+@end
+
+#pragma mark - RPCBadRequest
+
+typedef GPB_ENUM(RPCBadRequest_FieldNumber) {
+  RPCBadRequest_FieldNumber_FieldViolationsArray = 1,
 };
 
 /**
  * Describes violations in a client request. This error type focuses on the
  * syntactic aspects of the request.
  **/
-GPB_FINAL @interface BadRequest : GPBMessage
+GPB_FINAL @interface RPCBadRequest : GPBMessage
 
 /** Describes all violations in a client request. */
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<BadRequest_FieldViolation*> *fieldViolationsArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<RPCBadRequest_FieldViolation*> *fieldViolationsArray;
 /** The number of items in @c fieldViolationsArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger fieldViolationsArray_Count;
 
 @end
 
-#pragma mark - BadRequest_FieldViolation
+#pragma mark - RPCBadRequest_FieldViolation
 
-typedef GPB_ENUM(BadRequest_FieldViolation_FieldNumber) {
-  BadRequest_FieldViolation_FieldNumber_Field = 1,
-  BadRequest_FieldViolation_FieldNumber_Description_p = 2,
+typedef GPB_ENUM(RPCBadRequest_FieldViolation_FieldNumber) {
+  RPCBadRequest_FieldViolation_FieldNumber_Field = 1,
+  RPCBadRequest_FieldViolation_FieldNumber_Description_p = 2,
 };
 
 /**
  * A message type used to describe a single bad request field.
  **/
-GPB_FINAL @interface BadRequest_FieldViolation : GPBMessage
+GPB_FINAL @interface RPCBadRequest_FieldViolation : GPBMessage
 
 /**
  * A path leading to a field in the request body. The value will be a
  * sequence of dot-separated identifiers that identify a protocol buffer
- * field. E.g., "violations.field" would identify this field.
+ * field. E.g., "field_violations.field" would identify this field.
  **/
 @property(nonatomic, readwrite, copy, null_resettable) NSString *field;
 
@@ -205,18 +335,18 @@ GPB_FINAL @interface BadRequest_FieldViolation : GPBMessage
 
 @end
 
-#pragma mark - RequestInfo
+#pragma mark - RPCRequestInfo
 
-typedef GPB_ENUM(RequestInfo_FieldNumber) {
-  RequestInfo_FieldNumber_RequestId = 1,
-  RequestInfo_FieldNumber_ServingData = 2,
+typedef GPB_ENUM(RPCRequestInfo_FieldNumber) {
+  RPCRequestInfo_FieldNumber_RequestId = 1,
+  RPCRequestInfo_FieldNumber_ServingData = 2,
 };
 
 /**
  * Contains metadata about the request that clients can attach when filing a bug
  * or providing other forms of feedback.
  **/
-GPB_FINAL @interface RequestInfo : GPBMessage
+GPB_FINAL @interface RPCRequestInfo : GPBMessage
 
 /**
  * An opaque string that should only be interpreted by the service generating
@@ -232,19 +362,19 @@ GPB_FINAL @interface RequestInfo : GPBMessage
 
 @end
 
-#pragma mark - ResourceInfo
+#pragma mark - RPCResourceInfo
 
-typedef GPB_ENUM(ResourceInfo_FieldNumber) {
-  ResourceInfo_FieldNumber_ResourceType = 1,
-  ResourceInfo_FieldNumber_ResourceName = 2,
-  ResourceInfo_FieldNumber_Owner = 3,
-  ResourceInfo_FieldNumber_Description_p = 4,
+typedef GPB_ENUM(RPCResourceInfo_FieldNumber) {
+  RPCResourceInfo_FieldNumber_ResourceType = 1,
+  RPCResourceInfo_FieldNumber_ResourceName = 2,
+  RPCResourceInfo_FieldNumber_Owner = 3,
+  RPCResourceInfo_FieldNumber_Description_p = 4,
 };
 
 /**
  * Describes the resource that is being accessed.
  **/
-GPB_FINAL @interface ResourceInfo : GPBMessage
+GPB_FINAL @interface RPCResourceInfo : GPBMessage
 
 /**
  * A name for the type of resource being accessed, e.g. "sql table",
@@ -276,10 +406,10 @@ GPB_FINAL @interface ResourceInfo : GPBMessage
 
 @end
 
-#pragma mark - Help
+#pragma mark - RPCHelp
 
-typedef GPB_ENUM(Help_FieldNumber) {
-  Help_FieldNumber_LinksArray = 1,
+typedef GPB_ENUM(RPCHelp_FieldNumber) {
+  RPCHelp_FieldNumber_LinksArray = 1,
 };
 
 /**
@@ -289,32 +419,57 @@ typedef GPB_ENUM(Help_FieldNumber) {
  * project hasn't enabled the accessed service, this can contain a URL pointing
  * directly to the right place in the developer console to flip the bit.
  **/
-GPB_FINAL @interface Help : GPBMessage
+GPB_FINAL @interface RPCHelp : GPBMessage
 
 /** URL(s) pointing to additional information on handling the current error. */
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<Help_Link*> *linksArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<RPCHelp_Link*> *linksArray;
 /** The number of items in @c linksArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger linksArray_Count;
 
 @end
 
-#pragma mark - Help_Link
+#pragma mark - RPCHelp_Link
 
-typedef GPB_ENUM(Help_Link_FieldNumber) {
-  Help_Link_FieldNumber_Description_p = 1,
-  Help_Link_FieldNumber_URL = 2,
+typedef GPB_ENUM(RPCHelp_Link_FieldNumber) {
+  RPCHelp_Link_FieldNumber_Description_p = 1,
+  RPCHelp_Link_FieldNumber_URL = 2,
 };
 
 /**
  * Describes a URL link.
  **/
-GPB_FINAL @interface Help_Link : GPBMessage
+GPB_FINAL @interface RPCHelp_Link : GPBMessage
 
 /** Describes what the link offers. */
 @property(nonatomic, readwrite, copy, null_resettable) NSString *description_p;
 
 /** The URL of the link. */
 @property(nonatomic, readwrite, copy, null_resettable) NSString *URL;
+
+@end
+
+#pragma mark - RPCLocalizedMessage
+
+typedef GPB_ENUM(RPCLocalizedMessage_FieldNumber) {
+  RPCLocalizedMessage_FieldNumber_Locale = 1,
+  RPCLocalizedMessage_FieldNumber_Message = 2,
+};
+
+/**
+ * Provides a localized error message that is safe to return to the user
+ * which can be attached to an RPC error.
+ **/
+GPB_FINAL @interface RPCLocalizedMessage : GPBMessage
+
+/**
+ * The locale used following the specification defined at
+ * http://www.rfc-editor.org/rfc/bcp/bcp47.txt.
+ * Examples are: "en-US", "fr-CH", "es-MX"
+ **/
+@property(nonatomic, readwrite, copy, null_resettable) NSString *locale;
+
+/** The localized error message in the above locale. */
+@property(nonatomic, readwrite, copy, null_resettable) NSString *message;
 
 @end
 

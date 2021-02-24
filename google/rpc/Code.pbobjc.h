@@ -29,41 +29,37 @@ CF_EXTERN_C_BEGIN
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - Enum Code
+#pragma mark - Enum RPCCode
 
 /**
- * The canonical error codes for Google APIs.
- * Warnings:
+ * The canonical error codes for gRPC APIs.
  *
- * -   Do not change any numeric assignments.
- * -   Changes to this list should be made only if there is a compelling
- *     need that can't be satisfied in another way.
  *
  * Sometimes multiple error codes may apply.  Services should return
  * the most specific error code that applies.  For example, prefer
  * `OUT_OF_RANGE` over `FAILED_PRECONDITION` if both codes apply.
  * Similarly prefer `NOT_FOUND` or `ALREADY_EXISTS` over `FAILED_PRECONDITION`.
  **/
-typedef GPB_ENUM(Code) {
+typedef GPB_ENUM(RPCCode) {
   /**
    * Value used if any message's field encounters a value that is not defined
    * by this enum. The message will also have C functions to get/set the rawValue
    * of the field.
    **/
-  Code_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
+  RPCCode_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
   /**
    * Not an error; returned on success
    *
    * HTTP Mapping: 200 OK
    **/
-  Code_Ok = 0,
+  RPCCode_Ok = 0,
 
   /**
    * The operation was cancelled, typically by the caller.
    *
    * HTTP Mapping: 499 Client Closed Request
    **/
-  Code_Cancelled = 1,
+  RPCCode_Cancelled = 1,
 
   /**
    * Unknown error.  For example, this error may be returned when
@@ -74,7 +70,7 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 500 Internal Server Error
    **/
-  Code_Unknown = 2,
+  RPCCode_Unknown = 2,
 
   /**
    * The client specified an invalid argument.  Note that this differs
@@ -84,7 +80,7 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 400 Bad Request
    **/
-  Code_InvalidArgument = 3,
+  RPCCode_InvalidArgument = 3,
 
   /**
    * The deadline expired before the operation could complete. For operations
@@ -95,16 +91,20 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 504 Gateway Timeout
    **/
-  Code_DeadlineExceeded = 4,
+  RPCCode_DeadlineExceeded = 4,
 
   /**
    * Some requested entity (e.g., file or directory) was not found.
-   * For privacy reasons, this code *might* be returned when the client
-   * does not have the access rights to the entity.
+   *
+   * Note to server developers: if a request is denied for an entire class
+   * of users, such as gradual feature rollout or undocumented whitelist,
+   * `NOT_FOUND` may be used. If a request is denied for some users within
+   * a class of users, such as user-based access control, `PERMISSION_DENIED`
+   * must be used.
    *
    * HTTP Mapping: 404 Not Found
    **/
-  Code_NotFound = 5,
+  RPCCode_NotFound = 5,
 
   /**
    * The entity that a client attempted to create (e.g., file or directory)
@@ -112,7 +112,7 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 409 Conflict
    **/
-  Code_AlreadyExists = 6,
+  RPCCode_AlreadyExists = 6,
 
   /**
    * The caller does not have permission to execute the specified
@@ -120,11 +120,13 @@ typedef GPB_ENUM(Code) {
    * caused by exhausting some resource (use `RESOURCE_EXHAUSTED`
    * instead for those errors). `PERMISSION_DENIED` must not be
    * used if the caller can not be identified (use `UNAUTHENTICATED`
-   * instead for those errors).
+   * instead for those errors). This error code does not imply the
+   * request is valid or the requested entity exists or satisfies
+   * other pre-conditions.
    *
    * HTTP Mapping: 403 Forbidden
    **/
-  Code_PermissionDenied = 7,
+  RPCCode_PermissionDenied = 7,
 
   /**
    * The request does not have valid authentication credentials for the
@@ -132,7 +134,7 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 401 Unauthorized
    **/
-  Code_Unauthenticated = 16,
+  RPCCode_Unauthenticated = 16,
 
   /**
    * Some resource has been exhausted, perhaps a per-user quota, or
@@ -140,7 +142,7 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 429 Too Many Requests
    **/
-  Code_ResourceExhausted = 8,
+  RPCCode_ResourceExhausted = 8,
 
   /**
    * The operation was rejected because the system is not in a state
@@ -152,25 +154,17 @@ typedef GPB_ENUM(Code) {
    * between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`:
    *  (a) Use `UNAVAILABLE` if the client can retry just the failing call.
    *  (b) Use `ABORTED` if the client should retry at a higher level
-   *      (e.g., restarting a read-modify-write sequence).
+   *      (e.g., when a client-specified test-and-set fails, indicating the
+   *      client should restart a read-modify-write sequence).
    *  (c) Use `FAILED_PRECONDITION` if the client should not retry until
    *      the system state has been explicitly fixed.  E.g., if an "rmdir"
    *      fails because the directory is non-empty, `FAILED_PRECONDITION`
    *      should be returned since the client should not retry unless
    *      the files are deleted from the directory.
-   *  (d) Use `FAILED_PRECONDITION` if the client performs conditional
-   *      REST Get/Update/Delete on a resource and the resource on the
-   *      server does not match the condition. E.g., conflicting
-   *      read-modify-write on the same resource.
    *
    * HTTP Mapping: 400 Bad Request
-   *
-   * NOTE: HTTP spec says `412 Precondition Failed` should be used only if
-   * the request contains Etag-related headers. So if the server does see
-   * Etag-related headers in the request, it may choose to return 412
-   * instead of 400 for this error code.
    **/
-  Code_FailedPrecondition = 9,
+  RPCCode_FailedPrecondition = 9,
 
   /**
    * The operation was aborted, typically due to a concurrency issue such as
@@ -181,7 +175,7 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 409 Conflict
    **/
-  Code_Aborted = 10,
+  RPCCode_Aborted = 10,
 
   /**
    * The operation was attempted past the valid range.  E.g., seeking or
@@ -202,7 +196,7 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 400 Bad Request
    **/
-  Code_OutOfRange = 11,
+  RPCCode_OutOfRange = 11,
 
   /**
    * The operation is not implemented or is not supported/enabled in this
@@ -210,7 +204,7 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 501 Not Implemented
    **/
-  Code_Unimplemented = 12,
+  RPCCode_Unimplemented = 12,
 
   /**
    * Internal errors.  This means that some invariants expected by the
@@ -219,37 +213,38 @@ typedef GPB_ENUM(Code) {
    *
    * HTTP Mapping: 500 Internal Server Error
    **/
-  Code_Internal = 13,
+  RPCCode_Internal = 13,
 
   /**
    * The service is currently unavailable.  This is most likely a
    * transient condition, which can be corrected by retrying with
-   * a backoff.
+   * a backoff. Note that it is not always safe to retry
+   * non-idempotent operations.
    *
    * See the guidelines above for deciding between `FAILED_PRECONDITION`,
    * `ABORTED`, and `UNAVAILABLE`.
    *
    * HTTP Mapping: 503 Service Unavailable
    **/
-  Code_Unavailable = 14,
+  RPCCode_Unavailable = 14,
 
   /**
    * Unrecoverable data loss or corruption.
    *
    * HTTP Mapping: 500 Internal Server Error
    **/
-  Code_DataLoss = 15,
+  RPCCode_DataLoss = 15,
 };
 
-GPBEnumDescriptor *Code_EnumDescriptor(void);
+GPBEnumDescriptor *RPCCode_EnumDescriptor(void);
 
 /**
  * Checks to see if the given value is defined by the enum or was not known at
  * the time this source was generated.
  **/
-BOOL Code_IsValidValue(int32_t value);
+BOOL RPCCode_IsValidValue(int32_t value);
 
-#pragma mark - CodeRoot
+#pragma mark - RPCCodeRoot
 
 /**
  * Exposes the extension registry for this file.
@@ -261,7 +256,7 @@ BOOL Code_IsValidValue(int32_t value);
  * which is a @c GPBExtensionRegistry that includes all the extensions defined by
  * this file and all files that it depends on.
  **/
-GPB_FINAL @interface CodeRoot : GPBRootObject
+GPB_FINAL @interface RPCCodeRoot : GPBRootObject
 @end
 
 NS_ASSUME_NONNULL_END
