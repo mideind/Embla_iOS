@@ -29,7 +29,7 @@
 #import <RxLibrary/GRXBufferedPipe.h>
 #import "lr/speech/v2beta1/Speech.pbrpc.h"
 
-#define GOOGLE_HOST     @"speech.googleapis.com"
+#define GOOGLE_HOST     @"speech.talgreinir.is:443"
 
 // Phrases sent to Google API as part of speech context. Should make their speech
 // recognition more likely to identify these words. Doesn't seem to work for Icelandic. :/
@@ -61,7 +61,7 @@
         }
         
         // Default values
-        instance.sampleRate = REC_SAMPLE_RATE;
+        instance.sampleRate = (int32_t)REC_SAMPLE_RATE;
         instance.singleUtterance = YES;
         instance.interimResults = YES;
     }
@@ -80,9 +80,10 @@
                                                       }];
         
         // Authenticate using an API key obtained from the Google Cloud Console
-        _call.requestHeaders[@"X-Goog-Api-Key"] = self.apiKey;
+//        _call.requestHeaders[@"X-Goog-Api-Key"] = self.apiKey;
+        _call.requestHeaders[@"Authorization"] = @"Bearer ak_5pLMPN9oN5ORVmJ2zW8ZY1kPvbBQjg3ypwpKeqadDG7or9EAM60lyLX4Y4z0DO8E";
         // Specify the bundle ID in case the API key has a bundle ID restriction
-        _call.requestHeaders[@"X-Ios-Bundle-Identifier"] = [[NSBundle mainBundle] bundleIdentifier];
+//        _call.requestHeaders[@"X-Ios-Bundle-Identifier"] = [[NSBundle mainBundle] bundleIdentifier];
         
         [_call start];
         _streaming = YES;
@@ -93,10 +94,13 @@
         recognitionConfig.sampleRateHertz = self.sampleRate;
         recognitionConfig.languageCode = @"is-IS";
         recognitionConfig.maxAlternatives = 10;
+//        recognitionConfig.profanityFilter = FALSE;
+//        recognitionConfig.speechContextsArray = nil;
+//        recognitionConfig.enableWordTimeOffsets = FALSE;
         
-        SpeechContext *sc = [SpeechContext new];
-        [sc setPhrasesArray:[PHRASES_ARRAY mutableCopy]];
-        recognitionConfig.speechContextsArray = [@[sc] mutableCopy];
+//        SpeechContext *sc = [SpeechContext new];
+//        [sc setPhrasesArray:[PHRASES_ARRAY mutableCopy]];
+//        recognitionConfig.speechContextsArray = [@[sc] mutableCopy];
         
         StreamingRecognitionConfig *streamingRecognitionConfig = [StreamingRecognitionConfig message];
         streamingRecognitionConfig.config = recognitionConfig;
@@ -110,9 +114,9 @@
     }
 
     // Send a request message containing the audio data
-    StreamingRecognizeRequest *streamingRecognizeRequest = [StreamingRecognizeRequest message];
-    streamingRecognizeRequest.audioContent = audioData;
-    [_writer writeValue:streamingRecognizeRequest];
+//    StreamingRecognizeRequest *streamingRecognizeRequest = [StreamingRecognizeRequest message];
+//    streamingRecognizeRequest.audioContent = audioData;
+//    [_writer writeValue:streamingRecognizeRequest];
 }
 
 - (void)stopStreaming {

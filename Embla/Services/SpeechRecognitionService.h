@@ -25,7 +25,7 @@ typedef void (^SpeechRecognitionCompletionHandler)(StreamingRecognizeResponse *o
 
 @interface SpeechRecognitionService : NSObject
 
-@property(nonatomic, assign) double sampleRate;
+@property(nonatomic, assign) int32_t sampleRate;
 @property(nonatomic, assign) BOOL interimResults;
 @property(nonatomic, assign) BOOL singleUtterance;
 
