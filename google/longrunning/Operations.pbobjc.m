@@ -21,6 +21,15 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #pragma clang diagnostic ignored "-Wdirect-ivar-access"
+#pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
+
+#pragma mark - Objective C Class declarations
+// Forward declarations of Objective C classes that we can use as
+// static values in struct initializers.
+// We don't use [Foo class] because it is not a static value.
+GPBObjCClassDeclaration(GPBAny);
+GPBObjCClassDeclaration(Operation);
+GPBObjCClassDeclaration(Status);
 
 #pragma mark - OperationsRoot
 
@@ -82,16 +91,16 @@ typedef struct Operation__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = Operation_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(Operation__storage_, name),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "metadata",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBAny),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBAny),
         .number = Operation_FieldNumber_Metadata,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(Operation__storage_, metadata),
@@ -100,16 +109,16 @@ typedef struct Operation__storage_ {
       },
       {
         .name = "done",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = Operation_FieldNumber_Done,
         .hasIndex = 2,
         .offset = 3,  // Stored in _has_storage_ to save space.
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeBool,
       },
       {
         .name = "error",
-        .dataTypeSpecific.className = GPBStringifySymbol(Status),
+        .dataTypeSpecific.clazz = GPBObjCClass(Status),
         .number = Operation_FieldNumber_Error,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(Operation__storage_, error),
@@ -118,7 +127,7 @@ typedef struct Operation__storage_ {
       },
       {
         .name = "response",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBAny),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBAny),
         .number = Operation_FieldNumber_Response,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(Operation__storage_, response),
@@ -133,7 +142,7 @@ typedef struct Operation__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(Operation__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const char *oneofs[] = {
       "result",
     };
@@ -151,9 +160,9 @@ typedef struct Operation__storage_ {
 @end
 
 void Operation_ClearResultOneOfCase(Operation *message) {
-  GPBDescriptor *descriptor = [message descriptor];
+  GPBDescriptor *descriptor = [Operation descriptor];
   GPBOneofDescriptor *oneof = [descriptor.oneofs objectAtIndex:0];
-  GPBMaybeClearOneof(message, oneof, -1, 0);
+  GPBClearOneof(message, oneof);
 }
 #pragma mark - GetOperationRequest
 
@@ -174,11 +183,11 @@ typedef struct GetOperationRequest__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GetOperationRequest_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GetOperationRequest__storage_, name),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
@@ -189,7 +198,7 @@ typedef struct GetOperationRequest__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GetOperationRequest__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -225,38 +234,38 @@ typedef struct ListOperationsRequest__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "filter",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = ListOperationsRequest_FieldNumber_Filter,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(ListOperationsRequest__storage_, filter),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "pageSize",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = ListOperationsRequest_FieldNumber_PageSize,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(ListOperationsRequest__storage_, pageSize),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeInt32,
       },
       {
         .name = "pageToken",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = ListOperationsRequest_FieldNumber_PageToken,
         .hasIndex = 3,
         .offset = (uint32_t)offsetof(ListOperationsRequest__storage_, pageToken),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = ListOperationsRequest_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(ListOperationsRequest__storage_, name),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
@@ -267,7 +276,7 @@ typedef struct ListOperationsRequest__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ListOperationsRequest__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -299,7 +308,7 @@ typedef struct ListOperationsResponse__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "operationsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(Operation),
+        .dataTypeSpecific.clazz = GPBObjCClass(Operation),
         .number = ListOperationsResponse_FieldNumber_OperationsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(ListOperationsResponse__storage_, operationsArray),
@@ -308,11 +317,11 @@ typedef struct ListOperationsResponse__storage_ {
       },
       {
         .name = "nextPageToken",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = ListOperationsResponse_FieldNumber_NextPageToken,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(ListOperationsResponse__storage_, nextPageToken),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
@@ -323,7 +332,7 @@ typedef struct ListOperationsResponse__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ListOperationsResponse__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -353,11 +362,11 @@ typedef struct CancelOperationRequest__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = CancelOperationRequest_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(CancelOperationRequest__storage_, name),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
@@ -368,7 +377,7 @@ typedef struct CancelOperationRequest__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(CancelOperationRequest__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -398,11 +407,11 @@ typedef struct DeleteOperationRequest__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = DeleteOperationRequest_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(DeleteOperationRequest__storage_, name),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
@@ -413,7 +422,7 @@ typedef struct DeleteOperationRequest__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(DeleteOperationRequest__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG

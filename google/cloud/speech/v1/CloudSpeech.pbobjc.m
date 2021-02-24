@@ -24,6 +24,22 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #pragma clang diagnostic ignored "-Wdirect-ivar-access"
+#pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
+
+#pragma mark - Objective C Class declarations
+// Forward declarations of Objective C classes that we can use as
+// static values in struct initializers.
+// We don't use [Foo class] because it is not a static value.
+GPBObjCClassDeclaration(GPBTimestamp);
+GPBObjCClassDeclaration(RecognitionAudio);
+GPBObjCClassDeclaration(RecognitionConfig);
+GPBObjCClassDeclaration(SpeechContext);
+GPBObjCClassDeclaration(SpeechRecognitionAlternative);
+GPBObjCClassDeclaration(SpeechRecognitionResult);
+GPBObjCClassDeclaration(Status);
+GPBObjCClassDeclaration(StreamingRecognitionConfig);
+GPBObjCClassDeclaration(StreamingRecognitionResult);
+GPBObjCClassDeclaration(WordInfo);
 
 #pragma mark - CloudSpeechRoot
 
@@ -79,7 +95,7 @@ typedef struct RecognizeRequest__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "config",
-        .dataTypeSpecific.className = GPBStringifySymbol(RecognitionConfig),
+        .dataTypeSpecific.clazz = GPBObjCClass(RecognitionConfig),
         .number = RecognizeRequest_FieldNumber_Config,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(RecognizeRequest__storage_, config),
@@ -88,7 +104,7 @@ typedef struct RecognizeRequest__storage_ {
       },
       {
         .name = "audio",
-        .dataTypeSpecific.className = GPBStringifySymbol(RecognitionAudio),
+        .dataTypeSpecific.clazz = GPBObjCClass(RecognitionAudio),
         .number = RecognizeRequest_FieldNumber_Audio,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(RecognizeRequest__storage_, audio),
@@ -103,7 +119,7 @@ typedef struct RecognizeRequest__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(RecognizeRequest__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -135,7 +151,7 @@ typedef struct LongRunningRecognizeRequest__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "config",
-        .dataTypeSpecific.className = GPBStringifySymbol(RecognitionConfig),
+        .dataTypeSpecific.clazz = GPBObjCClass(RecognitionConfig),
         .number = LongRunningRecognizeRequest_FieldNumber_Config,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(LongRunningRecognizeRequest__storage_, config),
@@ -144,7 +160,7 @@ typedef struct LongRunningRecognizeRequest__storage_ {
       },
       {
         .name = "audio",
-        .dataTypeSpecific.className = GPBStringifySymbol(RecognitionAudio),
+        .dataTypeSpecific.clazz = GPBObjCClass(RecognitionAudio),
         .number = LongRunningRecognizeRequest_FieldNumber_Audio,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(LongRunningRecognizeRequest__storage_, audio),
@@ -159,7 +175,7 @@ typedef struct LongRunningRecognizeRequest__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(LongRunningRecognizeRequest__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -192,7 +208,7 @@ typedef struct StreamingRecognizeRequest__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "streamingConfig",
-        .dataTypeSpecific.className = GPBStringifySymbol(StreamingRecognitionConfig),
+        .dataTypeSpecific.clazz = GPBObjCClass(StreamingRecognitionConfig),
         .number = StreamingRecognizeRequest_FieldNumber_StreamingConfig,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(StreamingRecognizeRequest__storage_, streamingConfig),
@@ -201,7 +217,7 @@ typedef struct StreamingRecognizeRequest__storage_ {
       },
       {
         .name = "audioContent",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = StreamingRecognizeRequest_FieldNumber_AudioContent,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(StreamingRecognizeRequest__storage_, audioContent),
@@ -216,7 +232,7 @@ typedef struct StreamingRecognizeRequest__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(StreamingRecognizeRequest__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const char *oneofs[] = {
       "streamingRequest",
     };
@@ -234,9 +250,9 @@ typedef struct StreamingRecognizeRequest__storage_ {
 @end
 
 void StreamingRecognizeRequest_ClearStreamingRequestOneOfCase(StreamingRecognizeRequest *message) {
-  GPBDescriptor *descriptor = [message descriptor];
+  GPBDescriptor *descriptor = [StreamingRecognizeRequest descriptor];
   GPBOneofDescriptor *oneof = [descriptor.oneofs objectAtIndex:0];
-  GPBMaybeClearOneof(message, oneof, -1, 0);
+  GPBClearOneof(message, oneof);
 }
 #pragma mark - StreamingRecognitionConfig
 
@@ -259,7 +275,7 @@ typedef struct StreamingRecognitionConfig__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "config",
-        .dataTypeSpecific.className = GPBStringifySymbol(RecognitionConfig),
+        .dataTypeSpecific.clazz = GPBObjCClass(RecognitionConfig),
         .number = StreamingRecognitionConfig_FieldNumber_Config,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(StreamingRecognitionConfig__storage_, config),
@@ -268,20 +284,20 @@ typedef struct StreamingRecognitionConfig__storage_ {
       },
       {
         .name = "singleUtterance",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = StreamingRecognitionConfig_FieldNumber_SingleUtterance,
         .hasIndex = 1,
         .offset = 2,  // Stored in _has_storage_ to save space.
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeBool,
       },
       {
         .name = "interimResults",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = StreamingRecognitionConfig_FieldNumber_InterimResults,
         .hasIndex = 3,
         .offset = 4,  // Stored in _has_storage_ to save space.
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeBool,
       },
     };
@@ -292,7 +308,7 @@ typedef struct StreamingRecognitionConfig__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(StreamingRecognitionConfig__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -336,48 +352,48 @@ typedef struct RecognitionConfig__storage_ {
         .number = RecognitionConfig_FieldNumber_Encoding,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(RecognitionConfig__storage_, encoding),
-        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldHasEnumDescriptor),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldHasEnumDescriptor | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeEnum,
       },
       {
         .name = "sampleRateHertz",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = RecognitionConfig_FieldNumber_SampleRateHertz,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(RecognitionConfig__storage_, sampleRateHertz),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeInt32,
       },
       {
         .name = "languageCode",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = RecognitionConfig_FieldNumber_LanguageCode,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(RecognitionConfig__storage_, languageCode),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "maxAlternatives",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = RecognitionConfig_FieldNumber_MaxAlternatives,
         .hasIndex = 3,
         .offset = (uint32_t)offsetof(RecognitionConfig__storage_, maxAlternatives),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeInt32,
       },
       {
         .name = "profanityFilter",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = RecognitionConfig_FieldNumber_ProfanityFilter,
         .hasIndex = 4,
         .offset = 5,  // Stored in _has_storage_ to save space.
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeBool,
       },
       {
         .name = "speechContextsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(SpeechContext),
+        .dataTypeSpecific.clazz = GPBObjCClass(SpeechContext),
         .number = RecognitionConfig_FieldNumber_SpeechContextsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(RecognitionConfig__storage_, speechContextsArray),
@@ -386,11 +402,11 @@ typedef struct RecognitionConfig__storage_ {
       },
       {
         .name = "enableWordTimeOffsets",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = RecognitionConfig_FieldNumber_EnableWordTimeOffsets,
         .hasIndex = 6,
         .offset = 7,  // Stored in _has_storage_ to save space.
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeBool,
       },
     };
@@ -401,7 +417,7 @@ typedef struct RecognitionConfig__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(RecognitionConfig__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -415,13 +431,13 @@ typedef struct RecognitionConfig__storage_ {
 int32_t RecognitionConfig_Encoding_RawValue(RecognitionConfig *message) {
   GPBDescriptor *descriptor = [RecognitionConfig descriptor];
   GPBFieldDescriptor *field = [descriptor fieldWithNumber:RecognitionConfig_FieldNumber_Encoding];
-  return GPBGetMessageInt32Field(message, field);
+  return GPBGetMessageRawEnumField(message, field);
 }
 
 void SetRecognitionConfig_Encoding_RawValue(RecognitionConfig *message, int32_t value) {
   GPBDescriptor *descriptor = [RecognitionConfig descriptor];
   GPBFieldDescriptor *field = [descriptor fieldWithNumber:RecognitionConfig_FieldNumber_Encoding];
-  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+  GPBSetMessageRawEnumField(message, field, value);
 }
 
 #pragma mark - Enum RecognitionConfig_AudioEncoding
@@ -491,7 +507,7 @@ typedef struct SpeechContext__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "phrasesArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = SpeechContext_FieldNumber_PhrasesArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(SpeechContext__storage_, phrasesArray),
@@ -506,7 +522,7 @@ typedef struct SpeechContext__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(SpeechContext__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -539,7 +555,7 @@ typedef struct RecognitionAudio__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "content",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = RecognitionAudio_FieldNumber_Content,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(RecognitionAudio__storage_, content),
@@ -548,7 +564,7 @@ typedef struct RecognitionAudio__storage_ {
       },
       {
         .name = "uri",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = RecognitionAudio_FieldNumber_Uri,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(RecognitionAudio__storage_, uri),
@@ -563,7 +579,7 @@ typedef struct RecognitionAudio__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(RecognitionAudio__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const char *oneofs[] = {
       "audioSource",
     };
@@ -581,9 +597,9 @@ typedef struct RecognitionAudio__storage_ {
 @end
 
 void RecognitionAudio_ClearAudioSourceOneOfCase(RecognitionAudio *message) {
-  GPBDescriptor *descriptor = [message descriptor];
+  GPBDescriptor *descriptor = [RecognitionAudio descriptor];
   GPBOneofDescriptor *oneof = [descriptor.oneofs objectAtIndex:0];
-  GPBMaybeClearOneof(message, oneof, -1, 0);
+  GPBClearOneof(message, oneof);
 }
 #pragma mark - RecognizeResponse
 
@@ -604,7 +620,7 @@ typedef struct RecognizeResponse__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "resultsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(SpeechRecognitionResult),
+        .dataTypeSpecific.clazz = GPBObjCClass(SpeechRecognitionResult),
         .number = RecognizeResponse_FieldNumber_ResultsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(RecognizeResponse__storage_, resultsArray),
@@ -619,7 +635,7 @@ typedef struct RecognizeResponse__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(RecognizeResponse__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -649,7 +665,7 @@ typedef struct LongRunningRecognizeResponse__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "resultsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(SpeechRecognitionResult),
+        .dataTypeSpecific.clazz = GPBObjCClass(SpeechRecognitionResult),
         .number = LongRunningRecognizeResponse_FieldNumber_ResultsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(LongRunningRecognizeResponse__storage_, resultsArray),
@@ -664,7 +680,7 @@ typedef struct LongRunningRecognizeResponse__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(LongRunningRecognizeResponse__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -698,16 +714,16 @@ typedef struct LongRunningRecognizeMetadata__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "progressPercent",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = LongRunningRecognizeMetadata_FieldNumber_ProgressPercent,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(LongRunningRecognizeMetadata__storage_, progressPercent),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeInt32,
       },
       {
         .name = "startTime",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBTimestamp),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBTimestamp),
         .number = LongRunningRecognizeMetadata_FieldNumber_StartTime,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(LongRunningRecognizeMetadata__storage_, startTime),
@@ -716,7 +732,7 @@ typedef struct LongRunningRecognizeMetadata__storage_ {
       },
       {
         .name = "lastUpdateTime",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBTimestamp),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBTimestamp),
         .number = LongRunningRecognizeMetadata_FieldNumber_LastUpdateTime,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(LongRunningRecognizeMetadata__storage_, lastUpdateTime),
@@ -731,7 +747,7 @@ typedef struct LongRunningRecognizeMetadata__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(LongRunningRecognizeMetadata__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -765,7 +781,7 @@ typedef struct StreamingRecognizeResponse__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "error",
-        .dataTypeSpecific.className = GPBStringifySymbol(Status),
+        .dataTypeSpecific.clazz = GPBObjCClass(Status),
         .number = StreamingRecognizeResponse_FieldNumber_Error,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(StreamingRecognizeResponse__storage_, error),
@@ -774,7 +790,7 @@ typedef struct StreamingRecognizeResponse__storage_ {
       },
       {
         .name = "resultsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(StreamingRecognitionResult),
+        .dataTypeSpecific.clazz = GPBObjCClass(StreamingRecognitionResult),
         .number = StreamingRecognizeResponse_FieldNumber_ResultsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(StreamingRecognizeResponse__storage_, resultsArray),
@@ -787,7 +803,7 @@ typedef struct StreamingRecognizeResponse__storage_ {
         .number = StreamingRecognizeResponse_FieldNumber_SpeechEventType,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(StreamingRecognizeResponse__storage_, speechEventType),
-        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldHasEnumDescriptor),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldHasEnumDescriptor | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeEnum,
       },
     };
@@ -798,7 +814,7 @@ typedef struct StreamingRecognizeResponse__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(StreamingRecognizeResponse__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -812,13 +828,13 @@ typedef struct StreamingRecognizeResponse__storage_ {
 int32_t StreamingRecognizeResponse_SpeechEventType_RawValue(StreamingRecognizeResponse *message) {
   GPBDescriptor *descriptor = [StreamingRecognizeResponse descriptor];
   GPBFieldDescriptor *field = [descriptor fieldWithNumber:StreamingRecognizeResponse_FieldNumber_SpeechEventType];
-  return GPBGetMessageInt32Field(message, field);
+  return GPBGetMessageRawEnumField(message, field);
 }
 
 void SetStreamingRecognizeResponse_SpeechEventType_RawValue(StreamingRecognizeResponse *message, int32_t value) {
   GPBDescriptor *descriptor = [StreamingRecognizeResponse descriptor];
   GPBFieldDescriptor *field = [descriptor fieldWithNumber:StreamingRecognizeResponse_FieldNumber_SpeechEventType];
-  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+  GPBSetMessageRawEnumField(message, field, value);
 }
 
 #pragma mark - Enum StreamingRecognizeResponse_SpeechEventType
@@ -879,7 +895,7 @@ typedef struct StreamingRecognitionResult__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "alternativesArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(SpeechRecognitionAlternative),
+        .dataTypeSpecific.clazz = GPBObjCClass(SpeechRecognitionAlternative),
         .number = StreamingRecognitionResult_FieldNumber_AlternativesArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(StreamingRecognitionResult__storage_, alternativesArray),
@@ -888,20 +904,20 @@ typedef struct StreamingRecognitionResult__storage_ {
       },
       {
         .name = "isFinal",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = StreamingRecognitionResult_FieldNumber_IsFinal,
         .hasIndex = 0,
         .offset = 1,  // Stored in _has_storage_ to save space.
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeBool,
       },
       {
         .name = "stability",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = StreamingRecognitionResult_FieldNumber_Stability,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(StreamingRecognitionResult__storage_, stability),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeFloat,
       },
     };
@@ -912,7 +928,7 @@ typedef struct StreamingRecognitionResult__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(StreamingRecognitionResult__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -942,7 +958,7 @@ typedef struct SpeechRecognitionResult__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "alternativesArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(SpeechRecognitionAlternative),
+        .dataTypeSpecific.clazz = GPBObjCClass(SpeechRecognitionAlternative),
         .number = SpeechRecognitionResult_FieldNumber_AlternativesArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(SpeechRecognitionResult__storage_, alternativesArray),
@@ -957,7 +973,7 @@ typedef struct SpeechRecognitionResult__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(SpeechRecognitionResult__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -991,25 +1007,25 @@ typedef struct SpeechRecognitionAlternative__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "transcript",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = SpeechRecognitionAlternative_FieldNumber_Transcript,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(SpeechRecognitionAlternative__storage_, transcript),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "confidence",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = SpeechRecognitionAlternative_FieldNumber_Confidence,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(SpeechRecognitionAlternative__storage_, confidence),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeFloat,
       },
       {
         .name = "wordsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(WordInfo),
+        .dataTypeSpecific.clazz = GPBObjCClass(WordInfo),
         .number = SpeechRecognitionAlternative_FieldNumber_WordsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(SpeechRecognitionAlternative__storage_, wordsArray),
@@ -1024,7 +1040,7 @@ typedef struct SpeechRecognitionAlternative__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(SpeechRecognitionAlternative__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -1058,7 +1074,7 @@ typedef struct WordInfo__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "startTime",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBTimestamp),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBTimestamp),
         .number = WordInfo_FieldNumber_StartTime,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(WordInfo__storage_, startTime),
@@ -1067,7 +1083,7 @@ typedef struct WordInfo__storage_ {
       },
       {
         .name = "endTime",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBTimestamp),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBTimestamp),
         .number = WordInfo_FieldNumber_EndTime,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(WordInfo__storage_, endTime),
@@ -1076,11 +1092,11 @@ typedef struct WordInfo__storage_ {
       },
       {
         .name = "word",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = WordInfo_FieldNumber_Word,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(WordInfo__storage_, word),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
@@ -1091,7 +1107,7 @@ typedef struct WordInfo__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(WordInfo__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG

@@ -19,6 +19,14 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
+
+#pragma mark - Objective C Class declarations
+// Forward declarations of Objective C classes that we can use as
+// static values in struct initializers.
+// We don't use [Foo class] because it is not a static value.
+GPBObjCClassDeclaration(LabelDescriptor);
+GPBObjCClassDeclaration(MonitoredResource);
 
 #pragma mark - MonitoredResourceRoot
 
@@ -68,34 +76,34 @@ typedef struct MonitoredResourceDescriptor__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "type",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = MonitoredResourceDescriptor_FieldNumber_Type,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(MonitoredResourceDescriptor__storage_, type),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "displayName",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = MonitoredResourceDescriptor_FieldNumber_DisplayName,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(MonitoredResourceDescriptor__storage_, displayName),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "description_p",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = MonitoredResourceDescriptor_FieldNumber_Description_p,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(MonitoredResourceDescriptor__storage_, description_p),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "labelsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(LabelDescriptor),
+        .dataTypeSpecific.clazz = GPBObjCClass(LabelDescriptor),
         .number = MonitoredResourceDescriptor_FieldNumber_LabelsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(MonitoredResourceDescriptor__storage_, labelsArray),
@@ -110,7 +118,7 @@ typedef struct MonitoredResourceDescriptor__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(MonitoredResourceDescriptor__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -142,16 +150,16 @@ typedef struct MonitoredResource__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "type",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = MonitoredResource_FieldNumber_Type,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(MonitoredResource__storage_, type),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "labels",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = MonitoredResource_FieldNumber_Labels,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(MonitoredResource__storage_, labels),
@@ -166,7 +174,7 @@ typedef struct MonitoredResource__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(MonitoredResource__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG

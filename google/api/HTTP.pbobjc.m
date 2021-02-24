@@ -19,6 +19,14 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #pragma clang diagnostic ignored "-Wdirect-ivar-access"
+#pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
+
+#pragma mark - Objective C Class declarations
+// Forward declarations of Objective C classes that we can use as
+// static values in struct initializers.
+// We don't use [Foo class] because it is not a static value.
+GPBObjCClassDeclaration(CustomHttpPattern);
+GPBObjCClassDeclaration(HttpRule);
 
 #pragma mark - HTTPRoot
 
@@ -77,7 +85,7 @@ typedef struct HttpRule__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "get",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = HttpRule_FieldNumber_Get,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(HttpRule__storage_, get),
@@ -86,7 +94,7 @@ typedef struct HttpRule__storage_ {
       },
       {
         .name = "put",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = HttpRule_FieldNumber_Put,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(HttpRule__storage_, put),
@@ -95,7 +103,7 @@ typedef struct HttpRule__storage_ {
       },
       {
         .name = "post",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = HttpRule_FieldNumber_Post,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(HttpRule__storage_, post),
@@ -104,7 +112,7 @@ typedef struct HttpRule__storage_ {
       },
       {
         .name = "delete_p",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = HttpRule_FieldNumber_Delete_p,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(HttpRule__storage_, delete_p),
@@ -113,7 +121,7 @@ typedef struct HttpRule__storage_ {
       },
       {
         .name = "patch",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = HttpRule_FieldNumber_Patch,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(HttpRule__storage_, patch),
@@ -122,16 +130,16 @@ typedef struct HttpRule__storage_ {
       },
       {
         .name = "body",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = HttpRule_FieldNumber_Body,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(HttpRule__storage_, body),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "custom",
-        .dataTypeSpecific.className = GPBStringifySymbol(CustomHttpPattern),
+        .dataTypeSpecific.clazz = GPBObjCClass(CustomHttpPattern),
         .number = HttpRule_FieldNumber_Custom,
         .hasIndex = -1,
         .offset = (uint32_t)offsetof(HttpRule__storage_, custom),
@@ -140,7 +148,7 @@ typedef struct HttpRule__storage_ {
       },
       {
         .name = "additionalBindingsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(HttpRule),
+        .dataTypeSpecific.clazz = GPBObjCClass(HttpRule),
         .number = HttpRule_FieldNumber_AdditionalBindingsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(HttpRule__storage_, additionalBindingsArray),
@@ -155,7 +163,7 @@ typedef struct HttpRule__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(HttpRule__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const char *oneofs[] = {
       "pattern",
     };
@@ -173,9 +181,9 @@ typedef struct HttpRule__storage_ {
 @end
 
 void HttpRule_ClearPatternOneOfCase(HttpRule *message) {
-  GPBDescriptor *descriptor = [message descriptor];
+  GPBDescriptor *descriptor = [HttpRule descriptor];
   GPBOneofDescriptor *oneof = [descriptor.oneofs objectAtIndex:0];
-  GPBMaybeClearOneof(message, oneof, -1, 0);
+  GPBClearOneof(message, oneof);
 }
 #pragma mark - CustomHttpPattern
 
@@ -198,20 +206,20 @@ typedef struct CustomHttpPattern__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "kind",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = CustomHttpPattern_FieldNumber_Kind,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(CustomHttpPattern__storage_, kind),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "path",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = CustomHttpPattern_FieldNumber_Path,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(CustomHttpPattern__storage_, path),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
@@ -222,7 +230,7 @@ typedef struct CustomHttpPattern__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(CustomHttpPattern__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG

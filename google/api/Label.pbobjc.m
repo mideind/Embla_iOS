@@ -67,11 +67,11 @@ typedef struct LabelDescriptor__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "key",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = LabelDescriptor_FieldNumber_Key,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(LabelDescriptor__storage_, key),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
       {
@@ -80,16 +80,16 @@ typedef struct LabelDescriptor__storage_ {
         .number = LabelDescriptor_FieldNumber_ValueType,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(LabelDescriptor__storage_, valueType),
-        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldHasEnumDescriptor),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldHasEnumDescriptor | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeEnum,
       },
       {
         .name = "description_p",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = LabelDescriptor_FieldNumber_Description_p,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(LabelDescriptor__storage_, description_p),
-        .flags = GPBFieldOptional,
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
         .dataType = GPBDataTypeString,
       },
     };
@@ -100,7 +100,7 @@ typedef struct LabelDescriptor__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(LabelDescriptor__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -114,13 +114,13 @@ typedef struct LabelDescriptor__storage_ {
 int32_t LabelDescriptor_ValueType_RawValue(LabelDescriptor *message) {
   GPBDescriptor *descriptor = [LabelDescriptor descriptor];
   GPBFieldDescriptor *field = [descriptor fieldWithNumber:LabelDescriptor_FieldNumber_ValueType];
-  return GPBGetMessageInt32Field(message, field);
+  return GPBGetMessageRawEnumField(message, field);
 }
 
 void SetLabelDescriptor_ValueType_RawValue(LabelDescriptor *message, int32_t value) {
   GPBDescriptor *descriptor = [LabelDescriptor descriptor];
   GPBFieldDescriptor *field = [descriptor fieldWithNumber:LabelDescriptor_FieldNumber_ValueType];
-  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+  GPBSetMessageRawEnumField(message, field, value);
 }
 
 #pragma mark - Enum LabelDescriptor_ValueType

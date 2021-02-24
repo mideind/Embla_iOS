@@ -20,6 +20,14 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
+
+#pragma mark - Objective C Class declarations
+// Forward declarations of Objective C classes that we can use as
+// static values in struct initializers.
+// We don't use [Foo class] because it is not a static value.
+GPBObjCClassDeclaration(GPBMethodOptions);
+GPBObjCClassDeclaration(HttpRule);
 
 #pragma mark - AnnotationsRoot
 
@@ -36,8 +44,8 @@
       {
         .defaultValue.valueMessage = nil,
         .singletonName = GPBStringifySymbol(AnnotationsRoot_HTTP),
-        .extendedClass = GPBStringifySymbol(GPBMethodOptions),
-        .messageOrGroupClassName = GPBStringifySymbol(HttpRule),
+        .extendedClass.clazz = GPBObjCClass(GPBMethodOptions),
+        .messageOrGroupClass.clazz = GPBObjCClass(HttpRule),
         .enumDescriptorFunc = NULL,
         .fieldNumber = 72295728,
         .dataType = GPBDataTypeMessage,
@@ -46,7 +54,8 @@
     };
     for (size_t i = 0; i < sizeof(descriptions) / sizeof(descriptions[0]); ++i) {
       GPBExtensionDescriptor *extension =
-          [[GPBExtensionDescriptor alloc] initWithExtensionDescription:&descriptions[i]];
+          [[GPBExtensionDescriptor alloc] initWithExtensionDescription:&descriptions[i]
+                                                         usesClassRefs:YES];
       [registry addExtension:extension];
       [self globallyRegisterExtension:extension];
       [extension release];

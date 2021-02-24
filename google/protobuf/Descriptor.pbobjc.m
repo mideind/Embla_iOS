@@ -20,6 +20,35 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
+
+#pragma mark - Objective C Class declarations
+// Forward declarations of Objective C classes that we can use as
+// static values in struct initializers.
+// We don't use [Foo class] because it is not a static value.
+GPBObjCClassDeclaration(GPBDescriptorProto);
+GPBObjCClassDeclaration(GPBDescriptorProto_ExtensionRange);
+GPBObjCClassDeclaration(GPBDescriptorProto_ReservedRange);
+GPBObjCClassDeclaration(GPBEnumDescriptorProto);
+GPBObjCClassDeclaration(GPBEnumOptions);
+GPBObjCClassDeclaration(GPBEnumValueDescriptorProto);
+GPBObjCClassDeclaration(GPBEnumValueOptions);
+GPBObjCClassDeclaration(GPBFieldDescriptorProto);
+GPBObjCClassDeclaration(GPBFieldOptions);
+GPBObjCClassDeclaration(GPBFileDescriptorProto);
+GPBObjCClassDeclaration(GPBFileOptions);
+GPBObjCClassDeclaration(GPBGeneratedCodeInfo);
+GPBObjCClassDeclaration(GPBGeneratedCodeInfo_Annotation);
+GPBObjCClassDeclaration(GPBMessageOptions);
+GPBObjCClassDeclaration(GPBMethodDescriptorProto);
+GPBObjCClassDeclaration(GPBMethodOptions);
+GPBObjCClassDeclaration(GPBOneofDescriptorProto);
+GPBObjCClassDeclaration(GPBServiceDescriptorProto);
+GPBObjCClassDeclaration(GPBServiceOptions);
+GPBObjCClassDeclaration(GPBSourceCodeInfo);
+GPBObjCClassDeclaration(GPBSourceCodeInfo_Location);
+GPBObjCClassDeclaration(GPBUninterpretedOption);
+GPBObjCClassDeclaration(GPBUninterpretedOption_NamePart);
 
 #pragma mark - GPBDescriptorRoot
 
@@ -64,7 +93,7 @@ typedef struct GPBFileDescriptorSet__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "fileArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBFileDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBFileDescriptorProto),
         .number = GPBFileDescriptorSet_FieldNumber_FileArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFileDescriptorSet__storage_, fileArray),
@@ -79,7 +108,7 @@ typedef struct GPBFileDescriptorSet__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBFileDescriptorSet__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -131,7 +160,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFileDescriptorProto_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, name),
@@ -140,7 +169,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "package",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFileDescriptorProto_FieldNumber_Package,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, package),
@@ -149,7 +178,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "dependencyArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFileDescriptorProto_FieldNumber_DependencyArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, dependencyArray),
@@ -158,7 +187,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "messageTypeArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBDescriptorProto),
         .number = GPBFileDescriptorProto_FieldNumber_MessageTypeArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, messageTypeArray),
@@ -167,7 +196,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "enumTypeArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBEnumDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBEnumDescriptorProto),
         .number = GPBFileDescriptorProto_FieldNumber_EnumTypeArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, enumTypeArray),
@@ -176,7 +205,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "serviceArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBServiceDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBServiceDescriptorProto),
         .number = GPBFileDescriptorProto_FieldNumber_ServiceArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, serviceArray),
@@ -185,7 +214,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "extensionArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBFieldDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBFieldDescriptorProto),
         .number = GPBFileDescriptorProto_FieldNumber_ExtensionArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, extensionArray),
@@ -194,7 +223,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "options",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBFileOptions),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBFileOptions),
         .number = GPBFileDescriptorProto_FieldNumber_Options,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, options),
@@ -203,7 +232,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "sourceCodeInfo",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBSourceCodeInfo),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBSourceCodeInfo),
         .number = GPBFileDescriptorProto_FieldNumber_SourceCodeInfo,
         .hasIndex = 3,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, sourceCodeInfo),
@@ -212,7 +241,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "publicDependencyArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFileDescriptorProto_FieldNumber_PublicDependencyArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, publicDependencyArray),
@@ -221,7 +250,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "weakDependencyArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFileDescriptorProto_FieldNumber_WeakDependencyArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, weakDependencyArray),
@@ -230,7 +259,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
       },
       {
         .name = "syntax",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFileDescriptorProto_FieldNumber_Syntax,
         .hasIndex = 4,
         .offset = (uint32_t)offsetof(GPBFileDescriptorProto__storage_, syntax),
@@ -245,7 +274,7 @@ typedef struct GPBFileDescriptorProto__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBFileDescriptorProto__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -293,7 +322,7 @@ typedef struct GPBDescriptorProto__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBDescriptorProto_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, name),
@@ -302,7 +331,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "fieldArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBFieldDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBFieldDescriptorProto),
         .number = GPBDescriptorProto_FieldNumber_FieldArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, fieldArray),
@@ -311,7 +340,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "nestedTypeArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBDescriptorProto),
         .number = GPBDescriptorProto_FieldNumber_NestedTypeArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, nestedTypeArray),
@@ -320,7 +349,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "enumTypeArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBEnumDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBEnumDescriptorProto),
         .number = GPBDescriptorProto_FieldNumber_EnumTypeArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, enumTypeArray),
@@ -329,7 +358,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "extensionRangeArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBDescriptorProto_ExtensionRange),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBDescriptorProto_ExtensionRange),
         .number = GPBDescriptorProto_FieldNumber_ExtensionRangeArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, extensionRangeArray),
@@ -338,7 +367,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "extensionArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBFieldDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBFieldDescriptorProto),
         .number = GPBDescriptorProto_FieldNumber_ExtensionArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, extensionArray),
@@ -347,7 +376,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "options",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBMessageOptions),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBMessageOptions),
         .number = GPBDescriptorProto_FieldNumber_Options,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, options),
@@ -356,7 +385,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "oneofDeclArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBOneofDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBOneofDescriptorProto),
         .number = GPBDescriptorProto_FieldNumber_OneofDeclArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, oneofDeclArray),
@@ -365,7 +394,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "reservedRangeArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBDescriptorProto_ReservedRange),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBDescriptorProto_ReservedRange),
         .number = GPBDescriptorProto_FieldNumber_ReservedRangeArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, reservedRangeArray),
@@ -374,7 +403,7 @@ typedef struct GPBDescriptorProto__storage_ {
       },
       {
         .name = "reservedNameArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBDescriptorProto_FieldNumber_ReservedNameArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBDescriptorProto__storage_, reservedNameArray),
@@ -389,7 +418,7 @@ typedef struct GPBDescriptorProto__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBDescriptorProto__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -421,7 +450,7 @@ typedef struct GPBDescriptorProto_ExtensionRange__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "start",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBDescriptorProto_ExtensionRange_FieldNumber_Start,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBDescriptorProto_ExtensionRange__storage_, start),
@@ -430,7 +459,7 @@ typedef struct GPBDescriptorProto_ExtensionRange__storage_ {
       },
       {
         .name = "end",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBDescriptorProto_ExtensionRange_FieldNumber_End,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBDescriptorProto_ExtensionRange__storage_, end),
@@ -445,8 +474,8 @@ typedef struct GPBDescriptorProto_ExtensionRange__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBDescriptorProto_ExtensionRange__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
-    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(GPBDescriptorProto)];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(GPBDescriptorProto)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -478,7 +507,7 @@ typedef struct GPBDescriptorProto_ReservedRange__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "start",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBDescriptorProto_ReservedRange_FieldNumber_Start,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBDescriptorProto_ReservedRange__storage_, start),
@@ -487,7 +516,7 @@ typedef struct GPBDescriptorProto_ReservedRange__storage_ {
       },
       {
         .name = "end",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBDescriptorProto_ReservedRange_FieldNumber_End,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBDescriptorProto_ReservedRange__storage_, end),
@@ -502,8 +531,8 @@ typedef struct GPBDescriptorProto_ReservedRange__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBDescriptorProto_ReservedRange__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
-    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(GPBDescriptorProto)];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(GPBDescriptorProto)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -552,7 +581,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "name",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFieldDescriptorProto_FieldNumber_Name,
         .core.hasIndex = 0,
         .core.offset = (uint32_t)offsetof(GPBFieldDescriptorProto__storage_, name),
@@ -562,7 +591,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "extendee",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFieldDescriptorProto_FieldNumber_Extendee,
         .core.hasIndex = 5,
         .core.offset = (uint32_t)offsetof(GPBFieldDescriptorProto__storage_, extendee),
@@ -572,7 +601,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
       {
         .defaultValue.valueInt32 = 0,
         .core.name = "number",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFieldDescriptorProto_FieldNumber_Number,
         .core.hasIndex = 1,
         .core.offset = (uint32_t)offsetof(GPBFieldDescriptorProto__storage_, number),
@@ -602,7 +631,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "typeName",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFieldDescriptorProto_FieldNumber_TypeName,
         .core.hasIndex = 4,
         .core.offset = (uint32_t)offsetof(GPBFieldDescriptorProto__storage_, typeName),
@@ -612,7 +641,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "defaultValue",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFieldDescriptorProto_FieldNumber_DefaultValue,
         .core.hasIndex = 6,
         .core.offset = (uint32_t)offsetof(GPBFieldDescriptorProto__storage_, defaultValue),
@@ -622,7 +651,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
       {
         .defaultValue.valueMessage = nil,
         .core.name = "options",
-        .core.dataTypeSpecific.className = GPBStringifySymbol(GPBFieldOptions),
+        .core.dataTypeSpecific.clazz = GPBObjCClass(GPBFieldOptions),
         .core.number = GPBFieldDescriptorProto_FieldNumber_Options,
         .core.hasIndex = 9,
         .core.offset = (uint32_t)offsetof(GPBFieldDescriptorProto__storage_, options),
@@ -632,7 +661,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
       {
         .defaultValue.valueInt32 = 0,
         .core.name = "oneofIndex",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFieldDescriptorProto_FieldNumber_OneofIndex,
         .core.hasIndex = 7,
         .core.offset = (uint32_t)offsetof(GPBFieldDescriptorProto__storage_, oneofIndex),
@@ -642,7 +671,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "jsonName",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFieldDescriptorProto_FieldNumber_JsonName,
         .core.hasIndex = 8,
         .core.offset = (uint32_t)offsetof(GPBFieldDescriptorProto__storage_, jsonName),
@@ -657,7 +686,7 @@ typedef struct GPBFieldDescriptorProto__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescriptionWithDefault))
                                    storageSize:sizeof(GPBFieldDescriptorProto__storage_)
-                                         flags:GPBDescriptorInitializationFlag_FieldsWithDefault];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown | GPBDescriptorInitializationFlag_FieldsWithDefault)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -796,7 +825,7 @@ typedef struct GPBOneofDescriptorProto__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBOneofDescriptorProto_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBOneofDescriptorProto__storage_, name),
@@ -811,7 +840,7 @@ typedef struct GPBOneofDescriptorProto__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBOneofDescriptorProto__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -845,7 +874,7 @@ typedef struct GPBEnumDescriptorProto__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBEnumDescriptorProto_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBEnumDescriptorProto__storage_, name),
@@ -854,7 +883,7 @@ typedef struct GPBEnumDescriptorProto__storage_ {
       },
       {
         .name = "valueArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBEnumValueDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBEnumValueDescriptorProto),
         .number = GPBEnumDescriptorProto_FieldNumber_ValueArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBEnumDescriptorProto__storage_, valueArray),
@@ -863,7 +892,7 @@ typedef struct GPBEnumDescriptorProto__storage_ {
       },
       {
         .name = "options",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBEnumOptions),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBEnumOptions),
         .number = GPBEnumDescriptorProto_FieldNumber_Options,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBEnumDescriptorProto__storage_, options),
@@ -878,7 +907,7 @@ typedef struct GPBEnumDescriptorProto__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBEnumDescriptorProto__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -912,7 +941,7 @@ typedef struct GPBEnumValueDescriptorProto__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBEnumValueDescriptorProto_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBEnumValueDescriptorProto__storage_, name),
@@ -921,7 +950,7 @@ typedef struct GPBEnumValueDescriptorProto__storage_ {
       },
       {
         .name = "number",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBEnumValueDescriptorProto_FieldNumber_Number,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBEnumValueDescriptorProto__storage_, number),
@@ -930,7 +959,7 @@ typedef struct GPBEnumValueDescriptorProto__storage_ {
       },
       {
         .name = "options",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBEnumValueOptions),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBEnumValueOptions),
         .number = GPBEnumValueDescriptorProto_FieldNumber_Options,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(GPBEnumValueDescriptorProto__storage_, options),
@@ -945,7 +974,7 @@ typedef struct GPBEnumValueDescriptorProto__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBEnumValueDescriptorProto__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -979,7 +1008,7 @@ typedef struct GPBServiceDescriptorProto__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBServiceDescriptorProto_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBServiceDescriptorProto__storage_, name),
@@ -988,7 +1017,7 @@ typedef struct GPBServiceDescriptorProto__storage_ {
       },
       {
         .name = "methodArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBMethodDescriptorProto),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBMethodDescriptorProto),
         .number = GPBServiceDescriptorProto_FieldNumber_MethodArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBServiceDescriptorProto__storage_, methodArray),
@@ -997,7 +1026,7 @@ typedef struct GPBServiceDescriptorProto__storage_ {
       },
       {
         .name = "options",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBServiceOptions),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBServiceOptions),
         .number = GPBServiceDescriptorProto_FieldNumber_Options,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBServiceDescriptorProto__storage_, options),
@@ -1012,7 +1041,7 @@ typedef struct GPBServiceDescriptorProto__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBServiceDescriptorProto__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -1050,7 +1079,7 @@ typedef struct GPBMethodDescriptorProto__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "name",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMethodDescriptorProto_FieldNumber_Name,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBMethodDescriptorProto__storage_, name),
@@ -1059,7 +1088,7 @@ typedef struct GPBMethodDescriptorProto__storage_ {
       },
       {
         .name = "inputType",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMethodDescriptorProto_FieldNumber_InputType,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBMethodDescriptorProto__storage_, inputType),
@@ -1068,7 +1097,7 @@ typedef struct GPBMethodDescriptorProto__storage_ {
       },
       {
         .name = "outputType",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMethodDescriptorProto_FieldNumber_OutputType,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(GPBMethodDescriptorProto__storage_, outputType),
@@ -1077,7 +1106,7 @@ typedef struct GPBMethodDescriptorProto__storage_ {
       },
       {
         .name = "options",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBMethodOptions),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBMethodOptions),
         .number = GPBMethodDescriptorProto_FieldNumber_Options,
         .hasIndex = 3,
         .offset = (uint32_t)offsetof(GPBMethodDescriptorProto__storage_, options),
@@ -1086,7 +1115,7 @@ typedef struct GPBMethodDescriptorProto__storage_ {
       },
       {
         .name = "clientStreaming",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMethodDescriptorProto_FieldNumber_ClientStreaming,
         .hasIndex = 4,
         .offset = 5,  // Stored in _has_storage_ to save space.
@@ -1095,7 +1124,7 @@ typedef struct GPBMethodDescriptorProto__storage_ {
       },
       {
         .name = "serverStreaming",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMethodDescriptorProto_FieldNumber_ServerStreaming,
         .hasIndex = 6,
         .offset = 7,  // Stored in _has_storage_ to save space.
@@ -1110,7 +1139,7 @@ typedef struct GPBMethodDescriptorProto__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBMethodDescriptorProto__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -1161,7 +1190,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "javaPackage",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_JavaPackage,
         .core.hasIndex = 0,
         .core.offset = (uint32_t)offsetof(GPBFileOptions__storage_, javaPackage),
@@ -1171,7 +1200,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "javaOuterClassname",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_JavaOuterClassname,
         .core.hasIndex = 1,
         .core.offset = (uint32_t)offsetof(GPBFileOptions__storage_, javaOuterClassname),
@@ -1191,7 +1220,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueBool = NO,
         .core.name = "javaMultipleFiles",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_JavaMultipleFiles,
         .core.hasIndex = 2,
         .core.offset = 3,  // Stored in _has_storage_ to save space.
@@ -1201,7 +1230,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "goPackage",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_GoPackage,
         .core.hasIndex = 9,
         .core.offset = (uint32_t)offsetof(GPBFileOptions__storage_, goPackage),
@@ -1211,7 +1240,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueBool = NO,
         .core.name = "ccGenericServices",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_CcGenericServices,
         .core.hasIndex = 10,
         .core.offset = 11,  // Stored in _has_storage_ to save space.
@@ -1221,7 +1250,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueBool = NO,
         .core.name = "javaGenericServices",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_JavaGenericServices,
         .core.hasIndex = 12,
         .core.offset = 13,  // Stored in _has_storage_ to save space.
@@ -1231,7 +1260,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueBool = NO,
         .core.name = "pyGenericServices",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_PyGenericServices,
         .core.hasIndex = 14,
         .core.offset = 15,  // Stored in _has_storage_ to save space.
@@ -1241,7 +1270,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueBool = NO,
         .core.name = "javaGenerateEqualsAndHash",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_JavaGenerateEqualsAndHash,
         .core.hasIndex = 4,
         .core.offset = 5,  // Stored in _has_storage_ to save space.
@@ -1251,7 +1280,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueBool = NO,
         .core.name = "deprecated",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_Deprecated,
         .core.hasIndex = 16,
         .core.offset = 17,  // Stored in _has_storage_ to save space.
@@ -1261,7 +1290,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueBool = NO,
         .core.name = "javaStringCheckUtf8",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_JavaStringCheckUtf8,
         .core.hasIndex = 6,
         .core.offset = 7,  // Stored in _has_storage_ to save space.
@@ -1271,7 +1300,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueBool = NO,
         .core.name = "ccEnableArenas",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_CcEnableArenas,
         .core.hasIndex = 18,
         .core.offset = 19,  // Stored in _has_storage_ to save space.
@@ -1281,7 +1310,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "objcClassPrefix",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_ObjcClassPrefix,
         .core.hasIndex = 20,
         .core.offset = (uint32_t)offsetof(GPBFileOptions__storage_, objcClassPrefix),
@@ -1291,7 +1320,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueString = nil,
         .core.name = "csharpNamespace",
-        .core.dataTypeSpecific.className = NULL,
+        .core.dataTypeSpecific.clazz = Nil,
         .core.number = GPBFileOptions_FieldNumber_CsharpNamespace,
         .core.hasIndex = 21,
         .core.offset = (uint32_t)offsetof(GPBFileOptions__storage_, csharpNamespace),
@@ -1301,7 +1330,7 @@ typedef struct GPBFileOptions__storage_ {
       {
         .defaultValue.valueMessage = nil,
         .core.name = "uninterpretedOptionArray",
-        .core.dataTypeSpecific.className = GPBStringifySymbol(GPBUninterpretedOption),
+        .core.dataTypeSpecific.clazz = GPBObjCClass(GPBUninterpretedOption),
         .core.number = GPBFileOptions_FieldNumber_UninterpretedOptionArray,
         .core.hasIndex = GPBNoHasBit,
         .core.offset = (uint32_t)offsetof(GPBFileOptions__storage_, uninterpretedOptionArray),
@@ -1316,7 +1345,7 @@ typedef struct GPBFileOptions__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescriptionWithDefault))
                                    storageSize:sizeof(GPBFileOptions__storage_)
-                                         flags:GPBDescriptorInitializationFlag_FieldsWithDefault];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown | GPBDescriptorInitializationFlag_FieldsWithDefault)];
     static const GPBExtensionRange ranges[] = {
       { .start = 1000, .end = 536870912 },
     };
@@ -1392,7 +1421,7 @@ typedef struct GPBMessageOptions__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "messageSetWireFormat",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMessageOptions_FieldNumber_MessageSetWireFormat,
         .hasIndex = 0,
         .offset = 1,  // Stored in _has_storage_ to save space.
@@ -1401,7 +1430,7 @@ typedef struct GPBMessageOptions__storage_ {
       },
       {
         .name = "noStandardDescriptorAccessor",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMessageOptions_FieldNumber_NoStandardDescriptorAccessor,
         .hasIndex = 2,
         .offset = 3,  // Stored in _has_storage_ to save space.
@@ -1410,7 +1439,7 @@ typedef struct GPBMessageOptions__storage_ {
       },
       {
         .name = "deprecated",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMessageOptions_FieldNumber_Deprecated,
         .hasIndex = 4,
         .offset = 5,  // Stored in _has_storage_ to save space.
@@ -1419,7 +1448,7 @@ typedef struct GPBMessageOptions__storage_ {
       },
       {
         .name = "mapEntry",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMessageOptions_FieldNumber_MapEntry,
         .hasIndex = 6,
         .offset = 7,  // Stored in _has_storage_ to save space.
@@ -1428,7 +1457,7 @@ typedef struct GPBMessageOptions__storage_ {
       },
       {
         .name = "uninterpretedOptionArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBUninterpretedOption),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBUninterpretedOption),
         .number = GPBMessageOptions_FieldNumber_UninterpretedOptionArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBMessageOptions__storage_, uninterpretedOptionArray),
@@ -1443,7 +1472,7 @@ typedef struct GPBMessageOptions__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBMessageOptions__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const GPBExtensionRange ranges[] = {
       { .start = 1000, .end = 536870912 },
     };
@@ -1495,7 +1524,7 @@ typedef struct GPBFieldOptions__storage_ {
       },
       {
         .name = "packed",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFieldOptions_FieldNumber_Packed,
         .hasIndex = 1,
         .offset = 2,  // Stored in _has_storage_ to save space.
@@ -1504,7 +1533,7 @@ typedef struct GPBFieldOptions__storage_ {
       },
       {
         .name = "deprecated",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFieldOptions_FieldNumber_Deprecated,
         .hasIndex = 6,
         .offset = 7,  // Stored in _has_storage_ to save space.
@@ -1513,7 +1542,7 @@ typedef struct GPBFieldOptions__storage_ {
       },
       {
         .name = "lazy",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFieldOptions_FieldNumber_Lazy,
         .hasIndex = 4,
         .offset = 5,  // Stored in _has_storage_ to save space.
@@ -1531,7 +1560,7 @@ typedef struct GPBFieldOptions__storage_ {
       },
       {
         .name = "weak_p",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBFieldOptions_FieldNumber_Weak_p,
         .hasIndex = 8,
         .offset = 9,  // Stored in _has_storage_ to save space.
@@ -1540,7 +1569,7 @@ typedef struct GPBFieldOptions__storage_ {
       },
       {
         .name = "uninterpretedOptionArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBUninterpretedOption),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBUninterpretedOption),
         .number = GPBFieldOptions_FieldNumber_UninterpretedOptionArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBFieldOptions__storage_, uninterpretedOptionArray),
@@ -1555,7 +1584,7 @@ typedef struct GPBFieldOptions__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBFieldOptions__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const GPBExtensionRange ranges[] = {
       { .start = 1000, .end = 536870912 },
     };
@@ -1666,7 +1695,7 @@ typedef struct GPBEnumOptions__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "allowAlias",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBEnumOptions_FieldNumber_AllowAlias,
         .hasIndex = 0,
         .offset = 1,  // Stored in _has_storage_ to save space.
@@ -1675,7 +1704,7 @@ typedef struct GPBEnumOptions__storage_ {
       },
       {
         .name = "deprecated",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBEnumOptions_FieldNumber_Deprecated,
         .hasIndex = 2,
         .offset = 3,  // Stored in _has_storage_ to save space.
@@ -1684,7 +1713,7 @@ typedef struct GPBEnumOptions__storage_ {
       },
       {
         .name = "uninterpretedOptionArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBUninterpretedOption),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBUninterpretedOption),
         .number = GPBEnumOptions_FieldNumber_UninterpretedOptionArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBEnumOptions__storage_, uninterpretedOptionArray),
@@ -1699,7 +1728,7 @@ typedef struct GPBEnumOptions__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBEnumOptions__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const GPBExtensionRange ranges[] = {
       { .start = 1000, .end = 536870912 },
     };
@@ -1735,7 +1764,7 @@ typedef struct GPBEnumValueOptions__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "deprecated",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBEnumValueOptions_FieldNumber_Deprecated,
         .hasIndex = 0,
         .offset = 1,  // Stored in _has_storage_ to save space.
@@ -1744,7 +1773,7 @@ typedef struct GPBEnumValueOptions__storage_ {
       },
       {
         .name = "uninterpretedOptionArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBUninterpretedOption),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBUninterpretedOption),
         .number = GPBEnumValueOptions_FieldNumber_UninterpretedOptionArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBEnumValueOptions__storage_, uninterpretedOptionArray),
@@ -1759,7 +1788,7 @@ typedef struct GPBEnumValueOptions__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBEnumValueOptions__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const GPBExtensionRange ranges[] = {
       { .start = 1000, .end = 536870912 },
     };
@@ -1795,7 +1824,7 @@ typedef struct GPBServiceOptions__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "deprecated",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBServiceOptions_FieldNumber_Deprecated,
         .hasIndex = 0,
         .offset = 1,  // Stored in _has_storage_ to save space.
@@ -1804,7 +1833,7 @@ typedef struct GPBServiceOptions__storage_ {
       },
       {
         .name = "uninterpretedOptionArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBUninterpretedOption),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBUninterpretedOption),
         .number = GPBServiceOptions_FieldNumber_UninterpretedOptionArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBServiceOptions__storage_, uninterpretedOptionArray),
@@ -1819,7 +1848,7 @@ typedef struct GPBServiceOptions__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBServiceOptions__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const GPBExtensionRange ranges[] = {
       { .start = 1000, .end = 536870912 },
     };
@@ -1855,7 +1884,7 @@ typedef struct GPBMethodOptions__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "deprecated",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBMethodOptions_FieldNumber_Deprecated,
         .hasIndex = 0,
         .offset = 1,  // Stored in _has_storage_ to save space.
@@ -1864,7 +1893,7 @@ typedef struct GPBMethodOptions__storage_ {
       },
       {
         .name = "uninterpretedOptionArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBUninterpretedOption),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBUninterpretedOption),
         .number = GPBMethodOptions_FieldNumber_UninterpretedOptionArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBMethodOptions__storage_, uninterpretedOptionArray),
@@ -1879,7 +1908,7 @@ typedef struct GPBMethodOptions__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBMethodOptions__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     static const GPBExtensionRange ranges[] = {
       { .start = 1000, .end = 536870912 },
     };
@@ -1926,7 +1955,7 @@ typedef struct GPBUninterpretedOption__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "nameArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBUninterpretedOption_NamePart),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBUninterpretedOption_NamePart),
         .number = GPBUninterpretedOption_FieldNumber_NameArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBUninterpretedOption__storage_, nameArray),
@@ -1935,7 +1964,7 @@ typedef struct GPBUninterpretedOption__storage_ {
       },
       {
         .name = "identifierValue",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBUninterpretedOption_FieldNumber_IdentifierValue,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBUninterpretedOption__storage_, identifierValue),
@@ -1944,7 +1973,7 @@ typedef struct GPBUninterpretedOption__storage_ {
       },
       {
         .name = "positiveIntValue",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBUninterpretedOption_FieldNumber_PositiveIntValue,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBUninterpretedOption__storage_, positiveIntValue),
@@ -1953,7 +1982,7 @@ typedef struct GPBUninterpretedOption__storage_ {
       },
       {
         .name = "negativeIntValue",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBUninterpretedOption_FieldNumber_NegativeIntValue,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(GPBUninterpretedOption__storage_, negativeIntValue),
@@ -1962,7 +1991,7 @@ typedef struct GPBUninterpretedOption__storage_ {
       },
       {
         .name = "doubleValue",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBUninterpretedOption_FieldNumber_DoubleValue,
         .hasIndex = 3,
         .offset = (uint32_t)offsetof(GPBUninterpretedOption__storage_, doubleValue),
@@ -1971,7 +2000,7 @@ typedef struct GPBUninterpretedOption__storage_ {
       },
       {
         .name = "stringValue",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBUninterpretedOption_FieldNumber_StringValue,
         .hasIndex = 4,
         .offset = (uint32_t)offsetof(GPBUninterpretedOption__storage_, stringValue),
@@ -1980,7 +2009,7 @@ typedef struct GPBUninterpretedOption__storage_ {
       },
       {
         .name = "aggregateValue",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBUninterpretedOption_FieldNumber_AggregateValue,
         .hasIndex = 5,
         .offset = (uint32_t)offsetof(GPBUninterpretedOption__storage_, aggregateValue),
@@ -1995,7 +2024,7 @@ typedef struct GPBUninterpretedOption__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBUninterpretedOption__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -2026,7 +2055,7 @@ typedef struct GPBUninterpretedOption_NamePart__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "namePart",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBUninterpretedOption_NamePart_FieldNumber_NamePart,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBUninterpretedOption_NamePart__storage_, namePart),
@@ -2035,7 +2064,7 @@ typedef struct GPBUninterpretedOption_NamePart__storage_ {
       },
       {
         .name = "isExtension",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBUninterpretedOption_NamePart_FieldNumber_IsExtension,
         .hasIndex = 1,
         .offset = 2,  // Stored in _has_storage_ to save space.
@@ -2050,8 +2079,8 @@ typedef struct GPBUninterpretedOption_NamePart__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBUninterpretedOption_NamePart__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
-    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(GPBUninterpretedOption)];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(GPBUninterpretedOption)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -2081,7 +2110,7 @@ typedef struct GPBSourceCodeInfo__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "locationArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBSourceCodeInfo_Location),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBSourceCodeInfo_Location),
         .number = GPBSourceCodeInfo_FieldNumber_LocationArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBSourceCodeInfo__storage_, locationArray),
@@ -2096,7 +2125,7 @@ typedef struct GPBSourceCodeInfo__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBSourceCodeInfo__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -2134,7 +2163,7 @@ typedef struct GPBSourceCodeInfo_Location__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "pathArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBSourceCodeInfo_Location_FieldNumber_PathArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBSourceCodeInfo_Location__storage_, pathArray),
@@ -2143,7 +2172,7 @@ typedef struct GPBSourceCodeInfo_Location__storage_ {
       },
       {
         .name = "spanArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBSourceCodeInfo_Location_FieldNumber_SpanArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBSourceCodeInfo_Location__storage_, spanArray),
@@ -2152,7 +2181,7 @@ typedef struct GPBSourceCodeInfo_Location__storage_ {
       },
       {
         .name = "leadingComments",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBSourceCodeInfo_Location_FieldNumber_LeadingComments,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBSourceCodeInfo_Location__storage_, leadingComments),
@@ -2161,7 +2190,7 @@ typedef struct GPBSourceCodeInfo_Location__storage_ {
       },
       {
         .name = "trailingComments",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBSourceCodeInfo_Location_FieldNumber_TrailingComments,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBSourceCodeInfo_Location__storage_, trailingComments),
@@ -2170,7 +2199,7 @@ typedef struct GPBSourceCodeInfo_Location__storage_ {
       },
       {
         .name = "leadingDetachedCommentsArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBSourceCodeInfo_Location_FieldNumber_LeadingDetachedCommentsArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBSourceCodeInfo_Location__storage_, leadingDetachedCommentsArray),
@@ -2185,8 +2214,8 @@ typedef struct GPBSourceCodeInfo_Location__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBSourceCodeInfo_Location__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
-    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(GPBSourceCodeInfo)];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(GPBSourceCodeInfo)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -2216,7 +2245,7 @@ typedef struct GPBGeneratedCodeInfo__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "annotationArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(GPBGeneratedCodeInfo_Annotation),
+        .dataTypeSpecific.clazz = GPBObjCClass(GPBGeneratedCodeInfo_Annotation),
         .number = GPBGeneratedCodeInfo_FieldNumber_AnnotationArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBGeneratedCodeInfo__storage_, annotationArray),
@@ -2231,7 +2260,7 @@ typedef struct GPBGeneratedCodeInfo__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBGeneratedCodeInfo__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
@@ -2267,7 +2296,7 @@ typedef struct GPBGeneratedCodeInfo_Annotation__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "pathArray",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBGeneratedCodeInfo_Annotation_FieldNumber_PathArray,
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GPBGeneratedCodeInfo_Annotation__storage_, pathArray),
@@ -2276,7 +2305,7 @@ typedef struct GPBGeneratedCodeInfo_Annotation__storage_ {
       },
       {
         .name = "sourceFile",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBGeneratedCodeInfo_Annotation_FieldNumber_SourceFile,
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(GPBGeneratedCodeInfo_Annotation__storage_, sourceFile),
@@ -2285,7 +2314,7 @@ typedef struct GPBGeneratedCodeInfo_Annotation__storage_ {
       },
       {
         .name = "begin",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBGeneratedCodeInfo_Annotation_FieldNumber_Begin,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GPBGeneratedCodeInfo_Annotation__storage_, begin),
@@ -2294,7 +2323,7 @@ typedef struct GPBGeneratedCodeInfo_Annotation__storage_ {
       },
       {
         .name = "end",
-        .dataTypeSpecific.className = NULL,
+        .dataTypeSpecific.clazz = Nil,
         .number = GPBGeneratedCodeInfo_Annotation_FieldNumber_End,
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(GPBGeneratedCodeInfo_Annotation__storage_, end),
@@ -2309,8 +2338,8 @@ typedef struct GPBGeneratedCodeInfo_Annotation__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GPBGeneratedCodeInfo_Annotation__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
-    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(GPBGeneratedCodeInfo)];
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown)];
+    [localDescriptor setupContainingMessageClass:GPBObjCClass(GPBGeneratedCodeInfo)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");
     #endif  // DEBUG
