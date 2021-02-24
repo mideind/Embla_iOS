@@ -29,7 +29,6 @@
 		F432E85325800C2900C05B46 /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F432E85225800C2900C05B46 /* AudioRecordingService.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
-		F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
@@ -428,7 +427,6 @@
 				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
 				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
 				F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */,
-				F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */,
 				F421878D237C78880097E5D4 /* err-karl.wav in Resources */,
 				F421879F237C79640097E5D4 /* rec_begin.wav in Resources */,
 				F4218791237C789C0097E5D4 /* dunno-dora.wav in Resources */,
@@ -704,7 +702,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/\"",
 					"$(inherited)",
-					"$(PROJECT_DIR)/porcupine",
 				);
 				MARKETING_VERSION = 1.0.2;
 				MODULEMAP_FILE = module.modulemap;

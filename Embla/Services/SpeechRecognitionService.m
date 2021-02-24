@@ -28,9 +28,7 @@
 #import <ProtoRPC/ProtoRPC.h>
 #import <RxLibrary/GRXBufferedPipe.h>
 
-#define GOOGLE_HOST     @"speech.googleapis.com"
-
-// Phrases sent to Google API as part of speech context. Should make their speech
+// Phrases sent to API as part of speech context. Should make their speech
 // recognition more likely to identify these words. Doesn't seem to work for Icelandic. :/
 #define PHRASES_ARRAY   @[] // Empty for now
 
@@ -71,7 +69,11 @@
 
     if (!_streaming) {
         // If we aren't already streaming, set up a gRPC connection
-        _client = [[Speech alloc] initWithHost:GOOGLE_HOST];
+        NSString *host = [DEFAULTS stringForKey:@"Speech2TextServer"];
+        if (!host || [host length] < 5) { // No domain is going to be shorter than 5 chars
+            host = DEFAULT_SPEECH2TEXT_SERVER;
+        }
+        _client = [[Speech alloc] initWithHost:host];
         _writer = [[GRXBufferedPipe alloc] init];
         _call = [_client RPCToStreamingRecognizeWithRequestsWriter:_writer
                                                       eventHandler:^(BOOL done, StreamingRecognizeResponse *response, NSError *error) {
@@ -90,12 +92,12 @@
         RecognitionConfig *recognitionConfig = [RecognitionConfig message];
         recognitionConfig.encoding = RecognitionConfig_AudioEncoding_Linear16;
         recognitionConfig.sampleRateHertz = self.sampleRate;
-        recognitionConfig.languageCode = @"is-IS";
-        recognitionConfig.maxAlternatives = 10;
+        recognitionConfig.languageCode = SPEECH2TEXT_LANGUAGE;
+        recognitionConfig.maxAlternatives = NUM_SPEECH2TEXT_ALTERNATIVES;
         
-        SpeechContext *sc = [SpeechContext new];
-        [sc setPhrasesArray:[PHRASES_ARRAY mutableCopy]];
-        recognitionConfig.speechContextsArray = [@[sc] mutableCopy];
+//        SpeechContext *sc = [SpeechContext new];
+//        [sc setPhrasesArray:[PHRASES_ARRAY mutableCopy]];
+//        recognitionConfig.speechContextsArray = [@[sc] mutableCopy];
         
         StreamingRecognitionConfig *streamingRecognitionConfig = [StreamingRecognitionConfig message];
         streamingRecognitionConfig.config = recognitionConfig;

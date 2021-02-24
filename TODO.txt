@@ -4,3 +4,4 @@ TODO list for Embla iOS app
 * Option to use Tíró speech recognition API instead of Google's
 * Pick another icon for muting hotword activation in main view? Microphone perhaps too generic?
 * Onboarding/Intro view when app is first launched
+* Periodically observe whether hotword detection is active, to handle silly mic authorization problem

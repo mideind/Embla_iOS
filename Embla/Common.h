@@ -22,6 +22,11 @@
 #define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
 #define SPEECH_API_PATH             @"/speech.api/v1"
 
+// Speech-to-text API
+#define DEFAULT_SPEECH2TEXT_SERVER      @"speech.googleapis.com:443"
+#define NUM_SPEECH2TEXT_ALTERNATIVES    10
+#define SPEECH2TEXT_LANGUAGE            @"is-IS"
+
 // Hostname used to determine if the device is connected to the internet.
 #define REACHABILITY_HOSTNAME       @"greynir.is"
 

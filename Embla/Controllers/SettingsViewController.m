@@ -39,6 +39,7 @@
 // Controls only visible in debug mode
 @property (nonatomic, weak) IBOutlet UITextField *queryServerTextField;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *serverSegmentedControl;
+@property (nonatomic, weak) IBOutlet UITextField *speech2textServerTextField;
 
 @end
 
@@ -77,9 +78,6 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 1) {
-        return 30.f;
-    }
     return -5.0f;
 }
 
@@ -135,6 +133,7 @@
     [self.queryServerTextField setText:url];
     NSInteger toSelect = [QUERY_SERVER_PRESETS indexOfObject:url];
     [self.serverSegmentedControl setSelectedSegmentIndex:toSelect];
+    [self.speech2textServerTextField setText:[DEFAULTS stringForKey:@"Speech2TextServer"]];
 #endif
 }
 
@@ -154,6 +153,9 @@
         trimmed = [@"http://" stringByAppendingString:trimmed];
     }
     [DEFAULTS setObject:trimmed forKey:@"QueryServer"];
+    
+    [DEFAULTS setObject:self.speech2textServerTextField.text forKey:@"Speech2TextServer"];
+    
     [DEFAULTS synchronize];
 }
 
@@ -330,7 +332,7 @@
 #pragma mark - Query Server text field delegate
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.queryServerTextField resignFirstResponder];
+    [textField resignFirstResponder];
     return YES;
 }
 

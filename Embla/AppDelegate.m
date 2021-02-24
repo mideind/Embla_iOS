@@ -120,7 +120,8 @@
         @"PrivacyMode": @(NO),
         @"Voice": [NSNumber numberWithInteger:0],
         @"SpeechSpeed": [NSNumber numberWithFloat:1.0f],
-        @"QueryServer": DEFAULT_QUERY_SERVER
+        @"QueryServer": DEFAULT_QUERY_SERVER,
+        @"Speech2TextServer": DEFAULT_SPEECH2TEXT_SERVER
     };
 }
 
