@@ -69,7 +69,7 @@ GPBEnumDescriptor *RPCCode_EnumDescriptor(void) {
                                      enumVerifier:RPCCode_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
-      
+        [worker release];
     }
   }
   return descriptor;

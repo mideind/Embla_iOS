@@ -478,6 +478,7 @@ GPBEnumDescriptor *RecognitionConfig_AudioEncoding_EnumDescriptor(void) {
                                      enumVerifier:RecognitionConfig_AudioEncoding_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -730,6 +731,7 @@ GPBEnumDescriptor *RecognitionMetadata_InteractionType_EnumDescriptor(void) {
                                      enumVerifier:RecognitionMetadata_InteractionType_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -774,6 +776,7 @@ GPBEnumDescriptor *RecognitionMetadata_MicrophoneDistance_EnumDescriptor(void) {
                                      enumVerifier:RecognitionMetadata_MicrophoneDistance_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -812,6 +815,7 @@ GPBEnumDescriptor *RecognitionMetadata_OriginalMediaType_EnumDescriptor(void) {
                                      enumVerifier:RecognitionMetadata_OriginalMediaType_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -850,6 +854,7 @@ GPBEnumDescriptor *RecognitionMetadata_NumberOfSpeakers_EnumDescriptor(void) {
                                      enumVerifier:RecognitionMetadata_NumberOfSpeakers_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -893,6 +898,7 @@ GPBEnumDescriptor *RecognitionMetadata_RecordingDeviceType_EnumDescriptor(void) 
                                      enumVerifier:RecognitionMetadata_RecordingDeviceType_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -1286,6 +1292,7 @@ GPBEnumDescriptor *StreamingRecognizeResponse_SpeechEventType_EnumDescriptor(voi
                                      enumVerifier:StreamingRecognizeResponse_SpeechEventType_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;

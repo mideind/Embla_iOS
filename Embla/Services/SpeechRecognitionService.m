@@ -18,7 +18,7 @@
  */
 
 /*
-    Singleton wrapper class for Google's gRPC-based speech recognition API.
+    Singleton wrapper class for an gRPC-based streaming speech recognition API.
 */
 
 #import "SpeechRecognitionService.h"
@@ -29,9 +29,9 @@
 #import <RxLibrary/GRXBufferedPipe.h>
 #import "lr/speech/v2beta1/Speech.pbrpc.h"
 
-#define GOOGLE_HOST     @"speech.talgreinir.is:443"
+#define SPEECH_RECOGNITION_HOST     @"speech.talgreinir.is:443"
 
-// Phrases sent to Google API as part of speech context. Should make their speech
+// Phrases sent to the API as part of speech context. Should make their speech
 // recognition more likely to identify these words. Doesn't seem to work for Icelandic. :/
 #define PHRASES_ARRAY   @[] // Empty for now
 
@@ -72,14 +72,14 @@
 
     if (!_streaming) {
         // If we aren't already streaming, set up a gRPC connection
-        _client = [[Speech alloc] initWithHost:GOOGLE_HOST];
+        _client = [[Speech alloc] initWithHost:SPEECH_RECOGNITION_HOST];
         _writer = [[GRXBufferedPipe alloc] init];
         _call = [_client RPCToStreamingRecognizeWithRequestsWriter:_writer
                                                       eventHandler:^(BOOL done, StreamingRecognizeResponse *response, NSError *error) {
                                                           completion(response, error);
                                                       }];
         
-        // Authenticate using an API key obtained from the Google Cloud Console
+        // Authenticate using an API key
 //        _call.requestHeaders[@"X-Goog-Api-Key"] = self.apiKey;
         _call.requestHeaders[@"Authorization"] = @"Bearer ak_5pLMPN9oN5ORVmJ2zW8ZY1kPvbBQjg3ypwpKeqadDG7or9EAM60lyLX4Y4z0DO8E";
         // Specify the bundle ID in case the API key has a bundle ID restriction
@@ -114,9 +114,9 @@
     }
 
     // Send a request message containing the audio data
-//    StreamingRecognizeRequest *streamingRecognizeRequest = [StreamingRecognizeRequest message];
-//    streamingRecognizeRequest.audioContent = audioData;
-//    [_writer writeValue:streamingRecognizeRequest];
+    StreamingRecognizeRequest *streamingRecognizeRequest = [StreamingRecognizeRequest message];
+    streamingRecognizeRequest.audioContent = audioData;
+    [_writer writeValue:streamingRecognizeRequest];
 }
 
 - (void)stopStreaming {

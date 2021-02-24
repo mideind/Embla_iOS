@@ -736,7 +736,7 @@ GPBEnumDescriptor *GPBFieldDescriptorProto_Type_EnumDescriptor(void) {
                                      enumVerifier:GPBFieldDescriptorProto_Type_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
-      
+        [worker release];
     }
   }
   return descriptor;
@@ -789,7 +789,7 @@ GPBEnumDescriptor *GPBFieldDescriptorProto_Label_EnumDescriptor(void) {
                                      enumVerifier:GPBFieldDescriptorProto_Label_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
-      
+        [worker release];
     }
   }
   return descriptor;
@@ -1381,7 +1381,7 @@ GPBEnumDescriptor *GPBFileOptions_OptimizeMode_EnumDescriptor(void) {
                                      enumVerifier:GPBFileOptions_OptimizeMode_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
-      
+        [worker release];
     }
   }
   return descriptor;
@@ -1620,7 +1620,7 @@ GPBEnumDescriptor *GPBFieldOptions_CType_EnumDescriptor(void) {
                                      enumVerifier:GPBFieldOptions_CType_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
-      
+        [worker release];
     }
   }
   return descriptor;
@@ -1657,7 +1657,7 @@ GPBEnumDescriptor *GPBFieldOptions_JSType_EnumDescriptor(void) {
                                      enumVerifier:GPBFieldOptions_JSType_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
-      
+        [worker release];
     }
   }
   return descriptor;

@@ -102,6 +102,7 @@ GPBEnumDescriptor *ExportFormat_EnumDescriptor(void) {
                                      enumVerifier:ExportFormat_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -570,6 +571,7 @@ GPBEnumDescriptor *TranscriptJob_State_EnumDescriptor(void) {
                                      enumVerifier:TranscriptJob_State_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -798,6 +800,7 @@ GPBEnumDescriptor *TranscriptMetadata_FileType_EnumDescriptor(void) {
                                      enumVerifier:TranscriptMetadata_FileType_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -1497,6 +1500,7 @@ GPBEnumDescriptor *TranscriptsOrdering_Direction_EnumDescriptor(void) {
                                      enumVerifier:TranscriptsOrdering_Direction_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -2185,6 +2189,7 @@ GPBEnumDescriptor *AlignmentJob_State_EnumDescriptor(void) {
                                      enumVerifier:AlignmentJob_State_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -2601,6 +2606,7 @@ GPBEnumDescriptor *SpeakerInfo_AgeGroup_EnumDescriptor(void) {
                                      enumVerifier:SpeakerInfo_AgeGroup_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
+        [worker release];
     }
   }
   return descriptor;
@@ -2640,7 +2646,7 @@ GPBEnumDescriptor *SpeakerInfo_Gender_EnumDescriptor(void) {
                                      enumVerifier:SpeakerInfo_Gender_IsValidValue];
     GPBEnumDescriptor *expected = nil;
     if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
-      
+        [worker release];
     }
   }
   return descriptor;
