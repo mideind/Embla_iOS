@@ -38,6 +38,8 @@
 @"hoyembla", \
 @"cile embla", \
 @"cilembla" \
+@"hi embla hi" \
+@"hi embla hi embla" \
 ]
 
 // 0 is certainty.
