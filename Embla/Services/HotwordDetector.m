@@ -59,6 +59,7 @@
 @property (nonatomic, strong) OEEventsObserver *openEarsEventsObserver;
 @property (nonatomic, copy) NSString *langModelPath;
 @property (nonatomic, copy) NSString *genDictPath;
+@property BOOL inited;
 
 @end
 
@@ -68,16 +69,17 @@
     static HotwordDetector *instance = nil;
     if (!instance) {
         instance = [self new];
+        [[OEPocketsphinxController sharedInstance] requestMicPermission];
+        instance.openEarsEventsObserver = [[OEEventsObserver alloc] init];
+        instance.openEarsEventsObserver.delegate = instance;
     }
     return instance;
 }
 
 - (BOOL)startListening {
     // TODO: Maybe re-initialise every time listening is resumed?
-    if (!self.openEarsEventsObserver) {
+    if (!self.inited) {
         // Set up speech recognition via Pocketsphinx
-        self.openEarsEventsObserver = [[OEEventsObserver alloc] init];
-        self.openEarsEventsObserver.delegate = self;
         
         // Must be called before setting any OEPocketsphinxController characteristics
         [[OEPocketsphinxController sharedInstance] setActive:TRUE error:nil];
@@ -107,6 +109,7 @@
         self.genDictPath = [langModelGenerator pathToSuccessfullyGeneratedDictionaryWithRequestedName:@"OEDynamicLanguageModel"];
         
         // Start listening
+        self.inited = TRUE;
         [self _startOEListening];
     }
     else {
@@ -138,6 +141,14 @@
 }
 
 #pragma mark - OpenEars Delegate
+
+-(void)pocketsphinxFailedNoMicPermissions {
+    self.inited = FALSE;
+}
+
+- (void)micPermissionCheckCompleted:(BOOL)result {
+    DLog(@"Mic permission result: %d", result);
+}
 
 - (void)pocketsphinxDidReceiveHypothesis:(NSString *)hypothesis
                         recognitionScore:(NSString *)score
