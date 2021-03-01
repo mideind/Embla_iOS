@@ -39,6 +39,12 @@
 		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
+		F4D36A7725ED449E00F5E354 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */; };
+		F4D36A8F25ED4A4900F5E354 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A8B25ED4A4900F5E354 /* about.html */; };
+		F4D36A9025ED4A4900F5E354 /* instructions.html in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A8C25ED4A4900F5E354 /* instructions.html */; };
+		F4D36A9125ED4A4900F5E354 /* loading.html in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A8D25ED4A4900F5E354 /* loading.html */; };
+		F4D36A9225ED4A4900F5E354 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A8E25ED4A4900F5E354 /* privacy.html */; };
+		F4D36A9525ED4A8F00F5E354 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A9425ED4A8F00F5E354 /* style.css */; };
 		F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1537E23732C1B00388420 /* AudioWaveformView.m */; };
 		F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1538223744F2000388420 /* InstructionsViewController.m */; };
 		F4E153862374657C00388420 /* animation.apng in Resources */ = {isa = PBXBuildFile; fileRef = F4E153852374657C00388420 /* animation.apng */; };
@@ -107,6 +113,12 @@
 		F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HotwordDetector.m; path = Embla/Services/HotwordDetector.m; sourceTree = SOURCE_ROOT; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		F4D36A8B25ED4A4900F5E354 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		F4D36A8C25ED4A4900F5E354 /* instructions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = instructions.html; sourceTree = "<group>"; };
+		F4D36A8D25ED4A4900F5E354 /* loading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = loading.html; sourceTree = "<group>"; };
+		F4D36A8E25ED4A4900F5E354 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
+		F4D36A9425ED4A8F00F5E354 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		F4E1537D23732C1B00388420 /* AudioWaveformView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioWaveformView.h; sourceTree = "<group>"; };
 		F4E1537E23732C1B00388420 /* AudioWaveformView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioWaveformView.m; sourceTree = "<group>"; };
 		F4E1538223744F2000388420 /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsViewController.m; sourceTree = "<group>"; };
@@ -164,6 +176,7 @@
 				F497BB2522A169DA00F66BD4 /* TODO.txt */,
 				F48D15A422DCD31800B2996C /* build.sh */,
 				F48D15A622DCD44E00B2996C /* .gitignore */,
+				F4D36A8A25ED4A4900F5E354 /* Docs */,
 				D34C17CB1C948F5700D69BCA /* Embla */,
 				F4E785532368FA88004E29D1 /* Keys */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,
@@ -297,13 +310,26 @@
 		F4CDF6CD235F541E00E88CF6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */,
 				F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */,
-				F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */,
-				F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */,
 				F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */,
+				F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */,
+				F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */,
+				F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */,
+				F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F4D36A8A25ED4A4900F5E354 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				F4D36A8B25ED4A4900F5E354 /* about.html */,
+				F4D36A8C25ED4A4900F5E354 /* instructions.html */,
+				F4D36A8D25ED4A4900F5E354 /* loading.html */,
+				F4D36A8E25ED4A4900F5E354 /* privacy.html */,
+				F4D36A9425ED4A8F00F5E354 /* style.css */,
+			);
+			path = Docs;
 			sourceTree = "<group>";
 		};
 		F4E153812374474E00388420 /* Controls */ = {
@@ -426,12 +452,18 @@
 				F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */,
 				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
 				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
+				F4D36A7725ED449E00F5E354 /* Lato-Bold.ttf in Resources */,
+				F4D36A9525ED4A8F00F5E354 /* style.css in Resources */,
 				F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */,
+				F4D36A9225ED4A4900F5E354 /* privacy.html in Resources */,
 				F421878D237C78880097E5D4 /* err-karl.wav in Resources */,
 				F421879F237C79640097E5D4 /* rec_begin.wav in Resources */,
+				F4D36A9025ED4A4900F5E354 /* instructions.html in Resources */,
 				F4218791237C789C0097E5D4 /* dunno-dora.wav in Resources */,
+				F4D36A9125ED4A4900F5E354 /* loading.html in Resources */,
 				F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */,
 				F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */,
+				F4D36A8F25ED4A4900F5E354 /* about.html in Resources */,
 				F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */,
 				F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */,
 			);
@@ -667,7 +699,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_COMPILATION_MODE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -707,9 +739,9 @@
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Embla/Embla-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -756,8 +788,8 @@
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Embla/Embla-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
