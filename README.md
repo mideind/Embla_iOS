@@ -2,9 +2,8 @@
 
 # Embla iOS client
 
-
 Embla is a voice-driven virtual assistant app that uses the Icelandic-language 
-[Greynir](https://greynir.is) query engine. This is the repository for the Embla iOS client.
+[Greynir](https://greynir.is) query engine. This is the repository for the native Embla iOS client.
 
 Written in Objective-C for iOS 12.0+. Probably only builds on a recent version of macOS.
 
@@ -55,6 +54,8 @@ accomplished via voices commissioned by [Blindrafélagið](https://blind.is), th
 ## GPL License
 
 Embla is Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
+
+<a href="https://mideind.is"><img src="img/mideind_logo.png" alt="Miðeind ehf." width="214" height="66" align="right" style="margin-left:20px; margin-bottom: 20px;"></a>
 
 This program and its source code is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
