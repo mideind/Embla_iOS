@@ -45,7 +45,6 @@
 		F432E85325800C2900C05B46 /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F432E85225800C2900C05B46 /* AudioRecordingService.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
-		F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
@@ -56,6 +55,12 @@
 		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
+		F4D36A7725ED449E00F5E354 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */; };
+		F4D36A8F25ED4A4900F5E354 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A8B25ED4A4900F5E354 /* about.html */; };
+		F4D36A9025ED4A4900F5E354 /* instructions.html in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A8C25ED4A4900F5E354 /* instructions.html */; };
+		F4D36A9125ED4A4900F5E354 /* loading.html in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A8D25ED4A4900F5E354 /* loading.html */; };
+		F4D36A9225ED4A4900F5E354 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A8E25ED4A4900F5E354 /* privacy.html */; };
+		F4D36A9525ED4A8F00F5E354 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A9425ED4A8F00F5E354 /* style.css */; };
 		F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1537E23732C1B00388420 /* AudioWaveformView.m */; };
 		F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E1538223744F2000388420 /* InstructionsViewController.m */; };
 		F4E153862374657C00388420 /* animation.apng in Resources */ = {isa = PBXBuildFile; fileRef = F4E153852374657C00388420 /* animation.apng */; };
@@ -70,8 +75,6 @@
 
 /* Begin PBXFileReference section */
 		4A9721C02DC1D460E02043CD /* Pods-Embla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Embla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Embla/Pods-Embla.debug.xcconfig"; sourceTree = "<group>"; };
-		6C682F8DD9C94E41979FE816 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		CECB645A36BDC7BD3FF6E417 /* Pods-Greynir.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greynir.release.xcconfig"; path = "Pods/Target Support Files/Pods-Greynir/Pods-Greynir.release.xcconfig"; sourceTree = "<group>"; };
 		D34C17C91C948F5700D69BCA /* Embla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Embla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34C17CD1C948F5700D69BCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D34C17CF1C948F5700D69BCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -85,40 +88,6 @@
 		D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechRecognitionService.h; sourceTree = "<group>"; };
 		D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechRecognitionService.m; sourceTree = "<group>"; };
 		E041B89B0C5D1AED806E3D47 /* Pods-Embla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Embla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Embla/Pods-Embla.release.xcconfig"; sourceTree = "<group>"; };
-		EBFF549A15D921031174FE01 /* Pods-Greynir.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greynir.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Greynir/Pods-Greynir.debug.xcconfig"; sourceTree = "<group>"; };
-		F3215BCD5D87DFF7F2965B8A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F405AE4F25E6CC7700EFA326 /* Operations.pbrpc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operations.pbrpc.m; sourceTree = "<group>"; };
-		F405AE5025E6CC7700EFA326 /* Operations.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operations.pbobjc.m; sourceTree = "<group>"; };
-		F405AE5125E6CC7700EFA326 /* Operations.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operations.pbobjc.h; sourceTree = "<group>"; };
-		F405AE5225E6CC7700EFA326 /* Operations.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operations.pbrpc.h; sourceTree = "<group>"; };
-		F405AE5425E6CC7700EFA326 /* Bytestream.pbrpc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bytestream.pbrpc.m; sourceTree = "<group>"; };
-		F405AE5525E6CC7700EFA326 /* Bytestream.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bytestream.pbobjc.m; sourceTree = "<group>"; };
-		F405AE5625E6CC7700EFA326 /* Bytestream.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bytestream.pbrpc.h; sourceTree = "<group>"; };
-		F405AE5725E6CC7700EFA326 /* Bytestream.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bytestream.pbobjc.h; sourceTree = "<group>"; };
-		F405AE5925E6CC7700EFA326 /* Httpbody.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Httpbody.pbobjc.m; sourceTree = "<group>"; };
-		F405AE5A25E6CC7700EFA326 /* Annotations.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotations.pbobjc.h; sourceTree = "<group>"; };
-		F405AE5B25E6CC7700EFA326 /* Client.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.pbobjc.m; sourceTree = "<group>"; };
-		F405AE5C25E6CC7700EFA326 /* HTTP.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTP.pbobjc.h; sourceTree = "<group>"; };
-		F405AE5D25E6CC7700EFA326 /* Httpbody.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Httpbody.pbobjc.h; sourceTree = "<group>"; };
-		F405AE5E25E6CC7700EFA326 /* HTTP.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTP.pbobjc.m; sourceTree = "<group>"; };
-		F405AE5F25E6CC7700EFA326 /* Client.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.pbobjc.h; sourceTree = "<group>"; };
-		F405AE6025E6CC7700EFA326 /* Annotations.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotations.pbobjc.m; sourceTree = "<group>"; };
-		F405AE6225E6CC7700EFA326 /* Status.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.pbobjc.h; sourceTree = "<group>"; };
-		F405AE6325E6CC7700EFA326 /* Code.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Code.pbobjc.h; sourceTree = "<group>"; };
-		F405AE6425E6CC7700EFA326 /* ErrorDetails.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorDetails.pbobjc.h; sourceTree = "<group>"; };
-		F405AE6525E6CC7700EFA326 /* Code.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Code.pbobjc.m; sourceTree = "<group>"; };
-		F405AE6625E6CC7700EFA326 /* Status.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.pbobjc.m; sourceTree = "<group>"; };
-		F405AE6725E6CC7700EFA326 /* ErrorDetails.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorDetails.pbobjc.m; sourceTree = "<group>"; };
-		F405AE6925E6CC7700EFA326 /* Descriptor.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptor.pbobjc.h; sourceTree = "<group>"; };
-		F405AE6A25E6CC7700EFA326 /* Descriptor.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.pbobjc.m; sourceTree = "<group>"; };
-		F405AE6E25E6CC7700EFA326 /* Transcript.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transcript.pbrpc.h; sourceTree = "<group>"; };
-		F405AE6F25E6CC7700EFA326 /* Transcript.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transcript.pbobjc.m; sourceTree = "<group>"; };
-		F405AE7025E6CC7700EFA326 /* Transcript.pbrpc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transcript.pbrpc.m; sourceTree = "<group>"; };
-		F405AE7125E6CC7700EFA326 /* Transcript.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transcript.pbobjc.h; sourceTree = "<group>"; };
-		F405AE7425E6CC7700EFA326 /* Speech.pbrpc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speech.pbrpc.m; sourceTree = "<group>"; };
-		F405AE7525E6CC7700EFA326 /* Speech.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speech.pbobjc.h; sourceTree = "<group>"; };
-		F405AE7625E6CC7700EFA326 /* Speech.pbrpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speech.pbrpc.h; sourceTree = "<group>"; };
-		F405AE7725E6CC7700EFA326 /* Speech.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speech.pbobjc.m; sourceTree = "<group>"; };
 		F40B12552343908F00CBE9B4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F4218788237C78880097E5D4 /* conn-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "conn-karl.wav"; sourceTree = "<group>"; };
 		F4218789237C78880097E5D4 /* dunno-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno-karl.wav"; sourceTree = "<group>"; };
@@ -135,14 +104,7 @@
 		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		F432E85125800C2900C05B46 /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioRecordingService.h; path = Embla/AudioRecordingService.h; sourceTree = SOURCE_ROOT; };
 		F432E85225800C2900C05B46 /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioRecordingService.m; path = Embla/AudioRecordingService.m; sourceTree = SOURCE_ROOT; };
-		F433A90C258D11C500DDF8D3 /* Embla-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Embla-Bridging-Header.h"; sourceTree = "<group>"; };
 		F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpv_porcupine.a; path = porcupine/libpv_porcupine.a; sourceTree = "<group>"; };
-		F433A91A258D144800DDF8D3 /* picovoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picovoice.h; path = porcupine/picovoice.h; sourceTree = SOURCE_ROOT; };
-		F433A91B258D144800DDF8D3 /* PorcupineManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PorcupineManager.swift; path = porcupine/PorcupineManager.swift; sourceTree = SOURCE_ROOT; };
-		F433A91C258D144800DDF8D3 /* pv_porcupine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pv_porcupine.h; path = porcupine/pv_porcupine.h; sourceTree = SOURCE_ROOT; };
-		F433A932258D155700DDF8D3 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		F433A937258D184A00DDF8D3 /* HotwordDetector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotwordDetector2.h; sourceTree = "<group>"; };
-		F433A938258D184A00DDF8D3 /* HotwordDetector2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotwordDetector2.m; sourceTree = "<group>"; };
 		F447F8AC24E70AF90077063A /* GreynirAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GreynirAPI.key; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F44FC67125AD554B00BC72F5 /* ios.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = ios.yml; path = .github/workflows/ios.yml; sourceTree = "<group>"; };
@@ -167,6 +129,12 @@
 		F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HotwordDetector.m; path = Embla/Services/HotwordDetector.m; sourceTree = SOURCE_ROOT; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		F4D36A8B25ED4A4900F5E354 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		F4D36A8C25ED4A4900F5E354 /* instructions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = instructions.html; sourceTree = "<group>"; };
+		F4D36A8D25ED4A4900F5E354 /* loading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = loading.html; sourceTree = "<group>"; };
+		F4D36A8E25ED4A4900F5E354 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
+		F4D36A9425ED4A8F00F5E354 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		F4E1537D23732C1B00388420 /* AudioWaveformView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioWaveformView.h; sourceTree = "<group>"; };
 		F4E1537E23732C1B00388420 /* AudioWaveformView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioWaveformView.m; sourceTree = "<group>"; };
 		F4E1538223744F2000388420 /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsViewController.m; sourceTree = "<group>"; };
@@ -224,6 +192,7 @@
 				F497BB2522A169DA00F66BD4 /* TODO.txt */,
 				F48D15A422DCD31800B2996C /* build.sh */,
 				F48D15A622DCD44E00B2996C /* .gitignore */,
+				F4D36A8A25ED4A4900F5E354 /* Docs */,
 				D34C17CB1C948F5700D69BCA /* Embla */,
 				F4E785532368FA88004E29D1 /* Keys */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,
@@ -243,13 +212,6 @@
 		D34C17CB1C948F5700D69BCA /* Embla */ = {
 			isa = PBXGroup;
 			children = (
-				F405AE4D25E6CC7700EFA326 /* google */,
-				F405AE6B25E6CC7700EFA326 /* lr */,
-				F433A90C258D11C500DDF8D3 /* Embla-Bridging-Header.h */,
-				F433A91A258D144800DDF8D3 /* picovoice.h */,
-				F433A91B258D144800DDF8D3 /* PorcupineManager.swift */,
-				F433A91C258D144800DDF8D3 /* pv_porcupine.h */,
-				F433A932258D155700DDF8D3 /* module.modulemap */,
 				D34C17CD1C948F5700D69BCA /* main.m */,
 				F497BB1D229EF73D00F66BD4 /* Common.h */,
 				D34C17CF1C948F5700D69BCA /* AppDelegate.h */,
@@ -413,8 +375,6 @@
 		F427692022C1216300BB6977 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F433A937258D184A00DDF8D3 /* HotwordDetector2.h */,
-				F433A938258D184A00DDF8D3 /* HotwordDetector2.m */,
 				F4BBD1AB233A6A1100B6A55A /* HotwordDetector.h */,
 				F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */,
 				F432E85125800C2900C05B46 /* AudioRecordingService.h */,
@@ -484,13 +444,26 @@
 		F4CDF6CD235F541E00E88CF6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */,
 				F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */,
-				F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */,
-				F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */,
 				F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */,
+				F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */,
+				F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */,
+				F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */,
+				F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F4D36A8A25ED4A4900F5E354 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				F4D36A8B25ED4A4900F5E354 /* about.html */,
+				F4D36A8C25ED4A4900F5E354 /* instructions.html */,
+				F4D36A8D25ED4A4900F5E354 /* loading.html */,
+				F4D36A8E25ED4A4900F5E354 /* privacy.html */,
+				F4D36A9425ED4A8F00F5E354 /* style.css */,
+			);
+			path = Docs;
 			sourceTree = "<group>";
 		};
 		F4E153812374474E00388420 /* Controls */ = {
@@ -534,10 +507,6 @@
 		F657FA334EB8D9ABF1ACF569 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F3215BCD5D87DFF7F2965B8A /* Pods.debug.xcconfig */,
-				6C682F8DD9C94E41979FE816 /* Pods.release.xcconfig */,
-				EBFF549A15D921031174FE01 /* Pods-Greynir.debug.xcconfig */,
-				CECB645A36BDC7BD3FF6E417 /* Pods-Greynir.release.xcconfig */,
 				4A9721C02DC1D460E02043CD /* Pods-Embla.debug.xcconfig */,
 				E041B89B0C5D1AED806E3D47 /* Pods-Embla.release.xcconfig */,
 			);
@@ -617,13 +586,18 @@
 				F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */,
 				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
 				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
+				F4D36A7725ED449E00F5E354 /* Lato-Bold.ttf in Resources */,
+				F4D36A9525ED4A8F00F5E354 /* style.css in Resources */,
 				F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */,
-				F47D200B236C9D0000E4DB6A /* Onboarding.storyboard in Resources */,
+				F4D36A9225ED4A4900F5E354 /* privacy.html in Resources */,
 				F421878D237C78880097E5D4 /* err-karl.wav in Resources */,
 				F421879F237C79640097E5D4 /* rec_begin.wav in Resources */,
+				F4D36A9025ED4A4900F5E354 /* instructions.html in Resources */,
 				F4218791237C789C0097E5D4 /* dunno-dora.wav in Resources */,
+				F4D36A9125ED4A4900F5E354 /* loading.html in Resources */,
 				F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */,
 				F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */,
+				F4D36A8F25ED4A4900F5E354 /* about.html in Resources */,
 				F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */,
 				F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */,
 			);
@@ -875,7 +849,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_COMPILATION_MODE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -900,8 +874,6 @@
 					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler\"",
 					"\"${PODS_ROOT}/Headers/Public/!ProtoCompiler-gRPCPlugin\"",
 					"\"$(SRCROOT)/\"",
-					"\"$(SRCROOT)/porcupine\"",
-					"\"$(PROJECT_DIR)/porcupine\"",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -911,17 +883,15 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/\"",
-					"\"$(SRCROOT)/google/cloud/speech/v1\"",
 					"$(inherited)",
-					"$(PROJECT_DIR)/porcupine",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Embla/Embla-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -953,8 +923,6 @@
 					"\"${PODS_ROOT}/Headers/Public/gRPC-ProtoRPC\"",
 					"\"${PODS_ROOT}/Headers/Public/gRPC-RxLibrary\"",
 					"\"${PODS_ROOT}/Headers/Public/googleapis\"",
-					"\"$(SRCROOT)/porcupine\"",
-					"\"$(PROJECT_DIR)/porcupine\"",
 				);
 				INFOPLIST_FILE = Embla/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -964,16 +932,14 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/\"",
-					"\"$(SRCROOT)/google/cloud/speech/v1\"",
 					"$(inherited)",
-					"$(PROJECT_DIR)/porcupine",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Embla/Embla-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

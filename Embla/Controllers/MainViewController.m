@@ -86,11 +86,12 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     
     // Preload/pre-initialize the following to prevent any delay when session is activated
     [self preloadSounds];
-    [AVAudioSession sharedInstance];
-    [SpeechRecognitionService sharedInstance];
     
     // Receive messages from hotword detector
     [[HotwordDetector sharedInstance] setDelegate:self];
+    
+    [AVAudioSession sharedInstance];
+    [SpeechRecognitionService sharedInstance];
     
     // Prepare for audio recording
     [[AudioRecordingService sharedInstance] prepare];

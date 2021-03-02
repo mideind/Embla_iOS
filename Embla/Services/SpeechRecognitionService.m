@@ -72,7 +72,11 @@
 
     if (!_streaming) {
         // If we aren't already streaming, set up a gRPC connection
-        _client = [[Speech alloc] initWithHost:SPEECH_RECOGNITION_HOST];
+        NSString *host = [DEFAULTS stringForKey:@"Speech2TextServer"];
+        if (!host || [host length] < 5) { // No domain is going to be shorter than 5 chars
+            host = DEFAULT_SPEECH2TEXT_SERVER;
+        }
+        _client = [[Speech alloc] initWithHost:host];
         _writer = [[GRXBufferedPipe alloc] init];
         _call = [_client RPCToStreamingRecognizeWithRequestsWriter:_writer
                                                       eventHandler:^(BOOL done, StreamingRecognizeResponse *response, NSError *error) {
@@ -92,11 +96,16 @@
         RecognitionConfig *recognitionConfig = [RecognitionConfig message];
         recognitionConfig.encoding = RecognitionConfig_AudioEncoding_Linear16;
         recognitionConfig.sampleRateHertz = self.sampleRate;
+<<<<<<< HEAD
         recognitionConfig.languageCode = @"is-IS";
         recognitionConfig.maxAlternatives = 10;
 //        recognitionConfig.profanityFilter = FALSE;
 //        recognitionConfig.speechContextsArray = nil;
 //        recognitionConfig.enableWordTimeOffsets = FALSE;
+=======
+        recognitionConfig.languageCode = SPEECH2TEXT_LANGUAGE;
+        recognitionConfig.maxAlternatives = NUM_SPEECH2TEXT_ALTERNATIVES;
+>>>>>>> master
         
 //        SpeechContext *sc = [SpeechContext new];
 //        [sc setPhrasesArray:[PHRASES_ARRAY mutableCopy]];
