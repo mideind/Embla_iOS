@@ -88,7 +88,6 @@
 		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		F432E85125800C2900C05B46 /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioRecordingService.h; path = Embla/AudioRecordingService.h; sourceTree = SOURCE_ROOT; };
 		F432E85225800C2900C05B46 /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioRecordingService.m; path = Embla/AudioRecordingService.m; sourceTree = SOURCE_ROOT; };
-		F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpv_porcupine.a; path = porcupine/libpv_porcupine.a; sourceTree = "<group>"; };
 		F447F8AC24E70AF90077063A /* GreynirAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GreynirAPI.key; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F44FC67125AD554B00BC72F5 /* ios.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = ios.yml; path = .github/workflows/ios.yml; sourceTree = "<group>"; };
@@ -159,7 +158,6 @@
 		32C6BA1B2FA20A9904F13B95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F433A910258D11DE00DDF8D3 /* libpv_porcupine.a */,
 				F40B12552343908F00CBE9B4 /* WebKit.framework */,
 				F4BBD1A8233A69A700B6A55A /* OpenEars.framework */,
 				F4482F2B22B930530050148E /* CoreLocation.framework */,
