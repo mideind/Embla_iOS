@@ -86,12 +86,11 @@ static OSStatus RecordingCallback(void *inRefCon,
     AudioBufferList *bufferList = (AudioBufferList *)malloc(sizeof(AudioBufferList));
     bufferList->mNumberBuffers = channelCount;
     bufferList->mBuffers[0].mNumberChannels = channelCount;
-    bufferList->mBuffers[0].mDataByteSize = inNumberFrames * 2;
+    bufferList->mBuffers[0].mDataByteSize = inNumberFrames * 2; // 16-bit audio
     bufferList->mBuffers[0].mData = NULL;
     
     // Get the recorded samples
-    status = AudioUnitRender(audioController->remoteIOUnit, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames,
-                             bufferList);
+    status = AudioUnitRender(audioController->remoteIOUnit, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames, bufferList);
     if (status != noErr) {
         free(bufferList);
         return status;
