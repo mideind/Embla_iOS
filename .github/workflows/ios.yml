@@ -21,3 +21,11 @@ jobs:
       - run: echo "123456789" > Keys/GoogleAPI.key
       - run: echo "const char *gak = \"MTIzNDU2Nzg5CgoK\";" > Keys/Keys.c
       - run: bash build.sh
+      - name: Slack notification
+        uses: 8398a7/action-slack@v2
+        with:
+          status: ${{ job.status }}
+          author_name: Integration Testing
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+        if: failure() # Pick up event if the job fails
