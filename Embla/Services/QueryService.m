@@ -45,6 +45,9 @@
 
 - (NSString *)_queryAPIEndpoint {
     NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
+    if ([server length] == 0 || [server hasPrefix:@"http"] == NO) {
+        server = DEFAULT_QUERY_SERVER;
+    }
     return [NSString stringWithFormat:@"%@%@", server, QUERY_API_PATH];
 }
 

@@ -69,10 +69,10 @@
 
     if (!_streaming) {
         // If we aren't already streaming, set up a gRPC connection
-        NSString *host = [DEFAULTS stringForKey:@"Speech2TextServer"];
-        if (!host || [host length] < 5) { // No domain is going to be shorter than 5 chars
-            host = DEFAULT_SPEECH2TEXT_SERVER;
-        }
+        NSString *host = DEFAULT_SPEECH2TEXT_SERVER;
+//        if (!host || [host length] < 5) { // No domain is going to be shorter than 5 chars
+//            host = DEFAULT_SPEECH2TEXT_SERVER;
+//        }
         _client = [[Speech alloc] initWithHost:host];
         _writer = [[GRXBufferedPipe alloc] init];
         _call = [_client RPCToStreamingRecognizeWithRequestsWriter:_writer
