@@ -85,8 +85,8 @@
         // Specify the bundle ID in case the API key has a bundle ID restriction
         _call.requestHeaders[@"X-Ios-Bundle-Identifier"] = [[NSBundle mainBundle] bundleIdentifier];
         
-        [_call start];
         _streaming = YES;
+        [_call start];
         
         // Send an initial request message to configure the service
         RecognitionConfig *recognitionConfig = [RecognitionConfig message];

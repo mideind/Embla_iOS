@@ -733,7 +733,7 @@
 					"\"$(SRCROOT)/\"",
 					"$(inherited)",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -782,7 +782,7 @@
 					"\"$(SRCROOT)/\"",
 					"$(inherited)",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
