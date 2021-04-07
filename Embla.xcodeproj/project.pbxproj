@@ -26,8 +26,8 @@
 		F421879F237C79640097E5D4 /* rec_begin.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421879C237C79640097E5D4 /* rec_begin.wav */; };
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
-		F432E85325800C2900C05B46 /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F432E85225800C2900C05B46 /* AudioRecordingService.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
+		F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFBA261E13C900B2323C /* AudioRecordingService.m */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
@@ -86,11 +86,11 @@
 		F427692322C1218A00BB6977 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		F427692522C1219A00BB6977 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		F432E85125800C2900C05B46 /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioRecordingService.h; path = Embla/AudioRecordingService.h; sourceTree = SOURCE_ROOT; };
-		F432E85225800C2900C05B46 /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioRecordingService.m; path = Embla/AudioRecordingService.m; sourceTree = SOURCE_ROOT; };
 		F447F8AC24E70AF90077063A /* GreynirAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GreynirAPI.key; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F44FC67125AD554B00BC72F5 /* ios.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = ios.yml; path = .github/workflows/ios.yml; sourceTree = "<group>"; };
+		F461CFBA261E13C900B2323C /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingService.m; sourceTree = "<group>"; };
+		F461CFBB261E13C900B2323C /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingService.h; sourceTree = "<group>"; };
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = Embla/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 			children = (
 				F4BBD1AB233A6A1100B6A55A /* HotwordDetector.h */,
 				F4BBD1AC233A6A1100B6A55A /* HotwordDetector.m */,
-				F432E85125800C2900C05B46 /* AudioRecordingService.h */,
-				F432E85225800C2900C05B46 /* AudioRecordingService.m */,
+				F461CFBB261E13C900B2323C /* AudioRecordingService.h */,
+				F461CFBA261E13C900B2323C /* AudioRecordingService.m */,
 				F4E160F722A977620019EDE7 /* QueryService.h */,
 				F4E160F822A977620019EDE7 /* QueryService.m */,
 				D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */,
@@ -565,7 +565,7 @@
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
 				D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */,
-				F432E85325800C2900C05B46 /* AudioRecordingService.m in Sources */,
+				F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */,
 				F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

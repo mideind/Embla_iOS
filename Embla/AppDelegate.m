@@ -131,8 +131,8 @@
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest]; // kCLLocationAccuracyBestForNavigation
     [self.locationManager requestWhenInUseAuthorization];
-    [self.locationManager startUpdatingLocation];
     [self.locationManager setDelegate:self];
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)stopLocationServices {
@@ -146,6 +146,7 @@
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    // Ignore location update if disabled in defaults
     if ([DEFAULTS boolForKey:@"UseLocation"] == NO) {
         return;
     }
