@@ -32,13 +32,13 @@
 		F461CFD12620B23700B2323C /* libsnowboy-detect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F461CFCD2620B23700B2323C /* libsnowboy-detect.a */; };
 		F461CFD22620B23700B2323C /* common.res in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCF2620B23700B2323C /* common.res */; };
 		F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = F461CFD62620B27500B2323C /* SnowboyDetector.mm */; };
+		F461CFE22620C70800B2323C /* PocketsphinxDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFE12620C70800B2323C /* PocketsphinxDetector.m */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
 		F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */; };
 		F4BAE87125A64402008C852E /* Lato-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */; };
-		F4BAE87425A644AF008C852E /* PocketsphinxDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BBD1AC233A6A1100B6A55A /* PocketsphinxDetector.m */; };
 		F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */; };
 		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
@@ -102,6 +102,8 @@
 		F461CFD52620B27500B2323C /* SnowboyDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnowboyDetector.h; sourceTree = "<group>"; };
 		F461CFD62620B27500B2323C /* SnowboyDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnowboyDetector.mm; sourceTree = "<group>"; };
 		F461CFDC2620BCD900B2323C /* HotwordDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotwordDetector.h; sourceTree = "<group>"; };
+		F461CFE02620C70800B2323C /* PocketsphinxDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketsphinxDetector.h; sourceTree = "<group>"; };
+		F461CFE12620C70800B2323C /* PocketsphinxDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketsphinxDetector.m; sourceTree = "<group>"; };
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = Embla/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -119,8 +121,6 @@
 		F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.woff2"; sourceTree = "<group>"; };
 		F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AcousticModelEnglish.bundle; path = ../OpenEars/AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		F4BBD1A8233A69A700B6A55A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenEars.framework; path = OpenEars/OpenEars.framework; sourceTree = "<group>"; };
-		F4BBD1AB233A6A1100B6A55A /* PocketsphinxDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PocketsphinxDetector.h; path = Embla/Services/PocketsphinxDetector.h; sourceTree = SOURCE_ROOT; };
-		F4BBD1AC233A6A1100B6A55A /* PocketsphinxDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PocketsphinxDetector.m; path = Embla/Services/PocketsphinxDetector.m; sourceTree = SOURCE_ROOT; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -252,11 +252,7 @@
 		F427692022C1216300BB6977 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F461CFDC2620BCD900B2323C /* HotwordDetector.h */,
-				F461CFD52620B27500B2323C /* SnowboyDetector.h */,
-				F461CFD62620B27500B2323C /* SnowboyDetector.mm */,
-				F4BBD1AB233A6A1100B6A55A /* PocketsphinxDetector.h */,
-				F4BBD1AC233A6A1100B6A55A /* PocketsphinxDetector.m */,
+				F461CFDE2620C6F700B2323C /* Hotword Detection */,
 				F461CFBB261E13C900B2323C /* AudioRecordingService.h */,
 				F461CFBA261E13C900B2323C /* AudioRecordingService.m */,
 				F4E160F722A977620019EDE7 /* QueryService.h */,
@@ -322,6 +318,18 @@
 				F461CFCF2620B23700B2323C /* common.res */,
 			);
 			path = Snowboy;
+			sourceTree = "<group>";
+		};
+		F461CFDE2620C6F700B2323C /* Hotword Detection */ = {
+			isa = PBXGroup;
+			children = (
+				F461CFDC2620BCD900B2323C /* HotwordDetector.h */,
+				F461CFD52620B27500B2323C /* SnowboyDetector.h */,
+				F461CFD62620B27500B2323C /* SnowboyDetector.mm */,
+				F461CFE02620C70800B2323C /* PocketsphinxDetector.h */,
+				F461CFE12620C70800B2323C /* PocketsphinxDetector.m */,
+			);
+			path = "Hotword Detection";
 			sourceTree = "<group>";
 		};
 		F47D20142371B82F00E4DB6A /* Animations */ = {
@@ -582,7 +590,7 @@
 				F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */,
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
-				F4BAE87425A644AF008C852E /* PocketsphinxDetector.m in Sources */,
+				F461CFE22620C70800B2323C /* PocketsphinxDetector.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,

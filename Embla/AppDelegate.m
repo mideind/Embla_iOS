@@ -121,7 +121,8 @@
         @"Voice": [NSNumber numberWithInteger:0],
         @"SpeechSpeed": [NSNumber numberWithFloat:1.0f],
         @"QueryServer": DEFAULT_QUERY_SERVER,
-        @"Speech2TextServer": DEFAULT_SPEECH2TEXT_SERVER
+        @"Speech2TextServer": DEFAULT_SPEECH2TEXT_SERVER,
+        @"HotwordDetector": DEFAULT_HOTWORD_DETECTOR,
     };
 }
 

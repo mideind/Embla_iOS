@@ -80,6 +80,7 @@
     // TODO: Maybe re-initialise every time listening is resumed?
     if (!self.inited) {
         // Set up speech recognition via Pocketsphinx
+        DLog(@"Initing Pocketsphinx hotword detector");
         
         // Must be called before setting any OEPocketsphinxController characteristics
         [[OEPocketsphinxController sharedInstance] setActive:TRUE error:nil];

@@ -79,8 +79,15 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 #pragma mark - UIViewController
 
 - (id<HotwordDetector>)detector {
-    NSString *detectorName = @"SnowboyDetector";
-    return [NSClassFromString(detectorName) sharedInstance];
+    NSString *detectorPrefs = [DEFAULTS stringForKey:@"HotwordDetector"];
+    NSString *detectorName = detectorPrefs ? detectorPrefs : DEFAULT_HOTWORD_DETECTOR;
+    NSString *detectorClassName = [detectorName stringByAppendingString:@"Detector"];
+    Class detectorClass = NSClassFromString(detectorClassName);
+    if (detectorClass == nil) {
+        NSClassFromString([NSString stringWithFormat:@"%@Detector", DEFAULT_HOTWORD_DETECTOR]);
+    }
+    [[detectorClass sharedInstance] setDelegate:self];
+    return [detectorClass sharedInstance];
 }
 
 - (void)viewDidLoad {

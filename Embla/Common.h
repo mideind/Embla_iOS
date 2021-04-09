@@ -16,6 +16,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+// Hotword detection
+#define DEFAULT_HOTWORD_DETECTOR    @"Snowboy"
+
 // Query API
 #define DEFAULT_QUERY_SERVER        @"https://greynir.is"
 #define QUERY_API_PATH              @"/query.api/v1"

@@ -50,9 +50,12 @@
 - (BOOL)startListening {
     // TODO: Maybe re-initialise every time listening is resumed?
     if (!self.inited) {
+        DLog(@"Initing Snowboy hotword detector");
         _snowboyDetect = NULL;
-        _snowboyDetect = new snowboy::SnowboyDetect(std::string([[[NSBundle mainBundle]pathForResource:@"common" ofType:@"res"] UTF8String]),
-                                                    std::string([[[NSBundle mainBundle]pathForResource:@"embla" ofType:@"umdl"] UTF8String]));
+        NSString *commonPath = [[NSBundle mainBundle] pathForResource:@"common" ofType:@"res"];
+        NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"embla" ofType:@"umdl"];
+        _snowboyDetect = new snowboy::SnowboyDetect(std::string([commonPath UTF8String]),
+                                                    std::string([modelPath UTF8String]));
         _snowboyDetect->SetSensitivity("0.5");
         _snowboyDetect->SetAudioGain(1.0);
         _snowboyDetect->ApplyFrontend(false);

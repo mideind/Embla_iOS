@@ -39,6 +39,7 @@
 // Controls only visible in debug mode
 @property (nonatomic, weak) IBOutlet UITextField *queryServerTextField;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *serverSegmentedControl;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *hotwordSegmentedControl;
 @property (nonatomic, weak) IBOutlet UITextField *speech2textServerTextField;
 
 @end
@@ -129,10 +130,22 @@
     [self.speechSpeedSlider setValue:[DEFAULTS floatForKey:@"SpeechSpeed"]];
     
 #ifdef DEBUG
+    // Query server settings
     NSString *url = [DEFAULTS stringForKey:@"QueryServer"];
     [self.queryServerTextField setText:url];
     NSInteger toSelect = [QUERY_SERVER_PRESETS indexOfObject:url];
     [self.serverSegmentedControl setSelectedSegmentIndex:toSelect];
+    
+    // Hotword detection settings
+    NSString *hwPrefs = [DEFAULTS stringForKey:@"HotwordDetector"];
+    NSString *hw2select = hwPrefs ? hwPrefs : DEFAULT_HOTWORD_DETECTOR;
+    for (int i = 0; i < [self.hotwordSegmentedControl numberOfSegments]; i++) {
+        if ([[self.hotwordSegmentedControl titleForSegmentAtIndex:i] isEqualToString:hw2select]) {
+            [self.hotwordSegmentedControl setSelectedSegmentIndex:i];
+        }
+    }
+    
+    // Speech to text server settings
     [self.speech2textServerTextField setText:[DEFAULTS stringForKey:@"Speech2TextServer"]];
 #endif
 }
@@ -154,7 +167,15 @@
     }
     [DEFAULTS setObject:trimmed forKey:@"QueryServer"];
     
-    [DEFAULTS setObject:self.speech2textServerTextField.text forKey:@"Speech2TextServer"];
+    // Hotword detection
+    NSInteger idx = [self.hotwordSegmentedControl selectedSegmentIndex];
+    NSString *hwDetName = [self.hotwordSegmentedControl titleForSegmentAtIndex:idx];
+    [DEFAULTS setObject:hwDetName forKey:@"HotwordDetector"];
+    
+    // Speech to text server
+    NSString *txt = self.speech2textServerTextField.text;
+    NSString *sttVal = txt ? txt : DEFAULT_SPEECH2TEXT_SERVER;
+    [DEFAULTS setObject:sttVal forKey:@"Speech2TextServer"];
     
     [DEFAULTS synchronize];
 }
@@ -210,6 +231,14 @@
     }
     [self.queryServerTextField setText:url];
 }
+
+- (IBAction)hotwordDetectorSelected:(id)sender {
+    NSInteger idx = [self.hotwordSegmentedControl selectedSegmentIndex];
+    NSString *hwDetName = [self.hotwordSegmentedControl titleForSegmentAtIndex:idx];
+    [DEFAULTS setObject:hwDetName forKey:@"HotwordDetector"];
+}
+
+#pragma mark -
 
 - (IBAction)clearHistoryPressed:(id)sender {
     [self showClearHistoryAlert];
