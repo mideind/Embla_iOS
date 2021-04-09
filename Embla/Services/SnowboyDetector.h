@@ -18,16 +18,11 @@
 
 #import <Foundation/Foundation.h>
 #import "AudioRecordingService.h"
+#import "HotwordDetector.h"
 
-@protocol SnowboyDetectorDelegate <NSObject>
+@interface SnowboyDetector : NSObject <HotwordDetector, AudioRecordingServiceDelegate>
 
-- (void)didHearHotword:(NSString *)phrase;
-
-@end
-
-@interface SnowboyDetector : NSObject <AudioRecordingServiceDelegate>
-
-@property (weak) id <SnowboyDetectorDelegate>delegate;
+@property (weak) id <HotwordDetectorDelegate>delegate;
 @property BOOL isListening;
 
 + (instancetype)sharedInstance;

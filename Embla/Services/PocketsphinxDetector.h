@@ -16,10 +16,26 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import "SnowboyDetector.h"
-#import "SessionButton.h"
+#import <Foundation/Foundation.h>
+#import "HotwordDetector.h"
 
-@interface MainViewController : UIViewController <HotwordDetectorDelegate, AudioLevelSource>
+// Silence warnings about prototypes in OpenEars framework
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+#import <OpenEars/OEPocketsphinxController.h>
+#import <OpenEars/OEFliteController.h>
+#import <OpenEars/OELanguageModelGenerator.h>
+#import <OpenEars/OELogging.h>
+#import <OpenEars/OEAcousticModel.h>
+#pragma clang diagnostic pop
+
+@interface PocketsphinxDetector : NSObject <HotwordDetector, OEEventsObserverDelegate>
+
+@property (weak) id <HotwordDetectorDelegate>delegate;
+@property BOOL isListening;
+
++ (instancetype)sharedInstance;
+- (BOOL)startListening;
+- (void)stopListening;
 
 @end

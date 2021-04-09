@@ -49,7 +49,7 @@
 
 - (BOOL)startListening {
     // TODO: Maybe re-initialise every time listening is resumed?
-//    if (!self.inited) {
+    if (!self.inited) {
         _snowboyDetect = NULL;
         _snowboyDetect = new snowboy::SnowboyDetect(std::string([[[NSBundle mainBundle]pathForResource:@"common" ofType:@"res"] UTF8String]),
                                                     std::string([[[NSBundle mainBundle]pathForResource:@"embla" ofType:@"umdl"] UTF8String]));
@@ -61,11 +61,9 @@
         
         // Start listening
         self.inited = TRUE;
-        [self _startListening];
-//    }
-//    else {
-//        // Resume
-//    }
+    }
+    
+    [self _startListening];
     
     self.isListening = TRUE;
     

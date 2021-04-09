@@ -25,7 +25,7 @@
 */
 
 #import "Common.h"
-#import "HotwordDetector.h"
+#import "PocketsphinxDetector.h"
 
 // Valid activation phrases to listen for
 #define HOTWORD_PHRASES @[\
@@ -54,7 +54,7 @@
 // English acoustic model being used. Default is 2.3.
 #define VAD_THRESHOLD           3.25f
 
-@interface HotwordDetector()
+@interface PocketsphinxDetector()
 
 @property (nonatomic, strong) OEEventsObserver *openEarsEventsObserver;
 @property (nonatomic, copy) NSString *langModelPath;
@@ -63,10 +63,10 @@
 
 @end
 
-@implementation HotwordDetector
+@implementation PocketsphinxDetector
 
 + (instancetype)sharedInstance {
-    static HotwordDetector *instance = nil;
+    static PocketsphinxDetector *instance = nil;
     if (!instance) {
         instance = [self new];
         [[OEPocketsphinxController sharedInstance] requestMicPermission];

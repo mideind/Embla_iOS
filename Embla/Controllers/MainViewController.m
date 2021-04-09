@@ -78,6 +78,11 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
 #pragma mark - UIViewController
 
+- (id<HotwordDetector>)detector {
+    NSString *detectorName = @"SnowboyDetector";
+    return [NSClassFromString(detectorName) sharedInstance];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 13.0, *)) {
@@ -88,7 +93,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     [self preloadSounds];
     
     // Receive messages from hotword detector
-    [[SnowboyDetector sharedInstance] setDelegate:self];
+    [[self detector] setDelegate:self];
     
     [AVAudioSession sharedInstance];
     [SpeechRecognitionService sharedInstance];
@@ -159,7 +164,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         id rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
         UINavigationController *navCtrl = (UINavigationController *)rootVC;
         if (navCtrl.topViewController == self) {
-            [[SnowboyDetector sharedInstance] startListening];
+            [[self detector] startListening];
         }
     }
     // Update state of hotword detection bar button item and intro message
@@ -176,7 +181,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         self.currentSession = nil;
     }
     player = nil; // Silence any sound being played
-    [[SnowboyDetector sharedInstance] stopListening];
+    [[self detector] stopListening];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
@@ -262,7 +267,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
 
 - (void)didHearHotword:(NSString *)phrase {
     if (!(self.currentSession && !self.currentSession.terminated)) {
-        [[SnowboyDetector sharedInstance] stopListening];
+        [[self detector] stopListening];
         [self startSession];
     }
 }
@@ -276,9 +281,9 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     DLog(@"Hotword activation: %d", enabled);
     
     if (enabled && (!self.currentSession || self.currentSession.terminated)) {
-        [[SnowboyDetector sharedInstance] startListening];
+        [[self detector] startListening];
     } else {
-        [[SnowboyDetector sharedInstance] stopListening];
+        [[self detector] stopListening];
     }
     self.micItem.image = [UIImage imageNamed:enabled ? @"Microphone" : @"MicrophoneSlash"];
     self.textView.text = [self introMessage];
@@ -331,7 +336,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     }
     
     // Prepare for new session by pausing hotword activation
-    [[SnowboyDetector sharedInstance] stopListening];
+    [[self detector] stopListening];
     
     // Start new session
     [self playUISound:@"rec_begin"];
@@ -472,7 +477,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         [self.button stopAnimating];
         [self.button stopWaveform];
         if ([DEFAULTS boolForKey:@"VoiceActivation"]) {
-            [[SnowboyDetector sharedInstance] startListening];
+            [[self detector] startListening];
         }
         if ([self.textView.text isEqualToString:@""]) {
             self.textView.text = [self introMessage];

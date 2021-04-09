@@ -18,29 +18,20 @@
 
 #import <Foundation/Foundation.h>
 
-// Silence warnings about prototypes in OpenEars framework
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wstrict-prototypes"
-#import <OpenEars/OEPocketsphinxController.h>
-#import <OpenEars/OEFliteController.h>
-#import <OpenEars/OELanguageModelGenerator.h>
-#import <OpenEars/OELogging.h>
-#import <OpenEars/OEAcousticModel.h>
-#pragma clang diagnostic pop
-
 @protocol HotwordDetectorDelegate <NSObject>
 
 - (void)didHearHotword:(NSString *)phrase;
 
 @end
 
-@interface HotwordDetector : NSObject <OEEventsObserverDelegate>
-
-@property (weak) id <HotwordDetectorDelegate>delegate;
-@property BOOL isListening;
+@protocol HotwordDetector <NSObject>
 
 + (instancetype)sharedInstance;
 - (BOOL)startListening;
 - (void)stopListening;
+- (id<HotwordDetectorDelegate>)delegate;
+- (void)setDelegate:(id<HotwordDetectorDelegate>)delegate;
 
 @end
+
+
