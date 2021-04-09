@@ -83,17 +83,24 @@
 }
 
 - (void)processSampleData:(NSData *)data {
-    int result = _snowboyDetect->RunDetection((const int16_t*)[data bytes], [data length]);
-    if (result == 1) {
-        DLog(@"HOTWORD DETECTED");
-        detection_countdown = 30;
-    } else {
-        if (detection_countdown == 0){
-            DLog(@"No Hotword Detected");
+    dispatch_async(dispatch_get_main_queue(),^{
+        const int16_t *bytes = (int16_t *)[data bytes];
+        const int len = [data length]/2;
+        int result = _snowboyDetect->RunDetection((const int16_t *)bytes, len);
+        if (result == 1) {
+            DLog(@"HOTWORD DETECTED");
+            detection_countdown = 30;
+            if (self.delegate) {
+                [self.delegate didHearHotword:@"hæ embla"];
+            }
         } else {
-            detection_countdown--;
+            if (detection_countdown == 0){
+//                DLog(@"No Hotword Detected");
+            } else {
+                detection_countdown--;
+            }
         }
-    }
+    });
 }
 
 @end
