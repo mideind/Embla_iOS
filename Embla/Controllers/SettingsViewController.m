@@ -174,7 +174,7 @@
     
     // Speech to text server
     NSString *txt = self.speech2textServerTextField.text;
-    NSString *sttVal = txt ? txt : DEFAULT_SPEECH2TEXT_SERVER;
+    NSString *sttVal = txt && ![txt isEqualToString:@""] ? txt : DEFAULT_SPEECH2TEXT_SERVER;
     [DEFAULTS setObject:sttVal forKey:@"Speech2TextServer"];
     
     [DEFAULTS synchronize];
