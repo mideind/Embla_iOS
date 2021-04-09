@@ -252,7 +252,7 @@
 		F427692022C1216300BB6977 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F461CFDE2620C6F700B2323C /* Hotword Detection */,
+				F461CFDE2620C6F700B2323C /* HotwordDetection */,
 				F461CFBB261E13C900B2323C /* AudioRecordingService.h */,
 				F461CFBA261E13C900B2323C /* AudioRecordingService.m */,
 				F4E160F722A977620019EDE7 /* QueryService.h */,
@@ -320,7 +320,7 @@
 			path = Snowboy;
 			sourceTree = "<group>";
 		};
-		F461CFDE2620C6F700B2323C /* Hotword Detection */ = {
+		F461CFDE2620C6F700B2323C /* HotwordDetection */ = {
 			isa = PBXGroup;
 			children = (
 				F461CFDC2620BCD900B2323C /* HotwordDetector.h */,
@@ -329,7 +329,7 @@
 				F461CFE02620C70800B2323C /* PocketsphinxDetector.h */,
 				F461CFE12620C70800B2323C /* PocketsphinxDetector.m */,
 			);
-			path = "Hotword Detection";
+			path = HotwordDetection;
 			sourceTree = "<group>";
 		};
 		F47D20142371B82F00E4DB6A /* Animations */ = {
