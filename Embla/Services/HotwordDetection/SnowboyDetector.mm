@@ -33,6 +33,8 @@
     snowboy::SnowboyDetect* _snowboyDetect;
     int detection_countdown;
 }
+@property (weak) id <HotwordDetectorDelegate>delegate;
+@property (readonly) BOOL isListening;
 @property BOOL inited;
 
 @end
@@ -68,7 +70,7 @@
     
     [self _startListening];
     
-    self.isListening = TRUE;
+    _isListening = TRUE;
     
     return TRUE;
 }
@@ -80,23 +82,23 @@
 
 - (void)stopListening {
     [[AudioRecordingService sharedInstance] stop];
-    self.isListening = FALSE;
+    _isListening = FALSE;
 }
 
 - (void)processSampleData:(NSData *)data {
     dispatch_async(dispatch_get_main_queue(),^{
         const int16_t *bytes = (int16_t *)[data bytes];
-        const int len = [data length]/2;
+        const int len = (int)[data length]/2;
         int result = _snowboyDetect->RunDetection((const int16_t *)bytes, len);
         if (result == 1) {
-            DLog(@"HOTWORD DETECTED");
+            DLog(@"Snowboy: Hotword detected");
             detection_countdown = 30;
             if (self.delegate) {
                 [self.delegate didHearHotword:@"hæ embla"];
             }
         } else {
             if (detection_countdown == 0){
-//                DLog(@"No Hotword Detected");
+//                DLog(@"Snowboy: No Hotword Detected");
             } else {
                 detection_countdown--;
             }

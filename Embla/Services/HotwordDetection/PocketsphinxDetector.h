@@ -31,11 +31,4 @@
 
 @interface PocketsphinxDetector : NSObject <HotwordDetector, OEEventsObserverDelegate>
 
-@property (weak) id <HotwordDetectorDelegate>delegate;
-@property BOOL isListening;
-
-+ (instancetype)sharedInstance;
-- (BOOL)startListening;
-- (void)stopListening;
-
 @end

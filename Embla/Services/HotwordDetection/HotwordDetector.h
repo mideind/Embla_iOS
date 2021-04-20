@@ -27,8 +27,11 @@
 @protocol HotwordDetector <NSObject>
 
 + (instancetype)sharedInstance;
+
 - (BOOL)startListening;
 - (void)stopListening;
+- (BOOL)isListening;
+
 - (id<HotwordDetectorDelegate>)delegate;
 - (void)setDelegate:(id<HotwordDetectorDelegate>)delegate;
 

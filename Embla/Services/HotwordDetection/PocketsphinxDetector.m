@@ -60,6 +60,8 @@
 @property (nonatomic, copy) NSString *langModelPath;
 @property (nonatomic, copy) NSString *genDictPath;
 @property BOOL inited;
+@property (weak) id <HotwordDetectorDelegate>delegate;
+@property (readonly) BOOL isListening;
 
 @end
 
@@ -117,7 +119,7 @@
         [[OEPocketsphinxController sharedInstance] resumeRecognition];
     }
     
-    self.isListening = TRUE;
+    _isListening = TRUE;
     
     return TRUE;
 }
@@ -126,7 +128,7 @@
     if ([OEPocketsphinxController sharedInstance].isListening) {
         [[OEPocketsphinxController sharedInstance] suspendRecognition];
     }
-    self.isListening = FALSE;
+    _isListening = FALSE;
 }
 
 #pragma mark -

@@ -22,11 +22,4 @@
 
 @interface SnowboyDetector : NSObject <HotwordDetector, AudioRecordingServiceDelegate>
 
-@property (weak) id <HotwordDetectorDelegate>delegate;
-@property BOOL isListening;
-
-+ (instancetype)sharedInstance;
-- (BOOL)startListening;
-- (void)stopListening;
-
 @end
