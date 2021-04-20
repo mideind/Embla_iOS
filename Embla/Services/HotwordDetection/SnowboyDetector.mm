@@ -28,6 +28,8 @@
 #import "SnowboyDetector.h"
 #import "snowboy-detect.h"
 
+#define SNOWBOY_MODEL_NAME  @"hae_embla"
+
 @interface SnowboyDetector()
 {
     snowboy::SnowboyDetect* _snowboyDetect;
@@ -54,8 +56,16 @@
     if (!self.inited) {
         DLog(@"Initing Snowboy hotword detector");
         _snowboyDetect = NULL;
+        
         NSString *commonPath = [[NSBundle mainBundle] pathForResource:@"common" ofType:@"res"];
-        NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"embla" ofType:@"umdl"];
+        NSString *modelPath = [[NSBundle mainBundle] pathForResource:SNOWBOY_MODEL_NAME ofType:@"umdl"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:commonPath] ||
+            ![[NSFileManager defaultManager] fileExistsAtPath:modelPath]) {
+            DLog(@"Unable to init Snowboy, bundle resources missing");
+            return FALSE;
+        }
+        
+        // Create and configure Snowboy C++ detector object
         _snowboyDetect = new snowboy::SnowboyDetect(std::string([commonPath UTF8String]),
                                                     std::string([modelPath UTF8String]));
         _snowboyDetect->SetSensitivity("0.5");
@@ -94,7 +104,7 @@
             DLog(@"Snowboy: Hotword detected");
             detection_countdown = 30;
             if (self.delegate) {
-                [self.delegate didHearHotword:@"hæ embla"];
+                [self.delegate didHearHotword:SNOWBOY_MODEL_NAME];
             }
         } else {
             if (detection_countdown == 0){

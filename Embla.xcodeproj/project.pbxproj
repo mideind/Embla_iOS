@@ -28,7 +28,7 @@
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFBA261E13C900B2323C /* AudioRecordingService.m */; };
-		F461CFD02620B23700B2323C /* embla.umdl in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCC2620B23700B2323C /* embla.umdl */; };
+		F461CFD02620B23700B2323C /* hae_embla.umdl in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCC2620B23700B2323C /* hae_embla.umdl */; };
 		F461CFD12620B23700B2323C /* libsnowboy-detect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F461CFCD2620B23700B2323C /* libsnowboy-detect.a */; };
 		F461CFD22620B23700B2323C /* common.res in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCF2620B23700B2323C /* common.res */; };
 		F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = F461CFD62620B27500B2323C /* SnowboyDetector.mm */; };
@@ -95,7 +95,7 @@
 		F44FC67125AD554B00BC72F5 /* ios.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = ios.yml; path = .github/workflows/ios.yml; sourceTree = "<group>"; };
 		F461CFBA261E13C900B2323C /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingService.m; sourceTree = "<group>"; };
 		F461CFBB261E13C900B2323C /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingService.h; sourceTree = "<group>"; };
-		F461CFCC2620B23700B2323C /* embla.umdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = embla.umdl; sourceTree = "<group>"; };
+		F461CFCC2620B23700B2323C /* hae_embla.umdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = hae_embla.umdl; sourceTree = "<group>"; };
 		F461CFCD2620B23700B2323C /* libsnowboy-detect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libsnowboy-detect.a"; sourceTree = "<group>"; };
 		F461CFCE2620B23700B2323C /* snowboy-detect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "snowboy-detect.h"; sourceTree = "<group>"; };
 		F461CFCF2620B23700B2323C /* common.res */ = {isa = PBXFileReference; lastKnownFileType = file; path = common.res; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 		F461CFCB2620B23700B2323C /* Snowboy */ = {
 			isa = PBXGroup;
 			children = (
-				F461CFCC2620B23700B2323C /* embla.umdl */,
+				F461CFCC2620B23700B2323C /* hae_embla.umdl */,
 				F461CFCE2620B23700B2323C /* snowboy-detect.h */,
 				F461CFCD2620B23700B2323C /* libsnowboy-detect.a */,
 				F461CFCF2620B23700B2323C /* common.res */,
@@ -486,7 +486,7 @@
 				F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */,
 				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
 				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
-				F461CFD02620B23700B2323C /* embla.umdl in Resources */,
+				F461CFD02620B23700B2323C /* hae_embla.umdl in Resources */,
 				F4D36A7725ED449E00F5E354 /* Lato-Bold.ttf in Resources */,
 				F4D36A9525ED4A8F00F5E354 /* style.css in Resources */,
 				F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */,

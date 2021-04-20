@@ -28,8 +28,8 @@
 #import <ProtoRPC/ProtoRPC.h>
 #import <RxLibrary/GRXBufferedPipe.h>
 
-// Phrases sent to API as part of speech context. Should make their speech
-// recognition more likely to identify these words. Doesn't seem to work for Icelandic. :/
+// Phrases sent to API as part of speech context. Should make speech recognition
+// more likely to identify these words. Doesn't seem to work for Icelandic. :/
 #define PHRASES_ARRAY   @[] // Empty for now
 
 @interface SpeechRecognitionService ()
