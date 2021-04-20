@@ -1,10 +1,10 @@
 # Build script for the Embla iOS app
-# Only used for Travis CI build tests.
+# Only used for CI build tests.
 #
 # Builds an unsigned app binary in debug mode.
 #
 # xcodebuild output is fed through xcpretty to reduce build log
-# verbosity and keep it within Travis log length limit.
+# verbosity and keep it within log length limit.
 
 xcodebuild  -parallelizeTargets \
             -workspace "Embla.xcworkspace" \
