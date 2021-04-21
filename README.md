@@ -53,7 +53,7 @@ accomplished via voices commissioned by [Blindrafélagið](https://blind.is), th
 
 ## GPL License
 
-Embla is Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
+The Embla source code is Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
 
 <a href="https://mideind.is"><img src="img/mideind_logo.png" alt="Miðeind ehf." width="214" height="66" align="right" style="margin-left:20px; margin-bottom: 20px;"></a>
 
@@ -76,3 +76,6 @@ GNU GPLv3 license, please contact us at [mideind@mideind.is](mailto:mideind@mide
 to negotiate a custom license. This applies for instance if you want to include or use
 this software, in part or in full, in other software that is not licensed under
 GNU GPLv3 or other compatible licenses.
+
+The Embla logo, icon and other associated images are Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
+an may not be used without permission.
