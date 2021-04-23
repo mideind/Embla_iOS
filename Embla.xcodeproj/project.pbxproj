@@ -59,6 +59,8 @@
 		F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854F2368BDEA004E29D1 /* SessionButton.m */; };
 		F4E785592368FA9F004E29D1 /* Keys.c in Sources */ = {isa = PBXBuildFile; fileRef = F4E785572368FA88004E29D1 /* Keys.c */; };
 		F4E90AC52406C2F9004EE9A6 /* JSExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E90AC32406C2F9004EE9A6 /* JSExecutor.m */; };
+		F4EA869026330C120040D75A /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EA868F26330C120040D75A /* DevicesViewController.m */; };
+		F4EA8693263312400040D75A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4EA8692263312400040D75A /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +150,9 @@
 		F4E785582368FA88004E29D1 /* keys.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = keys.sh; sourceTree = "<group>"; };
 		F4E90AC32406C2F9004EE9A6 /* JSExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExecutor.m; sourceTree = "<group>"; };
 		F4E90AC42406C2F9004EE9A6 /* JSExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExecutor.h; sourceTree = "<group>"; };
+		F4EA868E26330C120040D75A /* DevicesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevicesViewController.h; sourceTree = "<group>"; };
+		F4EA868F26330C120040D75A /* DevicesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevicesViewController.m; sourceTree = "<group>"; };
+		F4EA8692263312400040D75A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		FDF1E2EC415384E4A4629D2F /* libPods-Embla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Embla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -160,6 +165,7 @@
 				F461CFD12620B23700B2323C /* libsnowboy-detect.a in Frameworks */,
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
 				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
+				F4EA8693263312400040D75A /* CoreBluetooth.framework in Frameworks */,
 				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +176,7 @@
 		32C6BA1B2FA20A9904F13B95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4EA8692263312400040D75A /* CoreBluetooth.framework */,
 				F40B12552343908F00CBE9B4 /* WebKit.framework */,
 				F4BBD1A8233A69A700B6A55A /* OpenEars.framework */,
 				F4482F2B22B930530050148E /* CoreLocation.framework */,
@@ -272,6 +279,8 @@
 				D392D9881C94938F002F5132 /* MainViewController.m */,
 				F427692222C1218A00BB6977 /* SettingsViewController.h */,
 				F427692322C1218A00BB6977 /* SettingsViewController.m */,
+				F4EA868E26330C120040D75A /* DevicesViewController.h */,
+				F4EA868F26330C120040D75A /* DevicesViewController.m */,
 				F4E785472367655C004E29D1 /* Web */,
 			);
 			path = Controllers;
@@ -599,6 +608,7 @@
 				F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */,
 				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
+				F4EA869026330C120040D75A /* DevicesViewController.m in Sources */,
 				F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,

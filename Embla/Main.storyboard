@@ -4,6 +4,7 @@
     <dependencies>
         <deployment version="4608" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -158,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKM-jI-JK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3872" y="1017"/>
+            <point key="canvasLocation" x="3873" y="994"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="iLf-xS-kag">
@@ -573,7 +574,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFt-kq-ya6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2773.5999999999999" y="697.60119940029995"/>
+            <point key="canvasLocation" x="2292" y="-71"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="baH-A3-i7G">
@@ -610,7 +611,7 @@
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
-                            <tableViewSection id="bZ2-Fq-WHb">
+                            <tableViewSection footerTitle="" id="bZ2-Fq-WHb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="20" id="8rb-3C-kKK" userLabel="Empty">
                                         <rect key="frame" x="0.0" y="28" width="375" height="20"/>
@@ -733,6 +734,34 @@
                                             <segue destination="aog-Mh-O1w" kind="show" id="6v5-vj-NN1"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gjP-70-uDJ" imageView="4W4-Of-eoF" rowHeight="50" style="IBUITableViewCellStyleDefault" id="cLA-Q6-Jd4" userLabel="Tæki">
+                                        <rect key="frame" x="0.0" y="248" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cLA-Q6-Jd4" id="VSL-aG-MRw">
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Tæki" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gjP-70-uDJ" userLabel="Tæki">
+                                                    <rect key="frame" x="81" y="0.0" width="259" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Cog" id="4W4-Of-eoF">
+                                                    <rect key="frame" x="16" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" label="Stillingar">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
+                                        <connections>
+                                            <segue destination="YZ3-Ux-NAO" kind="show" id="0UV-vO-O2V"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -751,13 +780,29 @@
                     <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIq-To-953" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="ULN-lB-qW2">
-                    <connections>
-                        <segue destination="0fs-On-g95" kind="show" id="MxW-5r-n0G"/>
-                    </connections>
-                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="ULN-lB-qW2"/>
             </objects>
             <point key="canvasLocation" x="2028" y="1017"/>
+        </scene>
+        <!--Devices View Controller-->
+        <scene sceneID="KVM-h8-LIr">
+            <objects>
+                <viewController id="YZ3-Ux-NAO" customClass="DevicesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vrd-OT-rKd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="YZ3-Ux-NAO" id="xCk-iD-kQ4"/>
+                            <outlet property="delegate" destination="YZ3-Ux-NAO" id="3jy-Ne-yYt"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="9AQ-JU-Em3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aI5-s7-1eL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="1713"/>
         </scene>
         <!--Privacy-->
         <scene sceneID="zmX-Xa-nHg">
@@ -799,7 +844,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dc-jq-40k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2930" y="1370"/>
+            <point key="canvasLocation" x="2940" y="1363"/>
         </scene>
         <!--Instructions-->
         <scene sceneID="9i4-Ed-DQB">
@@ -843,12 +888,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ID8-Nd-qj6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4542" y="233"/>
+            <point key="canvasLocation" x="2940" y="622"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="5Qz-r2-zOK"/>
-        <segue reference="RJD-MJ-JUE"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
@@ -857,5 +901,8 @@
         <image name="Menu" width="24" height="24"/>
         <image name="Microphone" width="24" height="24"/>
         <image name="Transparent" width="10" height="10"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
