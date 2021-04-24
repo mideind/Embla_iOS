@@ -2,7 +2,7 @@
 
 # Embla iOS client
 
-Embla is a voice-driven virtual assistant app that uses the Icelandic-language 
+Embla is a voice-driven virtual assistant app powered by the Icelandic-language 
 [Greynir](https://greynir.is) query engine. This is the repository for the native Embla iOS client.
 
 Written in Objective-C for iOS 12.0+. Probably only builds on a recent version of macOS.
@@ -28,7 +28,7 @@ The build script requires [`xcpretty`](https://github.com/xcpretty/xcpretty), wh
 command:
 
 ```
-sudo gem install xcpretty
+$ sudo gem install xcpretty
 ```
 
 NB: In order to function correctly, the app requires a valid API key for Google's Speech-to-Text API. The key should
@@ -46,8 +46,7 @@ be  saved in the following text file:
 
 ## Credits
 
-The Embla iOS client uses Carnegie Mellon University's [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx)
-and Politepix’s [OpenEars](http://www.politepix.com/openears) for hotword detection,  and Google's
+The Embla iOS client uses [Snowboy](https://github.com/seasalt-ai/snowboy) for hotword detection and Google's
 [Speech-to-Text API](https://cloud.google.com/speech-to-text) for speech recognition. Speech synthesis is
 accomplished via voices commissioned by [Blindrafélagið](https://blind.is), the Icelandic Association of the Visually Impaired.
 
@@ -78,4 +77,4 @@ this software, in part or in full, in other software that is not licensed under
 GNU GPLv3 or other compatible licenses.
 
 The Embla logo, icon and other associated images are Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
-an may not be used without permission.
+and may not be used without permission.
