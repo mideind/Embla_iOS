@@ -4,7 +4,7 @@
 # Builds an unsigned app binary in debug mode.
 #
 # xcodebuild output is fed through xcpretty to reduce build log
-# verbosity and keep it within log length limit.
+# verbosity and keep log length within a reasonable limit.
 
 xcodebuild  -parallelizeTargets \
             -workspace "Embla.xcworkspace" \
