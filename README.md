@@ -9,7 +9,8 @@ Written in Objective-C for iOS 12.0+. Probably only builds on a recent version o
 
 ## Build instructions
 
-Building the app requires [Xcode](https://developer.apple.com/xcode/) 11+ and [CocoaPods](https://cocoapods.org).
+Building the app requires [Xcode](https://developer.apple.com/xcode/) 11+ and
+[CocoaPods](https://cocoapods.org).
 
 After cloning the repository, run the following command from the repo root:
 
@@ -17,44 +18,46 @@ After cloning the repository, run the following command from the repo root:
 $ pod install
 ```
 
-Once installation is complete, open `Embla.xcworkspace` with Xcode and build. Alternatively, you can build an 
-unsigned debug app binary by running the build script from the repository root:
+Once installation is complete, open `Embla.xcworkspace` with Xcode and build. Alternatively, you
+can build an  unsigned debug app binary by running the build script from the repository root:
 
 ```
 $ ./build.sh
 ```
 
-The build script requires [`xcpretty`](https://github.com/xcpretty/xcpretty), which you can install with the following 
-command:
+The build script requires [`xcpretty`](https://github.com/xcpretty/xcpretty), which you can install
+with the following command:
 
 ```
 $ sudo gem install xcpretty
 ```
 
-NB: In order to function correctly, the app requires a valid API key for Google's Speech-to-Text API. The key should
-be  saved in the following text file:
+NB: In order to function correctly, the app requires a valid API key for Google's Speech-to-Text API.
+The key should be  saved in the following text file:
 
 * `Keys/GoogleAPI.key`
 
 ## Screenshots
 
 <p float="left">
-  <img src="Screenshots/embla_screenshot_55_1.png" width="30%" />
-  <img src="Screenshots/embla_screenshot_55_2.png" width="30%" /> 
-  <img src="Screenshots/embla_screenshot_55_3.png" width="30%" />
+    <img src="Screenshots/embla_screenshot_55_1.png" width="30%">
+    <img src="Screenshots/embla_screenshot_55_2.png" width="30%">
+    <img src="Screenshots/embla_screenshot_55_3.png" width="30%">
 </p>
 
 ## Credits
 
-The Embla iOS client uses [Snowboy](https://github.com/seasalt-ai/snowboy) for hotword detection and Google's
-[Speech-to-Text API](https://cloud.google.com/speech-to-text) for speech recognition. Speech synthesis is
-accomplished via voices commissioned by [Blindrafélagið](https://blind.is), the Icelandic Association of the Visually Impaired.
+The Embla iOS client uses [Snowboy](https://github.com/seasalt-ai/snowboy) for hotword detection
+and Google's [Speech-to-Text API](https://cloud.google.com/speech-to-text) for speech recognition.
+Speech synthesis is accomplished via voices commissioned by [Blindrafélagið](https://blind.is),
+the Icelandic Association of the Visually Impaired.
 
 ## GPL License
 
 The Embla source code is Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
 
-<a href="https://mideind.is"><img src="img/mideind_logo.png" alt="Miðeind ehf." width="214" height="66" align="right" style="margin-left:20px; margin-bottom: 20px;"></a>
+<a href="https://mideind.is"><img src="img/mideind_logo.png" alt="Miðeind ehf." 
+width="214" height="66" align="right" style="margin-left:20px; margin-bottom: 20px;"></a>
 
 This program and its source code is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -76,5 +79,5 @@ to negotiate a custom license. This applies for instance if you want to include 
 this software, in part or in full, in other software that is not licensed under
 GNU GPLv3 or other compatible licenses.
 
-The Embla logo, icon and other associated images are Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
+The Embla logo, icon and other images are Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
 and may not be used without permission.

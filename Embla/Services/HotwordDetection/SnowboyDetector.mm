@@ -28,12 +28,15 @@
 #import "SnowboyDetector.h"
 #import "snowboy-detect.h"
 
-#define SNOWBOY_MODEL_NAME  @"hae_embla"
+// Snowboy detector configuration
+#define SNOWBOY_MODEL_NAME      @"hae_embla"
+#define SNOWBOY_SENSITIVITY     "0.5"
+#define SNOWBOY_AUDIO_GAIN      1.0
+#define SNOWBOY_APPLY_FRONTEND  false  // Should be false for pmdl, true for umdl
 
 @interface SnowboyDetector()
 {
     snowboy::SnowboyDetect* _snowboyDetect;
-    int detection_countdown;
 }
 @property (weak) id <HotwordDetectorDelegate>delegate;
 @property (readonly) BOOL isListening;
@@ -68,9 +71,9 @@
         // Create and configure Snowboy C++ detector object
         _snowboyDetect = new snowboy::SnowboyDetect(std::string([commonPath UTF8String]),
                                                     std::string([modelPath UTF8String]));
-        _snowboyDetect->SetSensitivity("0.5");
-        _snowboyDetect->SetAudioGain(1.0);
-        _snowboyDetect->ApplyFrontend(false);
+        _snowboyDetect->SetSensitivity(SNOWBOY_SENSITIVITY);
+        _snowboyDetect->SetAudioGain(SNOWBOY_AUDIO_GAIN);
+        _snowboyDetect->ApplyFrontend(SNOWBOY_APPLY_FRONTEND);
         
         [[AudioRecordingService sharedInstance] prepare];
         
@@ -98,19 +101,12 @@
 - (void)processSampleData:(NSData *)data {
     dispatch_async(dispatch_get_main_queue(),^{
         const int16_t *bytes = (int16_t *)[data bytes];
-        const int len = (int)[data length]/2;
+        const int len = (int)[data length]/2; // 16-bit audio
         int result = _snowboyDetect->RunDetection((const int16_t *)bytes, len);
         if (result == 1) {
             DLog(@"Snowboy: Hotword detected");
-            detection_countdown = 30;
             if (self.delegate) {
                 [self.delegate didHearHotword:SNOWBOY_MODEL_NAME];
-            }
-        } else {
-            if (detection_countdown == 0){
-//                DLog(@"Snowboy: No Hotword Detected");
-            } else {
-                detection_countdown--;
             }
         }
     });
