@@ -16,14 +16,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-    Singleton wrapper class around OpenEars' Pocketsphinx local speech recognition
-    used for hotword activation ("Hæ Embla"/"Hey Embla"). Currently uses an English
-    language acoustic model with custom phonemes. Going forward, this should
-    probably be replaced with a robust local neural network trained on a large set
-    of activation phrase recordings. Reliability is currently much poorer than Siri's.
-*/
-
 #import "Common.h"
 #import "SnowboyDetector.h"
 #import "snowboy-detect.h"
