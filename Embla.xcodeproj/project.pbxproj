@@ -27,9 +27,9 @@
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
+		F448564F2667F35F0098872C /* Snowboy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F448564E2667F35F0098872C /* Snowboy.framework */; };
 		F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFBA261E13C900B2323C /* AudioRecordingService.m */; };
 		F461CFD02620B23700B2323C /* hae_embla.umdl in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCC2620B23700B2323C /* hae_embla.umdl */; };
-		F461CFD12620B23700B2323C /* libsnowboy-detect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F461CFCD2620B23700B2323C /* libsnowboy-detect.a */; };
 		F461CFD22620B23700B2323C /* common.res in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCF2620B23700B2323C /* common.res */; };
 		F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = F461CFD62620B27500B2323C /* SnowboyDetector.mm */; };
 		F461CFE22620C70800B2323C /* PocketsphinxDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFE12620C70800B2323C /* PocketsphinxDetector.m */; };
@@ -92,12 +92,11 @@
 		F427692622C1219A00BB6977 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		F447F8AC24E70AF90077063A /* GreynirAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GreynirAPI.key; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F448564E2667F35F0098872C /* Snowboy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Snowboy.framework; sourceTree = "<group>"; };
 		F44FC67125AD554B00BC72F5 /* ios.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = ios.yml; path = .github/workflows/ios.yml; sourceTree = "<group>"; };
 		F461CFBA261E13C900B2323C /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingService.m; sourceTree = "<group>"; };
 		F461CFBB261E13C900B2323C /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingService.h; sourceTree = "<group>"; };
 		F461CFCC2620B23700B2323C /* hae_embla.umdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = hae_embla.umdl; sourceTree = "<group>"; };
-		F461CFCD2620B23700B2323C /* libsnowboy-detect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libsnowboy-detect.a"; sourceTree = "<group>"; };
-		F461CFCE2620B23700B2323C /* snowboy-detect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "snowboy-detect.h"; sourceTree = "<group>"; };
 		F461CFCF2620B23700B2323C /* common.res */ = {isa = PBXFileReference; lastKnownFileType = file; path = common.res; sourceTree = "<group>"; };
 		F461CFD52620B27500B2323C /* SnowboyDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnowboyDetector.h; sourceTree = "<group>"; };
 		F461CFD62620B27500B2323C /* SnowboyDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnowboyDetector.mm; sourceTree = "<group>"; };
@@ -157,10 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */,
-				F461CFD12620B23700B2323C /* libsnowboy-detect.a in Frameworks */,
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
 				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
 				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
+				F448564F2667F35F0098872C /* Snowboy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,9 +311,8 @@
 		F461CFCB2620B23700B2323C /* Snowboy */ = {
 			isa = PBXGroup;
 			children = (
+				F448564E2667F35F0098872C /* Snowboy.framework */,
 				F461CFCC2620B23700B2323C /* hae_embla.umdl */,
-				F461CFCE2620B23700B2323C /* snowboy-detect.h */,
-				F461CFCD2620B23700B2323C /* libsnowboy-detect.a */,
 				F461CFCF2620B23700B2323C /* common.res */,
 			);
 			path = Snowboy;
@@ -755,6 +753,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/OpenEars",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Snowboy",
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
@@ -797,6 +797,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/OpenEars",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Snowboy",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
