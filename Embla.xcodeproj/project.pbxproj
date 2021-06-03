@@ -28,6 +28,7 @@
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F448564F2667F35F0098872C /* Snowboy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F448564E2667F35F0098872C /* Snowboy.framework */; };
+		F44856532668F4F30098872C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44856522668F4F30098872C /* Accelerate.framework */; };
 		F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFBA261E13C900B2323C /* AudioRecordingService.m */; };
 		F461CFD02620B23700B2323C /* hae_embla.umdl in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCC2620B23700B2323C /* hae_embla.umdl */; };
 		F461CFD22620B23700B2323C /* common.res in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCF2620B23700B2323C /* common.res */; };
@@ -93,6 +94,7 @@
 		F447F8AC24E70AF90077063A /* GreynirAPI.key */ = {isa = PBXFileReference; lastKnownFileType = text; path = GreynirAPI.key; sourceTree = "<group>"; };
 		F4482F2B22B930530050148E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F448564E2667F35F0098872C /* Snowboy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Snowboy.framework; sourceTree = "<group>"; };
+		F44856522668F4F30098872C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		F44FC67125AD554B00BC72F5 /* ios.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = ios.yml; path = .github/workflows/ios.yml; sourceTree = "<group>"; };
 		F461CFBA261E13C900B2323C /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingService.m; sourceTree = "<group>"; };
 		F461CFBB261E13C900B2323C /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingService.h; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */,
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
 				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
+				F44856532668F4F30098872C /* Accelerate.framework in Frameworks */,
 				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
 				F448564F2667F35F0098872C /* Snowboy.framework in Frameworks */,
 			);
@@ -169,6 +172,7 @@
 		32C6BA1B2FA20A9904F13B95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F44856522668F4F30098872C /* Accelerate.framework */,
 				F40B12552343908F00CBE9B4 /* WebKit.framework */,
 				F4BBD1A8233A69A700B6A55A /* OpenEars.framework */,
 				F4482F2B22B930530050148E /* CoreLocation.framework */,
