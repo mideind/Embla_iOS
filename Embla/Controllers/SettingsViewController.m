@@ -305,18 +305,41 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
     NSURLSessionUploadTask *uploadTask = [manager
-              uploadTaskWithStreamedRequest:req
-              progress:^(NSProgress * _Nonnull uploadProgress) {}
-              completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-                  if (error) {
-                      NSLog(@"Error: %@", error);
-                      NSLog(@"%@ %@", response, responseObject);
-                  } else {
-                      NSLog(@"%@ %@", response, responseObject);
-                  }
-              }];
+    uploadTaskWithStreamedRequest:req
+    progress: nil //^(NSProgress * _Nonnull uploadProgress) {}
+    completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            DLog(@"Error: %@", error);
+            DLog(@"%@ %@", response, responseObject);
+            return;
+        }
+        
+        DLog(@"%@ %@", response, responseObject);
+        
+        NSDictionary *resp = (NSDictionary *)responseObject;
+        NSString *base64String = resp[@"data"];
+        NSString *name = resp[@"name"];
+        if (name == nil || base64String == nil) {
+            DLog(@"Mangled response from hotword training server");
+            return;
+        }
+        
+        // Decode base64 data and write to directory
+        NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+        NSString *filename = [NSString stringWithFormat:@"%@.pmdl", resp[@"name"]];
+        DLog(@"Writing model %@", filename);
+        [self writeFile:filename withData:decodedData];
+        [DEFAULTS setObject:filename forKey:@"HotwordModelName"];
+    }];
     
     [uploadTask resume];
+}
+
+- (void)writeFile:(NSString *)filename withData:(NSData *)data {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [NSString stringWithFormat:@"%@/%@", documentsDirectory, filename];
+    [data writeToFile:path atomically:YES];
 }
 
 #pragma mark - Alerts

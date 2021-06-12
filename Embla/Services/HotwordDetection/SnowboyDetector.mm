@@ -24,7 +24,7 @@
 #define SNOWBOY_MODEL_NAME      @"hae_embla"
 #define SNOWBOY_SENSITIVITY     "0.5"
 #define SNOWBOY_AUDIO_GAIN      1.0
-#define SNOWBOY_APPLY_FRONTEND  false  // Should be false for pmdl, true for umdl
+#define SNOWBOY_APPLY_FRONTEND  FALSE  // Should be false for pmdl, true for umdl
 
 @interface SnowboyDetector()
 {
@@ -49,16 +49,18 @@
 - (BOOL)startListening {
     // TODO: Maybe re-initialise every time listening is resumed?
     if (!self.inited) {
-        DLog(@"Initing Snowboy hotword detector");
         _snowboyDetect = NULL;
         
         NSString *commonPath = [[NSBundle mainBundle] pathForResource:@"common" ofType:@"res"];
-        NSString *modelPath = [[NSBundle mainBundle] pathForResource:SNOWBOY_MODEL_NAME ofType:@"umdl"];
+        NSString *modelPath = [self _modelPath];
+        
         if (![[NSFileManager defaultManager] fileExistsAtPath:commonPath] ||
             ![[NSFileManager defaultManager] fileExistsAtPath:modelPath]) {
             DLog(@"Unable to init Snowboy, bundle resources missing");
             return FALSE;
         }
+        
+        DLog(@"Initing Snowboy hotword detector with model %@", modelPath);
         
         // Create and configure Snowboy C++ detector object
         _snowboyDetect = new snowboy::SnowboyDetect(std::string([commonPath UTF8String]),
@@ -78,6 +80,22 @@
     _isListening = TRUE;
     
     return TRUE;
+}
+
+- (NSString *)_modelPath {
+    NSString *modelPath;
+    // Use model specified in defaults, if any
+    NSString *modelName = [DEFAULTS stringForKey:@"HotwordModelName"];
+    if (modelName != nil) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        modelPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, modelName];
+    }
+    // Otherwise, fall back to default model
+    if (modelName == nil || ![[NSFileManager defaultManager] fileExistsAtPath:modelPath]) {
+        modelPath = [[NSBundle mainBundle] pathForResource:SNOWBOY_MODEL_NAME ofType:@"umdl"];
+    }
+    return modelPath;
 }
 
 - (void)_startListening {
