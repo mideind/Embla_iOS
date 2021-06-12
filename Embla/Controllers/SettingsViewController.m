@@ -20,6 +20,7 @@
 #import "AppDelegate.h"
 #import "Common.h"
 #import "QueryService.h"
+#import "AFURLSessionManager.h"
 
 #define QUERY_SERVER_PRESETS \
 @[DEFAULT_QUERY_SERVER,\
@@ -276,6 +277,46 @@
              DLog(@"Error deleting user data: %@", [err localizedDescription]);
          }
     }];
+}
+
+#pragma mark - Model training
+
+- (IBAction)trainModel {
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    //serializer.acceptableContentTypes = [NSSet setWithObject:@"binary/octet-stream"];
+    
+    NSError *err;
+    NSMutableURLRequest *req = [serializer multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.3:8000/train" parameters:@{ @"text": @YES } constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        NSString *w1path = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"wav"];
+        NSString *w2path = [[NSBundle mainBundle] pathForResource:@"2" ofType:@"wav"];
+        NSString *w3path = [[NSBundle mainBundle] pathForResource:@"3" ofType:@"wav"];
+
+        NSData *data1 = [NSData dataWithContentsOfFile:w1path];
+        NSData *data2 = [NSData dataWithContentsOfFile:w2path];
+        NSData *data3 = [NSData dataWithContentsOfFile:w3path];
+        
+        [formData appendPartWithFileData:data1 name:@"files" fileName:@"1.wav" mimeType:@"audio/wav"];
+        [formData appendPartWithFileData:data2 name:@"files" fileName:@"2.wav" mimeType:@"audio/wav"];
+        [formData appendPartWithFileData:data3 name:@"files" fileName:@"3.wav" mimeType:@"audio/wav"];
+
+    } error:&err];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSURLSessionUploadTask *uploadTask = [manager
+              uploadTaskWithStreamedRequest:req
+              progress:^(NSProgress * _Nonnull uploadProgress) {}
+              completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+                  if (error) {
+                      NSLog(@"Error: %@", error);
+                      NSLog(@"%@ %@", response, responseObject);
+                  } else {
+                      NSLog(@"%@ %@", response, responseObject);
+                  }
+              }];
+    
+    [uploadTask resume];
 }
 
 #pragma mark - Alerts

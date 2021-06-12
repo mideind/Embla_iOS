@@ -36,6 +36,9 @@
 		F461CFE22620C70800B2323C /* PocketsphinxDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFE12620C70800B2323C /* PocketsphinxDetector.m */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
+		F487E8E9267546AC00D25178 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E6267546AB00D25178 /* 2.wav */; };
+		F487E8EA267546AC00D25178 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E7267546AB00D25178 /* 3.wav */; };
+		F487E8EB267546AC00D25178 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E8267546AC00D25178 /* 1.wav */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
 		F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */; };
@@ -110,6 +113,9 @@
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		F47D200C2370880800E4DB6A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		F47D200D2370880900E4DB6A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		F487E8E6267546AB00D25178 /* 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.wav; sourceTree = "<group>"; };
+		F487E8E7267546AB00D25178 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
+		F487E8E8267546AC00D25178 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
 		F48D15A422DCD31800B2996C /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		F48D15A622DCD44E00B2996C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F492123322D61D5300337AF8 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
@@ -283,6 +289,9 @@
 		F427692822C122F200BB6977 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				F487E8E8267546AC00D25178 /* 1.wav */,
+				F487E8E6267546AB00D25178 /* 2.wav */,
+				F487E8E7267546AB00D25178 /* 3.wav */,
 				F421879C237C79640097E5D4 /* rec_begin.wav */,
 				F421879A237C79640097E5D4 /* rec_cancel.wav */,
 				F421879B237C79640097E5D4 /* rec_confirm.wav */,
@@ -476,8 +485,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F487E8EB267546AC00D25178 /* 1.wav in Resources */,
 				F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */,
 				F4218792237C789C0097E5D4 /* conn-dora.wav in Resources */,
+				F487E8EA267546AC00D25178 /* 3.wav in Resources */,
 				F4E1538C2379BC5F00388420 /* Assets.xcassets in Resources */,
 				F4BAE87125A64402008C852E /* Lato-Italic.woff2 in Resources */,
 				F421878B237C78880097E5D4 /* conn-karl.wav in Resources */,
@@ -487,6 +498,7 @@
 				D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */,
 				F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */,
 				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
+				F487E8E9267546AC00D25178 /* 2.wav in Resources */,
 				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
 				F461CFD02620B23700B2323C /* hae_embla.umdl in Resources */,
 				F4D36A7725ED449E00F5E354 /* Lato-Bold.ttf in Resources */,
