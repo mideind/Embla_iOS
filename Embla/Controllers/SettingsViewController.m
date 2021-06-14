@@ -272,9 +272,9 @@
              NSString *msg = @"Öllum gögnum sem tengjast þessu tæki hefur nú verið eytt.";
              [self showAlert:@"Öllum gögnum eytt" message:msg];
          } else {
+             DLog(@"Error deleting user data: %@", [err localizedDescription]);
              NSString *msg = @"Ekki tókst að eyða gögnum sem tengjast þessu tæki.";
              [self showAlert:@"Villa kom upp" message:msg];
-             DLog(@"Error deleting user data: %@", [err localizedDescription]);
          }
     }];
 }
@@ -286,12 +286,15 @@
     //serializer.acceptableContentTypes = [NSSet setWithObject:@"binary/octet-stream"];
     
     NSError *err;
-    NSMutableURLRequest *req = [serializer multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.3:8000/train" parameters:@{ @"text": @YES } constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", DEFAULT_HOTWORD_SERVER, HOTWORD_TRAINING_API_PATH];
+    NSMutableURLRequest *req = [serializer multipartFormRequestWithMethod:@"POST" URLString:urlString
+                                                               parameters:@{ @"text": @YES }
+                                                constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         NSString *w1path = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"wav"];
         NSString *w2path = [[NSBundle mainBundle] pathForResource:@"2" ofType:@"wav"];
         NSString *w3path = [[NSBundle mainBundle] pathForResource:@"3" ofType:@"wav"];
-
+        
         NSData *data1 = [NSData dataWithContentsOfFile:w1path];
         NSData *data2 = [NSData dataWithContentsOfFile:w2path];
         NSData *data3 = [NSData dataWithContentsOfFile:w3path];
@@ -317,8 +320,8 @@
         DLog(@"%@ %@", response, responseObject);
         
         NSDictionary *resp = (NSDictionary *)responseObject;
-        NSString *base64String = resp[@"data"];
-        NSString *name = resp[@"name"];
+        NSString *base64String = [resp objectForKey:@"data"];
+        NSString *name = [resp objectForKey:@"name"];
         if (name == nil || base64String == nil) {
             DLog(@"Mangled response from hotword training server");
             return;

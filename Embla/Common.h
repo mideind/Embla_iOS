@@ -30,6 +30,11 @@
 #define NUM_SPEECH2TEXT_ALTERNATIVES    10
 #define SPEECH2TEXT_LANGUAGE            @"is-IS"
 
+// Hotword training
+#define DEFAULT_HOTWORD_SERVER          @"192.168.1.3:8000"
+#define HOTWORD_TRAINING_API_PATH       @"/train"
+#define DEFAULT_HOTWORD_MODEL           @"default.pmdl"
+
 // Hostname used to determine if the device is connected to the internet.
 #define REACHABILITY_HOSTNAME       @"greynir.is"
 

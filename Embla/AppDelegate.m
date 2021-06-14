@@ -123,6 +123,7 @@
         @"QueryServer": DEFAULT_QUERY_SERVER,
         @"Speech2TextServer": DEFAULT_SPEECH2TEXT_SERVER,
         @"HotwordDetector": DEFAULT_HOTWORD_DETECTOR,
+        @"HotwordModel": DEFAULT_HOTWORD_MODEL
     };
 }
 

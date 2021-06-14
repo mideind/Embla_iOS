@@ -21,7 +21,6 @@
 #import <Snowboy/Snowboy.h>
 
 // Snowboy detector configuration
-#define SNOWBOY_MODEL_NAME      @"hae_embla"
 #define SNOWBOY_SENSITIVITY     "0.5"
 #define SNOWBOY_AUDIO_GAIN      1.0
 #define SNOWBOY_APPLY_FRONTEND  FALSE  // Should be false for pmdl, true for umdl
@@ -86,14 +85,14 @@
     NSString *modelPath;
     // Use model specified in defaults, if any
     NSString *modelName = [DEFAULTS stringForKey:@"HotwordModelName"];
-    if (modelName != nil) {
+    if (modelName != nil && [modelName isEqualToString:DEFAULT_HOTWORD_MODEL] == NO) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         modelPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, modelName];
     }
     // Otherwise, fall back to default model
     if (modelName == nil || ![[NSFileManager defaultManager] fileExistsAtPath:modelPath]) {
-        modelPath = [[NSBundle mainBundle] pathForResource:SNOWBOY_MODEL_NAME ofType:@"umdl"];
+        modelPath = [[NSBundle mainBundle] pathForResource:DEFAULT_HOTWORD_MODEL ofType:nil];
     }
     return modelPath;
 }
@@ -116,7 +115,7 @@
         if (result == 1) {
             DLog(@"Snowboy: Hotword detected");
             if (self.delegate) {
-                [self.delegate didHearHotword:SNOWBOY_MODEL_NAME];
+                [self.delegate didHearHotword:[DEFAULTS stringForKey:@"HotwordModelName"]];
             }
         }
     });

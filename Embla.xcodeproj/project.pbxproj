@@ -30,7 +30,6 @@
 		F448564F2667F35F0098872C /* Snowboy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F448564E2667F35F0098872C /* Snowboy.framework */; };
 		F44856532668F4F30098872C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44856522668F4F30098872C /* Accelerate.framework */; };
 		F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFBA261E13C900B2323C /* AudioRecordingService.m */; };
-		F461CFD02620B23700B2323C /* hae_embla.umdl in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCC2620B23700B2323C /* hae_embla.umdl */; };
 		F461CFD22620B23700B2323C /* common.res in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCF2620B23700B2323C /* common.res */; };
 		F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = F461CFD62620B27500B2323C /* SnowboyDetector.mm */; };
 		F461CFE22620C70800B2323C /* PocketsphinxDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFE12620C70800B2323C /* PocketsphinxDetector.m */; };
@@ -39,6 +38,7 @@
 		F487E8E9267546AC00D25178 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E6267546AB00D25178 /* 2.wav */; };
 		F487E8EA267546AC00D25178 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E7267546AB00D25178 /* 3.wav */; };
 		F487E8EB267546AC00D25178 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E8267546AC00D25178 /* 1.wav */; };
+		F487E8ED2677B48100D25178 /* default.pmdl in Resources */ = {isa = PBXBuildFile; fileRef = F487E8EC2677B48100D25178 /* default.pmdl */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
 		F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */; };
@@ -101,7 +101,6 @@
 		F44FC67125AD554B00BC72F5 /* ios.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = ios.yml; path = .github/workflows/ios.yml; sourceTree = "<group>"; };
 		F461CFBA261E13C900B2323C /* AudioRecordingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingService.m; sourceTree = "<group>"; };
 		F461CFBB261E13C900B2323C /* AudioRecordingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingService.h; sourceTree = "<group>"; };
-		F461CFCC2620B23700B2323C /* hae_embla.umdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = hae_embla.umdl; sourceTree = "<group>"; };
 		F461CFCF2620B23700B2323C /* common.res */ = {isa = PBXFileReference; lastKnownFileType = file; path = common.res; sourceTree = "<group>"; };
 		F461CFD52620B27500B2323C /* SnowboyDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnowboyDetector.h; sourceTree = "<group>"; };
 		F461CFD62620B27500B2323C /* SnowboyDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnowboyDetector.mm; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 		F487E8E6267546AB00D25178 /* 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.wav; sourceTree = "<group>"; };
 		F487E8E7267546AB00D25178 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
 		F487E8E8267546AC00D25178 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
+		F487E8EC2677B48100D25178 /* default.pmdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.pmdl; sourceTree = "<group>"; };
 		F48D15A422DCD31800B2996C /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		F48D15A622DCD44E00B2996C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F492123322D61D5300337AF8 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				F448564E2667F35F0098872C /* Snowboy.framework */,
-				F461CFCC2620B23700B2323C /* hae_embla.umdl */,
+				F487E8EC2677B48100D25178 /* default.pmdl */,
 				F461CFCF2620B23700B2323C /* common.res */,
 			);
 			path = Snowboy;
@@ -500,11 +500,11 @@
 				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
 				F487E8E9267546AC00D25178 /* 2.wav in Resources */,
 				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
-				F461CFD02620B23700B2323C /* hae_embla.umdl in Resources */,
 				F4D36A7725ED449E00F5E354 /* Lato-Bold.ttf in Resources */,
 				F4D36A9525ED4A8F00F5E354 /* style.css in Resources */,
 				F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */,
 				F4D36A9225ED4A4900F5E354 /* privacy.html in Resources */,
+				F487E8ED2677B48100D25178 /* default.pmdl in Resources */,
 				F421878D237C78880097E5D4 /* err-karl.wav in Resources */,
 				F421879F237C79640097E5D4 /* rec_begin.wav in Resources */,
 				F4D36A9025ED4A4900F5E354 /* instructions.html in Resources */,
