@@ -17,13 +17,13 @@
  */
 
 // Hotword detection
-#define DEFAULT_HOTWORD_DETECTOR    @"Snowboy"
+#define DEFAULT_HOTWORD_DETECTOR        @"Snowboy"
 
 // Query API
-#define DEFAULT_QUERY_SERVER        @"https://greynir.is"
-#define QUERY_API_PATH              @"/query.api/v1"
-#define CLEAR_QHISTORY_API_PATH     @"/query_history.api/v1"
-#define SPEECH_API_PATH             @"/speech.api/v1"
+#define DEFAULT_QUERY_SERVER            @"https://greynir.is"
+#define QUERY_API_PATH                  @"/query.api/v1"
+#define CLEAR_QHISTORY_API_PATH         @"/query_history.api/v1"
+#define SPEECH_API_PATH                 @"/speech.api/v1"
 
 // Speech-to-text API
 #define DEFAULT_SPEECH2TEXT_SERVER      @"speech.googleapis.com:443"
@@ -32,28 +32,28 @@
 
 // Hotword training
 #define DEFAULT_HOTWORD_SERVER          @"192.168.1.3:8000"
-#define HOTWORD_TRAINING_API_PATH       @"/train"
+#define HOTWORD_TRAINING_API_PATH       @"/train/v1"
 #define DEFAULT_HOTWORD_MODEL           @"default.pmdl"
 
 // Hostname used to determine if the device is connected to the internet.
-#define REACHABILITY_HOSTNAME       @"greynir.is"
+#define REACHABILITY_HOSTNAME           @"greynir.is"
 
 // Remote HTML documentation
-#define ABOUT_URL                   @"https://embla.is/about.html"
-#define PRIVACY_URL                 @"https://embla.is/privacy.html"
-#define INSTRUCTIONS_URL            @"https://embla.is/instructions.html"
+#define ABOUT_URL                       @"https://embla.is/about.html"
+#define PRIVACY_URL                     @"https://embla.is/privacy.html"
+#define INSTRUCTIONS_URL                @"https://embla.is/instructions.html"
 
 // Unique client type identifier string
-#define CLIENT_TYPE                 @"ios"
-#define CLIENT_VERSION              [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
-#define CLIENT_BUILD                [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]
+#define CLIENT_TYPE                     @"ios"
+#define CLIENT_VERSION                  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+#define CLIENT_BUILD                    [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]
 
 // Sample rate for microphone audio recording
-#define REC_SAMPLE_RATE             16000.0f
+#define REC_SAMPLE_RATE                 16000.0f
 
 // Minimum acceptable speech to text result stability, on a range of 0-1.0,
 // used to determine whether an interim STT result is reasonably reliable.
-#define MIN_STT_RESULT_STABILITY    0.25f
+#define MIN_STT_RESULT_STABILITY        0.25f
 
 // Logging in debug mode only
 #ifdef DEBUG

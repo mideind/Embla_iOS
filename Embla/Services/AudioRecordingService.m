@@ -158,6 +158,7 @@ static OSStatus RecordingCallback(void *inRefCon,
         AudioComponent remoteIOComponent = AudioComponentFindNext(NULL, &audioComponentDescription);
         status = AudioComponentInstanceNew(remoteIOComponent, &(self->remoteIOUnit));
         if (CheckError(status, "Couldn't get RemoteIO unit instance")) {
+            self->remoteIOUnit = NULL;
             return status;
         }
     }
@@ -221,12 +222,18 @@ static OSStatus RecordingCallback(void *inRefCon,
 
 // Start recording session
 - (OSStatus)start {
-    return AudioOutputUnitStart(self->remoteIOUnit);
+    if (self->remoteIOUnit) {
+        return AudioOutputUnitStart(self->remoteIOUnit);
+    }
+    return -1;
 }
 
 // Stop recording session
 - (OSStatus)stop {
-    return AudioOutputUnitStop(self->remoteIOUnit);
+    if (self->remoteIOUnit) {
+        return AudioOutputUnitStop(self->remoteIOUnit);
+    }
+    return -1;
 }
 
 @end

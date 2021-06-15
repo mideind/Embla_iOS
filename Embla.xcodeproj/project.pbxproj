@@ -39,6 +39,7 @@
 		F487E8EA267546AC00D25178 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E7267546AB00D25178 /* 3.wav */; };
 		F487E8EB267546AC00D25178 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E8267546AC00D25178 /* 1.wav */; };
 		F487E8ED2677B48100D25178 /* default.pmdl in Resources */ = {isa = PBXBuildFile; fileRef = F487E8EC2677B48100D25178 /* default.pmdl */; };
+		F487E8F0267905B100D25178 /* HotwordModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F487E8EF267905B100D25178 /* HotwordModelViewController.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
 		F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */; };
@@ -116,6 +117,8 @@
 		F487E8E7267546AB00D25178 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
 		F487E8E8267546AC00D25178 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
 		F487E8EC2677B48100D25178 /* default.pmdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.pmdl; sourceTree = "<group>"; };
+		F487E8EE267905B100D25178 /* HotwordModelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotwordModelViewController.h; sourceTree = "<group>"; };
+		F487E8EF267905B100D25178 /* HotwordModelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotwordModelViewController.m; sourceTree = "<group>"; };
 		F48D15A422DCD31800B2996C /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		F48D15A622DCD44E00B2996C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F492123322D61D5300337AF8 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
@@ -281,6 +284,8 @@
 				D392D9881C94938F002F5132 /* MainViewController.m */,
 				F427692222C1218A00BB6977 /* SettingsViewController.h */,
 				F427692322C1218A00BB6977 /* SettingsViewController.m */,
+				F487E8EE267905B100D25178 /* HotwordModelViewController.h */,
+				F487E8EF267905B100D25178 /* HotwordModelViewController.m */,
 				F4E785472367655C004E29D1 /* Web */,
 			);
 			path = Controllers;
@@ -600,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4E90AC52406C2F9004EE9A6 /* JSExecutor.m in Sources */,
+				F487E8F0267905B100D25178 /* HotwordModelViewController.m in Sources */,
 				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
 				F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */,
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,

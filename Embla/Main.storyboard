@@ -119,7 +119,7 @@
         <!--About-->
         <scene sceneID="9sw-EY-kKd">
             <objects>
-                <viewController title="Um" id="yJc-aV-98j" userLabel="About" customClass="AboutViewController" sceneMemberID="viewController">
+                <viewController title="Um Emblu" id="yJc-aV-98j" userLabel="About" customClass="AboutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2nl-Kk-QQy"/>
                         <viewControllerLayoutGuide type="bottom" id="qrq-C8-Mkb"/>
@@ -158,13 +158,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKM-jI-JK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3872" y="1017"/>
+            <point key="canvasLocation" x="2970" y="1129"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="iLf-xS-kag">
             <objects>
                 <tableViewController interfaceStyle="light" id="0fs-On-g95" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B5b-7M-VuH">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B5b-7M-VuH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -211,8 +211,36 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Axa-9a-vQF" imageView="HMw-FT-ubm" rowHeight="50" style="IBUITableViewCellStyleDefault" id="lR3-Og-aph" userLabel="Raddvirkjunarmódel">
+                                        <rect key="frame" x="0.0" y="88.5" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lR3-Og-aph" id="p6n-Cb-L8h">
+                                            <rect key="frame" x="0.0" y="0.0" width="349.5" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Raddvirkjunarmódel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Axa-9a-vQF">
+                                                    <rect key="frame" x="81.5" y="0.0" width="260" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Cog" id="HMw-FT-ubm">
+                                                    <rect key="frame" x="16" y="0.0" width="50.5" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" label="Stillingar">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
+                                        <connections>
+                                            <segue destination="Bis-T5-MSf" kind="show" id="hXK-q8-mRE"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nmR-NQ-er7" userLabel="Deila staðsetningu">
-                                        <rect key="frame" x="0.0" y="88.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="138.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nmR-NQ-er7" id="KlK-vC-Jbt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -240,7 +268,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0in-bG-kYH" userLabel="Einkahamur">
-                                        <rect key="frame" x="0.0" y="132.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="182.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0in-bG-kYH" id="KUM-OP-4Au">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -268,7 +296,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2Lb-AY-ljo" userLabel="Rödd">
-                                        <rect key="frame" x="0.0" y="176.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="226.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Lb-AY-ljo" id="y09-Ed-uEi">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -295,7 +323,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="BgW-Uy-T96" userLabel="Talhraði">
-                                        <rect key="frame" x="0.0" y="220.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="270.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BgW-Uy-T96" id="QtB-iu-agf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -321,7 +349,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OMW-Kr-ykd" userLabel="Útgáfa">
-                                        <rect key="frame" x="0.0" y="264.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="314.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OMW-Kr-ykd" id="zxS-Zd-VsQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -346,7 +374,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="52" id="AFx-XW-hRF" userLabel="Hreinsa fyrirspurnasögu">
-                                        <rect key="frame" x="0.0" y="308.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="358.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AFx-XW-hRF" id="TZL-LJ-Hgl">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
@@ -370,7 +398,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="52" id="ydh-K2-T6p" userLabel="Hreinsa öll gögn">
-                                        <rect key="frame" x="0.0" y="360.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="410.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ydh-K2-T6p" id="8OH-bd-LlY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
@@ -393,36 +421,12 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="52" id="CJ9-qY-cyt" userLabel="Raddþjálfun">
-                                        <rect key="frame" x="0.0" y="412.5" width="375" height="52"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CJ9-qY-cyt" id="jPx-V9-VtR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQI-4V-QFK" userLabel="Raddþjálfun">
-                                                    <rect key="frame" x="15" y="3" width="344" height="38"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <accessibility key="accessibilityConfiguration" label="Hreinsa fyrirspurnasögu"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
-                                                    <color key="tintColor" red="0.91764705879999997" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Raddþjálfun">
-                                                        <color key="titleColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="trainModel" destination="0fs-On-g95" eventType="touchUpInside" id="Kh9-76-rSU"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Stillingar í tilraunaham" id="uCO-NG-Uzc" userLabel="Stillingar í tilraunaham">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="42" id="AcP-Eq-Xoz" userLabel="Fyrirspurnaþjónn">
-                                        <rect key="frame" x="0.0" y="513.50000034679067" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="511.50000034679067" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AcP-Eq-Xoz" id="5O6-MR-Qjl">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
@@ -440,7 +444,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TtX-9J-mvj" userLabel="Fyrirspurnjaþjónn - Text Field">
-                                        <rect key="frame" x="0.0" y="555.50000034679067" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="553.50000034679067" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TtX-9J-mvj" id="fRG-FZ-M1i">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -460,7 +464,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jjB-l5-rsq" userLabel="Fyrirspurnaþjónn - Segmented Button">
-                                        <rect key="frame" x="0.0" y="599.50000034679067" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="597.50000034679067" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jjB-l5-rsq" id="krB-cx-yu2">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -485,7 +489,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="42" id="dIN-QO-yuO" userLabel="Raddvirkjunarkerfi">
-                                        <rect key="frame" x="0.0" y="643.50000034679067" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="641.50000034679067" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dIN-QO-yuO" id="X4I-3b-yal">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
@@ -503,7 +507,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kyF-Tc-snm" userLabel="Raddvirkjunarkerfi - Segmented Button">
-                                        <rect key="frame" x="0.0" y="685.50000034679067" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="683.50000034679067" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kyF-Tc-snm" id="ZRQ-3x-RWJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -526,7 +530,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="42" id="l4n-yM-5bY" userLabel="Talgreiningarþjónn">
-                                        <rect key="frame" x="0.0" y="729.50000034679067" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="727.50000034679067" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l4n-yM-5bY" id="y4L-s9-fe1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
@@ -544,7 +548,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="zAM-p2-81g" userLabel="Talgreiningarþjónn - Text Field">
-                                        <rect key="frame" x="0.0" y="771.50000034679067" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="769.50000034679067" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zAM-p2-81g" id="XMa-1K-bZO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -564,7 +568,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="36" id="4k7-d5-PO5" userLabel="Empty">
-                                        <rect key="frame" x="0.0" y="815.50000034679067" width="375" height="36"/>
+                                        <rect key="frame" x="0.0" y="813.50000034679067" width="375" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4k7-d5-PO5" id="ZKH-Ed-JVf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
@@ -580,7 +584,9 @@
                             <outlet property="delegate" destination="0fs-On-g95" id="O81-Ue-41f"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="3BA-PW-M7V"/>
+                    <navigationItem key="navigationItem" id="3BA-PW-M7V">
+                        <barButtonItem key="backBarButtonItem" title="Til baka" id="kvp-1P-ane"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="hotwordSegmentedControl" destination="3uo-Xg-LcE" id="rzl-ZO-RXQ"/>
                         <outlet property="hotwordSwitch" destination="ker-sm-4FQ" id="jyK-yt-yP0"/>
@@ -597,7 +603,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFt-kq-ya6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2773.5999999999999" y="697.60119940029995"/>
+            <point key="canvasLocation" x="2855" y="309"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="baH-A3-i7G">
@@ -786,7 +792,7 @@
         <!--Privacy-->
         <scene sceneID="zmX-Xa-nHg">
             <objects>
-                <viewController title="Um" id="aog-Mh-O1w" userLabel="Privacy" customClass="PrivacyViewController" sceneMemberID="viewController">
+                <viewController title="Persónuvernd" id="aog-Mh-O1w" userLabel="Privacy" customClass="PrivacyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y5Z-Mm-GYd"/>
                         <viewControllerLayoutGuide type="bottom" id="NcR-rl-qUk"/>
@@ -823,12 +829,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dc-jq-40k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2930" y="1370"/>
+            <point key="canvasLocation" x="2422" y="2128"/>
         </scene>
         <!--Instructions-->
         <scene sceneID="9i4-Ed-DQB">
             <objects>
-                <viewController title="Um" id="V32-83-jlN" userLabel="Instructions" customClass="InstructionsViewController" sceneMemberID="viewController">
+                <viewController title="Leiðbeiningar" id="V32-83-jlN" userLabel="Instructions" customClass="InstructionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VnG-OG-jVX"/>
                         <viewControllerLayoutGuide type="bottom" id="zj7-uK-09z"/>
@@ -867,12 +873,75 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ID8-Nd-qj6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4542" y="233"/>
+            <point key="canvasLocation" x="3190" y="1912"/>
+        </scene>
+        <!--Hotword Model View Controller-->
+        <scene sceneID="zGu-Rb-FC1">
+            <objects>
+                <tableViewController interfaceStyle="light" id="Bis-T5-MSf" customClass="HotwordModelViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PnT-bB-YsG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection headerTitle="Raddvirkjunarlíkön" id="f3H-sn-bs1" userLabel="Raddvirkjunarlíkön">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0n8-ZT-YlJ" userLabel="Virkja með röddu">
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0n8-ZT-YlJ" id="BSE-rP-Xuy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Virkja með röddu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wt-dh-xBN" userLabel="Virkja með röddu (&quot;Hæ Embla&quot;)">
+                                                    <rect key="frame" x="15" y="9" width="287" height="27"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-MJ-KuJ">
+                                                    <rect key="frame" x="311" y="7" width="50" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Raddvirkjun"/>
+                                                    <color key="tintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="onTintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="useLocationToggled:" destination="0fs-On-g95" eventType="valueChanged" id="Wmo-hh-dxP"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Bis-T5-MSf" id="C5z-W3-xtl"/>
+                            <outlet property="delegate" destination="Bis-T5-MSf" id="Tdx-VX-H09"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="I29-xc-Fjm">
+                        <barButtonItem key="backBarButtonItem" title="Til baka" id="l0k-Hb-Srf">
+                            <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="view" destination="PnT-bB-YsG" id="SlM-lw-00X"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUN-OD-Fdw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3653.5999999999999" y="-247.82608695652175"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="5Qz-r2-zOK"/>
-        <segue reference="RJD-MJ-JUE"/>
+        <segue reference="MxW-5r-n0G"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
