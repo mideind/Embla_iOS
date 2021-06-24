@@ -44,8 +44,8 @@
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
 		F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */; };
 		F4BAE87125A64402008C852E /* Lato-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */; };
-		F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */; };
-		F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD1A8233A69A700B6A55A /* OpenEars.framework */; };
+		F4C73D3726854D0800E1C93E /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C73D3626854D0800E1C93E /* OpenEars.framework */; };
+		F4CAB7692683ABC000A595D6 /* old.pmdl in Resources */ = {isa = PBXBuildFile; fileRef = F4CAB7682683ABC000A595D6 /* old.pmdl */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
 		F4D36A7725ED449E00F5E354 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */; };
@@ -129,8 +129,9 @@
 		F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.woff2"; sourceTree = "<group>"; };
 		F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.woff2"; sourceTree = "<group>"; };
 		F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.woff2"; sourceTree = "<group>"; };
-		F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AcousticModelEnglish.bundle; path = ../OpenEars/AcousticModelEnglish.bundle; sourceTree = "<group>"; };
-		F4BBD1A8233A69A700B6A55A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenEars.framework; path = OpenEars/OpenEars.framework; sourceTree = "<group>"; };
+		F4C73D3426854CC900E1C93E /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		F4C73D3626854D0800E1C93E /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
+		F4CAB7682683ABC000A595D6 /* old.pmdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = old.pmdl; sourceTree = "<group>"; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		F4D36A7625ED449E00F5E354 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -168,10 +169,10 @@
 			files = (
 				F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */,
 				F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */,
-				F4BBD1AA233A69A800B6A55A /* OpenEars.framework in Frameworks */,
 				F44856532668F4F30098872C /* Accelerate.framework in Frameworks */,
 				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
 				F448564F2667F35F0098872C /* Snowboy.framework in Frameworks */,
+				F4C73D3726854D0800E1C93E /* OpenEars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +184,6 @@
 			children = (
 				F44856522668F4F30098872C /* Accelerate.framework */,
 				F40B12552343908F00CBE9B4 /* WebKit.framework */,
-				F4BBD1A8233A69A700B6A55A /* OpenEars.framework */,
 				F4482F2B22B930530050148E /* CoreLocation.framework */,
 				FDF1E2EC415384E4A4629D2F /* libPods-Embla.a */,
 			);
@@ -201,6 +201,7 @@
 				F4D36A8A25ED4A4900F5E354 /* Docs */,
 				D34C17CB1C948F5700D69BCA /* Embla */,
 				F461CFCB2620B23700B2323C /* Snowboy */,
+				F4C73D3326854CC900E1C93E /* OpenEars */,
 				F4E785532368FA88004E29D1 /* Keys */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,
 				32C6BA1B2FA20A9904F13B95 /* Frameworks */,
@@ -237,7 +238,6 @@
 		D34C17CC1C948F5700D69BCA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F4BBD1A7233A69A700B6A55A /* AcousticModelEnglish.bundle */,
 				F4CDF6CD235F541E00E88CF6 /* Fonts */,
 				F427692822C122F200BB6977 /* Audio */,
 				D34C17DD1C948F5800D69BCA /* Info.plist */,
@@ -331,6 +331,7 @@
 			children = (
 				F448564E2667F35F0098872C /* Snowboy.framework */,
 				F487E8EC2677B48100D25178 /* default.pmdl */,
+				F4CAB7682683ABC000A595D6 /* old.pmdl */,
 				F461CFCF2620B23700B2323C /* common.res */,
 			);
 			path = Snowboy;
@@ -354,6 +355,15 @@
 				F4E153852374657C00388420 /* animation.apng */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		F4C73D3326854CC900E1C93E /* OpenEars */ = {
+			isa = PBXGroup;
+			children = (
+				F4C73D3626854D0800E1C93E /* OpenEars.framework */,
+				F4C73D3426854CC900E1C93E /* AcousticModelEnglish.bundle */,
+			);
+			path = OpenEars;
 			sourceTree = "<group>";
 		};
 		F4CDF6CD235F541E00E88CF6 /* Fonts */ = {
@@ -512,13 +522,13 @@
 				F487E8ED2677B48100D25178 /* default.pmdl in Resources */,
 				F421878D237C78880097E5D4 /* err-karl.wav in Resources */,
 				F421879F237C79640097E5D4 /* rec_begin.wav in Resources */,
+				F4CAB7692683ABC000A595D6 /* old.pmdl in Resources */,
 				F4D36A9025ED4A4900F5E354 /* instructions.html in Resources */,
 				F4218791237C789C0097E5D4 /* dunno-dora.wav in Resources */,
 				F4D36A9125ED4A4900F5E354 /* loading.html in Resources */,
 				F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */,
 				F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */,
 				F4D36A8F25ED4A4900F5E354 /* about.html in Resources */,
-				F4BBD1A9233A69A800B6A55A /* AcousticModelEnglish.bundle in Resources */,
 				F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
