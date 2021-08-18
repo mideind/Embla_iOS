@@ -1,9 +1,13 @@
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Language](https://img.shields.io/badge/language-objective--c-lightgrey)]()
+[![Build](https://github.com/mideind/Embla_iOS/actions/workflows/ios.yml/badge.svg)]()
+
 <img src="img/app_icon.png" align="right" width="224" height="224" style="margin-left:20px;">
 
 # Embla iOS client
 
-Embla is a voice-driven virtual assistant app powered by the Icelandic-language 
-[Greynir](https://greynir.is) query engine. This is the repository for the native Embla iOS client.
+Embla is an Icelandic-language voice assistant powered by the [Greynir](https://greynir.is)
+query engine. This is the repository for the native Embla iOS client.
 
 Written in Objective-C for iOS 12.0+. Probably only builds on a recent version of macOS.
 
