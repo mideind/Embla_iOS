@@ -651,36 +651,8 @@
                                             <segue destination="0fs-On-g95" kind="show" id="RJD-MJ-JUE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="han-ZF-13a" imageView="6TL-Dt-vJN" rowHeight="50" style="IBUITableViewCellStyleDefault" id="w44-h7-oWs" userLabel="Raddþjálfun">
-                                        <rect key="frame" x="0.0" y="94.5" width="375" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w44-h7-oWs" id="Wid-N7-DYI">
-                                            <rect key="frame" x="0.0" y="0.0" width="349.5" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Raddþjálfun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="han-ZF-13a" userLabel="Raddþjálfun">
-                                                    <rect key="frame" x="81.5" y="0.0" width="260" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
-                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Cog" id="6TL-Dt-vJN">
-                                                    <rect key="frame" x="16" y="0.0" width="50.5" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <accessibility key="accessibilityConfiguration" label="Stillingar">
-                                            <bool key="isElement" value="YES"/>
-                                        </accessibility>
-                                        <connections>
-                                            <segue destination="Bis-T5-MSf" kind="show" id="WGj-ZL-VGU"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GPb-Ri-SBC" imageView="zZ4-8X-S42" rowHeight="50" style="IBUITableViewCellStyleDefault" id="7n1-TO-s6u" userLabel="Um Emblu">
-                                        <rect key="frame" x="0.0" y="144.5" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="94.5" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7n1-TO-s6u" id="YbQ-fo-Dej">
                                             <rect key="frame" x="0.0" y="0.0" width="349.5" height="50"/>
@@ -708,7 +680,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="CIP-AA-O2D" imageView="Zvf-zj-AZd" rowHeight="50" style="IBUITableViewCellStyleDefault" id="oVZ-z1-Er7" userLabel="Leiðbeiningar">
-                                        <rect key="frame" x="0.0" y="194.5" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="144.5" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oVZ-z1-Er7" id="3Oj-lS-W2R">
                                             <rect key="frame" x="0.0" y="0.0" width="349.5" height="50"/>
@@ -736,7 +708,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="K4W-sY-M8I" imageView="1PP-hV-3Af" rowHeight="50" style="IBUITableViewCellStyleDefault" id="QJ5-sf-b3x" userLabel="Persónuvernd">
-                                        <rect key="frame" x="0.0" y="244.5" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="194.5" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QJ5-sf-b3x" id="Q98-HB-uB4">
                                             <rect key="frame" x="0.0" y="0.0" width="349.5" height="50"/>
