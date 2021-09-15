@@ -164,7 +164,7 @@
         <scene sceneID="iLf-xS-kag">
             <objects>
                 <tableViewController interfaceStyle="light" id="0fs-On-g95" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B5b-7M-VuH">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B5b-7M-VuH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -308,7 +308,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.69999999999999996" maxValue="1.3" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIh-di-UZT">
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.69999999999999996" maxValue="1.3" translatesAutoresizingMaskIntoConstraints="NO" id="CIh-di-UZT">
                                                     <rect key="frame" x="176" y="8" width="181" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" label="Talhraði"/>
@@ -566,6 +566,7 @@
                         <outlet property="queryServerTextField" destination="aTc-B7-CbT" id="25t-CI-2NF"/>
                         <outlet property="serverSegmentedControl" destination="Qfe-EN-Zsv" id="WvD-9W-as3"/>
                         <outlet property="speech2textServerTextField" destination="OiR-1D-Lrv" id="S0Y-bP-IdJ"/>
+                        <outlet property="speechSpeedLabel" destination="zl5-oM-S3t" id="cv6-VI-9EK"/>
                         <outlet property="speechSpeedSlider" destination="CIh-di-UZT" id="EHQ-zO-YOc"/>
                         <outlet property="swVersionLabel" destination="9KI-ml-eRu" id="DgW-6a-Aia"/>
                         <outlet property="useLocationSwitch" destination="M7w-rG-8JR" id="Lc8-Ws-uUu"/>

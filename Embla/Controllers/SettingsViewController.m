@@ -34,6 +34,7 @@
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *privacyModeSwitch;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
+@property (nonatomic, weak) IBOutlet UILabel *speechSpeedLabel;
 @property (nonatomic, weak) IBOutlet UISlider *speechSpeedSlider;
 
 // Controls only visible in debug mode
@@ -127,7 +128,9 @@
     [self.useLocationSwitch setOn:[DEFAULTS boolForKey:@"UseLocation"]];
     [self.privacyModeSwitch setOn:[DEFAULTS boolForKey:@"PrivacyMode"]];
     [self.voiceSegmentedControl setSelectedSegmentIndex:[DEFAULTS integerForKey:@"Voice"]];
-    [self.speechSpeedSlider setValue:[DEFAULTS floatForKey:@"SpeechSpeed"]];
+    float speed = [DEFAULTS floatForKey:@"SpeechSpeed"];
+    [self.speechSpeedSlider setValue:speed];
+    [self updateSpeechSpeedLabel];
     
 #ifdef DEBUG
     // Query server settings
@@ -218,7 +221,18 @@
 -(IBAction)speechSpeedChanged:(UISlider *)sender {
     float stepSize = 0.1f;
     float newStep = roundf((sender.value) / stepSize);
-    sender.value = newStep * stepSize;
+    float val = newStep * stepSize;
+    sender.value = val;
+    [self updateSpeechSpeedLabel];
+}
+
+- (void)updateSpeechSpeedLabel {
+    float val = self.speechSpeedSlider.value;
+    NSString *s = [NSString stringWithFormat:@"%.2f", val];
+    if ([s hasSuffix:@"0"] && ![s isEqualToString:@"1.0"]) {
+        s = [s substringToIndex:[s length] - 1];
+    }
+    [self.speechSpeedLabel setText:[NSString stringWithFormat:@"Talhraði (%@x)", s]];
 }
 
 - (IBAction)serverPresetSelected:(id)sender {
