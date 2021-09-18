@@ -460,49 +460,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="42" id="dIN-QO-yuO" userLabel="Raddvirkjunarkerfi">
-                                        <rect key="frame" x="0.0" y="591.50000034679067" width="375" height="42"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dIN-QO-yuO" id="X4I-3b-yal">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Raddvirkjunarkerfi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GaQ-jp-3Ho">
-                                                    <rect key="frame" x="16" y="11" width="343" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kyF-Tc-snm" userLabel="Raddvirkjunarkerfi - Segmented Button">
-                                        <rect key="frame" x="0.0" y="633.50000034679067" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kyF-Tc-snm" id="ZRQ-3x-RWJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3uo-Xg-LcE">
-                                                    <rect key="frame" x="16" y="7" width="343" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <segments>
-                                                        <segment title="Snowboy"/>
-                                                        <segment title="Pocketsphinx"/>
-                                                    </segments>
-                                                    <color key="tintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <connections>
-                                                        <action selector="hotwordDetectorSelected:" destination="0fs-On-g95" eventType="valueChanged" id="378-sk-ig1"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
                                     <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="42" id="l4n-yM-5bY" userLabel="Talgreiningarþjónn">
-                                        <rect key="frame" x="0.0" y="677.50000034679067" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="591.50000034679067" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l4n-yM-5bY" id="y4L-s9-fe1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
@@ -520,7 +479,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="zAM-p2-81g" userLabel="Talgreiningarþjónn - Text Field">
-                                        <rect key="frame" x="0.0" y="719.50000034679067" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="633.50000034679067" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zAM-p2-81g" id="XMa-1K-bZO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -540,7 +499,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="36" id="4k7-d5-PO5" userLabel="Empty">
-                                        <rect key="frame" x="0.0" y="763.50000034679067" width="375" height="36"/>
+                                        <rect key="frame" x="0.0" y="677.50000034679067" width="375" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4k7-d5-PO5" id="ZKH-Ed-JVf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
@@ -560,7 +519,6 @@
                         <barButtonItem key="backBarButtonItem" title="Til baka" id="kvp-1P-ane"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="hotwordSegmentedControl" destination="3uo-Xg-LcE" id="rzl-ZO-RXQ"/>
                         <outlet property="hotwordSwitch" destination="ker-sm-4FQ" id="jyK-yt-yP0"/>
                         <outlet property="privacyModeSwitch" destination="m31-x2-PCG" id="xb7-Mb-gBy"/>
                         <outlet property="queryServerTextField" destination="aTc-B7-CbT" id="25t-CI-2NF"/>

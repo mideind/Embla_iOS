@@ -32,7 +32,6 @@
 		F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFBA261E13C900B2323C /* AudioRecordingService.m */; };
 		F461CFD22620B23700B2323C /* common.res in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCF2620B23700B2323C /* common.res */; };
 		F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = F461CFD62620B27500B2323C /* SnowboyDetector.mm */; };
-		F461CFE22620C70800B2323C /* PocketsphinxDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFE12620C70800B2323C /* PocketsphinxDetector.m */; };
 		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
 		F487E8E9267546AC00D25178 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E6267546AB00D25178 /* 2.wav */; };
@@ -44,7 +43,6 @@
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
 		F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */; };
 		F4BAE87125A64402008C852E /* Lato-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */; };
-		F4C73D3726854D0800E1C93E /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C73D3626854D0800E1C93E /* OpenEars.framework */; };
 		F4CAB7692683ABC000A595D6 /* old.pmdl in Resources */ = {isa = PBXBuildFile; fileRef = F4CAB7682683ABC000A595D6 /* old.pmdl */; };
 		F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */; };
 		F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */; };
@@ -106,8 +104,6 @@
 		F461CFD52620B27500B2323C /* SnowboyDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnowboyDetector.h; sourceTree = "<group>"; };
 		F461CFD62620B27500B2323C /* SnowboyDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnowboyDetector.mm; sourceTree = "<group>"; };
 		F461CFDC2620BCD900B2323C /* HotwordDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotwordDetector.h; sourceTree = "<group>"; };
-		F461CFE02620C70800B2323C /* PocketsphinxDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketsphinxDetector.h; sourceTree = "<group>"; };
-		F461CFE12620C70800B2323C /* PocketsphinxDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketsphinxDetector.m; sourceTree = "<group>"; };
 		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
 		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = Embla/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -129,8 +125,6 @@
 		F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.woff2"; sourceTree = "<group>"; };
 		F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.woff2"; sourceTree = "<group>"; };
 		F4BAE86E25A64402008C852E /* Lato-Italic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.woff2"; sourceTree = "<group>"; };
-		F4C73D3426854CC900E1C93E /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
-		F4C73D3626854D0800E1C93E /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		F4CAB7682683ABC000A595D6 /* old.pmdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = old.pmdl; sourceTree = "<group>"; };
 		F4CDF6CE235F541E00E88CF6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		F4CDF6CF235F541E00E88CF6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -172,7 +166,6 @@
 				F44856532668F4F30098872C /* Accelerate.framework in Frameworks */,
 				58CA4D4D79F514DD583AA082 /* libPods-Embla.a in Frameworks */,
 				F448564F2667F35F0098872C /* Snowboy.framework in Frameworks */,
-				F4C73D3726854D0800E1C93E /* OpenEars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +194,6 @@
 				F4D36A8A25ED4A4900F5E354 /* Docs */,
 				D34C17CB1C948F5700D69BCA /* Embla */,
 				F461CFCB2620B23700B2323C /* Snowboy */,
-				F4C73D3326854CC900E1C93E /* OpenEars */,
 				F4E785532368FA88004E29D1 /* Keys */,
 				F657FA334EB8D9ABF1ACF569 /* Pods */,
 				32C6BA1B2FA20A9904F13B95 /* Frameworks */,
@@ -343,8 +335,6 @@
 				F461CFDC2620BCD900B2323C /* HotwordDetector.h */,
 				F461CFD52620B27500B2323C /* SnowboyDetector.h */,
 				F461CFD62620B27500B2323C /* SnowboyDetector.mm */,
-				F461CFE02620C70800B2323C /* PocketsphinxDetector.h */,
-				F461CFE12620C70800B2323C /* PocketsphinxDetector.m */,
 			);
 			path = HotwordDetection;
 			sourceTree = "<group>";
@@ -355,15 +345,6 @@
 				F4E153852374657C00388420 /* animation.apng */,
 			);
 			path = Animations;
-			sourceTree = "<group>";
-		};
-		F4C73D3326854CC900E1C93E /* OpenEars */ = {
-			isa = PBXGroup;
-			children = (
-				F4C73D3626854D0800E1C93E /* OpenEars.framework */,
-				F4C73D3426854CC900E1C93E /* AcousticModelEnglish.bundle */,
-			);
-			path = OpenEars;
 			sourceTree = "<group>";
 		};
 		F4CDF6CD235F541E00E88CF6 /* Fonts */ = {
@@ -620,7 +601,6 @@
 				F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */,
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
-				F461CFE22620C70800B2323C /* PocketsphinxDetector.m in Sources */,
 				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
 				F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
@@ -784,7 +764,6 @@
 				DEVELOPMENT_TEAM = XT9WMG6U47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/OpenEars",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Snowboy",
 				);
@@ -828,7 +807,6 @@
 				DEVELOPMENT_TEAM = XT9WMG6U47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/OpenEars",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Snowboy",
 				);
