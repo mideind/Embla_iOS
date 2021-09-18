@@ -217,6 +217,7 @@
     if ([s hasSuffix:@"0"] && ![s isEqualToString:@"1.0"]) {
         s = [s substringToIndex:[s length] - 1];
     }
+    s = [s stringByReplacingOccurrencesOfString:@"." withString:@","];
     [self.speechSpeedLabel setText:[NSString stringWithFormat:@"Talhraði (%@x)", s]];
 }
 
