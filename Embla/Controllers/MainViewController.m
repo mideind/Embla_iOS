@@ -51,6 +51,12 @@ Aðgangi er stýrt í kerfisstillingum.";
 static NSString * const kNoSpeechAPIKeyMessage = \
 @"Enginn aðgangslykill fyrir forritaskil talgreiningar.";
 
+static NSString * const kSessionButtonLabelResting = \
+@"Tala við Emblu";
+
+static NSString * const kSessionButtonLabelActive = \
+@"Hætta að tala við Emblu";
+
 #define CANCEL_COMMANDS \
 @[@"hætta", @"hætta við", @"hættu", @"ekkert", @"skiptir ekki máli"]
 
@@ -347,6 +353,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
     
     // Start new session
     [self playUISound:@"rec_begin"];
+    [self.button setAccessibilityLabel:kSessionButtonLabelActive];
     [self.button expand];
     self.currentSession = [[QuerySession alloc] initWithDelegate:self];
     // Add slight delay so that UI sound isn't playing when recording starts
@@ -360,6 +367,7 @@ static NSString * const kNoSpeechAPIKeyMessage = \
         [self.currentSession terminate];
     }
     self.currentSession = nil;
+    [self.button setAccessibilityLabel:kSessionButtonLabelResting];
 }
 
 #pragma mark - QuerySessionDelegate
