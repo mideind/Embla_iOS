@@ -12,7 +12,7 @@
 		D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C17D01C948F5700D69BCA /* AppDelegate.m */; };
 		D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34C17DA1C948F5800D69BCA /* LaunchScreen.storyboard */; };
 		D392D9861C94937D002F5132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D392D9851C94937D002F5132 /* Main.storyboard */; };
-		D392D9891C94938F002F5132 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* MainViewController.m */; };
+		D392D9891C94938F002F5132 /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D392D9881C94938F002F5132 /* SessionViewController.m */; };
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
 		F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B12552343908F00CBE9B4 /* WebKit.framework */; };
 		F421878B237C78880097E5D4 /* conn-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218788237C78880097E5D4 /* conn-karl.wav */; };
@@ -74,8 +74,8 @@
 		D34C17DB1C948F5800D69BCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34C17DD1C948F5800D69BCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D392D9851C94937D002F5132 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D392D9871C94938F002F5132 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		D392D9881C94938F002F5132 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		D392D9871C94938F002F5132 /* SessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionViewController.h; sourceTree = "<group>"; };
+		D392D9881C94938F002F5132 /* SessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionViewController.m; sourceTree = "<group>"; };
 		D3FFBC351C96208B00268A5F /* SpeechRecognitionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechRecognitionService.h; sourceTree = "<group>"; };
 		D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechRecognitionService.m; sourceTree = "<group>"; };
 		E041B89B0C5D1AED806E3D47 /* Pods-Embla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Embla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Embla/Pods-Embla.release.xcconfig"; sourceTree = "<group>"; };
@@ -272,8 +272,8 @@
 		F427692122C1216A00BB6977 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D392D9871C94938F002F5132 /* MainViewController.h */,
-				D392D9881C94938F002F5132 /* MainViewController.m */,
+				D392D9871C94938F002F5132 /* SessionViewController.h */,
+				D392D9881C94938F002F5132 /* SessionViewController.m */,
 				F427692222C1218A00BB6977 /* SettingsViewController.h */,
 				F427692322C1218A00BB6977 /* SettingsViewController.m */,
 				F487E8EE267905B100D25178 /* HotwordModelViewController.h */,
@@ -601,7 +601,7 @@
 				F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */,
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
-				D392D9891C94938F002F5132 /* MainViewController.m in Sources */,
+				D392D9891C94938F002F5132 /* SessionViewController.m in Sources */,
 				F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,

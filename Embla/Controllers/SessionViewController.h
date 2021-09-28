@@ -20,6 +20,6 @@
 #import "SnowboyDetector.h"
 #import "SessionButton.h"
 
-@interface MainViewController : UIViewController <HotwordDetectorDelegate, AudioLevelSource>
+@interface SessionViewController : UIViewController <HotwordDetectorDelegate, AudioLevelSource>
 
 @end

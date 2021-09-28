@@ -22,7 +22,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "MainViewController.h"
+#import "SessionViewController.h"
 #import "QuerySession.h"
 #import "Common.h"
 #import "AudioRecordingService.h"
@@ -64,7 +64,7 @@ static NSString * const kSessionButtonLabelActive = \
 @[@"þegiðu", @"þegi þú", @"ekki hlusta", @"hættu að hlusta"]
 
 
-@interface MainViewController () <QuerySessionDelegate>
+@interface SessionViewController () <QuerySessionDelegate>
 {
     AVAudioPlayer *player;
     NSMutableDictionary *uiSounds;
@@ -80,7 +80,7 @@ static NSString * const kSessionButtonLabelActive = \
 @end
 
 
-@implementation MainViewController
+@implementation SessionViewController
 
 #pragma mark - UIViewController
 
