@@ -301,6 +301,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     NSString *source;
     NSURL *url;
     NSString *cmd;
+    NSString *imgURL;
     
     // If response data is valid, handle it
     if ([r isKindOfClass:[NSDictionary class]]) {
@@ -309,6 +310,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         question = [r objectForKey:@"q"];
         source = [r objectForKey:@"source"];
         cmd = [r objectForKey:@"command"];
+        imgURL = [r objectForKey:@"image"];
         
         NSString *audioURLStr = [r objectForKey:@"audio"];
         NSString *openURLStr = [r objectForKey:@"open_url"];
@@ -409,7 +411,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         NSString *contentType = [headerFields objectForKey:@"Content-Type"];
         if (!error && (!contentType || ![contentType isEqualToString:@"audio/mpeg"])) {
             NSString *msg = [NSString stringWithFormat:@"Wrong content type from speech audio server: %@", contentType];
-            error = [NSError errorWithDomain:@"Embla" code:0 userInfo:@{ NSLocalizedDescriptionKey: msg }];
+            error = [NSError errorWithDomain:@"Embla" code:0 userInfo:@{ NSLocalizedDescriptionKey:msg }];
         }
         
         if (error) {
@@ -427,7 +429,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 - (void)playDontKnow {
     NSUInteger voiceID = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
     NSString *suffix = voiceID == 0 ? @"dora" : @"karl";
-    NSString *fn = [NSString stringWithFormat:@"dunno-%@", suffix];
+    uint32_t rand = arc4random_uniform(6) + 1;
+    NSString *fn = [NSString stringWithFormat:@"dunno%02d-%@", rand, suffix];
     [self playAudio:fn];
 }
 

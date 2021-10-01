@@ -591,9 +591,13 @@ static NSString * const kSessionButtonLabelActive = \
 - (void)preloadSounds {
     uiSounds = [NSMutableDictionary new];
     
-    NSArray *files = @[@"rec_begin", @"rec_cancel", @"rec_confirm",
-                       @"err-dora", @"conn-dora", @"dunno-dora",
-                       @"err-karl", @"conn-karl", @"dunno-karl"];
+    NSMutableArray *files = [@[@"rec_begin", @"rec_cancel", @"rec_confirm",
+                              @"err-dora", @"conn-dora", @"err-karl", @"conn-karl"] mutableCopy];
+    
+    for (int i = 1; i < 8; i++) {
+        [files addObject:[NSString stringWithFormat:@"dunno%02d-dora", i]];
+        [files addObject:[NSString stringWithFormat:@"dunno%02d-karl", i]];
+    }
     
     // Load files into memory, make the OS cache them
     for (NSString *fileName in files) {
