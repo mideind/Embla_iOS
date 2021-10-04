@@ -49,7 +49,7 @@ The key should be  saved in the following text file:
     <img src="Screenshots/embla_screenshot_55_3.png" width="30%">
 </p>
 
-## Credits
+## Acknowledgements
 
 The Embla iOS client uses [Snowboy](https://github.com/seasalt-ai/snowboy) for hotword detection
 and Google's [Speech-to-Text API](https://cloud.google.com/speech-to-text) for speech recognition.
