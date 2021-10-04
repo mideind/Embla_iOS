@@ -429,8 +429,8 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 - (void)playDontKnow {
     NSUInteger voiceID = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
     NSString *suffix = voiceID == 0 ? @"dora" : @"karl";
-    uint32_t rand = arc4random_uniform(6) + 1;
-    NSString *fn = [NSString stringWithFormat:@"dunno%02d-%@", rand, suffix];
+    uint32_t rnd = arc4random_uniform(6) + 1;
+    NSString *fn = [NSString stringWithFormat:@"dunno%02d-%@", rnd, suffix];
     [self playAudio:fn];
 }
 

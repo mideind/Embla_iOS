@@ -16,7 +16,6 @@
 		D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FFBC361C96208B00268A5F /* SpeechRecognitionService.m */; };
 		F40B12562343908F00CBE9B4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B12552343908F00CBE9B4 /* WebKit.framework */; };
 		F421878B237C78880097E5D4 /* conn-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218788237C78880097E5D4 /* conn-karl.wav */; };
-		F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218789237C78880097E5D4 /* dunno-karl.wav */; };
 		F421878D237C78880097E5D4 /* err-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421878A237C78880097E5D4 /* err-karl.wav */; };
 		F4218793237C789C0097E5D4 /* err-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4218790237C789C0097E5D4 /* err-dora.wav */; };
 		F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421879A237C79640097E5D4 /* rec_cancel.wav */; };
@@ -38,6 +37,13 @@
 		F4786B52270B6BBD00683387 /* dunno03-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B4B270B6BBD00683387 /* dunno03-dora.wav */; };
 		F4786B53270B6BBD00683387 /* dunno02-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B4C270B6BBD00683387 /* dunno02-dora.wav */; };
 		F4786B54270B6BBD00683387 /* dunno07-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B4D270B6BBD00683387 /* dunno07-dora.wav */; };
+		F4786B5C270B7DE400683387 /* dunno03-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B55270B7DE300683387 /* dunno03-karl.wav */; };
+		F4786B5D270B7DE400683387 /* dunno05-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B56270B7DE300683387 /* dunno05-karl.wav */; };
+		F4786B5E270B7DE400683387 /* dunno01-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B57270B7DE400683387 /* dunno01-karl.wav */; };
+		F4786B5F270B7DE400683387 /* dunno07-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B58270B7DE400683387 /* dunno07-karl.wav */; };
+		F4786B60270B7DE400683387 /* dunno04-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B59270B7DE400683387 /* dunno04-karl.wav */; };
+		F4786B61270B7DE400683387 /* dunno02-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B5A270B7DE400683387 /* dunno02-karl.wav */; };
+		F4786B62270B7DE400683387 /* dunno06-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B5B270B7DE400683387 /* dunno06-karl.wav */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
 		F487E8E9267546AC00D25178 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E6267546AB00D25178 /* 2.wav */; };
 		F487E8EA267546AC00D25178 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E7267546AB00D25178 /* 3.wav */; };
@@ -87,7 +93,6 @@
 		E041B89B0C5D1AED806E3D47 /* Pods-Embla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Embla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Embla/Pods-Embla.release.xcconfig"; sourceTree = "<group>"; };
 		F40B12552343908F00CBE9B4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F4218788237C78880097E5D4 /* conn-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "conn-karl.wav"; sourceTree = "<group>"; };
-		F4218789237C78880097E5D4 /* dunno-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno-karl.wav"; sourceTree = "<group>"; };
 		F421878A237C78880097E5D4 /* err-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "err-karl.wav"; sourceTree = "<group>"; };
 		F4218790237C789C0097E5D4 /* err-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "err-dora.wav"; sourceTree = "<group>"; };
 		F421879A237C79640097E5D4 /* rec_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rec_cancel.wav; sourceTree = "<group>"; };
@@ -117,6 +122,13 @@
 		F4786B4B270B6BBD00683387 /* dunno03-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno03-dora.wav"; sourceTree = "<group>"; };
 		F4786B4C270B6BBD00683387 /* dunno02-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno02-dora.wav"; sourceTree = "<group>"; };
 		F4786B4D270B6BBD00683387 /* dunno07-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno07-dora.wav"; sourceTree = "<group>"; };
+		F4786B55270B7DE300683387 /* dunno03-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno03-karl.wav"; sourceTree = "<group>"; };
+		F4786B56270B7DE300683387 /* dunno05-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno05-karl.wav"; sourceTree = "<group>"; };
+		F4786B57270B7DE400683387 /* dunno01-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno01-karl.wav"; sourceTree = "<group>"; };
+		F4786B58270B7DE400683387 /* dunno07-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno07-karl.wav"; sourceTree = "<group>"; };
+		F4786B59270B7DE400683387 /* dunno04-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno04-karl.wav"; sourceTree = "<group>"; };
+		F4786B5A270B7DE400683387 /* dunno02-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno02-karl.wav"; sourceTree = "<group>"; };
+		F4786B5B270B7DE400683387 /* dunno06-karl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno06-karl.wav"; sourceTree = "<group>"; };
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		F47D200C2370880800E4DB6A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		F47D200D2370880900E4DB6A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -314,7 +326,13 @@
 			isa = PBXGroup;
 			children = (
 				F4218788237C78880097E5D4 /* conn-karl.wav */,
-				F4218789237C78880097E5D4 /* dunno-karl.wav */,
+				F4786B57270B7DE400683387 /* dunno01-karl.wav */,
+				F4786B5A270B7DE400683387 /* dunno02-karl.wav */,
+				F4786B55270B7DE300683387 /* dunno03-karl.wav */,
+				F4786B59270B7DE400683387 /* dunno04-karl.wav */,
+				F4786B56270B7DE300683387 /* dunno05-karl.wav */,
+				F4786B5B270B7DE400683387 /* dunno06-karl.wav */,
+				F4786B58270B7DE400683387 /* dunno07-karl.wav */,
 				F421878A237C78880097E5D4 /* err-karl.wav */,
 			);
 			path = Karl;
@@ -502,11 +520,15 @@
 				F487E8EB267546AC00D25178 /* 1.wav in Resources */,
 				F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */,
 				F487E8EA267546AC00D25178 /* 3.wav in Resources */,
+				F4786B61270B7DE400683387 /* dunno02-karl.wav in Resources */,
 				F4E1538C2379BC5F00388420 /* Assets.xcassets in Resources */,
 				F4BAE87125A64402008C852E /* Lato-Italic.woff2 in Resources */,
 				F421878B237C78880097E5D4 /* conn-karl.wav in Resources */,
+				F4786B5F270B7DE400683387 /* dunno07-karl.wav in Resources */,
 				F4786B53270B6BBD00683387 /* dunno02-dora.wav in Resources */,
 				F461CFD22620B23700B2323C /* common.res in Resources */,
+				F4786B5D270B7DE400683387 /* dunno05-karl.wav in Resources */,
+				F4786B5E270B7DE400683387 /* dunno01-karl.wav in Resources */,
 				D392D9861C94937D002F5132 /* Main.storyboard in Resources */,
 				F4786B50270B6BBD00683387 /* dunno05-dora.wav in Resources */,
 				F4D8028827075769004B9B18 /* conn-dora.wav in Resources */,
@@ -526,14 +548,16 @@
 				F4D36A9225ED4A4900F5E354 /* privacy.html in Resources */,
 				F487E8ED2677B48100D25178 /* default.pmdl in Resources */,
 				F421878D237C78880097E5D4 /* err-karl.wav in Resources */,
+				F4786B5C270B7DE400683387 /* dunno03-karl.wav in Resources */,
 				F421879F237C79640097E5D4 /* rec_begin.wav in Resources */,
+				F4786B60270B7DE400683387 /* dunno04-karl.wav in Resources */,
 				F4CAB7692683ABC000A595D6 /* old.pmdl in Resources */,
 				F4D36A9025ED4A4900F5E354 /* instructions.html in Resources */,
 				F4D36A9125ED4A4900F5E354 /* loading.html in Resources */,
 				F4CDF6D0235F541E00E88CF6 /* Lato-Italic.ttf in Resources */,
-				F421878C237C78880097E5D4 /* dunno-karl.wav in Resources */,
 				F4D36A8F25ED4A4900F5E354 /* about.html in Resources */,
 				F4786B54270B6BBD00683387 /* dunno07-dora.wav in Resources */,
+				F4786B62270B7DE400683387 /* dunno06-karl.wav in Resources */,
 				F4CDF6D1235F541E00E88CF6 /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,7 +833,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Snowboy",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -860,7 +884,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Snowboy",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				MODULEMAP_FILE = module.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = is.mideind.Embla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
