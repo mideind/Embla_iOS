@@ -33,9 +33,6 @@
 #define SESSION_MIN_AUDIO_LEVEL 0.03f
 
 
-static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
-
-
 @interface QuerySession () <AudioRecordingServiceDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
@@ -296,7 +293,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
     NSDictionary *r = responseObject;
     DLog(@"Handling query server response: %@", [r description]);
     
-    NSString *answer = kDontKnowAnswer;
+    NSString *answer = @"";
     NSString *question = @"";
     NSString *source;
     NSURL *url;
@@ -329,8 +326,7 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
         }
         // No audio response...
         else {
-            answer = kDontKnowAnswer;
-            [self playDontKnow];
+            answer = [self playDunno];
         }
     }
     // Malformed response from query server
@@ -426,12 +422,23 @@ static NSString * const kDontKnowAnswer = @"Það veit ég ekki.";
 }
 
 // Play dunno-voice_id audio file
-- (void)playDontKnow {
+- (NSString *)playDunno {
     NSUInteger voiceID = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
     NSString *suffix = voiceID == 0 ? @"dora" : @"karl";
     uint32_t rnd = arc4random_uniform(6) + 1;
-    NSString *fn = [NSString stringWithFormat:@"dunno%02d-%@", rnd, suffix];
+    NSString *dunnoName = [NSString stringWithFormat:@"dunno%02d", rnd];
+    NSString *fn = [NSString stringWithFormat:@"%@-%@", dunnoName, suffix];
     [self playAudio:fn];
+    NSDictionary *dunnoStrings = @{
+        @"dunno01": @"Ég get ekki svarað því.",
+        @"dunno02": @"Ég get því miður ekki svarað því.",
+        @"dunno03": @"Ég kann ekki svar við því.",
+        @"dunno04": @"Ég skil ekki þessa fyrirspurn.",
+        @"dunno05": @"Ég veit það ekki.",
+        @"dunno06": @"Því miður skildi ég þetta ekki.",
+        @"dunno07": @"Því miður veit ég það ekki.",
+    };
+    return [dunnoStrings objectForKey:dunnoName];
 }
 
 #pragma mark - AVAudioPlayerDelegate
