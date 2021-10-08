@@ -1,7 +1,7 @@
 # Bash script to simplistically obfuscate API key
 
 GOOGLE_KEY_PATH="Keys/GoogleAPI.key"
-GREYNIR_KEY_PATH="Keys/GreynirSpeech.key"
+GREYNIR_KEY_PATH="Keys/GreynirAPI.key"
 
 GOBF=""
 SOBF=""
@@ -15,7 +15,7 @@ if [ ! -e $GREYNIR_KEY_PATH ]; then
 fi
 
 GOBF=`base64 -i ${GOOGLE_KEY_PATH}`
-SOBF=`base64 -i ${SPEECH_KEY_PATH}`
+SOBF=`base64 -i ${GREYNIR_KEY_PATH}`
 
 cat << EOF
 const char *gak = "${GOBF}";

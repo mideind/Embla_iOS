@@ -53,6 +53,9 @@
 
 - (NSString *)_speechAPIEndpoint {
     NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
+    if ([server length] == 0 || [server hasPrefix:@"http"] == NO) {
+        server = DEFAULT_QUERY_SERVER;
+    }
     return [NSString stringWithFormat:@"%@%@", server, SPEECH_API_PATH];
 }
 
