@@ -16,6 +16,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+    This is a class to parse data: URIs (RFC2397) since no support
+    is available for them in the Cocoa/CocoaTouch APIs.
+*/
+
 #import "DataURI.h"
 
 
@@ -37,6 +42,7 @@
     self = [super init];
     if (self) {
         if (![self _parse:string]) {
+            NSLog(@"Not a valid Data URI: %@", string);
             return nil;
         }
         urlString = string;
@@ -60,6 +66,7 @@
     for (NSUInteger i = prefixLen; i < [string length]; i++) {
         // This is not really correct since the mime type *may* contain a comma,
         // e.g. data:video/webm; codecs=\"vp8, opus\";base64,GkXfowEAAAAAA...
+        // But we're not going to bother handling such edge cases for now.
         if (str[i] == ',') {
             splitPos = i;
             break;
@@ -95,7 +102,8 @@
 }
 
 + (BOOL)isDataURI:(NSString *)string {
-    return [string hasPrefix:DATA_URI_PREFIX];
+    // The minimal (empty) data URI is "data:,"
+    return [string hasPrefix:DATA_URI_PREFIX] && [string containsString:@","];
 }
 
 @end
