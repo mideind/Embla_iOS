@@ -572,8 +572,7 @@ static NSString * const kSessionButtonLabelActive = \
     NSArray *voiceSounds = @[@"err", @"conn", @"dunno"];
     
     if ([voiceSounds containsObject:fileName]) {
-        NSUInteger vid = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
-        NSString *suffix = (vid == 0) ? @"dora" : @"karl";
+        NSString *suffix = [[DEFAULTS stringForKey:@"VoiceID"] lowercaseString];
         fileName = [NSString stringWithFormat:@"%@-%@", fileName, suffix];
     }
     

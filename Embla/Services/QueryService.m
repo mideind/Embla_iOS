@@ -89,7 +89,7 @@
     NSString *apiEndpoint = [self _queryAPIEndpoint];
     
     // Query key/value pairs
-    NSString *voiceName = [DEFAULTS integerForKey:@"Voice"] == 0 ? @"Dora" : @"Karl";
+    NSString *voiceName = [DEFAULTS stringForKey:@"VoiceID"];
     NSString *voiceSpeed = [NSString stringWithFormat:@"%.2f", [DEFAULTS floatForKey:@"SpeechSpeed"]];
     NSMutableDictionary *parameters = [@{
         @"q": qstr,
@@ -163,8 +163,7 @@
         apiKey = @"";
     }
     
-    NSUInteger voiceID = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
-    NSString *voiceName = voiceID == 0 ? @"Dora" : @"Karl";
+    NSString *voiceName = [DEFAULTS stringForKey:@"VoiceID"];
     
     NSDictionary *parameters = @{
         @"text": str,

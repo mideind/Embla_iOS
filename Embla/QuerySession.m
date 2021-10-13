@@ -441,8 +441,7 @@
 
 // Play dunno-voice_id audio file
 - (NSString *)playDunno {
-    NSUInteger voiceID = [[DEFAULTS objectForKey:@"Voice"] unsignedIntegerValue];
-    NSString *suffix = voiceID == 0 ? @"dora" : @"karl";
+    NSString *suffix = [[DEFAULTS objectForKey:@"VoiceID"] lowercaseString];
     uint32_t rnd = arc4random_uniform(6) + 1;
     NSString *dunnoName = [NSString stringWithFormat:@"dunno%02d", rnd];
     NSString *fn = [NSString stringWithFormat:@"%@-%@", dunnoName, suffix];

@@ -126,10 +126,29 @@
     [self.hotwordSwitch setOn:[DEFAULTS boolForKey:@"VoiceActivation"]];
     [self.useLocationSwitch setOn:[DEFAULTS boolForKey:@"UseLocation"]];
     [self.privacyModeSwitch setOn:[DEFAULTS boolForKey:@"PrivacyMode"]];
-    [self.voiceSegmentedControl setSelectedSegmentIndex:[DEFAULTS integerForKey:@"Voice"]];
-    float speed = [DEFAULTS floatForKey:@"SpeechSpeed"];
-    [self.speechSpeedSlider setValue:speed];
+    [self.speechSpeedSlider setValue:[DEFAULTS floatForKey:@"SpeechSpeed"]];
     [self updateSpeechSpeedLabel];
+
+#ifdef DEBUG
+    [self.voiceSegmentedControl removeAllSegments];
+    for (NSString *name in @[@"Alfur", @"Dilja", @"Karl", @"Dora"]) {
+        [self.voiceSegmentedControl insertSegmentWithTitle:name
+                                                   atIndex:0
+                                                  animated:NO];
+    }
+#endif
+    
+    // Find which voice segment to select
+    NSString *voiceName = [DEFAULTS stringForKey:@"VoiceID"];
+    NSUInteger voiceToSelect = 0;
+    for (int i = 0; i < [self.voiceSegmentedControl numberOfSegments]; i++) {
+        NSString *title = [self.voiceSegmentedControl titleForSegmentAtIndex:i];
+        if ([title isEqualToString:voiceName]) {
+            voiceToSelect = i;
+            break;
+        }
+    }
+    [self.voiceSegmentedControl setSelectedSegmentIndex:voiceToSelect];
     
 #ifdef DEBUG
     // Query server settings
@@ -148,7 +167,13 @@
     [DEFAULTS setBool:self.hotwordSwitch.isOn forKey:@"VoiceActivation"];
     [DEFAULTS setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
     [DEFAULTS setBool:self.privacyModeSwitch.isOn forKey:@"PrivacyMode"];
-    [DEFAULTS setInteger:[self.voiceSegmentedControl selectedSegmentIndex] forKey:@"Voice"];
+    NSString *voiceName = [self.voiceSegmentedControl titleForSegmentAtIndex:[self.voiceSegmentedControl selectedSegmentIndex]];
+    if ([voiceName isEqualToString:@"Kona"]) {
+        voiceName = @"Dora";
+    } else if ([voiceName isEqualToString:@"Karl"]) {
+        voiceName = @"Karl";
+    }
+    [DEFAULTS setObject:voiceName forKey:@"VoiceID"];
     [DEFAULTS setFloat:[self.speechSpeedSlider value] forKey:@"SpeechSpeed"];
     
     // Sanitize query server URL

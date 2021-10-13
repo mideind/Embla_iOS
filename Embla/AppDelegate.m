@@ -118,7 +118,7 @@
         @"VoiceActivation": @(YES),
         @"UseLocation": @(YES),
         @"PrivacyMode": @(NO),
-        @"Voice": [NSNumber numberWithInteger:0],
+        @"VoiceID": @"Dora",
         @"SpeechSpeed": [NSNumber numberWithFloat:1.0f],
         @"QueryServer": DEFAULT_QUERY_SERVER,
         @"Speech2TextServer": DEFAULT_SPEECH2TEXT_SERVER,
