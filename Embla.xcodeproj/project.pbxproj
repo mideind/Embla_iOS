@@ -74,6 +74,7 @@
 		F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854F2368BDEA004E29D1 /* SessionButton.m */; };
 		F4E785592368FA9F004E29D1 /* Keys.c in Sources */ = {isa = PBXBuildFile; fileRef = F4E785572368FA88004E29D1 /* Keys.c */; };
 		F4E90AC52406C2F9004EE9A6 /* JSExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E90AC32406C2F9004EE9A6 /* JSExecutor.m */; };
+		F4F8829927171BDC00A9090C /* DataURI.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F8829827171BDC00A9090C /* DataURI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +178,8 @@
 		F4E785582368FA88004E29D1 /* keys.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = keys.sh; sourceTree = "<group>"; };
 		F4E90AC32406C2F9004EE9A6 /* JSExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSExecutor.m; sourceTree = "<group>"; };
 		F4E90AC42406C2F9004EE9A6 /* JSExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExecutor.h; sourceTree = "<group>"; };
+		F4F8829727171BDC00A9090C /* DataURI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataURI.h; sourceTree = "<group>"; };
+		F4F8829827171BDC00A9090C /* DataURI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataURI.m; sourceTree = "<group>"; };
 		FDF1E2EC415384E4A4629D2F /* libPods-Embla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Embla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -273,6 +276,8 @@
 				F492123422D61D5300337AF8 /* NSString+Additions.m */,
 				F47D200D2370880900E4DB6A /* UIColor+Hex.h */,
 				F47D200C2370880800E4DB6A /* UIColor+Hex.m */,
+				F4F8829727171BDC00A9090C /* DataURI.h */,
+				F4F8829827171BDC00A9090C /* DataURI.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
+				F4F8829927171BDC00A9090C /* DataURI.m in Sources */,
 				F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */,
 				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,

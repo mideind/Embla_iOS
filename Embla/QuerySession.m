@@ -27,6 +27,7 @@
 #import "Common.h"
 #import "QueryService.h"
 #import "SpeechRecognitionService.h"
+#import "DataURI.h"
 #import <AVFoundation/AVFoundation.h>
 
 
@@ -125,7 +126,7 @@
     NSInteger frameCount = [data length] / 2; // Mono 16-bit audio means each frame is 2 bytes
     int16_t *samples = (int16_t *)[data bytes]; // Cast void pointer
     
-    //NSLog(@"Frame count: %d", (int)frameCount);
+    //DLog(@"Frame count: %d", (int)frameCount);
     // Calculate the average, max and sum of the received audio frames
 //    int64_t sum = 0;
 //    int64_t avg = 0;
@@ -322,7 +323,7 @@
         }
         // Play back audio response
         else if (audioURLStr && [audioURLStr isKindOfClass:[NSString class]]) {
-            [self playRemoteURL:[NSURL URLWithString:audioURLStr]];
+            [self playRemoteURL:audioURLStr];
         }
         // No audio response...
         else {
@@ -388,7 +389,24 @@
 }
 
 // Download remote MP3 file and play it when download is complete
-- (void)playRemoteURL:(NSURL *)url {
+- (void)playRemoteURL:(NSString *)urlString {
+    
+    // Special handling of Data URIs
+    if ([DataURI isDataURI:urlString]) {
+        DataURI *uri = [[DataURI alloc] initWithString:urlString];
+        NSData *data = [uri data];
+        if (uri == nil || data == nil) {
+            NSString *msg = [NSString stringWithFormat:@"Failed to decode Data URI %@", urlString];
+            NSError *error = [NSError errorWithDomain:@"Embla" code:0 userInfo:@{ NSLocalizedDescriptionKey:msg }];
+            DLog(@"Error fetching audio: %@", [error localizedDescription]);
+            [self.delegate sessionDidRaiseError:error];
+            return;
+        }
+        [self playAudio:data];
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:urlString];
     DLog(@"Downloading audio URL: %@", [url description]);
 
     NSURLSessionDataTask *downloadTask = \

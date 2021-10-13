@@ -433,8 +433,7 @@ static NSString * const kSessionButtonLabelActive = \
             if ([[respDict objectForKey:@"err"] boolValue] || !audioURLStr || !self.currentSession) {
                 return;
             }
-            NSURL *url = [NSURL URLWithString:audioURLStr];
-            [self.currentSession playRemoteURL:url];
+            [self.currentSession playRemoteURL:audioURLStr];
         };
         
         [[JSExecutor sharedInstance] run:cmd completionHandler:^(id res, NSError *err) {
