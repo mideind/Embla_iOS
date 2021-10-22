@@ -31,7 +31,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Initial defaults
-    [DEFAULTS registerDefaults:[self startingDefaults]];
+    NSDictionary *startingDefaults = [self startingDefaults];
+    [DEFAULTS registerDefaults:startingDefaults];
     
     // This hack is here for backwards compatibility reasons.
     // In versions prior to 1.2, the selected voice in defaults was stored
@@ -45,6 +46,18 @@
         NSString *v = voiceIdx == 0 ? @"Dora" : @"Karl";
         [DEFAULTS setObject:v forKey:@"VoiceID"];
     }
+    
+#ifdef DEBUG
+    // Dump app-specific defaults to standard output
+    NSArray *defaultKeys = [startingDefaults allKeys];
+    NSMutableDictionary *finalDefaults = [[DEFAULTS dictionaryRepresentation] mutableCopy];
+    for (NSString *k in [finalDefaults allKeys]) {
+        if ([defaultKeys containsObject:k] == NO) {
+            [finalDefaults removeObjectForKey:k];
+        }
+    }
+    DLog(@"Current application defaults:\n%@", [finalDefaults description]);
+#endif
     
 #ifdef DEBUG
     // Clear web cache every time app is relaunched when in debug mode
