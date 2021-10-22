@@ -164,11 +164,8 @@
 }
 
 - (void)stopLocationServices {
+    [self.locationManager stopUpdatingLocation];
     self.locationManager = nil;
-}
-    
-- (BOOL)locationServicesAvailable {
-    return [CLLocationManager locationServicesEnabled];
 }
 
 #pragma mark - CLLocationManagerDelegate
