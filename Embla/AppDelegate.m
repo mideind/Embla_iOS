@@ -33,6 +33,19 @@
     // Initial defaults
     [DEFAULTS registerDefaults:[self startingDefaults]];
     
+    // This hack is here for backwards compatibility reasons.
+    // In versions prior to 1.2, the selected voice in defaults was stored
+    // as an integer (0 for Dora and 1 for Karl) under the key "Voice".
+    // As of 1.2, it is stored as a string under the key "VoiceID"
+    // This code ensures that the user's previously selected voice is
+    // preserved when he updates the client.
+    if ([DEFAULTS objectForKey:@"Voice"] != nil) {
+        NSInteger voiceIdx = [DEFAULTS integerForKey:@"Voice"];
+        [DEFAULTS removeObjectForKey:@"Voice"];
+        NSString *v = voiceIdx == 0 ? @"Dora" : @"Karl";
+        [DEFAULTS setObject:v forKey:@"VoiceID"];
+    }
+    
 #ifdef DEBUG
     // Clear web cache every time app is relaunched when in debug mode
     // Makes it easier to test changes to remote HTML documents
