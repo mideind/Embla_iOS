@@ -45,9 +45,6 @@
 		F4786B61270B7DE400683387 /* dunno02-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B5A270B7DE400683387 /* dunno02-karl.wav */; };
 		F4786B62270B7DE400683387 /* dunno06-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B5B270B7DE400683387 /* dunno06-karl.wav */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
-		F487E8E9267546AC00D25178 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E6267546AB00D25178 /* 2.wav */; };
-		F487E8EA267546AC00D25178 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E7267546AB00D25178 /* 3.wav */; };
-		F487E8EB267546AC00D25178 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F487E8E8267546AC00D25178 /* 1.wav */; };
 		F487E8ED2677B48100D25178 /* default.pmdl in Resources */ = {isa = PBXBuildFile; fileRef = F487E8EC2677B48100D25178 /* default.pmdl */; };
 		F487E8F0267905B100D25178 /* HotwordModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F487E8EF267905B100D25178 /* HotwordModelViewController.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
@@ -133,9 +130,6 @@
 		F47D200A236C9D0000E4DB6A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		F47D200C2370880800E4DB6A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		F47D200D2370880900E4DB6A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
-		F487E8E6267546AB00D25178 /* 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.wav; sourceTree = "<group>"; };
-		F487E8E7267546AB00D25178 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
-		F487E8E8267546AC00D25178 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
 		F487E8EC2677B48100D25178 /* default.pmdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.pmdl; sourceTree = "<group>"; };
 		F487E8EE267905B100D25178 /* HotwordModelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotwordModelViewController.h; sourceTree = "<group>"; };
 		F487E8EF267905B100D25178 /* HotwordModelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotwordModelViewController.m; sourceTree = "<group>"; };
@@ -315,9 +309,6 @@
 		F427692822C122F200BB6977 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				F487E8E8267546AC00D25178 /* 1.wav */,
-				F487E8E6267546AB00D25178 /* 2.wav */,
-				F487E8E7267546AB00D25178 /* 3.wav */,
 				F421879C237C79640097E5D4 /* rec_begin.wav */,
 				F421879A237C79640097E5D4 /* rec_cancel.wav */,
 				F421879B237C79640097E5D4 /* rec_confirm.wav */,
@@ -522,9 +513,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F487E8EB267546AC00D25178 /* 1.wav in Resources */,
 				F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */,
-				F487E8EA267546AC00D25178 /* 3.wav in Resources */,
 				F4786B61270B7DE400683387 /* dunno02-karl.wav in Resources */,
 				F4E1538C2379BC5F00388420 /* Assets.xcassets in Resources */,
 				F4BAE87125A64402008C852E /* Lato-Italic.woff2 in Resources */,
@@ -542,7 +531,6 @@
 				D34C17DC1C948F5800D69BCA /* LaunchScreen.storyboard in Resources */,
 				F421879D237C79640097E5D4 /* rec_cancel.wav in Resources */,
 				F4218793237C789C0097E5D4 /* err-dora.wav in Resources */,
-				F487E8E9267546AC00D25178 /* 2.wav in Resources */,
 				F4786B51270B6BBD00683387 /* dunno01-dora.wav in Resources */,
 				F4786B4F270B6BBD00683387 /* dunno04-dora.wav in Resources */,
 				F421879E237C79640097E5D4 /* rec_confirm.wav in Resources */,
