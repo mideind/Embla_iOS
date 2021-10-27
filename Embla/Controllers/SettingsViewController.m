@@ -229,7 +229,7 @@
 // Implements fixed step size for speech speed slider control.
 // Snaps to nearest value that is a multiple of 0.1, range is 0.7-1.3.
 -(IBAction)speechSpeedChanged:(UISlider *)sender {
-    float stepSize = 0.1f;
+    float stepSize = 0.05f;
     float newStep = roundf((sender.value) / stepSize);
     float val = newStep * stepSize;
     sender.value = val;

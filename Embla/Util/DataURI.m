@@ -29,7 +29,6 @@
 
 @interface DataURI ()
 {
-    NSString *urlString;
     NSString *mimeType;
     NSData *data;
 }
@@ -45,7 +44,6 @@
             NSLog(@"Not a valid Data URI: %@", string);
             return nil;
         }
-        urlString = string;
     }
     return self;
 }
