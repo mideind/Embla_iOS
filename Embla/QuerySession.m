@@ -348,8 +348,12 @@
 
 #pragma mark - Audio Playback
 
-// Utility function that creates an AVAudioPlayer to play either a local file or audio data
 - (void)playAudio:(id)filenameOrData {
+    [self playAudio:filenameOrData rate:1.0];
+}
+
+// Utility function that creates an AVAudioPlayer to play either a local file or audio data
+- (void)playAudio:(id)filenameOrData rate:(float)rate {
     NSAssert([filenameOrData isKindOfClass:[NSString class]] || [filenameOrData isKindOfClass:[NSData class]],
              @"playAudio argument neither filename string nor data.");
     
@@ -383,6 +387,11 @@
     
     // Configure player and set it off
     self.audioPlayer = player;
+    [self.audioPlayer setVolume:1.0];
+    if (rate != 1.0) {
+        self.audioPlayer.enableRate = YES;
+        [self.audioPlayer setRate:rate];
+    }
 //    [player setMeteringEnabled:YES];
     [player setDelegate:self];
     [player play];
@@ -445,7 +454,7 @@
     uint32_t rnd = arc4random_uniform(6) + 1;
     NSString *dunnoName = [NSString stringWithFormat:@"dunno%02d", rnd];
     NSString *fn = [NSString stringWithFormat:@"%@-%@", dunnoName, suffix];
-    [self playAudio:fn];
+    [self playAudio:fn rate:[DEFAULTS floatForKey:@"SpeechSpeed"]];
     NSDictionary *dunnoStrings = @{
         @"dunno01": @"Ég get ekki svarað því.",
         @"dunno02": @"Ég get því miður ekki svarað því.",
@@ -468,8 +477,8 @@
 
 #pragma mark - Audio level
 
-// The session has an audio level property. If we are recording, this is the volume of
-// the latest microphone input. Otherwise, it is zero.
+// The session has an audio level property. If we are recording, this is
+// the volume of the latest microphone input. Otherwise, it is zero.
 - (CGFloat)audioLevel {
     CGFloat level = 0.f;
     CGFloat min = SESSION_MIN_AUDIO_LEVEL;

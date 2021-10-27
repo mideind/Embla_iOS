@@ -571,14 +571,21 @@ static NSString * const kSessionButtonLabelActive = \
 - (void)playUISound:(NSString *)fileName {
     NSArray *voiceSounds = @[@"err", @"conn", @"dunno"];
     
+    BOOL adjustRate = NO;
     if ([voiceSounds containsObject:fileName]) {
         NSString *suffix = [[DEFAULTS stringForKey:@"VoiceID"] lowercaseString];
         fileName = [NSString stringWithFormat:@"%@-%@", fileName, suffix];
+        adjustRate = YES;
     }
     
     if ([uiSounds objectForKey:fileName]) {
         player = [[AVAudioPlayer alloc] initWithData:uiSounds[fileName] error:nil];
         [player setVolume:1.0];
+        float speed = [DEFAULTS floatForKey:@"SpeechSpeed"];
+        if (speed != 1.0 && adjustRate) {
+            player.enableRate = YES;
+            player.rate = speed;
+        }
         [player play];
     } else {
         DLog(@"Unable to play audio file '%@'", fileName);
