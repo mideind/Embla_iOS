@@ -565,7 +565,13 @@ static NSString * const kSessionButtonLabelActive = \
     }
     // Update UI text view on the main thread
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, formattedString];
+        NSString *txt = [NSString stringWithFormat:@"%@%@\n", self.textView.text, formattedString];
+        NSDictionary *attrs = @{    NSForegroundColorAttributeName: [self.textView textColor],
+                                    NSFontAttributeName: [self.textView font]
+                                };
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:txt
+                                                                                             attributes:attrs];
+        self.textView.attributedText = attributedString;
     }];
 }
 
@@ -574,8 +580,6 @@ static NSString * const kSessionButtonLabelActive = \
     NSDictionary *attrs = @{    NSForegroundColorAttributeName: [self.textView textColor],
                                 NSFontAttributeName: [self.textView font]
                             };
-    DLog(@"%@", [[self.textView textColor] description]);
-    DLog(@"%@", [[self.textView font] description]);
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:s
                                                                                          attributes:attrs];
