@@ -16,10 +16,23 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import "SnowboyDetector.h"
-#import "SessionButton.h"
+#import "UIImage+Additions.h"
 
-@interface SessionViewController : UIViewController <HotwordDetectorDelegate, AudioLevelSource>
+@implementation UIImage (Additions)
+
++ (UIImage*)imageWithImage:(UIImage *) sourceImage scaledToWidth:(float)width {
+    float oldWidth = sourceImage.size.width;
+    float scaleFactor = width / oldWidth;
+    
+    float newHeight = sourceImage.size.height * scaleFactor;
+    float newWidth = oldWidth * scaleFactor;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 @end

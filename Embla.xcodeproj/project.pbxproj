@@ -66,6 +66,7 @@
 		F4E1538C2379BC5F00388420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34C17D81C948F5800D69BCA /* Assets.xcassets */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
 		F4E67E0B275FC2EB00D69183 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E67E09275FC2EB00D69183 /* QuerySession.m */; };
+		F4E67E0E275FD6C100D69183 /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E67E0D275FD6C000D69183 /* UIImage+Additions.m */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
 		F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854F2368BDEA004E29D1 /* SessionButton.m */; };
@@ -160,6 +161,8 @@
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
 		F4E67E09275FC2EB00D69183 /* QuerySession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuerySession.m; sourceTree = "<group>"; };
 		F4E67E0A275FC2EB00D69183 /* QuerySession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuerySession.h; sourceTree = "<group>"; };
+		F4E67E0C275FD6C000D69183 /* UIImage+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
+		F4E67E0D275FD6C000D69183 /* UIImage+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		F4E7854823676639004E29D1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		F4E7854923676639004E29D1 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		F4E7854B236766E0004E29D1 /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 			children = (
 				F492123322D61D5300337AF8 /* NSString+Additions.h */,
 				F492123422D61D5300337AF8 /* NSString+Additions.m */,
+				F4E67E0C275FD6C000D69183 /* UIImage+Additions.h */,
+				F4E67E0D275FD6C000D69183 /* UIImage+Additions.m */,
 				F47D200D2370880900E4DB6A /* UIColor+Hex.h */,
 				F47D200C2370880800E4DB6A /* UIColor+Hex.m */,
 				F4F8829727171BDC00A9090C /* DataURI.h */,
@@ -651,6 +656,7 @@
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
 				D392D9891C94938F002F5132 /* SessionViewController.m in Sources */,
 				F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */,
+				F4E67E0E275FD6C100D69183 /* UIImage+Additions.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
 				F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */,
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,

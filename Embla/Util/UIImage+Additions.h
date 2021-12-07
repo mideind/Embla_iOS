@@ -16,10 +16,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "SnowboyDetector.h"
-#import "SessionButton.h"
 
-@interface SessionViewController : UIViewController <HotwordDetectorDelegate, AudioLevelSource>
+@interface UIImage (Additions)
+
++ (UIImage*)imageWithImage:(UIImage *) sourceImage scaledToWidth:(float)width;
 
 @end

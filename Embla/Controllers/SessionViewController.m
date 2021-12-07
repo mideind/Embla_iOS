@@ -30,6 +30,7 @@
 #import "JSExecutor.h"
 #import "Reachability.h"
 #import "NSString+Additions.h"
+#import "UIImage+Additions.h"
 #import "QueryService.h"
 
 static NSString * const kIntroMessage = \
@@ -585,7 +586,7 @@ static NSString * const kSessionButtonLabelActive = \
                                                                                          attributes:attrs];
     NSTextAttachment *imageAttachment = [NSTextAttachment new];
     float tvWidth = self.textView.bounds.size.width;
-    UIImage *finalImg = [SessionViewController imageWithImage:img scaledToWidth:tvWidth];
+    UIImage *finalImg = [UIImage imageWithImage:img scaledToWidth:tvWidth];
 
     imageAttachment.image = finalImg;
 
@@ -595,21 +596,6 @@ static NSString * const kSessionButtonLabelActive = \
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.attributedText = attributedString;
     }];
-}
-
-+(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width
-{
-    float oldWidth = sourceImage.size.width;
-    float scaleFactor = i_width / oldWidth;
-
-    float newHeight = sourceImage.size.height * scaleFactor;
-    float newWidth = oldWidth * scaleFactor;
-
-    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
-    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 #pragma mark - AudioLevelSource (for button)
