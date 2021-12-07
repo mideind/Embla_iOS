@@ -29,7 +29,6 @@
 		F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFBA261E13C900B2323C /* AudioRecordingService.m */; };
 		F461CFD22620B23700B2323C /* common.res in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCF2620B23700B2323C /* common.res */; };
 		F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = F461CFD62620B27500B2323C /* SnowboyDetector.mm */; };
-		F469639A22C5086700645F69 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F469639922C5086700645F69 /* QuerySession.m */; };
 		F4786B4E270B6BBD00683387 /* dunno06-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B47270B6BBD00683387 /* dunno06-dora.wav */; };
 		F4786B4F270B6BBD00683387 /* dunno04-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B48270B6BBD00683387 /* dunno04-dora.wav */; };
 		F4786B50270B6BBD00683387 /* dunno05-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B49270B6BBD00683387 /* dunno05-dora.wav */; };
@@ -66,6 +65,7 @@
 		F4E153862374657C00388420 /* animation.apng in Resources */ = {isa = PBXBuildFile; fileRef = F4E153852374657C00388420 /* animation.apng */; };
 		F4E1538C2379BC5F00388420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34C17D81C948F5800D69BCA /* Assets.xcassets */; };
 		F4E160F922A977630019EDE7 /* QueryService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E160F822A977620019EDE7 /* QueryService.m */; };
+		F4E67E0B275FC2EB00D69183 /* QuerySession.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E67E09275FC2EB00D69183 /* QuerySession.m */; };
 		F4E7854A23676639004E29D1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854923676639004E29D1 /* AboutViewController.m */; };
 		F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854C236766E0004E29D1 /* PrivacyViewController.m */; };
 		F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E7854F2368BDEA004E29D1 /* SessionButton.m */; };
@@ -111,8 +111,6 @@
 		F461CFD52620B27500B2323C /* SnowboyDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnowboyDetector.h; sourceTree = "<group>"; };
 		F461CFD62620B27500B2323C /* SnowboyDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnowboyDetector.mm; sourceTree = "<group>"; };
 		F461CFDC2620BCD900B2323C /* HotwordDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotwordDetector.h; sourceTree = "<group>"; };
-		F469639822C5086700645F69 /* QuerySession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuerySession.h; path = Embla/QuerySession.h; sourceTree = SOURCE_ROOT; };
-		F469639922C5086700645F69 /* QuerySession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuerySession.m; path = Embla/QuerySession.m; sourceTree = SOURCE_ROOT; };
 		F4786B47270B6BBD00683387 /* dunno06-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno06-dora.wav"; sourceTree = "<group>"; };
 		F4786B48270B6BBD00683387 /* dunno04-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno04-dora.wav"; sourceTree = "<group>"; };
 		F4786B49270B6BBD00683387 /* dunno05-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno05-dora.wav"; sourceTree = "<group>"; };
@@ -160,6 +158,8 @@
 		F4E153852374657C00388420 /* animation.apng */ = {isa = PBXFileReference; lastKnownFileType = file; path = animation.apng; sourceTree = "<group>"; };
 		F4E160F722A977620019EDE7 /* QueryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryService.h; sourceTree = "<group>"; };
 		F4E160F822A977620019EDE7 /* QueryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryService.m; sourceTree = "<group>"; };
+		F4E67E09275FC2EB00D69183 /* QuerySession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuerySession.m; sourceTree = "<group>"; };
+		F4E67E0A275FC2EB00D69183 /* QuerySession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuerySession.h; sourceTree = "<group>"; };
 		F4E7854823676639004E29D1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		F4E7854923676639004E29D1 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		F4E7854B236766E0004E29D1 /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
@@ -237,8 +237,7 @@
 				F497BB1D229EF73D00F66BD4 /* Common.h */,
 				D34C17CF1C948F5700D69BCA /* AppDelegate.h */,
 				D34C17D01C948F5700D69BCA /* AppDelegate.m */,
-				F469639822C5086700645F69 /* QuerySession.h */,
-				F469639922C5086700645F69 /* QuerySession.m */,
+				F4E67E08275FC2D400D69183 /* Session */,
 				F427692122C1216A00BB6977 /* Controllers */,
 				F4E153812374474E00388420 /* Controls */,
 				F427692022C1216300BB6977 /* Services */,
@@ -413,6 +412,15 @@
 				F4E1537E23732C1B00388420 /* AudioWaveformView.m */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		F4E67E08275FC2D400D69183 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				F4E67E0A275FC2EB00D69183 /* QuerySession.h */,
+				F4E67E09275FC2EB00D69183 /* QuerySession.m */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 		F4E785472367655C004E29D1 /* Web */ = {
@@ -638,7 +646,6 @@
 			files = (
 				F4E90AC52406C2F9004EE9A6 /* JSExecutor.m in Sources */,
 				F487E8F0267905B100D25178 /* HotwordModelViewController.m in Sources */,
-				F469639A22C5086700645F69 /* QuerySession.m in Sources */,
 				F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */,
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
@@ -649,6 +656,7 @@
 				F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */,
 				F4F8829927171BDC00A9090C /* DataURI.m in Sources */,
 				F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */,
+				F4E67E0B275FC2EB00D69183 /* QuerySession.m in Sources */,
 				F427692722C1219A00BB6977 /* WebViewController.m in Sources */,
 				F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */,
 				F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */,
