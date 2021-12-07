@@ -60,7 +60,8 @@
     [self.voiceSegmentedControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
     
     // Software version label
-    [self.swVersionLabel setText:[NSString stringWithFormat:@"%@ (%@)", CLIENT_VERSION, CLIENT_BUILD]];
+    [self.swVersionLabel setText:[NSString stringWithFormat:@"%@ (%@) - %@",
+                                  CLIENT_VERSION, CLIENT_BUILD, CLIENT_OSNAME]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -68,7 +69,6 @@
     [self.useLocationSwitch becomeFirstResponder];
     [self configureControlsFromDefaults];
     [self updateLocationControl];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -239,7 +239,7 @@
 - (void)updateSpeechSpeedLabel {
     float val = self.speechSpeedSlider.value;
     NSString *s = [NSString stringWithFormat:@"%.2f", val];
-    if ([s hasSuffix:@"0"] && ![s isEqualToString:@"1.0"]) {
+    if ([s hasSuffix:@"0"]) {
         s = [s substringToIndex:[s length] - 1];
     }
     s = [s stringByReplacingOccurrencesOfString:@"." withString:@","];

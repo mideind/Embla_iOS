@@ -43,8 +43,10 @@
 #define PRIVACY_URL                     @"https://embla.is/privacy.html"
 #define INSTRUCTIONS_URL                @"https://embla.is/instructions.html"
 
-// Unique client type identifier string
+// Client info
+#define CLIENT_NAME                     @"Embla"
 #define CLIENT_TYPE                     @"ios"
+#define CLIENT_OSNAME                   @"iOS"
 #define CLIENT_VERSION                  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
 #define CLIENT_BUILD                    [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]
 

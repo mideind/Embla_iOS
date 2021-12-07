@@ -4,3 +4,5 @@ TODO list for Embla iOS app
 * Pick another icon for muting hotword activation in main view? Microphone perhaps too generic?
 * Onboarding/Intro view when app is first launched
 * Handle audio input source switching when Snowboy is running
+* Dark mode
+* Show image if provided in reply from query server

@@ -298,8 +298,8 @@
     NSString *question = @"";
     NSString *source;
     NSURL *url;
+    NSURL *imgURL;
     NSString *cmd;
-    NSString *imgURL;
     
     // If response data is valid, handle it
     if ([r isKindOfClass:[NSDictionary class]]) {
@@ -308,17 +308,20 @@
         question = [r objectForKey:@"q"];
         source = [r objectForKey:@"source"];
         cmd = [r objectForKey:@"command"];
-        imgURL = [r objectForKey:@"image"];
         
+        NSString *imgURLStr = [r objectForKey:@"image"];
         NSString *audioURLStr = [r objectForKey:@"audio"];
         NSString *openURLStr = [r objectForKey:@"open_url"];
         
         // If response contains a URL to open, there's no audio response playback
+        if (imgURLStr && [imgURLStr isKindOfClass:[NSString class]]) {
+            imgURL = [NSURL URLWithString:imgURLStr];
+        }
         if (openURLStr && [openURLStr isKindOfClass:[NSString class]]) {
             url = [NSURL URLWithString:openURLStr];
         }
         // If response contains a cmd
-        else if (cmd && [cmd isKindOfClass:[NSString class]]) {
+        if (cmd && [cmd isKindOfClass:[NSString class]]) {
             // pass
         }
         // Play back audio response
@@ -343,6 +346,7 @@
                                 toQuestion:question
                                     source:source
                                    openURL:url
+                                  imageURL:imgURL
                                    command:cmd];
 }
 

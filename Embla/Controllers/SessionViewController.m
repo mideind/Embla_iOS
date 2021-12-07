@@ -422,6 +422,7 @@ static NSString * const kSessionButtonLabelActive = \
                      toQuestion:(NSString *)question
                          source:(NSString *)source
                         openURL:(NSURL *)url
+                       imageURL:(NSURL *)imgURL
                         command:(NSString *)cmd {
     [self clearLog];
     
@@ -452,10 +453,18 @@ static NSString * const kSessionButtonLabelActive = \
     NSString *aStr = answer ? answer : @"";
     NSString *separator = answer ? @"\n\n" : @"";
     NSString *srcStr = source ? [NSString stringWithFormat:@" (%@)", source] : @"";
-    [self log:@"%@%@%@%@",  [question sentenceCapitalizedString],
-                            separator,
-                            [[aStr sentenceCapitalizedString] periodTerminatedString],
-                            srcStr];
+    NSString *logStr = [NSString stringWithFormat:@"%@%@%@%@",
+                        [question sentenceCapitalizedString],
+                        separator,
+                        [[aStr sentenceCapitalizedString] periodTerminatedString],
+                        srcStr];
+    if (imgURL) {
+        NSData *data = [NSData dataWithContentsOfURL:imgURL];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        [self logString:logStr withImage:img];
+        return;
+    }
+    [self log:logStr];
     
     // If we receive an URL in the response from the query server, we terminate
     // the session and ask the operating system to open the URL in question.
@@ -558,6 +567,42 @@ static NSString * const kSessionButtonLabelActive = \
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, formattedString];
     }];
+}
+
+- (void)logString:(NSString *)message withImage:(UIImage *)img {
+    NSString *s = [NSString stringWithFormat:@"%@\n", message];
+    NSMutableDictionary *attrs = [@{@"NSForegroundColorAttributeName": [self.textView textColor],
+                                    @"NSFontAttributeName": [self.textView font]
+                                  } mutableCopy];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:s
+                                                                                         attributes:attrs];
+    NSTextAttachment *imageAttachment = [NSTextAttachment new];
+    float tvWidth = self.textView.bounds.size.width;
+    UIImage *finalImg = [SessionViewController imageWithImage:img scaledToWidth:tvWidth];
+    
+    imageAttachment.image = finalImg;
+    
+    NSAttributedString *stringWithImage = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+    [attributedString replaceCharactersInRange:NSMakeRange([s length], 0) withAttributedString:stringWithImage];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        self.textView.attributedText = attributedString;
+    }];
+}
+
++(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width
+{
+    float oldWidth = sourceImage.size.width;
+    float scaleFactor = i_width / oldWidth;
+
+    float newHeight = sourceImage.size.height * scaleFactor;
+    float newWidth = oldWidth * scaleFactor;
+
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 #pragma mark - AudioLevelSource (for button)

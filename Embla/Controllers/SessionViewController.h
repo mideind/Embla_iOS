@@ -22,4 +22,6 @@
 
 @interface SessionViewController : UIViewController <HotwordDetectorDelegate, AudioLevelSource>
 
++(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width;
+
 @end

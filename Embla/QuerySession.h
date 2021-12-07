@@ -31,6 +31,7 @@
                      toQuestion:(NSString *)question
                          source:(NSString *)source
                         openURL:(NSURL *)url
+                       imageURL:(NSURL *)url
                         command:(NSString *)cmd;
 - (void)sessionDidRaiseError:(NSError *)err;
 - (void)sessionDidTerminate;
