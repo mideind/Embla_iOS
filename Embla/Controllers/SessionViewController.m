@@ -570,18 +570,21 @@ static NSString * const kSessionButtonLabelActive = \
 }
 
 - (void)logString:(NSString *)message withImage:(UIImage *)img {
-    NSString *s = [NSString stringWithFormat:@"%@\n", message];
-    NSMutableDictionary *attrs = [@{@"NSForegroundColorAttributeName": [self.textView textColor],
-                                    @"NSFontAttributeName": [self.textView font]
-                                  } mutableCopy];
+    NSString *s = [NSString stringWithFormat:@"%@\n\n", message];
+    NSDictionary *attrs = @{    NSForegroundColorAttributeName: [self.textView textColor],
+                                NSFontAttributeName: [self.textView font]
+                            };
+    DLog(@"%@", [[self.textView textColor] description]);
+    DLog(@"%@", [[self.textView font] description]);
+    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:s
                                                                                          attributes:attrs];
     NSTextAttachment *imageAttachment = [NSTextAttachment new];
     float tvWidth = self.textView.bounds.size.width;
     UIImage *finalImg = [SessionViewController imageWithImage:img scaledToWidth:tvWidth];
-    
+
     imageAttachment.image = finalImg;
-    
+
     NSAttributedString *stringWithImage = [NSAttributedString attributedStringWithAttachment:imageAttachment];
     [attributedString replaceCharactersInRange:NSMakeRange([s length], 0) withAttributedString:stringWithImage];
 
