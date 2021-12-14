@@ -16,8 +16,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface HotwordModelViewController : UITableViewController
+@interface WAVUtils : NSObject
+
++ (NSData *)wavDataFromPCM:(NSData *)samples
+               numChannels:(NSUInteger)numChannels
+                sampleRate:(NSUInteger)sampleRate
+             bitsPerSample:(NSUInteger)bps;
 
 @end
