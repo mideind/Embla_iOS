@@ -16,6 +16,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+// Client info
+#define CLIENT_NAME                     @"Embla"
+#define CLIENT_TYPE                     @"ios"
+#define CLIENT_OSNAME                   @"iOS"
+#define CLIENT_VERSION                  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+#define CLIENT_BUILD                    [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]
+
+// Remote HTML documentation
+#define ABOUT_URL                       @"https://embla.is/about.html"
+#define PRIVACY_URL                     @"https://embla.is/privacy.html"
+#define INSTRUCTIONS_URL                @"https://embla.is/instructions.html"
+
 // Hotword detection
 #define DEFAULT_HOTWORD_DETECTOR        @"Snowboy"
 
@@ -37,18 +49,6 @@
 
 // Hostname used to determine if the device is connected to the internet.
 #define REACHABILITY_HOSTNAME           @"greynir.is"
-
-// Remote HTML documentation
-#define ABOUT_URL                       @"https://embla.is/about.html"
-#define PRIVACY_URL                     @"https://embla.is/privacy.html"
-#define INSTRUCTIONS_URL                @"https://embla.is/instructions.html"
-
-// Client info
-#define CLIENT_NAME                     @"Embla"
-#define CLIENT_TYPE                     @"ios"
-#define CLIENT_OSNAME                   @"iOS"
-#define CLIENT_VERSION                  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
-#define CLIENT_BUILD                    [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]
 
 // Sample rate for microphone audio recording
 #define REC_SAMPLE_RATE                 16000.0f
