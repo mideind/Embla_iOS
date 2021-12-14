@@ -495,6 +495,8 @@ static NSString * const kSessionButtonLabelActive = \
 }
 
 - (void)sessionDidTerminate {
+    [[QueryService sharedInstance] uploadAudioToServer:self.currentSession.totalAudioData];
+    
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         // Update UI control on the main thread
         [self.button contract];

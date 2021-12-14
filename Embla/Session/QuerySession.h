@@ -45,6 +45,7 @@
 @property (readonly) CGFloat audioLevel;
 @property (readonly) BOOL isRecording;
 @property (readonly) BOOL terminated;
+@property (nonatomic, strong) NSMutableData *totalAudioData;
 
 - (instancetype)initWithDelegate:(id<QuerySessionDelegate>)del;
 - (void)start;

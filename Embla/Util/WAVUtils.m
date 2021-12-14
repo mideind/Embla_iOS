@@ -42,20 +42,22 @@ struct WAVHeader {
                 sampleRate:(NSUInteger)sampleRate
              bitsPerSample:(NSUInteger)bitsPerSample {
     
+    short bytesPerSample = bitsPerSample / 8;
+    
     // Generate header
     struct WAVHeader header = { 0 };
-    strncpy(header.riff,"RIFF",4);
+    strncpy(header.riff,"RIFF", 4);
     header.flength = (int)([samples length] + 44 - 8);
-    strncpy(header.wave,"WAVE",4);
-    strncpy(header.fmt,"fmt ",4);
+    strncpy(header.wave,"WAVE", 4);
+    strncpy(header.fmt,"fmt ", 4);
     header.chunk_size = 16;
     header.format_tag = 1; // PCM
     header.num_chans =  numChannels;
     header.srate = (int)sampleRate;
-    header.bytes_per_sec = (int)(sampleRate * (bitsPerSample / 8));
-    header.bytes_per_samp = bitsPerSample / 8;
+    header.bytes_per_sec = (int)(sampleRate * bytesPerSample * numChannels);
+    header.bytes_per_samp = bytesPerSample;
     header.bits_per_samp = bitsPerSample;
-    strncpy(header.data,"data",4);
+    strncpy(header.data,"data", 4);
     header.dlength = (int)[samples length];
     
     NSMutableData *data = [[NSMutableData alloc] initWithBytes:&header length:44];

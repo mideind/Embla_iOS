@@ -279,6 +279,7 @@
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
+    DLog(@"Sending request %@", [req description]);
     NSURLSessionUploadTask *uploadTask = [manager
     uploadTaskWithStreamedRequest:req
     progress: nil //^(NSProgress * _Nonnull uploadProgress) {}

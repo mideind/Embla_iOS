@@ -43,8 +43,7 @@
     CGFloat speechDuration;
     int speechAudioSize;
 }
-@property (nonatomic, strong) NSMutableData *audioData;
-@property (nonatomic, strong) NSMutableData *totalAudioData;
+@property (nonatomic, strong) NSMutableData *audioBuffer;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) NSString *queryString;
 
@@ -90,7 +89,7 @@
 - (void)startRecording {
     _isRecording = YES;
     
-    self.audioData = [NSMutableData new];
+    self.audioBuffer = [NSMutableData new];
     self.totalAudioData = [NSMutableData new];
     
 //    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
@@ -110,8 +109,6 @@
     
     DLog(@"Speech recognition duration: %.2f seconds (%d bytes)", speechDuration, speechAudioSize);
     
-    [[QueryService sharedInstance] uploadAudioToServer:self.totalAudioData];
-    
     [self.delegate sessionDidStopRecording];
 }
 
@@ -125,8 +122,9 @@
         return;
     }
     
-    [self.audioData appendData:data];
-    
+    [self.audioBuffer appendData:data];
+    [self.totalAudioData appendData:data];
+
     // Get audio frame properties
     NSInteger frameCount = [data length] / 2; // Mono 16-bit audio means each frame is 2 bytes
     int16_t *samples = (int16_t *)[data bytes]; // Cast void pointer
@@ -157,21 +155,20 @@
     int bytes_per_sample = 2;
     int chunk_size = duration * REC_SAMPLE_RATE * bytes_per_sample;
     
-    if ([self.audioData length] < chunk_size) {
+    if ([self.audioBuffer length] < chunk_size) {
         // Not enough data yet...
         return;
     }
     
     // Send data to speech recognition server.
-    [self sendSpeechData:self.audioData];
-    [self.totalAudioData appendData:self.audioData];
+    [self sendSpeechData:self.audioBuffer];
     
     // Keep track of stats on data sent to recognition server
-    speechDuration += ([self.audioData length]/(REC_SAMPLE_RATE * bytes_per_sample));
-    speechAudioSize += [self.audioData length];
+    speechDuration += ([self.audioBuffer length]/(REC_SAMPLE_RATE * bytes_per_sample));
+    speechAudioSize += [self.audioBuffer length];
     
     // Discard the accumulated audio data
-    self.audioData = [NSMutableData new];
+    self.audioBuffer = [NSMutableData new];
 }
 
 #pragma mark - Speech recognition
@@ -197,7 +194,7 @@
     };
     
 //    DLog(@"Sending audio data to speech recognition server");
-    [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioData withCompletion:compHandler];
+    [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioBuffer withCompletion:compHandler];
 }
 
 - (void)handleSpeechRecognitionResponse:(StreamingRecognizeResponse *)response {
