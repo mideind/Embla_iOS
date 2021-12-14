@@ -122,9 +122,14 @@
         return;
     }
     
+    // Append to audio buffer used to send chunks to streaming speech recognition
     [self.audioBuffer appendData:data];
-    [self.totalAudioData appendData:data];
-
+    
+    // Append to audio buffer for entire session
+    if ([self.totalAudioData length] <= MAX_SESSION_AUDIO_SIZE) {
+        [self.totalAudioData appendData:data];
+    }
+    
     // Get audio frame properties
     NSInteger frameCount = [data length] / 2; // Mono 16-bit audio means each frame is 2 bytes
     int16_t *samples = (int16_t *)[data bytes]; // Cast void pointer

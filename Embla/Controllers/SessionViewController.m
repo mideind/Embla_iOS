@@ -495,10 +495,17 @@ static NSString * const kSessionButtonLabelActive = \
 }
 
 - (void)sessionDidTerminate {
-    [[QueryService sharedInstance] uploadAudioToServer:self.currentSession.totalAudioData];
+    // Upload session audio to server
+    NSUInteger audioSize = [self.currentSession.totalAudioData length];
+    if (audioSize && audioSize <= MAX_SESSION_AUDIO_SIZE) {
+        [[QueryService sharedInstance] uploadAudioToServer:self.currentSession.totalAudioData];
+    } else {
+        DLog(@"Session audio size exceeds max (%lu > %d)",
+             (unsigned long)audioSize, MAX_SESSION_AUDIO_SIZE);
+    }
     
+    // Update UI controls on the main thread
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        // Update UI control on the main thread
         [self.button contract];
         [self.button stopAnimating];
         [self.button stopWaveform];

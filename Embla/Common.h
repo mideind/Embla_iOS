@@ -54,6 +54,9 @@
 // Sample rate for microphone audio recording
 #define REC_SAMPLE_RATE                 16000.0f
 
+// Maximum file size to upload when saving session audio data
+#define MAX_SESSION_AUDIO_SIZE          1024 * 1024 // 1 MB
+
 // Minimum acceptable speech to text result stability, on a range of 0-1.0,
 // used to determine whether an interim STT result is reasonably reliable.
 #define MIN_STT_RESULT_STABILITY        0.25f
@@ -65,6 +68,6 @@
     #define DLog(...)
 #endif
 
-// Use macro to abbreviate standard user defaults and
-// combat the excessive verbosity of the Cocoa APIs.
+// Use macro to abbreviate standard user defaults, thus
+// combating the excessive verbosity of the Cocoa APIs.
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]
