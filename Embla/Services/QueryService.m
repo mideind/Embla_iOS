@@ -23,9 +23,10 @@
 #import "QueryService.h"
 #import "Common.h"
 #import "Keys.h"
+#import "AppDelegate.h"
+#import "WAVUtils.h"
 #import "AFURLSessionManager.h"
 #import "AFURLRequestSerialization.h"
-#import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 
 // Number of seconds before a query server request should time out
@@ -59,6 +60,14 @@
     return [NSString stringWithFormat:@"%@%@", server, SPEECH_API_PATH];
 }
 
+- (NSString *)_uploadAudioAPIEndpoint {
+    NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
+    if ([server length] == 0 || [server hasPrefix:@"http"] == NO) {
+        server = DEFAULT_QUERY_SERVER;
+    }
+    return [NSString stringWithFormat:@"%@%@", server, UPLOAD_AUDIO_API_PATH];
+}
+
 - (NSDictionary *)_location {
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     CLLocation *currentLoc = [appDel latestLocation];
@@ -74,7 +83,7 @@
 
 #pragma mark - Query
 
-- (void)sendQuery:(id)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
+- (void)sendQuery:(id)query completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
     BOOL isString = [query isKindOfClass:[NSString class]];
     NSAssert(isString || [query isKindOfClass:[NSArray class]], @"Query argument passed to sendQuery must be string or array.");
     
@@ -149,7 +158,7 @@
 #pragma mark - Speech synthesis
 
 - (void)requestSpeechSynthesis:(NSString *)str
-         withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
+             completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
@@ -243,6 +252,47 @@
                                                  downloadProgress:nil
                                                 completionHandler:completionHandler];
     [dataTask resume];
+}
+
+#pragma mark - Upload audio data
+
+- (void)uploadAudioToServer:(NSData *)data {
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    
+    NSError *err;
+    NSString *urlString = [self _uploadAudioAPIEndpoint];
+    NSMutableURLRequest *req = [serializer multipartFormRequestWithMethod:@"POST"
+                                                                URLString:urlString
+                                                               parameters:@{ @"text": @YES }
+                                                constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // Add WAV header
+        NSData *wavData = [WAVUtils wavDataFromPCM:data
+                                       numChannels:1
+                                        sampleRate:REC_SAMPLE_RATE
+                                     bitsPerSample:16];
+        // Append WAV file data
+        [formData appendPartWithFileData:wavData name:@"file"
+                                fileName:@"audio.wav"
+                                mimeType:@"audio/wav"];
+
+    } error:&err];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSURLSessionUploadTask *uploadTask = [manager
+    uploadTaskWithStreamedRequest:req
+    progress: nil //^(NSProgress * _Nonnull uploadProgress) {}
+    completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            DLog(@"Error uploading audio file: %@", error);
+            DLog(@"%@ %@", response, responseObject);
+            return;
+        }
+        
+        DLog(@"%@ %@", response, responseObject);
+    }];
+    
+    [uploadTask resume];
 }
 
 @end

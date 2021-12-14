@@ -36,6 +36,7 @@
 #define QUERY_API_PATH                  @"/query.api/v1"
 #define CLEAR_QHISTORY_API_PATH         @"/query_history.api/v1"
 #define SPEECH_API_PATH                 @"/speech.api/v1"
+#define UPLOAD_AUDIO_API_PATH           @"/upload_speech_audio.api/v1"
 
 // Speech-to-text API
 #define DEFAULT_SPEECH2TEXT_SERVER      @"speech.googleapis.com:443"

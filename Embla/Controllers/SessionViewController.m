@@ -445,7 +445,7 @@ static NSString * const kSessionButtonLabelActive = \
             [self log:str];
             // Speech synthesise text via Greynir API and play
             [[QueryService sharedInstance] requestSpeechSynthesis:str
-                                            withCompletionHandler:synthesisCompletionHandler];
+                                                completionHandler:synthesisCompletionHandler];
         }];
         return;
     }

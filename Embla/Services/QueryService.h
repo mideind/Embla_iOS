@@ -22,9 +22,17 @@
 @interface QueryService : NSObject
 
 + (instancetype)sharedInstance;
-- (void)sendQuery:(id)query withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
-- (void)requestSpeechSynthesis:(NSString *)str withCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
-- (void)clearUserData:(BOOL)allData completionHandler:(id)completionHandler;
+
+- (void)sendQuery:(id)query
+completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+
+- (void)requestSpeechSynthesis:(NSString *)str
+             completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+
+- (void)clearUserData:(BOOL)allData
+    completionHandler:(id)completionHandler;
+
+- (void)uploadAudioToServer:(NSData *)data;
 
 @end
 

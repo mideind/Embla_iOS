@@ -37,12 +37,14 @@
 @interface QuerySession () <AudioRecordingServiceDelegate, AVAudioPlayerDelegate>
 {
     CGFloat recordingDecibelLevel;
-    CGFloat speechDuration;
-    int speechAudioSize;
     BOOL endOfSingleUtteranceReceived;
     BOOL hasSentQuery;
+    
+    CGFloat speechDuration;
+    int speechAudioSize;
 }
 @property (nonatomic, strong) NSMutableData *audioData;
+@property (nonatomic, strong) NSMutableData *totalAudioData;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) NSString *queryString;
 
@@ -89,7 +91,8 @@
     _isRecording = YES;
     
     self.audioData = [NSMutableData new];
-
+    self.totalAudioData = [NSMutableData new];
+    
 //    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
 //        [[AudioRecordingService sharedInstance] prepare];
         [[AudioRecordingService sharedInstance] setDelegate:self];
@@ -106,6 +109,8 @@
     [[SpeechRecognitionService sharedInstance] stopStreaming];
     
     DLog(@"Speech recognition duration: %.2f seconds (%d bytes)", speechDuration, speechAudioSize);
+    
+    [[QueryService sharedInstance] uploadAudioToServer:self.totalAudioData];
     
     [self.delegate sessionDidStopRecording];
 }
@@ -159,6 +164,7 @@
     
     // Send data to speech recognition server.
     [self sendSpeechData:self.audioData];
+    [self.totalAudioData appendData:self.audioData];
     
     // Keep track of stats on data sent to recognition server
     speechDuration += ([self.audioData length]/(REC_SAMPLE_RATE * bytes_per_sample));
@@ -224,13 +230,13 @@
             // this particular `StreamingRecognitionResult`. The recognizer
             // will not return any further hypotheses for this portion of
             // the transcript and corresponding audio.
-            transcripts = [self _transcriptsFromRecognitionResult:result];
+            transcripts = [self transcriptsFromRecognitionResult:result];
             finished = YES;
         } else {
             // These are interim results, with more results from the speech service
             // expected. Notify delegate if the results are sufficently stable.
             if (result.stability > MIN_STT_RESULT_STABILITY) {
-                transcripts = [self _transcriptsFromRecognitionResult:result];
+                transcripts = [self transcriptsFromRecognitionResult:result];
                 [self.delegate sessionDidReceiveInterimResults:transcripts];
             }
         }
@@ -252,7 +258,7 @@
     }
 }
 
-- (NSArray<NSString *> *)_transcriptsFromRecognitionResult:(StreamingRecognitionResult *)result {
+- (NSArray<NSString *> *)transcriptsFromRecognitionResult:(StreamingRecognitionResult *)result {
     // Take data structure received from speech recognition server and
     // boil it down to an array of strings ordered by likelihood.
     NSMutableArray<NSString *> *res = [NSMutableArray new];
@@ -264,7 +270,7 @@
     return [res copy]; // Return immutable copy
 }
 
-#pragma mark - Send query to server
+#pragma mark - Communication w. query server
 
 - (void)sendQuery:(NSArray<NSString *> *)alternatives {
     DLog(@"Sending query to server: %@", [alternatives description]);
@@ -287,7 +293,7 @@
     };
     
     // Post query to the API
-    [[QueryService sharedInstance] sendQuery:alternatives withCompletionHandler:completionHandler];
+    [[QueryService sharedInstance] sendQuery:alternatives completionHandler:completionHandler];
 }
 
 - (void)handleQueryResponse:(id)responseObject {
