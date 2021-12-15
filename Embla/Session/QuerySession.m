@@ -149,7 +149,7 @@
     // We get amplitude range of 0.0-1.0 by dividing by the max value of a signed 16-bit integer
     float ampl = max/(float)SHRT_MAX;
 //    float ampl = avg/(float)SHRT_MAX; // This also works but produces boring waveforms
-    float decibels = 20.f * log10(ampl);
+    float decibels = 20.f * log10(ampl); // Convert amplitude to decibel level
 //    DLog(@"Ampl: %.8f", ampl);
 //    DLog(@"DecB: %.2f", decibels);
     
@@ -182,7 +182,7 @@
     // Send audio data to speech recognition server
     
     // Completion handler
-    SpeechRecognitionCompletionHandler compHandler = ^(StreamingRecognizeResponse *response, NSError *error) {
+    SpeechRecognitionCompletionHandler handler = ^(StreamingRecognizeResponse *response, NSError *error) {
         if (self.terminated) {
             DLog(@"Terminated task received speech recognition response: %@", [response description]);
             return;
@@ -199,7 +199,7 @@
     };
     
 //    DLog(@"Sending audio data to speech recognition server");
-    [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioBuffer withCompletion:compHandler];
+    [[SpeechRecognitionService sharedInstance] streamAudioData:self.audioBuffer withCompletion:handler];
 }
 
 - (void)handleSpeechRecognitionResponse:(StreamingRecognizeResponse *)response {

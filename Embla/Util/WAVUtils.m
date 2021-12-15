@@ -20,18 +20,18 @@
 
 struct WAVHeader {
     char    riff[4];        // "RIFF"
-    int     flength;        // file length in bytes minus size of first two struct members (8)
+    int     flength;        // File length in bytes minus size of first two struct members (8)
     char    wave[4];        // "WAVE"
     char    fmt[4];         // "fmt "
-    int     chunk_size;     // size of FMT chunk in bytes (usually 16)
+    int     chunk_size;     // Size of FMT chunk in bytes (usually 16)
     short   format_tag;     // 1=PCM, 257=Mu-Law, 258=A-Law, 259=ADPCM
     short   num_chans;      // 1=mono, 2=stereo
     int     srate;          // Sampling rate in samples per second
-    int     bytes_per_sec;  // bytes per second = srate*bytes_per_samp
+    int     bytes_per_sec;  // Bytes per second = srate*bytes_per_samp
     short   bytes_per_samp; // 2=16-bit mono, 4=16-bit stereo, etc.
     short   bits_per_samp;  // Number of bits per sample
     char    data[4];        // "data"
-    int     dlength;        // data length in bytes (filelength - 44 byte WAV header)
+    int     dlength;        // Data length in bytes (filelength - 44 byte WAV header)
 };
 
 
@@ -46,10 +46,10 @@ struct WAVHeader {
     
     // Generate header
     struct WAVHeader header = { 0 };
-    strncpy(header.riff,"RIFF", 4);
+    strncpy(header.riff, "RIFF", 4);
     header.flength = (int)([samples length] + 44 - 8);
-    strncpy(header.wave,"WAVE", 4);
-    strncpy(header.fmt,"fmt ", 4);
+    strncpy(header.wave, "WAVE", 4);
+    strncpy(header.fmt, "fmt ", 4);
     header.chunk_size = 16;
     header.format_tag = 1; // PCM
     header.num_chans =  numChannels;
@@ -57,9 +57,10 @@ struct WAVHeader {
     header.bytes_per_sec = (int)(sampleRate * bytesPerSample * numChannels);
     header.bytes_per_samp = bytesPerSample;
     header.bits_per_samp = bitsPerSample;
-    strncpy(header.data,"data", 4);
+    strncpy(header.data, "data", 4);
     header.dlength = (int)[samples length];
     
+    // Create new data object with header + samples
     NSMutableData *data = [[NSMutableData alloc] initWithBytes:&header length:44];
     [data appendData:samples];
     
