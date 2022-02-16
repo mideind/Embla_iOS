@@ -60,8 +60,12 @@
     [self.voiceSegmentedControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
     
     // Software version label
-    [self.swVersionLabel setText:[NSString stringWithFormat:@"%@ (%@) - %@",
-                                  CLIENT_VERSION, CLIENT_BUILD, CLIENT_OSNAME]];
+    NSString *v = [NSString stringWithFormat:@"%@ (%@) - %@",
+                   CLIENT_VERSION, CLIENT_BUILD, CLIENT_OSNAME];
+#ifdef DEBUG
+    v = [v stringByAppendingString:@" dbg"];
+#endif
+    [self.swVersionLabel setText:v];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

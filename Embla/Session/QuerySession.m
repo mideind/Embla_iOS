@@ -329,9 +329,9 @@
             url = [NSURL URLWithString:openURLStr];
         }
         // If response contains a cmd
-        if (cmd && [cmd isKindOfClass:[NSString class]]) {
+//        if (cmd && [cmd isKindOfClass:[NSString class]]) {
             // pass
-        }
+//        }
         // Play back audio response
         else if (audioURLStr && [audioURLStr isKindOfClass:[NSString class]]) {
             [self playRemoteURL:audioURLStr];
