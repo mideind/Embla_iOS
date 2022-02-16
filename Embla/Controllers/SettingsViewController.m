@@ -131,7 +131,7 @@
 
 #ifdef DEBUG
     [self.voiceSegmentedControl removeAllSegments];
-    for (NSString *name in @[@"Alfur", @"Dilja", @"Karl", @"Dora"]) {
+    for (NSString *name in @[@"Gunnar", @"Gudrun", @"Karl", @"Dora"]) {
         [self.voiceSegmentedControl insertSegmentWithTitle:name
                                                    atIndex:0
                                                   animated:NO];

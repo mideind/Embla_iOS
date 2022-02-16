@@ -21,3 +21,5 @@ Podfile.lock
 *.DS_Store
 Keys/Keys.c
 Keys/*.key
+tiro/
+tiroapis.podspec

@@ -103,7 +103,7 @@
     NSMutableDictionary *parameters = [@{
         @"q": qstr,
         @"voice": @(YES),
-        @"voice_id": voiceName,
+        @"voice_id": @"Gudrun",
         @"voice_speed": voiceSpeed
     } mutableCopy];
     
