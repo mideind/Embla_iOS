@@ -58,7 +58,7 @@ the Icelandic Association of the Visually Impaired.
 
 ## GPL License
 
-The Embla source code is Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
+The Embla source code is Copyright (C) 2019-2022 [Miðeind ehf.](https://mideind.is)
 
 <a href="https://mideind.is"><img src="img/mideind_logo.png" alt="Miðeind ehf." 
 width="214" height="66" align="right" style="margin-left:20px; margin-bottom: 20px;"></a>
@@ -83,5 +83,5 @@ to negotiate a custom license. This applies for instance if you want to include 
 this software, in part or in full, in other software that is not licensed under
 GNU GPLv3 or other compatible licenses.
 
-The Embla logo, icon and other images are Copyright (C) 2021 [Miðeind ehf.](https://mideind.is)
+The Embla logo, icon and other images are Copyright (C) [Miðeind ehf.](https://mideind.is)
 and may not be used without permission.
