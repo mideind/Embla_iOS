@@ -203,7 +203,7 @@
 }
 
 - (void)handleSpeechRecognitionResponse:(StreamingRecognizeResponse *)response {
-//    DLog(@"Received speech recognition response: %@", response);
+    DLog(@"Received speech recognition response: %@", response);
     
     if (endOfSingleUtteranceReceived && !hasSentQuery && response == nil) {
         // The speech recognition session has timed out without recognition

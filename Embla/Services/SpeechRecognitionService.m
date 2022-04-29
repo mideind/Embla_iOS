@@ -76,9 +76,10 @@
         _client = [[Speech alloc] initWithHost:host];
         _writer = [[GRXBufferedPipe alloc] init];
         _call = [_client RPCToStreamingRecognizeWithRequestsWriter:_writer
-                                                      eventHandler:^(BOOL done, StreamingRecognizeResponse *response, NSError *error) {
-                                                          completion(response, error);
-                                                      }];
+                                                      eventHandler:
+        ^(BOOL done, StreamingRecognizeResponse *response, NSError *error) {
+            completion(response, error);
+        }];
         
         // Authenticate using an API key obtained from the Google Cloud Console
         _call.requestHeaders[@"X-Goog-Api-Key"] = self.apiKey;
@@ -115,6 +116,19 @@
     streamingRecognizeRequest.audioContent = audioData;
     [_writer writeValue:streamingRecognizeRequest];
 }
+
+- (NSArray<NSString *> *)transcriptsFromRecognitionResult:(StreamingRecognitionResult *)result {
+    // Take data structure received from speech recognition server and
+    // boil it down to an array of strings ordered by likelihood.
+    NSMutableArray<NSString *> *res = [NSMutableArray new];
+    if ([result.alternativesArray count]) {
+        for (SpeechRecognitionAlternative *a in result.alternativesArray) {
+            [res addObject:a.transcript];
+        }
+    }
+    return [res copy]; // Return immutable copy
+}
+
 
 - (void)stopStreaming {
     if (!_streaming) {
