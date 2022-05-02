@@ -27,6 +27,12 @@
 @"http://192.168.1.113:5000",\
 @"http://192.168.1.3:5000"]
 
+#ifdef DEBUG
+    #define SUPPORTED_VOICES @[@"Karl", @"Dora", @"Gunnar", @"Gudrun", @"Dilja", @"Alfur"]
+#else
+    #define SUPPORTED_VOICES @[@"Karl", @"Dora"]
+#endif
+
 @interface SettingsViewController ()
 
 @property (nonatomic, weak) IBOutlet UILabel *swVersionLabel;
@@ -34,6 +40,9 @@
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *privacyModeSwitch;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
+
+@property (nonatomic, weak) IBOutlet UIPickerView *voicePickerView;
+
 @property (nonatomic, weak) IBOutlet UILabel *speechSpeedLabel;
 @property (nonatomic, weak) IBOutlet UISlider *speechSpeedSlider;
 
@@ -381,7 +390,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - Query Server text field delegate
+#pragma mark - UITextFieldDelegate (Query Server field)
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -390,6 +399,27 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [self saveToDefaults];
+}
+
+
+#pragma mark - UIPickerViewDelegate (Voice picker)
+
+- (NSString*)pickerView:(UIPickerView*)pv titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [SUPPORTED_VOICES objectAtIndex:row];
+}
+
+-(void)pickerView:(UIPickerView *)pv didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+}
+
+#pragma mark - UIPickerViewDataSource (Voice picker)
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pv {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView*)pv numberOfRowsInComponent:(NSInteger)component {
+    return [SUPPORTED_VOICES count];
 }
 
 @end
