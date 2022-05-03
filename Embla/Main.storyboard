@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eKX-ge-Cxw">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment version="4608" identifier="iOS"/>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -87,13 +87,13 @@
                         <barButtonItem key="backBarButtonItem" title="Til baka" id="U3V-jb-oZ6">
                             <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
-                        <barButtonItem key="leftBarButtonItem" title="Raddvirkjun" image="Microphone" id="ote-iW-Jbm">
+                        <barButtonItem key="leftBarButtonItem" title="Raddvirkjun" image="mic.fill" catalog="system" id="ote-iW-Jbm">
                             <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="toggleVoiceActivation:" destination="BYZ-38-t0r" id="80n-hU-hlL"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Valblað" image="Menu" id="Ju9-QP-wUC">
+                        <barButtonItem key="rightBarButtonItem" title="Valblað" image="line.horizontal.3" catalog="system" id="Ju9-QP-wUC">
                             <color key="tintColor" red="0.90980392156862744" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="alF-fD-xUu" kind="show" id="jD6-ap-rNU"/>
@@ -886,8 +886,8 @@
     <resources>
         <image name="Cog" width="266.5" height="266.5"/>
         <image name="Cube" width="200" height="200"/>
-        <image name="Menu" width="24" height="24"/>
-        <image name="Microphone" width="24" height="24"/>
         <image name="Transparent" width="10" height="10"/>
+        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+        <image name="mic.fill" catalog="system" width="108" height="128"/>
     </resources>
 </document>

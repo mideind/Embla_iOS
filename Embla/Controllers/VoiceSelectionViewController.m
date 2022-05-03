@@ -20,9 +20,10 @@
 #import "QueryService.h"
 #import "Common.h"
 
+NSArray<NSString *> *voices;
+
 @interface VoiceSelectionViewController ()
 {
-    NSArray<NSString *> * voices;
 }
 @property (nonatomic, strong) UIActivityIndicatorView *progressView;;
 
@@ -35,6 +36,10 @@
     
     if (@available(iOS 13.0, *)) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
+    
+    if (voices != nil) {
+        return;
     }
     
     self.progressView = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
@@ -65,7 +70,6 @@
                 voices = @[DEFAULT_VOICE_ID];
             }
         }
-
         
         [self.tableView reloadData];
         [self.progressView removeFromSuperview];
@@ -85,7 +89,7 @@
     NSString *voiceName = [voices objectAtIndex:indexPath.row];
     [DEFAULTS setObject:voiceName forKey:@"VoiceID"];
     [DEFAULTS synchronize];
-    DLog(@"Setting VoiceID to \"%@\"", voiceName);
+    DLog(@"Set VoiceID to \"%@\"", voiceName);
     [self.tableView reloadData];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -111,13 +115,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:@"VoiceCellIdentifier"];
         cell.backgroundColor = [UIColor clearColor];
+        cell.imageView.image = [UIImage systemImageNamed:@"waveform"];
     }
     
     NSString *voiceName = [voices objectAtIndex:indexPath.row];
     cell.textLabel.text = voiceName;
     cell.accessoryType = UITableViewCellAccessoryNone;
     if ([voiceName isEqualToString:[DEFAULTS objectForKey:@"VoiceID"]]) {
-        DLog(@"Current: %@", [DEFAULTS objectForKey:@"VoiceID"]);
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     

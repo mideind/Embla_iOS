@@ -182,7 +182,7 @@ static NSString * const kSessionButtonLabelActive = \
         }
     }
     // Update state of hotword detection bar button item and intro message
-    self.micItem.image = [UIImage imageNamed:hotwordActivation ? @"Microphone" : @"MicrophoneSlash"];
+    self.micItem.image = [UIImage systemImageNamed:hotwordActivation ? @"mic.fill" : @"mic.slash.fill"];
     self.textView.text = [self introMessage];
 }
 
@@ -299,7 +299,7 @@ static NSString * const kSessionButtonLabelActive = \
     } else {
         [[self detector] stopListening];
     }
-    self.micItem.image = [UIImage imageNamed:enabled ? @"Microphone" : @"MicrophoneSlash"];
+    self.micItem.image = [UIImage systemImageNamed:enabled ? @"mic.fill" : @"mic.slash.fill"];
     self.textView.text = [self introMessage];
 }
 
