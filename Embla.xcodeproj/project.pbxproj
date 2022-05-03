@@ -47,7 +47,6 @@
 		F4786B62270B7DE400683387 /* dunno06-karl.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B5B270B7DE400683387 /* dunno06-karl.wav */; };
 		F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F47D200C2370880800E4DB6A /* UIColor+Hex.m */; };
 		F487E8ED2677B48100D25178 /* default.pmdl in Resources */ = {isa = PBXBuildFile; fileRef = F487E8EC2677B48100D25178 /* default.pmdl */; };
-		F487E8F0267905B100D25178 /* HotwordModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F487E8EF267905B100D25178 /* HotwordModelViewController.m */; };
 		F492123522D61D5300337AF8 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F492123422D61D5300337AF8 /* NSString+Additions.m */; };
 		F4BAE86F25A64402008C852E /* Lato-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86C25A64402008C852E /* Lato-Regular.woff2 */; };
 		F4BAE87025A64402008C852E /* Lato-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4BAE86D25A64402008C852E /* Lato-Bold.woff2 */; };
@@ -660,7 +659,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4E90AC52406C2F9004EE9A6 /* JSExecutor.m in Sources */,
-				F487E8F0267905B100D25178 /* HotwordModelViewController.m in Sources */,
 				F4E1538423744F2100388420 /* InstructionsViewController.m in Sources */,
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
