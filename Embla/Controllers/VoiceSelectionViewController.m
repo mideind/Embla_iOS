@@ -20,6 +20,8 @@
 #import "QueryService.h"
 #import "Common.h"
 
+#define FALLBACK_VOICES     @[@"Dora", @"Karl"]
+
 NSArray<NSString *> *voices;
 
 @interface VoiceSelectionViewController ()
@@ -51,23 +53,27 @@ NSArray<NSString *> *voices;
     
     // Completion handler block for query server voice list API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
+        if (error || responseObject == nil) {
             DLog(@"Error from query server voices API: %@", [error localizedDescription]);
-            return;
+            voices = FALLBACK_VOICES;
         }
-        if ([responseObject objectForKey:@"supported"] != nil) {
+        else if ([responseObject objectForKey:@"supported"] != nil) {
 #ifdef DEBUG
             voices = [responseObject objectForKey:@"supported"];
 #else
             voices = [responseObject objectForKey:@"recommended"];
 #endif
-            NSString *currVoiceID = [DEFAULTS objectForKey:@"VoiceID"];
-            if ([voices containsObject:currVoiceID] == NO) {
+        } else {
+            voices = FALLBACK_VOICES;
+        }
+        
+        // Make sure voice ID in settings is sane
+        NSString *currVoiceID = [DEFAULTS objectForKey:@"VoiceID"];
+        if ([voices containsObject:currVoiceID] == NO) {
+            if (responseObject != nil) {
                 [DEFAULTS setObject:[responseObject objectForKey:@"default"] forKey:@"VoiceID"];
-            }
-            
-            if (voices == nil) {
-                voices = @[DEFAULT_VOICE_ID];
+            } else {
+                [DEFAULTS setObject:DEFAULT_VOICE_ID forKey:@"VoiceID"];
             }
         }
         
