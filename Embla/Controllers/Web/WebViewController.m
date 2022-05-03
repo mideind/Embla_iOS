@@ -35,14 +35,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (@available(iOS 13.0, *)) {
-        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-    }
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     
     self.progressView = [[UIActivityIndicatorView alloc] initWithFrame:self.webView.bounds];
-    if (@available(iOS 13.0, *)) {
-        self.progressView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
-    }
+    self.progressView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
+    
     [self.progressView startAnimating];
     [self.webView addSubview:self.progressView];
 

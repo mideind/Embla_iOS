@@ -32,9 +32,7 @@
     [super viewDidLoad];
     //self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem;
     
-    if (@available(iOS 13.0, *)) {
-        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-    }
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

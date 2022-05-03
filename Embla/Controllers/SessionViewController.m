@@ -99,9 +99,8 @@ static NSString * const kSessionButtonLabelActive = \
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (@available(iOS 13.0, *)) {
-        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-    }
+    
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     
     // Preload/pre-initialize the following to prevent any delay when session is activated
     [self preloadSounds];

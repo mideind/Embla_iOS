@@ -36,18 +36,15 @@ NSArray<NSString *> *voices;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (@available(iOS 13.0, *)) {
-        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-    }
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     
     if (voices != nil) {
         return;
     }
     
     self.progressView = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
-    if (@available(iOS 13.0, *)) {
-        self.progressView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
-    }
+    self.progressView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
+    
     [self.progressView startAnimating];
     [self.view addSubview:self.progressView];
     
