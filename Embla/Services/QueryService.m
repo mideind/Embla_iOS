@@ -44,29 +44,15 @@
 
 #pragma mark - Util
 
-- (NSString *)_queryAPIEndpoint {
+- (NSString *)_APIEndpoint:(NSString *)path {
     NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
     if ([server length] == 0 || [server hasPrefix:@"http"] == NO) {
         server = DEFAULT_QUERY_SERVER;
     }
-    return [NSString stringWithFormat:@"%@%@", server, QUERY_API_PATH];
+    return [NSString stringWithFormat:@"%@%@", server, path];
 }
 
-- (NSString *)_speechAPIEndpoint {
-    NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
-    if ([server length] == 0 || [server hasPrefix:@"http"] == NO) {
-        server = DEFAULT_QUERY_SERVER;
-    }
-    return [NSString stringWithFormat:@"%@%@", server, SPEECH_API_PATH];
-}
-
-- (NSString *)_uploadAudioAPIEndpoint {
-    NSString *server = [DEFAULTS stringForKey:@"QueryServer"];
-    if ([server length] == 0 || [server hasPrefix:@"http"] == NO) {
-        server = DEFAULT_QUERY_SERVER;
-    }
-    return [NSString stringWithFormat:@"%@%@", server, UPLOAD_AUDIO_API_PATH];
-}
+#pragma mark -
 
 - (NSDictionary *)_location {
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -95,7 +81,7 @@
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSString *apiEndpoint = [self _queryAPIEndpoint];
+    NSString *apiEndpoint = [self _APIEndpoint:QUERY_API_PATH];
     
     // Query key/value pairs
     NSString *voiceName = [DEFAULTS stringForKey:@"VoiceID"];
@@ -184,7 +170,7 @@
     // Create request
     NSError *err = nil;
     NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
-                                                                      URLString:[self _speechAPIEndpoint]
+                                                                      URLString:[self _APIEndpoint:SPEECH_API_PATH]
                                                                      parameters:parameters
                                                                           error:&err];
     if (req == nil) {
@@ -260,7 +246,7 @@
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
     
     NSError *err;
-    NSString *urlString = [self _uploadAudioAPIEndpoint];
+    NSString *urlString = [self _APIEndpoint:UPLOAD_AUDIO_API_PATH];
     NSMutableURLRequest *req = [serializer multipartFormRequestWithMethod:@"POST"
                                                                 URLString:urlString
                                                                parameters:@{ @"text": @YES }
@@ -294,6 +280,34 @@
     }];
     
     [uploadTask resume];
+}
+
+#pragma mark - Fetch list of supported voices
+
+- (void)requestVoicesWithCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler {
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    // Create request
+    NSError *err = nil;
+    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+                                                                      URLString:[self _APIEndpoint:VOICES_API_PATH]
+                                                                     parameters:nil
+                                                                          error:&err];
+    if (req == nil) {
+        DLog(@"%@", [err localizedDescription]);
+        return;
+    }
+    DLog(@"Sending request %@", [req description]);
+    
+    // Run task with request
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req
+                                                   uploadProgress:nil
+                                                 downloadProgress:nil
+                                                completionHandler:completionHandler];
+    [dataTask resume];
 }
 
 @end

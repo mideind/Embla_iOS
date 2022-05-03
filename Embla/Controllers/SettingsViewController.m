@@ -27,19 +27,12 @@
 @"http://192.168.1.113:5000",\
 @"http://192.168.1.3:5000"]
 
-#ifdef DEBUG
-    #define SUPPORTED_VOICES @[@"Karl", @"Dora", @"Gunnar", @"Gudrun", @"Dilja", @"Alfur"]
-#else
-    #define SUPPORTED_VOICES @[@"Karl", @"Dora"]
-#endif
-
 @interface SettingsViewController ()
 
 @property (nonatomic, weak) IBOutlet UILabel *swVersionLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *hotwordSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *privacyModeSwitch;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *voiceSegmentedControl;
 
 @property (nonatomic, weak) IBOutlet UIPickerView *voicePickerView;
 
@@ -62,12 +55,7 @@
     if (@available(iOS 13.0, *)) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
-    
-    // Configure segmented control text attributes
-    UIFont *font = [UIFont fontWithName:@"Lato" size:15.0f];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
-    [self.voiceSegmentedControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    
+        
     // Software version label
     NSString *v = [NSString stringWithFormat:@"%@ (%@) - %@",
                    CLIENT_VERSION, CLIENT_BUILD, CLIENT_OSNAME];
@@ -141,27 +129,6 @@
     [self.privacyModeSwitch setOn:[DEFAULTS boolForKey:@"PrivacyMode"]];
     [self.speechSpeedSlider setValue:[DEFAULTS floatForKey:@"SpeechSpeed"]];
     [self updateSpeechSpeedLabel];
-
-#ifdef DEBUG
-    [self.voiceSegmentedControl removeAllSegments];
-    for (NSString *name in @[@"Gunnar", @"Gudrun", @"Karl", @"Dora"]) {
-        [self.voiceSegmentedControl insertSegmentWithTitle:name
-                                                   atIndex:0
-                                                  animated:NO];
-    }
-#endif
-    
-    // Find which voice segment to select
-    NSString *voiceName = [DEFAULTS stringForKey:@"VoiceID"];
-    NSUInteger voiceToSelect = 0;
-    for (int i = 0; i < [self.voiceSegmentedControl numberOfSegments]; i++) {
-        NSString *title = [self.voiceSegmentedControl titleForSegmentAtIndex:i];
-        if ([title isEqualToString:voiceName]) {
-            voiceToSelect = i;
-            break;
-        }
-    }
-    [self.voiceSegmentedControl setSelectedSegmentIndex:voiceToSelect];
     
 #ifdef DEBUG
     // Query server settings
@@ -180,13 +147,6 @@
     [DEFAULTS setBool:self.hotwordSwitch.isOn forKey:@"VoiceActivation"];
     [DEFAULTS setBool:self.useLocationSwitch.isOn forKey:@"UseLocation"];
     [DEFAULTS setBool:self.privacyModeSwitch.isOn forKey:@"PrivacyMode"];
-    NSString *voiceName = [self.voiceSegmentedControl titleForSegmentAtIndex:[self.voiceSegmentedControl selectedSegmentIndex]];
-    if ([voiceName isEqualToString:@"Kona"]) {
-        voiceName = @"Dora";
-    } else if ([voiceName isEqualToString:@"Karl"]) {
-        voiceName = @"Karl";
-    }
-    [DEFAULTS setObject:voiceName forKey:@"VoiceID"];
     [DEFAULTS setFloat:[self.speechSpeedSlider value] forKey:@"SpeechSpeed"];
     
     // Sanitize query server URL
@@ -399,27 +359,6 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [self saveToDefaults];
-}
-
-
-#pragma mark - UIPickerViewDelegate (Voice picker)
-
-- (NSString*)pickerView:(UIPickerView*)pv titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [SUPPORTED_VOICES objectAtIndex:row];
-}
-
--(void)pickerView:(UIPickerView *)pv didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
-}
-
-#pragma mark - UIPickerViewDataSource (Voice picker)
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pv {
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView*)pv numberOfRowsInComponent:(NSInteger)component {
-    return [SUPPORTED_VOICES count];
 }
 
 @end

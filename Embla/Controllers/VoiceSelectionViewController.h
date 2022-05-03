@@ -18,6 +18,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UITableViewController <UITextFieldDelegate>
+@interface VoiceSelectionViewController : UITableViewController
 
 @end

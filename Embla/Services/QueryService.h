@@ -34,5 +34,7 @@ completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError 
 
 - (void)uploadAudioToServer:(NSData *)data;
 
+- (void)requestVoicesWithCompletionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+
 @end
 

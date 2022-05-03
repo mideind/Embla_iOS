@@ -30,6 +30,7 @@
 		F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F461CFBA261E13C900B2323C /* AudioRecordingService.m */; };
 		F461CFD22620B23700B2323C /* common.res in Resources */ = {isa = PBXBuildFile; fileRef = F461CFCF2620B23700B2323C /* common.res */; };
 		F461CFD72620B27500B2323C /* SnowboyDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = F461CFD62620B27500B2323C /* SnowboyDetector.mm */; };
+		F473A1F2282185E70017C18E /* VoiceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F473A1F1282185E70017C18E /* VoiceSelectionViewController.m */; };
 		F4786B4E270B6BBD00683387 /* dunno06-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B47270B6BBD00683387 /* dunno06-dora.wav */; };
 		F4786B4F270B6BBD00683387 /* dunno04-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B48270B6BBD00683387 /* dunno04-dora.wav */; };
 		F4786B50270B6BBD00683387 /* dunno05-dora.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4786B49270B6BBD00683387 /* dunno05-dora.wav */; };
@@ -115,6 +116,8 @@
 		F461CFD52620B27500B2323C /* SnowboyDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnowboyDetector.h; sourceTree = "<group>"; };
 		F461CFD62620B27500B2323C /* SnowboyDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnowboyDetector.mm; sourceTree = "<group>"; };
 		F461CFDC2620BCD900B2323C /* HotwordDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotwordDetector.h; sourceTree = "<group>"; };
+		F473A1F0282185E70017C18E /* VoiceSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoiceSelectionViewController.h; sourceTree = "<group>"; };
+		F473A1F1282185E70017C18E /* VoiceSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoiceSelectionViewController.m; sourceTree = "<group>"; };
 		F4786B47270B6BBD00683387 /* dunno06-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno06-dora.wav"; sourceTree = "<group>"; };
 		F4786B48270B6BBD00683387 /* dunno04-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno04-dora.wav"; sourceTree = "<group>"; };
 		F4786B49270B6BBD00683387 /* dunno05-dora.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "dunno05-dora.wav"; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				D392D9881C94938F002F5132 /* SessionViewController.m */,
 				F427692222C1218A00BB6977 /* SettingsViewController.h */,
 				F427692322C1218A00BB6977 /* SettingsViewController.m */,
+				F473A1F0282185E70017C18E /* VoiceSelectionViewController.h */,
+				F473A1F1282185E70017C18E /* VoiceSelectionViewController.m */,
 				F487E8EE267905B100D25178 /* HotwordModelViewController.h */,
 				F487E8EF267905B100D25178 /* HotwordModelViewController.m */,
 				F4E785472367655C004E29D1 /* Web */,
@@ -674,6 +679,7 @@
 				F47D200E2370880900E4DB6A /* UIColor+Hex.m in Sources */,
 				D34C17D11C948F5700D69BCA /* AppDelegate.m in Sources */,
 				D34C17CE1C948F5700D69BCA /* main.m in Sources */,
+				F473A1F2282185E70017C18E /* VoiceSelectionViewController.m in Sources */,
 				D3FFBC371C96208B00268A5F /* SpeechRecognitionService.m in Sources */,
 				F461CFBC261E13C900B2323C /* AudioRecordingService.m in Sources */,
 				F4E7854D236766E0004E29D1 /* PrivacyViewController.m in Sources */,
