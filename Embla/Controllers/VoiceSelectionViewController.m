@@ -35,10 +35,6 @@ NSArray<NSString *> *voices;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
-//    self.navigationItem.leftBarButtonItem = done;
-
-    self.navigationItem.hidesBackButton = NO;
     self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     
     if (voices != nil) {
@@ -53,19 +49,19 @@ NSArray<NSString *> *voices;
     
     // Completion handler block for query server voice list API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
+        voices = FALLBACK_VOICES;
         if (error || responseObject == nil) {
             DLog(@"Error from query server voices API: %@", [error localizedDescription]);
-            voices = FALLBACK_VOICES;
         }
-        else if ([responseObject objectForKey:@"supported"] != nil) {
 #ifdef DEBUG
+        else if ([responseObject objectForKey:@"supported"] != nil) {
             voices = [responseObject objectForKey:@"supported"];
-#else
-            voices = [responseObject objectForKey:@"recommended"];
-#endif
-        } else {
-            voices = FALLBACK_VOICES;
         }
+#else
+        else if ([responseObject objectForKey:@"recommended"] != nil) {
+            voices = [responseObject objectForKey:@"recommended"];
+        }
+#endif
         
         // Make sure voice ID in settings is sane
         NSString *currVoiceID = [DEFAULTS objectForKey:@"VoiceID"];

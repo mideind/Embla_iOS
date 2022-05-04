@@ -1,5 +1,5 @@
 # GitHub Actions workflow for testing build
-name: iOS workflow
+name: build
 
 on:
   push:

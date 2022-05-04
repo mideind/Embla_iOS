@@ -9,11 +9,11 @@
 Embla is an Icelandic-language voice assistant powered by the [Greynir](https://greynir.is)
 query engine. This is the repository for the native Embla iOS client.
 
-Written in Objective-C for iOS 12.0+. Probably only builds on a recent version of macOS.
+Written in Objective-C for iOS 13.0+. Probably only builds on a recent version of macOS.
 
 ## Build instructions
 
-Building the app requires [Xcode](https://developer.apple.com/xcode/) 11+ and
+Building the app requires [Xcode](https://developer.apple.com/xcode/) 12+ and
 [CocoaPods](https://cocoapods.org).
 
 After cloning the repository, run the following command from the repo root:
