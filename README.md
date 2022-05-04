@@ -11,6 +11,10 @@ query engine. This is the repository for the native Embla iOS client.
 
 Written in Objective-C for iOS 13.0+. Probably only builds on a recent version of macOS.
 
+<a href="https://apps.apple.com/is/app/embla/id1485887184">
+    <img alt="Download in App Store" src="img/app_store.png" width="162">
+</a>
+
 ## Build instructions
 
 Building the app requires [Xcode](https://developer.apple.com/xcode/) 12+ and
