@@ -34,7 +34,7 @@
 @property (nonatomic, weak) IBOutlet UISwitch *useLocationSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *privacyModeSwitch;
 
-@property (nonatomic, weak) IBOutlet UIPickerView *voicePickerView;
+@property (nonatomic, weak) IBOutlet UILabel *voiceLabel;
 
 @property (nonatomic, weak) IBOutlet UILabel *speechSpeedLabel;
 @property (nonatomic, weak) IBOutlet UISlider *speechSpeedSlider;
@@ -128,6 +128,7 @@
     [self.privacyModeSwitch setOn:[DEFAULTS boolForKey:@"PrivacyMode"]];
     [self.speechSpeedSlider setValue:[DEFAULTS floatForKey:@"SpeechSpeed"]];
     [self updateSpeechSpeedLabel];
+    [self.voiceLabel setText:[DEFAULTS stringForKey:@"VoiceID"]];
     
 #ifdef DEBUG
     // Query server settings
