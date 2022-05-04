@@ -48,9 +48,9 @@ The key should be  saved in the following text file:
 ## Screenshots
 
 <p float="left">
-    <img src="Screenshots/embla_screenshot_55_1.png" width="30%">
-    <img src="Screenshots/embla_screenshot_55_2.png" width="30%">
-    <img src="Screenshots/embla_screenshot_55_3.png" width="30%">
+    <img src="img/embla_screenshot_55_1.png" width="30%">
+    <img src="img/embla_screenshot_55_2.png" width="30%">
+    <img src="img/embla_screenshot_55_3.png" width="30%">
 </p>
 
 ## Acknowledgements
