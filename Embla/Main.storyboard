@@ -289,7 +289,7 @@
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                         <connections>
-                                            <segue destination="uz5-3Y-s3n" kind="show" id="W5I-et-lnm"/>
+                                            <segue destination="hrr-dx-ZH5" kind="show" id="E7o-Zq-hwY"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="BgW-Uy-T96" userLabel="Talhraði">
@@ -531,7 +531,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFt-kq-ya6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3694" y="827"/>
+            <point key="canvasLocation" x="2698" y="1014"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="baH-A3-i7G">
@@ -804,37 +804,51 @@
             <point key="canvasLocation" x="1386" y="1820"/>
         </scene>
         <!--Voice Selection View Controller-->
-        <scene sceneID="ml5-dG-Etc">
+        <scene sceneID="ujK-JZ-9L3">
             <objects>
-                <tableViewController id="uz5-3Y-s3n" customClass="VoiceSelectionViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="HrO-Pd-GXQ">
+                <tableViewController id="hrr-dx-ZH5" userLabel="Voice Selection View Controller" customClass="VoiceSelectionViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xq5-V0-Hu1" userLabel="Menu Table View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="separatorColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="uz5-3Y-s3n" id="erq-oM-cy8"/>
-                            <outlet property="delegate" destination="uz5-3Y-s3n" id="MY2-cQ-b5H"/>
+                            <outlet property="dataSource" destination="hrr-dx-ZH5" id="DKI-cq-jWL"/>
+                            <outlet property="delegate" destination="hrr-dx-ZH5" id="b0h-hh-QHk"/>
+                            <outletCollection property="gestureRecognizers" destination="R09-71-BkH" appends="YES" id="Xv6-cc-Idj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="kdz-2O-c4m">
-                        <barButtonItem key="backBarButtonItem" title="Til baka" id="cP1-aJ-Wpe"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="6iv-N4-btq">
+                        <barButtonItem key="backBarButtonItem" title="Til baka" image="chevron.backward" catalog="system" id="UbL-gQ-3B8">
+                            <color key="tintColor" red="0.90980392160000001" green="0.18823529410000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancel:" destination="hrr-dx-ZH5" id="UtV-to-1hw"/>
+                            </connections>
+                        </barButtonItem>
+                        <connections>
+                            <outlet property="leftBarButtonItem" destination="UbL-gQ-3B8" id="sfL-HB-oYn"/>
+                        </connections>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hb6-2V-LrE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r4u-lW-d5Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="R09-71-BkH"/>
             </objects>
-            <point key="canvasLocation" x="3494" y="-231"/>
+            <point key="canvasLocation" x="3473" y="1013"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="jD6-ap-rNU"/>
-        <segue reference="MxW-5r-n0G"/>
+        <segue reference="RJD-MJ-JUE"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="Cog" width="266.5" height="266.5"/>
         <image name="Cube" width="200" height="200"/>
         <image name="Transparent" width="10" height="10"/>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="mic.fill" catalog="system" width="108" height="128"/>
     </resources>

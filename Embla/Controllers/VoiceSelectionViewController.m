@@ -25,8 +25,7 @@
 NSArray<NSString *> *voices;
 
 @interface VoiceSelectionViewController ()
-{
-}
+
 @property (nonatomic, strong) UIActivityIndicatorView *progressView;;
 
 @end
@@ -36,6 +35,10 @@ NSArray<NSString *> *voices;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
+//    self.navigationItem.leftBarButtonItem = done;
+
+    self.navigationItem.hidesBackButton = NO;
     self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     
     if (voices != nil) {
@@ -75,6 +78,7 @@ NSArray<NSString *> *voices;
         }
         
         [self.tableView reloadData];
+        [self.progressView stopAnimating];
         [self.progressView removeFromSuperview];
     };
     
@@ -129,6 +133,10 @@ NSArray<NSString *> *voices;
     }
     
     return cell;
+}
+
+- (IBAction)cancel:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
