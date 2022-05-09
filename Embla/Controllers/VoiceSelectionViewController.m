@@ -49,6 +49,9 @@ NSArray<NSString *> *voices;
     
     // Completion handler block for query server voice list API request
     id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
+        [self.progressView stopAnimating];
+        [self.progressView removeFromSuperview];
+        
         voices = FALLBACK_VOICES;
         if (error || responseObject == nil) {
             DLog(@"Error from query server voices API: %@", [error localizedDescription]);
@@ -74,8 +77,6 @@ NSArray<NSString *> *voices;
         }
         
         [self.tableView reloadData];
-        [self.progressView stopAnimating];
-        [self.progressView removeFromSuperview];
     };
     
     [[QueryService sharedInstance] requestVoicesWithCompletionHandler:completionHandler];
