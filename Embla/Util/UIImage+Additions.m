@@ -20,7 +20,7 @@
 
 @implementation UIImage (Additions)
 
-+ (UIImage*)imageWithImage:(UIImage *) sourceImage scaledToWidth:(float)width {
++ (UIImage*)imageWithImage:(UIImage *)sourceImage scaledToWidth:(float)width {
     float oldWidth = sourceImage.size.width;
     float scaleFactor = width / oldWidth;
     

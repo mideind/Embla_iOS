@@ -24,7 +24,7 @@
 #import "Common.h"
 #import "Keys.h"
 #import "AppDelegate.h"
-#import "WAVUtils.h"
+//#import "WAVUtils.h"
 #import "AFURLSessionManager.h"
 #import "AFURLRequestSerialization.h"
 #import <CoreLocation/CoreLocation.h>
@@ -242,45 +242,45 @@
 
 #pragma mark - Upload audio data
 
-- (void)uploadAudioToServer:(NSData *)data {
-    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
-    
-    NSError *err;
-    NSString *urlString = [self _APIEndpoint:UPLOAD_AUDIO_API_PATH];
-    NSMutableURLRequest *req = [serializer multipartFormRequestWithMethod:@"POST"
-                                                                URLString:urlString
-                                                               parameters:@{ @"text": @YES }
-                                                constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        // Add WAV header
-        NSData *wavData = [WAVUtils wavDataFromPCM:data
-                                       numChannels:1
-                                        sampleRate:REC_SAMPLE_RATE
-                                     bitsPerSample:16];
-        // Append WAV file data
-        [formData appendPartWithFileData:wavData name:@"file"
-                                fileName:@"audio.wav"
-                                mimeType:@"audio/wav"];
-
-    } error:&err];
-    
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    
-    DLog(@"Sending request %@", [req description]);
-    NSURLSessionUploadTask *uploadTask = [manager
-    uploadTaskWithStreamedRequest:req
-    progress: nil //^(NSProgress * _Nonnull uploadProgress) {}
-    completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-            DLog(@"Error uploading audio file: %@", error);
-            DLog(@"%@ %@", response, responseObject);
-            return;
-        }
-        
-        DLog(@"%@ %@", response, responseObject);
-    }];
-    
-    [uploadTask resume];
-}
+//- (void)uploadAudioToServer:(NSData *)data {
+//    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+//
+//    NSError *err;
+//    NSString *urlString = [self _APIEndpoint:UPLOAD_AUDIO_API_PATH];
+//    NSMutableURLRequest *req = [serializer multipartFormRequestWithMethod:@"POST"
+//                                                                URLString:urlString
+//                                                               parameters:@{ @"text": @YES }
+//                                                constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        // Add WAV header
+//        NSData *wavData = [WAVUtils wavDataFromPCM:data
+//                                       numChannels:1
+//                                        sampleRate:REC_SAMPLE_RATE
+//                                     bitsPerSample:16];
+//        // Append WAV file data
+//        [formData appendPartWithFileData:wavData name:@"file"
+//                                fileName:@"audio.wav"
+//                                mimeType:@"audio/wav"];
+//
+//    } error:&err];
+//
+//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//
+//    DLog(@"Sending request %@", [req description]);
+//    NSURLSessionUploadTask *uploadTask = [manager
+//    uploadTaskWithStreamedRequest:req
+//    progress: nil //^(NSProgress * _Nonnull uploadProgress) {}
+//    completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//        if (error) {
+//            DLog(@"Error uploading audio file: %@", error);
+//            DLog(@"%@ %@", response, responseObject);
+//            return;
+//        }
+//
+//        DLog(@"%@ %@", response, responseObject);
+//    }];
+//
+//    [uploadTask resume];
+//}
 
 #pragma mark - Fetch list of supported voices
 

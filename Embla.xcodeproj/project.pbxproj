@@ -23,7 +23,6 @@
 		F421879F237C79640097E5D4 /* rec_begin.wav in Resources */ = {isa = PBXBuildFile; fileRef = F421879C237C79640097E5D4 /* rec_begin.wav */; };
 		F427692422C1218A00BB6977 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692322C1218A00BB6977 /* SettingsViewController.m */; };
 		F427692722C1219A00BB6977 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F427692622C1219A00BB6977 /* WebViewController.m */; };
-		F42BA7B42768F661005FC843 /* WAVUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BA7B32768F661005FC843 /* WAVUtils.m */; };
 		F4482F2C22B930530050148E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4482F2B22B930530050148E /* CoreLocation.framework */; };
 		F448564F2667F35F0098872C /* Snowboy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F448564E2667F35F0098872C /* Snowboy.framework */; };
 		F44856532668F4F30098872C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44856522668F4F30098872C /* Accelerate.framework */; };
@@ -663,7 +662,6 @@
 				F4E785592368FA9F004E29D1 /* Keys.c in Sources */,
 				F4E785502368BDEA004E29D1 /* SessionButton.m in Sources */,
 				D392D9891C94938F002F5132 /* SessionViewController.m in Sources */,
-				F42BA7B42768F661005FC843 /* WAVUtils.m in Sources */,
 				F4E1537F23732C1B00388420 /* AudioWaveformView.m in Sources */,
 				F4E67E0E275FD6C100D69183 /* UIImage+Additions.m in Sources */,
 				F4E160F922A977630019EDE7 /* QueryService.m in Sources */,
