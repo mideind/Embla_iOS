@@ -126,9 +126,9 @@
     [self.audioBuffer appendData:data];
     
     // Append to audio buffer for entire session
-    if ([self.totalAudioData length] <= MAX_SESSION_AUDIO_SIZE) {
-        [self.totalAudioData appendData:data];
-    }
+//    if ([self.totalAudioData length] <= MAX_SESSION_AUDIO_SIZE) {
+//        [self.totalAudioData appendData:data];
+//    }
     
     // Get audio frame properties
     NSInteger frameCount = [data length] / 2; // Mono 16-bit audio means each frame is 2 bytes
