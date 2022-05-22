@@ -106,7 +106,8 @@
     };
     
     // Speech synthesise text via Greynir API and play
-    [[QueryService sharedInstance] requestSpeechSynthesis:@"Þessi rödd hljómar svona"
+    NSString *introductionMsg = [NSString stringWithFormat:@"Ég heiti %@ og ég hljóma svona", voiceName];
+    [[QueryService sharedInstance] requestSpeechSynthesis:introductionMsg
                                         completionHandler:synthesisCompletionHandler];
 
 }
