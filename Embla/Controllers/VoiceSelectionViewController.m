@@ -25,12 +25,11 @@
 
 #define FALLBACK_VOICES     @[@"Dora", @"Karl"]
 
-NSArray<NSString *> *voices;
-
 @interface VoiceSelectionViewController ()
 
 @property (nonatomic, strong) UIActivityIndicatorView *progressView;;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic, strong) NSArray *voices;
 
 @end
 
@@ -41,10 +40,10 @@ NSArray<NSString *> *voices;
     
     self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     
-    if (voices != nil) {
-        return;
-    }
+    self.voices = FALLBACK_VOICES;
     
+#ifdef DEBUG
+    // Load list of voices from remote server when in debug mode
     self.progressView = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
     self.progressView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
     
@@ -56,23 +55,16 @@ NSArray<NSString *> *voices;
         [self.progressView stopAnimating];
         [self.progressView removeFromSuperview];
         
-        voices = FALLBACK_VOICES;
         if (error || responseObject == nil) {
             DLog(@"Error from query server voices API: %@", [error localizedDescription]);
         }
-#ifdef DEBUG
         else if ([responseObject objectForKey:@"supported"] != nil) {
-            voices = [responseObject objectForKey:@"supported"];
+            self.voices = [responseObject objectForKey:@"supported"];
         }
-#else
-        else if ([responseObject objectForKey:@"recommended"] != nil) {
-            voices = [responseObject objectForKey:@"recommended"];
-        }
-#endif
         
         // Make sure voice ID in settings is sane
         NSString *currVoiceID = [DEFAULTS objectForKey:@"VoiceID"];
-        if ([voices containsObject:currVoiceID] == NO) {
+        if ([self.voices containsObject:currVoiceID] == NO) {
             if (responseObject != nil) {
                 [DEFAULTS setObject:[responseObject objectForKey:@"default"] forKey:@"VoiceID"];
             } else {
@@ -84,6 +76,9 @@ NSArray<NSString *> *voices;
     };
     
     [[QueryService sharedInstance] requestVoicesWithCompletionHandler:completionHandler];
+#endif
+
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -94,7 +89,7 @@ NSArray<NSString *> *voices;
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *voiceName = [voices objectAtIndex:indexPath.row];
+    NSString *voiceName = [self.voices objectAtIndex:indexPath.row];
     [DEFAULTS setObject:voiceName forKey:@"VoiceID"];
     [DEFAULTS synchronize];
     DLog(@"Set VoiceID to \"%@\"", voiceName);
@@ -220,7 +215,7 @@ NSArray<NSString *> *voices;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [voices count];
+    return [self.voices count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -233,7 +228,7 @@ NSArray<NSString *> *voices;
         cell.imageView.image = [UIImage systemImageNamed:@"waveform"];
     }
     
-    NSString *voiceName = [voices objectAtIndex:indexPath.row];
+    NSString *voiceName = [self.voices objectAtIndex:indexPath.row];
     cell.textLabel.text = voiceName;
     cell.accessoryType = UITableViewCellAccessoryNone;
     if ([voiceName isEqualToString:[DEFAULTS objectForKey:@"VoiceID"]]) {
