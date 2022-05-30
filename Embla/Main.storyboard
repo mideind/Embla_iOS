@@ -333,7 +333,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KI-ml-eRu">
-                                                    <rect key="frame" x="184" y="11" width="175" height="23"/>
+                                                    <rect key="frame" x="136" y="11" width="223" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
                                                     <nil key="textColor"/>

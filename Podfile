@@ -1,4 +1,4 @@
-platform :ios, '12.0'
+platform :ios, '13.0'
 
 ENV["COCOAPODS_DISABLE_STATS"] = "true"
 
@@ -7,7 +7,7 @@ inhibit_all_warnings!
 
 target 'Embla' do
     pod 'googleapis', :path => '.'
-    pod 'AFNetworking', '~> 3.2.1', :subspecs => ['Serialization', 'Security', 'NSURLSession']
+    pod 'AFNetworking', '~> 4.0.1', :subspecs => ['Serialization', 'Security', 'NSURLSession']
     pod 'Reachability', '~> 3.2'
     pod 'YYImage', '~> 1.0.4'
     # pod 'EAIntroView'
