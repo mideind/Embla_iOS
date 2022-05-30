@@ -446,8 +446,7 @@
                                                     <segments>
                                                         <segment title="Greynir.is"/>
                                                         <segment title="Brandur"/>
-                                                        <segment title="Vinna"/>
-                                                        <segment title="Heima"/>
+                                                        <segment title="Staðarnet"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.92156862750000001" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
