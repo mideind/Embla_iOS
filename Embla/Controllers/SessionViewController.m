@@ -86,8 +86,8 @@ static NSString * const kSessionButtonLabelActive = \
 #pragma mark - UIViewController
 
 - (id<HotwordDetector>)detector {
-    NSString *detectorPrefs = [DEFAULTS stringForKey:@"HotwordDetector"];
-    NSString *detectorName = detectorPrefs ? detectorPrefs : DEFAULT_HOTWORD_DETECTOR;
+    NSString *detectorPref = [DEFAULTS stringForKey:@"HotwordDetector"];
+    NSString *detectorName = detectorPref ? detectorPref : DEFAULT_HOTWORD_DETECTOR;
     NSString *detectorClassName = [detectorName stringByAppendingString:@"Detector"];
     Class detectorClass = NSClassFromString(detectorClassName);
     if (detectorClass == nil) {

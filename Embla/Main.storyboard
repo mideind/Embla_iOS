@@ -351,7 +351,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWI-l6-Bd2">
-                                                    <rect key="frame" x="15" y="6" width="344" height="46"/>
+                                                    <rect key="frame" x="15" y="1" width="344" height="63"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <accessibility key="accessibilityConfiguration" label="Hreinsa fyrirspurnasögu"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
@@ -375,7 +375,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWt-gV-TkC">
-                                                    <rect key="frame" x="15" y="6" width="344" height="31"/>
+                                                    <rect key="frame" x="15" y="3" width="344" height="58"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <accessibility key="accessibilityConfiguration" label="Hreinsa fyrirspurnasögu"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
@@ -403,7 +403,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fyrirspurnaþjónn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ch-9M-dcL">
-                                                    <rect key="frame" x="16" y="11" width="343" height="24"/>
+                                                    <rect key="frame" x="16" y="16" width="343" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="21"/>
                                                     <nil key="textColor"/>

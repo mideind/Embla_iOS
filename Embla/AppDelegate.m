@@ -34,7 +34,7 @@
     NSDictionary *startingDefaults = [self startingDefaults];
     [DEFAULTS registerDefaults:startingDefaults];
     
-    // This hack is here for backwards compatibility reasons.
+    // This hack is here for backward compatibility reasons.
     // In versions prior to 1.2, the selected voice in defaults was stored
     // as an integer (0 for Dora and 1 for Karl) under the key "Voice".
     // As of 1.2, it is stored as a string under the key "VoiceID"
@@ -43,8 +43,16 @@
     if ([DEFAULTS objectForKey:@"Voice"] != nil) {
         NSInteger voiceIdx = [DEFAULTS integerForKey:@"Voice"];
         [DEFAULTS removeObjectForKey:@"Voice"];
-        NSString *v = voiceIdx == 0 ? @"Dora" : @"Karl";
+        NSString *v = (voiceIdx == 0) ? @"Dora" : @"Karl";
         [DEFAULTS setObject:v forKey:@"VoiceID"];
+    }
+    
+    // This hack is also here for backward compatibility reasons.
+    // In versions prior to 1.3, the default voice was "Dora"
+    // but is now "Dóra". Purely a cosmetic fix for display in
+    // Settings and does not affect how requests are handled by the query server.
+    if ([[DEFAULTS stringForKey:@"VoiceID"] isEqualToString:OLD_DEFAULT_VOICE_ID]) {
+        [DEFAULTS setObject:DEFAULT_VOICE_ID forKey:@"VoiceID"];
     }
     
 #ifdef DEBUG
@@ -131,9 +139,9 @@
     self.window.rootViewController = viewController;
 }
 
-- (void)showOnboarding {
-//    self.window.rootViewController = onboardingVC;
-}
+//- (void)showOnboarding {
+////    self.window.rootViewController = onboardingVC;
+//}
 
 #pragma mark - Defaults
 
