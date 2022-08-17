@@ -55,10 +55,23 @@
 // TODO: Perhaps better to initialise a new web view for each call
 - (void)run:(NSString *)jsCode completionHandler:(void (^)(id, NSError *))completionHandler {
     NSString *payload = [NSString stringWithFormat:PAYLOAD, [DEFAULTS stringForKey:@"QueryServer"], jsCode];
-    [webView evaluateJavaScript:payload completionHandler:^(id res, NSError *err) {
-        completionHandler(res, err);
-        //[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-    }];
+    
+    if (@available(iOS 14.0, *)) {
+        
+        // Async JS - only supported in iOS 14 or later
+        [webView callAsyncJavaScript:payload arguments:nil inFrame:nil inContentWorld:[WKContentWorld defaultClientWorld] completionHandler:^(id res, NSError *err) {
+            completionHandler(res, err);
+            //[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+        }];
+        
+    } else {
+        
+        // Sync JS on iOS < 14
+        [webView evaluateJavaScript:payload completionHandler:^(id res, NSError *err) {
+            completionHandler(res, err);
+            //[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+        }];
+    }
 }
 
 @end

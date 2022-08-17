@@ -28,6 +28,7 @@
 #import "QueryService.h"
 #import "SpeechRecognitionService.h"
 #import "DataURI.h"
+#import "NSString+Additions.h"
 #import <AVFoundation/AVFoundation.h>
 
 
@@ -462,7 +463,7 @@
 
 // Play dunno-voice_id audio file
 - (NSString *)playDunno {
-    NSString *suffix = [[DEFAULTS objectForKey:@"VoiceID"] lowercaseString];
+    NSString *suffix = [[[DEFAULTS objectForKey:@"VoiceID"] lowercaseString] asciify];
     uint32_t rnd = arc4random_uniform(6) + 1;
     NSString *dunnoName = [NSString stringWithFormat:@"dunno%02d", rnd];
     NSString *fn = [NSString stringWithFormat:@"%@-%@", dunnoName, suffix];

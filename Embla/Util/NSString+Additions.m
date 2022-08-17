@@ -51,4 +51,10 @@
     return [self copy];
 }
 
+- (NSString *)asciify {
+    NSData *d = [self dataUsingEncoding:NSASCIIStringEncoding
+                   allowLossyConversion:YES];
+    return [[NSString alloc] initWithData:d encoding:NSASCIIStringEncoding];
+}
+
 @end
