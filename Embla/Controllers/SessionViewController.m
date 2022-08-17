@@ -174,7 +174,10 @@ static NSString * const kSessionButtonLabelActive = \
     BOOL hotwordActivation = [DEFAULTS boolForKey:@"VoiceActivation"];
     if (hotwordActivation) {
         // Only reactivate hotword detection if this is the frontmost view controller
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         id rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+#pragma GCC diagnostic pop
         UINavigationController *navCtrl = (UINavigationController *)rootVC;
         if (navCtrl.topViewController == self) {
             [[self detector] startListening];

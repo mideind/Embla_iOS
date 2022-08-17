@@ -24,5 +24,6 @@
 - (NSString *)sentenceCapitalizedString;
 - (NSString *)periodTerminatedString;
 - (NSString *)questionMarkTerminatedString;
-    
+- (NSString *)asciify;
+
 @end
