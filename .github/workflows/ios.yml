@@ -1,5 +1,5 @@
 # GitHub Actions workflow for testing build
-name: build
+name: tests
 
 on:
   push:
