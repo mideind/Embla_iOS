@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build client using build script
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
       - name: Build
