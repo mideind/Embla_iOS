@@ -36,23 +36,27 @@
     
     // This hack is here for backward compatibility reasons.
     // In versions prior to 1.2, the selected voice in defaults was stored
-    // as an integer (0 for Dora and 1 for Karl) under the key "Voice".
+    // as an integer (0 for female voice and 1 for male) under the key "Voice".
     // As of 1.2, it is stored as a string under the key "VoiceID"
-    // This code ensures that the user's previously selected voice is
-    // preserved when he updates the client.
+    // This code ensures that the user's previously selected voice gender
+    // choice is preserved when he updates the client.
     if ([DEFAULTS objectForKey:@"Voice"] != nil) {
         NSInteger voiceIdx = [DEFAULTS integerForKey:@"Voice"];
         [DEFAULTS removeObjectForKey:@"Voice"];
-        NSString *v = (voiceIdx == 0) ? @"Dora" : @"Karl";
+        NSString *v = (voiceIdx == 0) ? DEFAULT_VOICE_ID : NEW_MALE_VOICE_ID;
         [DEFAULTS setObject:v forKey:@"VoiceID"];
     }
     
     // This hack is also here for backward compatibility reasons.
-    // In versions prior to 1.3, the default voice was "Dora"
-    // but is now "Dóra". Purely a cosmetic fix for display in
-    // Settings and does not affect how requests are handled by the query server.
-    if ([[DEFAULTS stringForKey:@"VoiceID"] isEqualToString:OLD_DEFAULT_VOICE_ID]) {
+    // As of 1.3.2 we have a new default voice (Guðrún). Users are
+    // automatically migrated to the new voice.
+    NSString *vID = [DEFAULTS stringForKey:@"VoiceID"];
+    if ([vID isEqualToString:OLD_DEFAULT_VOICE_ID_1] || [vID isEqualToString:OLD_DEFAULT_VOICE_ID_2] ) {
         [DEFAULTS setObject:DEFAULT_VOICE_ID forKey:@"VoiceID"];
+    }
+    else if ([vID isEqualToString:OLD_MALE_VOICE_ID]) {
+        // Migrate those with old male voice to the new one (Gunnar)
+        [DEFAULTS setObject:NEW_MALE_VOICE_ID forKey:@"VoiceID"];
     }
     
 #ifdef DEBUG

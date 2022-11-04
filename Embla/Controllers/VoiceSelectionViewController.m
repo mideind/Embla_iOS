@@ -23,7 +23,7 @@
 #import "DataURI.h"
 #import "Common.h"
 
-#define FALLBACK_VOICES     @[@"Dóra", @"Karl"]
+#define FALLBACK_VOICES     @[@"Guðrún", @"Gunnar"]
 
 @interface VoiceSelectionViewController ()
 

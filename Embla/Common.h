@@ -32,8 +32,12 @@
 #define DEFAULT_HOTWORD_DETECTOR        @"Snowboy"
 
 // Speech synthesis
-#define DEFAULT_VOICE_ID                @"Dóra"
-#define OLD_DEFAULT_VOICE_ID            @"Dora"
+#define DEFAULT_VOICE_ID                @"Guðrún"
+#define NEW_MALE_VOICE_ID               @"Gunnar"
+
+#define OLD_DEFAULT_VOICE_ID_1          @"Dóra"
+#define OLD_DEFAULT_VOICE_ID_2          @"Dora"
+#define OLD_MALE_VOICE_ID               @"Karl"
 
 // Query API
 #define DEFAULT_QUERY_SERVER            @"https://greynir.is"
