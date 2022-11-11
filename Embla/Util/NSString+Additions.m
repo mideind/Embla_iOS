@@ -51,10 +51,44 @@
     return [self copy];
 }
 
-- (NSString *)asciify {
-    NSData *d = [self dataUsingEncoding:NSASCIIStringEncoding
-                   allowLossyConversion:YES];
-    return [[NSString alloc] initWithData:d encoding:NSASCIIStringEncoding];
+- (NSString *)icelandic_asciify {
+    //Convert Icelandic characters to their ASCII equivalent
+    // and then remove all non-ASCII characters.
+
+    NSDictionary *ICECHARS_TO_ASCII = @{
+        @"ð": @"d",
+        @"Ð": @"D",
+        @"á": @"a",
+        @"Á": @"A",
+        @"ú": @"u",
+        @"Ú": @"U",
+        @"í": @"i",
+        @"Í": @"I",
+        @"é": @"e",
+        @"É": @"E",
+        @"þ": @"th",
+        @"Þ": @"TH",
+        @"ó": @"o",
+        @"Ó": @"O",
+        @"ý": @"y",
+        @"Ý": @"Y",
+        @"ö": @"o",
+        @"Ö": @"O",
+        @"æ": @"ae",
+        @"Æ": @"AE",
+    };
+    
+    NSString *s = [self copy];
+    for (NSString *key in ICECHARS_TO_ASCII) {
+        s = [s stringByReplacingOccurrencesOfString:key
+                                         withString:ICECHARS_TO_ASCII[key]];
+    }
+    
+    NSData *d = [s dataUsingEncoding:NSASCIIStringEncoding
+                allowLossyConversion:YES];
+    
+    return [[NSString alloc] initWithData:d
+                                 encoding:NSASCIIStringEncoding];
 }
 
 @end

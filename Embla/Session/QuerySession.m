@@ -463,7 +463,7 @@
 
 // Play dunno-voice_id audio file
 - (NSString *)playDunno {
-    NSString *suffix = [[[DEFAULTS objectForKey:@"VoiceID"] lowercaseString] asciify];
+    NSString *suffix = [[[DEFAULTS objectForKey:@"VoiceID"] lowercaseString] icelandic_asciify];
     uint32_t rnd = arc4random_uniform(6) + 1;
     NSString *dunnoName = [NSString stringWithFormat:@"dunno%02d", rnd];
     NSString *fn = [NSString stringWithFormat:@"%@-%@", dunnoName, suffix];

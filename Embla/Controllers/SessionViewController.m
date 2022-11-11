@@ -622,7 +622,7 @@ static NSString * const kSessionButtonLabelActive = \
     
     BOOL adjustRate = NO;
     if ([voiceSounds containsObject:fileName]) {
-        NSString *suffix = [[DEFAULTS stringForKey:@"VoiceID"] lowercaseString];
+        NSString *suffix = [[[DEFAULTS stringForKey:@"VoiceID"] icelandic_asciify] lowercaseString];
         fileName = [NSString stringWithFormat:@"%@-%@", fileName, suffix];
         adjustRate = YES;
     }

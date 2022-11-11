@@ -24,6 +24,6 @@
 - (NSString *)sentenceCapitalizedString;
 - (NSString *)periodTerminatedString;
 - (NSString *)questionMarkTerminatedString;
-- (NSString *)asciify;
+- (NSString *)icelandic_asciify;
 
 @end
