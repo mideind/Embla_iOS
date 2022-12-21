@@ -1,5 +1,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Language](https://img.shields.io/badge/language-objective--c-lightgrey)]()
+![Release](https://shields.io/github/v/release/mideind/Embla_iOS?display_name=tag)
+[![App Store](https://img.shields.io/itunes/v/1485887184?label=App%20Store)](https://apps.apple.com/us/app/embla/id1485887184?platform=iphone)
 [![Build](https://github.com/mideind/Embla_iOS/actions/workflows/ios.yml/badge.svg)]()
 
 <img src="img/app_icon.png" align="right" width="224" height="224" style="margin-left:20px;">
