@@ -429,6 +429,10 @@ static NSString * const kSessionButtonLabelActive = \
                         command:(NSString *)cmd {
     [self clearLog];
     
+    // Escape % marks to prevent mangled string formatting
+    answer = [answer stringByReplacingOccurrencesOfString:@"%" withString:@"%%"];
+    question = [question stringByReplacingOccurrencesOfString:@"%" withString:@"%%"];
+
     // We have received a JS command
     if (cmd) {
         id synthesisCompletionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
