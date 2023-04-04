@@ -30,7 +30,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 // Number of seconds before a query server request should time out
-#define QUERY_SERVICE_REQ_TIMEOUT   15.0f
+#define QUERY_SERVICE_REQ_TIMEOUT   25.0f
 
 @implementation QueryService
 
