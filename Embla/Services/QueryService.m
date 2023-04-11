@@ -62,6 +62,12 @@
     return apiKey;
 }
 
+- (void)_addAuthorizationHeaderToRequest:(NSMutableURLRequest *)req {
+    NSString *key = [self _APIKeyForQueryServer];
+    NSString *authHeader = [NSString stringWithFormat:@"%@", key];
+    [req setValue:authHeader forHTTPHeaderField:@"Authorization"];
+}
+
 #pragma mark -
 
 - (NSDictionary *)_location {
@@ -137,11 +143,8 @@
                                                                               URLString:apiEndpoint
                                                                              parameters:parameters
                                                                                   error:&err] mutableCopy];
-    // Add authorization header
-    NSString *key = [self _APIKeyForQueryServer];
-    NSString *authHeader = [NSString stringWithFormat:@"Basic %@", key];
-    [req setValue:authHeader forHTTPHeaderField:@"Authorization"];
-    
+    [self _addAuthorizationHeaderToRequest:req];
+        
     if (req == nil) {
         DLog(@"%@", [err localizedDescription]);
         return;
@@ -188,9 +191,7 @@
     }
     
     // Add authorization header
-    NSString *key = [self _APIKeyForQueryServer];
-    NSString *authHeader = [NSString stringWithFormat:@"Basic %@", key];
-    [req setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    [self _addAuthorizationHeaderToRequest:req];
     
     DLog(@"Sending request %@\n%@", [req description], [parameters description]);
     
@@ -240,10 +241,7 @@
         return;
     }
     
-    // Add authorization header
-    NSString *key = [self _APIKeyForQueryServer];
-    NSString *authHeader = [NSString stringWithFormat:@"Basic %@", key];
-    [req setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    [self _addAuthorizationHeaderToRequest:req];
     
     DLog(@"Sending request %@\n%@", [req description], [parameters description]);
     
