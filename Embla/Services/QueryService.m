@@ -52,6 +52,16 @@
     return [NSString stringWithFormat:@"%@%@", server, path];
 }
 
+- (NSString *)_APIKeyForQueryServer {
+    NSData *d = [NSData dataWithBytes:sak length:strlen(sak)];
+    NSData *d2 = [[NSData alloc] initWithBase64EncodedData:d options:0];
+    NSString *apiKey = [[NSString alloc] initWithData:d2 encoding:NSASCIIStringEncoding];
+    if (!apiKey) {
+        apiKey = @"";
+    }
+    return apiKey;
+}
+
 #pragma mark -
 
 - (NSDictionary *)_location {
@@ -107,8 +117,8 @@
     }
     
     if (privacyMode) {
-        // User has set the client to private mode. Notify server that
-        // queries should not be logged.
+        // User has set the client to private mode. Notify
+        // server that queries should not be logged.
         parameters[@"private"] = @"1";
     } else {
         // Send unique device ID
@@ -123,10 +133,15 @@
     
     // Create request
     NSError *err = nil;
-    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
-                                                                      URLString:apiEndpoint
-                                                                     parameters:parameters
-                                                                          error:&err];
+    NSMutableURLRequest *req = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+                                                                              URLString:apiEndpoint
+                                                                             parameters:parameters
+                                                                                  error:&err] mutableCopy];
+    // Add authorization header
+    NSString *key = [self _APIKeyForQueryServer];
+    NSString *authHeader = [NSString stringWithFormat:@"Basic %@", key];
+    [req setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    
     if (req == nil) {
         DLog(@"%@", [err localizedDescription]);
         return;
@@ -150,14 +165,7 @@
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    // API key for query server
-    NSData *d = [NSData dataWithBytes:sak length:strlen(sak)];
-    NSData *d2 = [[NSData alloc] initWithBase64EncodedData:d options:0];
-    NSString *apiKey = [[NSString alloc] initWithData:d2 encoding:NSASCIIStringEncoding];
-    if (!apiKey) {
-        apiKey = @"";
-    }
-    
+    NSString *apiKey = [self _APIKeyForQueryServer];
     NSString *voiceName = [DEFAULTS stringForKey:@"VoiceID"];
     
     NSDictionary *parameters = @{
@@ -169,14 +177,21 @@
     
     // Create request
     NSError *err = nil;
-    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
-                                                                      URLString:[self _APIEndpoint:SPEECH_API_PATH]
-                                                                     parameters:parameters
-                                                                          error:&err];
+    NSMutableURLRequest *req = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+                                                                              URLString:[self _APIEndpoint:SPEECH_API_PATH]
+                                                                             parameters:parameters
+                                                                                  error:&err] mutableCopy];
+    
     if (req == nil) {
         DLog(@"%@", [err localizedDescription]);
         return;
     }
+    
+    // Add authorization header
+    NSString *key = [self _APIKeyForQueryServer];
+    NSString *authHeader = [NSString stringWithFormat:@"Basic %@", key];
+    [req setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    
     DLog(@"Sending request %@\n%@", [req description], [parameters description]);
     
     // Run task with request
@@ -197,13 +212,7 @@
     NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
-    // API key for query server
-    NSData *d = [NSData dataWithBytes:sak length:strlen(sak)];
-    NSData *d2 = [[NSData alloc] initWithBase64EncodedData:d options:0];
-    NSString *apiKey = [[NSString alloc] initWithData:d2 encoding:NSASCIIStringEncoding];
-    if (!apiKey) {
-        apiKey = @"";
-    }
+    NSString *apiKey = [self _APIKeyForQueryServer];
     
     // Configure session
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -222,14 +231,20 @@
     NSError *err = nil;
     NSString *server = [DEFAULTS objectForKey:@"QueryServer"];
     NSString *remoteURLStr = [NSString stringWithFormat:@"%@%@", server, CLEAR_QHISTORY_API_PATH];
-    NSURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
-                                                                      URLString:remoteURLStr
-                                                                     parameters:parameters
-                                                                          error:&err];
+    NSMutableURLRequest *req = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
+                                                                              URLString:remoteURLStr
+                                                                             parameters:parameters
+                                                                                  error:&err] mutableCopy];
     if (req == nil) {
         DLog(@"%@", [err localizedDescription]);
         return;
     }
+    
+    // Add authorization header
+    NSString *key = [self _APIKeyForQueryServer];
+    NSString *authHeader = [NSString stringWithFormat:@"Basic %@", key];
+    [req setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    
     DLog(@"Sending request %@\n%@", [req description], [parameters description]);
     
     // Run task with request
