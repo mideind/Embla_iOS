@@ -168,12 +168,10 @@
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSString *apiKey = [self _APIKeyForQueryServer];
     NSString *voiceName = [DEFAULTS stringForKey:@"VoiceID"];
     
     NSDictionary *parameters = @{
         @"text": str,
-        @"api_key": apiKey,
         @"voice_id": voiceName,
         @"format": @"text" // No SSML for now...
     };
@@ -212,9 +210,7 @@
     // device, and is the same across apps from a single vendor.
     NSString *uniqueID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    
-    NSString *apiKey = [self _APIKeyForQueryServer];
-    
+        
     // Configure session
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [configuration setTimeoutIntervalForRequest:QUERY_SERVICE_REQ_TIMEOUT];
@@ -225,7 +221,6 @@
                                     @"client_id": uniqueID,
                                     @"client_type": @"ios",
                                     @"client_version": version,
-                                    @"api_key": apiKey
                                 };
     
     // Create request
