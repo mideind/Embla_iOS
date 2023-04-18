@@ -57,9 +57,9 @@
     // Software version label
     NSString *v = [NSString stringWithFormat:@"%@ (%@) - %@",
                    CLIENT_VERSION, CLIENT_BUILD, CLIENT_OSNAME];
-//#ifdef DEBUG
+#ifdef DEBUG
     v = [v stringByAppendingString:@" dbg"];
-//#endif
+#endif
     [self.swVersionLabel setText:v];
 }
 
@@ -83,9 +83,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Only show query server selection in debug mode
-//#ifdef DEBUG
+#ifdef DEBUG
     return 2;
-//#endif
+#endif
     return 1;
 }
 
@@ -97,7 +97,7 @@
     BOOL locEnabled = [DEFAULTS boolForKey:@"UseLocation"];
     [self.useLocationSwitch setOn:[self canUseLocation] && locEnabled];
 }
-    
+
 - (BOOL)canUseLocation {
     if ([CLLocationManager locationServicesEnabled]) {
         switch ([CLLocationManager authorizationStatus]) {
@@ -129,7 +129,7 @@
     [self updateSpeechSpeedLabel];
     [self.voiceLabel setText:[DEFAULTS stringForKey:@"VoiceID"]];
     
-//#ifdef DEBUG
+#ifdef DEBUG
     // Query server settings
     NSString *url = [DEFAULTS stringForKey:@"QueryServer"];
     [self.queryServerTextField setText:url];
@@ -138,7 +138,7 @@
     
     // Speech to text server settings
     // [self.speech2textServerTextField setText:[DEFAULTS stringForKey:@"Speech2TextServer"]];
-//#endif
+#endif
 }
 
 // Configure defaults according to controls in Settings view, synchronize

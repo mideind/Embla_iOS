@@ -38,45 +38,45 @@
     [super viewDidLoad];
     
     self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-    self.voices = @[];
-    
-#ifdef DEBUG
-    // Load list of voices from remote server when in debug mode
-    self.progressView = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
-    self.progressView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
-    
-    [self.progressView startAnimating];
-    [self.view addSubview:self.progressView];
-    
-    // Completion handler block for query server voice list API request
-    id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
-        [self.progressView stopAnimating];
-        [self.progressView removeFromSuperview];
-        
-        if (error || responseObject == nil) {
-            DLog(@"Error from query server voices API: %@", [error localizedDescription]);
-        }
-        else if ([responseObject objectForKey:@"supported"] != nil) {
-            self.voices = [responseObject objectForKey:@"supported"];
-        }
-        
-        // Make sure voice ID in settings is sane
-        NSString *currVoiceID = [DEFAULTS objectForKey:@"VoiceID"];
-        if ([self.voices containsObject:currVoiceID] == NO) {
-            if (responseObject != nil) {
-                [DEFAULTS setObject:[responseObject objectForKey:@"default"] forKey:@"VoiceID"];
-            } else {
-                [DEFAULTS setObject:DEFAULT_VOICE_ID forKey:@"VoiceID"];
-            }
-        }
-        
-        [self.tableView reloadData];
-    };
-    
-    [[QueryService sharedInstance] requestVoicesWithCompletionHandler:completionHandler];
-#else
     self.voices = FALLBACK_VOICES;
-#endif
+    
+//#ifdef DEBUG
+//    // Load list of voices from remote server when in debug mode
+//    self.progressView = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
+//    self.progressView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
+//
+//    [self.progressView startAnimating];
+//    [self.view addSubview:self.progressView];
+//
+//    // Completion handler block for query server voice list API request
+//    id completionHandler = ^(NSURLResponse *response, id responseObject, NSError *error) {
+//        [self.progressView stopAnimating];
+//        [self.progressView removeFromSuperview];
+//
+//        if (error || responseObject == nil) {
+//            DLog(@"Error from query server voices API: %@", [error localizedDescription]);
+//        }
+//        else if ([responseObject objectForKey:@"supported"] != nil) {
+//            self.voices = [responseObject objectForKey:@"supported"];
+//        }
+//
+//        // Make sure voice ID in settings is sane
+//        NSString *currVoiceID = [DEFAULTS objectForKey:@"VoiceID"];
+//        if ([self.voices containsObject:currVoiceID] == NO) {
+//            if (responseObject != nil) {
+//                [DEFAULTS setObject:[responseObject objectForKey:@"default"] forKey:@"VoiceID"];
+//            } else {
+//                [DEFAULTS setObject:DEFAULT_VOICE_ID forKey:@"VoiceID"];
+//            }
+//        }
+//
+//        [self.tableView reloadData];
+//    };
+//
+//    [[QueryService sharedInstance] requestVoicesWithCompletionHandler:completionHandler];
+//#else
+//    self.voices = FALLBACK_VOICES;
+//#endif
 
     [self.tableView reloadData];
 }
