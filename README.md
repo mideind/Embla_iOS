@@ -1,21 +1,19 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Language](https://img.shields.io/badge/language-objective--c-lightgrey)]()
 ![Release](https://shields.io/github/v/release/mideind/Embla_iOS?display_name=tag)
-[![App Store](https://img.shields.io/itunes/v/1485887184?label=App%20Store)](https://apps.apple.com/us/app/embla/id1485887184?platform=iphone)
 [![Build](https://github.com/mideind/Embla_iOS/actions/workflows/ios.yml/badge.svg)]()
 
 <img src="img/app_icon.png" align="right" width="224" height="224" style="margin-left:20px;">
 
 # Embla iOS client
 
+***The native Embla iOS client has been deprecated. Embla on iOS is now implemented in Flutter
+and all future development takes place in [this repo](https://github.com/mideind/EmblaFlutterApp).***
+
 Embla is an Icelandic-language voice assistant powered by the [Greynir](https://greynir.is)
 query engine. This is the repository for the native Embla iOS client.
 
 Written in Objective-C for iOS 13.0+. Probably only builds on a recent version of macOS.
-
-<a href="https://apps.apple.com/is/app/embla/id1485887184">
-    <img alt="Download in App Store" src="img/app_store.png" width="162">
-</a>
 
 ## Build instructions
 
@@ -62,7 +60,7 @@ and Google's [Speech-to-Text API](https://cloud.google.com/speech-to-text) for s
 
 ## GPL License
 
-The Embla source code is Copyright (C) 2019-2022 [Miðeind ehf.](https://mideind.is)
+The Embla source code is Copyright (C) 2019-2023 [Miðeind ehf.](https://mideind.is)
 
 <a href="https://mideind.is"><img src="img/mideind_logo.png" alt="Miðeind ehf." 
 width="214" height="66" align="right" style="margin-left:20px; margin-bottom: 20px;"></a>
