@@ -5,9 +5,9 @@
 
 <img src="img/app_icon.png" align="right" width="224" height="224" style="margin-left:20px;">
 
-# Embla iOS client
+# Embla iOS client (deprecated)
 
-***The native Embla iOS client has been deprecated. Embla on iOS is now implemented in Flutter
+***The native Embla iOS client has been DEPRECATED. Embla on iOS is now implemented in Flutter
 and all future development takes place in [this repo](https://github.com/mideind/EmblaFlutterApp).***
 
 Embla is an Icelandic-language voice assistant powered by the [Greynir](https://greynir.is)
